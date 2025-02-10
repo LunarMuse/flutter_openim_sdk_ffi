@@ -131,7 +131,7 @@ extern __declspec(dllexport) void GetAllConversationList(char* operationID);
 extern __declspec(dllexport) void GetConversationListSplit(char* operationID, int offset, int count);
 extern __declspec(dllexport) void GetOneConversation(char* operationID, int32_t sessionType, char* sourceID);
 extern __declspec(dllexport) void GetMultipleConversation(char* operationID, char* conversationIDList);
-extern __declspec(dllexport) GoString GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
+extern __declspec(dllexport) char* GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
 extern __declspec(dllexport) void GetTotalUnreadMsgCount(char* operationID);
 extern __declspec(dllexport) void MarkConversationMessageAsRead(char* operationID, char* conversationID);
 extern __declspec(dllexport) void MarkAllConversationMessageAsRead(char* operationID);
