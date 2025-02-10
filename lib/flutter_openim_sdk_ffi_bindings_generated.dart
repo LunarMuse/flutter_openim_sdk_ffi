@@ -91,6 +91,20 @@ class FlutterOpenimSdkFfiBindings {
       int Function(
           int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, int)>();
 
+  int printf(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _printf(
+      arg0,
+    );
+  }
+
+  late final _printfPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'printf');
+  late final _printf =
+      _printfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
   late final ffi.Pointer<ffi.Pointer<FILE>> ___stdinp =
       _lookup<ffi.Pointer<FILE>>('__stdinp');
 
@@ -466,20 +480,6 @@ class FlutterOpenimSdkFfiBindings {
           'perror');
   late final _perror =
       _perrorPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  int printf(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _printf(
-      arg0,
-    );
-  }
-
-  late final _printfPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'printf');
-  late final _printf =
-      _printfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int putc(
     int arg0,
@@ -1727,13 +1727,13 @@ class FlutterOpenimSdkFfiBindings {
       _waitpidPtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int)>();
 
   int waitid(
-    int arg0,
-    int arg1,
+    idtype_t arg0,
+    Dart__uint32_t arg1,
     ffi.Pointer<siginfo_t> arg2,
     int arg3,
   ) {
     return _waitid(
-      arg0,
+      arg0.value,
       arg1,
       arg2,
       arg3,
@@ -1742,8 +1742,8 @@ class FlutterOpenimSdkFfiBindings {
 
   late final _waitidPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int32, id_t, ffi.Pointer<siginfo_t>, ffi.Int)>>('waitid');
+          ffi.Int Function(ffi.UnsignedInt, id_t, ffi.Pointer<siginfo_t>,
+              ffi.Int)>>('waitid');
   late final _waitid = _waitidPtr
       .asFunction<int Function(int, int, ffi.Pointer<siginfo_t>, int)>();
 
@@ -1917,7 +1917,7 @@ class FlutterOpenimSdkFfiBindings {
   late final _malloc_type_aligned_alloc = _malloc_type_aligned_allocPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(int, int, int)>();
 
-  /// rdar://75598414 (Support __counted_by_or_null)
+  /// rdar://120689514
   int malloc_type_posix_memalign(
     ffi.Pointer<ffi.Pointer<ffi.Void>> memptr,
     int alignment,
@@ -2147,10 +2147,10 @@ class FlutterOpenimSdkFfiBindings {
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
   ffi.Pointer<ffi.Void> valloc(
-    int arg0,
+    int __size,
   ) {
     return _valloc(
-      arg0,
+      __size,
     );
   }
 
@@ -2176,7 +2176,7 @@ class FlutterOpenimSdkFfiBindings {
   late final _aligned_alloc =
       _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
-  /// rdar://75598414 (Support __counted_by_or_null)
+  /// rdar://120689514
   int posix_memalign(
     ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
     int __alignment,
@@ -2229,6 +2229,22 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Int Function(
               ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
   late final _atexit = _atexitPtr.asFunction<
+      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+
+  int at_quick_exit(
+    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> arg0,
+  ) {
+    return _at_quick_exit(
+      arg0,
+    );
+  }
+
+  late final _at_quick_exitPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
+      'at_quick_exit');
+  late final _at_quick_exit = _at_quick_exitPtr.asFunction<
       int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
   double atof(
@@ -2513,6 +2529,18 @@ class FlutterOpenimSdkFfiBindings {
               ffi.NativeFunction<
                   ffi.Int Function(
                       ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+
+  void quick_exit(
+    int arg0,
+  ) {
+    return _quick_exit(
+      arg0,
+    );
+  }
+
+  late final _quick_exitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
+  late final _quick_exit = _quick_exitPtr.asFunction<void Function(int)>();
 
   int rand() {
     return _rand();
@@ -5248,16 +5276,16 @@ class FlutterOpenimSdkFfiBindings {
   /// Requires a current isolate.
   ///
   /// Returns the previous performance mode.
-  int Dart_SetPerformanceMode(
-    int mode,
+  Dart_PerformanceMode Dart_SetPerformanceMode(
+    Dart_PerformanceMode mode,
   ) {
-    return _Dart_SetPerformanceMode(
-      mode,
-    );
+    return Dart_PerformanceMode.fromValue(_Dart_SetPerformanceMode(
+      mode.value,
+    ));
   }
 
   late final _Dart_SetPerformanceModePtr =
-      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Int32)>>(
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.UnsignedInt)>>(
           'Dart_SetPerformanceMode');
   late final _Dart_SetPerformanceMode =
       _Dart_SetPerformanceModePtr.asFunction<int Function(int)>();
@@ -7291,18 +7319,18 @@ class FlutterOpenimSdkFfiBindings {
   ///  * handle.
   ///  */
   Object Dart_NewListOf(
-    int element_type_id,
+    Dart_CoreType_Id element_type_id,
     int length,
   ) {
     return _Dart_NewListOf(
-      element_type_id,
+      element_type_id.value,
       length,
     );
   }
 
-  late final _Dart_NewListOfPtr =
-      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int32, ffi.IntPtr)>>(
-          'Dart_NewListOf');
+  late final _Dart_NewListOfPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>(
+      'Dart_NewListOf');
   late final _Dart_NewListOf =
       _Dart_NewListOfPtr.asFunction<Object Function(int, int)>();
 
@@ -7597,16 +7625,16 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return kInvalid if the object is not a TypedData object or the appropriate
   /// Dart_TypedData_Type.
-  int Dart_GetTypeOfTypedData(
+  Dart_TypedData_Type Dart_GetTypeOfTypedData(
     Object object,
   ) {
-    return _Dart_GetTypeOfTypedData(
+    return Dart_TypedData_Type.fromValue(_Dart_GetTypeOfTypedData(
       object,
-    );
+    ));
   }
 
   late final _Dart_GetTypeOfTypedDataPtr =
-      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Handle)>>(
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>(
           'Dart_GetTypeOfTypedData');
   late final _Dart_GetTypeOfTypedData =
       _Dart_GetTypeOfTypedDataPtr.asFunction<int Function(Object)>();
@@ -7615,16 +7643,16 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return kInvalid if the object is not an external TypedData object or
   /// the appropriate Dart_TypedData_Type.
-  int Dart_GetTypeOfExternalTypedData(
+  Dart_TypedData_Type Dart_GetTypeOfExternalTypedData(
     Object object,
   ) {
-    return _Dart_GetTypeOfExternalTypedData(
+    return Dart_TypedData_Type.fromValue(_Dart_GetTypeOfExternalTypedData(
       object,
-    );
+    ));
   }
 
   late final _Dart_GetTypeOfExternalTypedDataPtr =
-      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Handle)>>(
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>(
           'Dart_GetTypeOfExternalTypedData');
   late final _Dart_GetTypeOfExternalTypedData =
       _Dart_GetTypeOfExternalTypedDataPtr.asFunction<int Function(Object)>();
@@ -7637,18 +7665,18 @@ class FlutterOpenimSdkFfiBindings {
   /// \return The TypedData object if no error occurs. Otherwise returns
   /// an error handle.
   Object Dart_NewTypedData(
-    int type,
+    Dart_TypedData_Type type,
     int length,
   ) {
     return _Dart_NewTypedData(
-      type,
+      type.value,
       length,
     );
   }
 
-  late final _Dart_NewTypedDataPtr =
-      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int32, ffi.IntPtr)>>(
-          'Dart_NewTypedData');
+  late final _Dart_NewTypedDataPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>(
+      'Dart_NewTypedData');
   late final _Dart_NewTypedData =
       _Dart_NewTypedDataPtr.asFunction<Object Function(int, int)>();
 
@@ -7661,12 +7689,12 @@ class FlutterOpenimSdkFfiBindings {
   /// \return The TypedData object if no error occurs. Otherwise returns
   /// an error handle.
   Object Dart_NewExternalTypedData(
-    int type,
+    Dart_TypedData_Type type,
     ffi.Pointer<ffi.Void> data,
     int length,
   ) {
     return _Dart_NewExternalTypedData(
-      type,
+      type.value,
       data,
       length,
     );
@@ -7674,7 +7702,7 @@ class FlutterOpenimSdkFfiBindings {
 
   late final _Dart_NewExternalTypedDataPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Handle Function(ffi.Int32, ffi.Pointer<ffi.Void>,
+          ffi.Handle Function(ffi.UnsignedInt, ffi.Pointer<ffi.Void>,
               ffi.IntPtr)>>('Dart_NewExternalTypedData');
   late final _Dart_NewExternalTypedData = _Dart_NewExternalTypedDataPtr
       .asFunction<Object Function(int, ffi.Pointer<ffi.Void>, int)>();
@@ -7695,7 +7723,7 @@ class FlutterOpenimSdkFfiBindings {
   /// \return The TypedData object if no error occurs. Otherwise returns
   /// an error handle.
   Object Dart_NewExternalTypedDataWithFinalizer(
-    int type,
+    Dart_TypedData_Type type,
     ffi.Pointer<ffi.Void> data,
     int length,
     ffi.Pointer<ffi.Void> peer,
@@ -7703,7 +7731,7 @@ class FlutterOpenimSdkFfiBindings {
     Dart_HandleFinalizer callback,
   ) {
     return _Dart_NewExternalTypedDataWithFinalizer(
-      type,
+      type.value,
       data,
       length,
       peer,
@@ -7715,7 +7743,7 @@ class FlutterOpenimSdkFfiBindings {
   late final _Dart_NewExternalTypedDataWithFinalizerPtr = _lookup<
       ffi.NativeFunction<
           ffi.Handle Function(
-              ffi.Int32,
+              ffi.UnsignedInt,
               ffi.Pointer<ffi.Void>,
               ffi.IntPtr,
               ffi.Pointer<ffi.Void>,
@@ -7727,7 +7755,7 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
 
   Object Dart_NewUnmodifiableExternalTypedDataWithFinalizer(
-    int type,
+    Dart_TypedData_Type type,
     ffi.Pointer<ffi.Void> data,
     int length,
     ffi.Pointer<ffi.Void> peer,
@@ -7735,7 +7763,7 @@ class FlutterOpenimSdkFfiBindings {
     Dart_HandleFinalizer callback,
   ) {
     return _Dart_NewUnmodifiableExternalTypedDataWithFinalizer(
-      type,
+      type.value,
       data,
       length,
       peer,
@@ -7746,8 +7774,13 @@ class FlutterOpenimSdkFfiBindings {
 
   late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Handle Function(ffi.Int32, ffi.Pointer<ffi.Void>, ffi.IntPtr,
-                  ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>(
+              ffi.Handle Function(
+                  ffi.UnsignedInt,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.IntPtr,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.IntPtr,
+                  Dart_HandleFinalizer)>>(
       'Dart_NewUnmodifiableExternalTypedDataWithFinalizer');
   late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizer =
       _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr.asFunction<
@@ -7796,7 +7829,7 @@ class FlutterOpenimSdkFfiBindings {
   /// Otherwise, returns an error handle.
   Object Dart_TypedDataAcquireData(
     Object object,
-    ffi.Pointer<ffi.Int32> type,
+    ffi.Pointer<ffi.UnsignedInt> type,
     ffi.Pointer<ffi.Pointer<ffi.Void>> data,
     ffi.Pointer<ffi.IntPtr> len,
   ) {
@@ -7812,12 +7845,12 @@ class FlutterOpenimSdkFfiBindings {
       ffi.NativeFunction<
           ffi.Handle Function(
               ffi.Handle,
-              ffi.Pointer<ffi.Int32>,
+              ffi.Pointer<ffi.UnsignedInt>,
               ffi.Pointer<ffi.Pointer<ffi.Void>>,
               ffi.Pointer<ffi.IntPtr>)>>('Dart_TypedDataAcquireData');
   late final _Dart_TypedDataAcquireData =
       _Dart_TypedDataAcquireDataPtr.asFunction<
-          Object Function(Object, ffi.Pointer<ffi.Int32>,
+          Object Function(Object, ffi.Pointer<ffi.UnsignedInt>,
               ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Releases access to the internal data address that was acquired earlier using
@@ -9379,7 +9412,7 @@ class FlutterOpenimSdkFfiBindings {
     bool snapshot_compile,
     bool embed_sources,
     ffi.Pointer<ffi.Char> package_config,
-    int verbosity,
+    Dart_KernelCompilationVerbosityLevel verbosity,
   ) {
     return _Dart_CompileToKernel(
       script_uri,
@@ -9389,7 +9422,7 @@ class FlutterOpenimSdkFfiBindings {
       snapshot_compile,
       embed_sources,
       package_config,
-      verbosity,
+      verbosity.value,
     );
   }
 
@@ -9403,7 +9436,7 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Bool,
               ffi.Bool,
               ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('Dart_CompileToKernel');
+              ffi.UnsignedInt)>>('Dart_CompileToKernel');
   late final _Dart_CompileToKernel = _Dart_CompileToKernelPtr.asFunction<
       Dart_KernelCompilationResult Function(
           ffi.Pointer<ffi.Char>,
@@ -10615,97 +10648,93 @@ class FlutterOpenimSdkFfiBindings {
   late final _GetMultipleConversation = _GetMultipleConversationPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  void SetGlobalRecvMessageOpt(
+  GoString GetConversationIDBySessionType(
     ffi.Pointer<ffi.Char> operationID,
-    int opt,
+    ffi.Pointer<ffi.Char> sourceID,
+    int sessionType,
   ) {
-    return _SetGlobalRecvMessageOpt(
+    return _GetConversationIDBySessionType(
       operationID,
-      opt,
+      sourceID,
+      sessionType,
     );
   }
 
-  late final _SetGlobalRecvMessageOptPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'SetGlobalRecvMessageOpt');
-  late final _SetGlobalRecvMessageOpt = _SetGlobalRecvMessageOptPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, int)>();
-
-  void SetConversationMsgDestructTime(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    int msgDestructTime,
-  ) {
-    return _SetConversationMsgDestructTime(
-      operationID,
-      conversationID,
-      msgDestructTime,
-    );
-  }
-
-  late final _SetConversationMsgDestructTimePtr = _lookup<
+  late final _GetConversationIDBySessionTypePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int64)>>('SetConversationMsgDestructTime');
-  late final _SetConversationMsgDestructTime =
-      _SetConversationMsgDestructTimePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+          GoString Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('GetConversationIDBySessionType');
+  late final _GetConversationIDBySessionType =
+      _GetConversationIDBySessionTypePtr.asFunction<
+          GoString Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
-  void SetConversationIsMsgDestruct(
+  void GetTotalUnreadMsgCount(
     ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    bool isMsgDestruct,
   ) {
-    return _SetConversationIsMsgDestruct(
+    return _GetTotalUnreadMsgCount(
       operationID,
-      conversationID,
-      isMsgDestruct,
     );
   }
 
-  late final _SetConversationIsMsgDestructPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Bool)>>('SetConversationIsMsgDestruct');
-  late final _SetConversationIsMsgDestruct =
-      _SetConversationIsMsgDestructPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+  late final _GetTotalUnreadMsgCountPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetTotalUnreadMsgCount');
+  late final _GetTotalUnreadMsgCount = _GetTotalUnreadMsgCountPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
-  void HideConversation(
+  void MarkConversationMessageAsRead(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> conversationID,
   ) {
-    return _HideConversation(
+    return _MarkConversationMessageAsRead(
       operationID,
       conversationID,
     );
   }
 
-  late final _HideConversationPtr = _lookup<
+  late final _MarkConversationMessageAsReadPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('HideConversation');
-  late final _HideConversation = _HideConversationPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetConversationRecvMessageOpt(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationIDList,
-  ) {
-    return _GetConversationRecvMessageOpt(
-      operationID,
-      conversationIDList,
-    );
-  }
-
-  late final _GetConversationRecvMessageOptPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetConversationRecvMessageOpt');
-  late final _GetConversationRecvMessageOpt =
-      _GetConversationRecvMessageOptPtr.asFunction<
+              ffi.Pointer<ffi.Char>)>>('MarkConversationMessageAsRead');
+  late final _MarkConversationMessageAsRead =
+      _MarkConversationMessageAsReadPtr.asFunction<
           void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void MarkAllConversationMessageAsRead(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _MarkAllConversationMessageAsRead(
+      operationID,
+    );
+  }
+
+  late final _MarkAllConversationMessageAsReadPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'MarkAllConversationMessageAsRead');
+  late final _MarkAllConversationMessageAsRead =
+      _MarkAllConversationMessageAsReadPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>)>();
+
+  void SetConversation(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> draftText,
+  ) {
+    return _SetConversation(
+      operationID,
+      conversationID,
+      draftText,
+    );
+  }
+
+  late final _SetConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetConversation');
+  late final _SetConversation = _SetConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void SetConversationDraft(
     ffi.Pointer<ffi.Char> operationID,
@@ -10727,116 +10756,577 @@ class FlutterOpenimSdkFfiBindings {
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
-  void ResetConversationGroupAtType(
+  void HideConversation(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> conversationID,
   ) {
-    return _ResetConversationGroupAtType(
+    return _HideConversation(
       operationID,
       conversationID,
     );
   }
 
-  late final _ResetConversationGroupAtTypePtr = _lookup<
+  late final _HideConversationPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('ResetConversationGroupAtType');
-  late final _ResetConversationGroupAtType =
-      _ResetConversationGroupAtTypePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+              ffi.Pointer<ffi.Char>)>>('HideConversation');
+  late final _HideConversation = _HideConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  void PinConversation(
+  void ChangeInputStates(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> conversationID,
-    bool isPinned,
+    bool focus,
   ) {
-    return _PinConversation(
+    return _ChangeInputStates(
       operationID,
       conversationID,
-      isPinned,
+      focus,
     );
   }
 
-  late final _PinConversationPtr = _lookup<
+  late final _ChangeInputStatesPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Bool)>>('PinConversation');
-  late final _PinConversation = _PinConversationPtr.asFunction<
+              ffi.Bool)>>('ChangeInputStates');
+  late final _ChangeInputStates = _ChangeInputStatesPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
 
-  void SetConversationPrivateChat(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    bool isPrivate,
-  ) {
-    return _SetConversationPrivateChat(
-      operationID,
-      conversationID,
-      isPrivate,
-    );
-  }
-
-  late final _SetConversationPrivateChatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Bool)>>('SetConversationPrivateChat');
-  late final _SetConversationPrivateChat =
-      _SetConversationPrivateChatPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
-
-  void SetConversationBurnDuration(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    int duration,
-  ) {
-    return _SetConversationBurnDuration(
-      operationID,
-      conversationID,
-      duration,
-    );
-  }
-
-  late final _SetConversationBurnDurationPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('SetConversationBurnDuration');
-  late final _SetConversationBurnDuration =
-      _SetConversationBurnDurationPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void SetConversationRecvMessageOpt(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    int opt,
-  ) {
-    return _SetConversationRecvMessageOpt(
-      operationID,
-      conversationID,
-      opt,
-    );
-  }
-
-  late final _SetConversationRecvMessageOptPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('SetConversationRecvMessageOpt');
-  late final _SetConversationRecvMessageOpt =
-      _SetConversationRecvMessageOptPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void GetTotalUnreadMsgCount(
+  void HideAllConversations(
     ffi.Pointer<ffi.Char> operationID,
   ) {
-    return _GetTotalUnreadMsgCount(
+    return _HideAllConversations(
       operationID,
     );
   }
 
-  late final _GetTotalUnreadMsgCountPtr =
+  late final _HideAllConversationsPtr =
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'GetTotalUnreadMsgCount');
-  late final _GetTotalUnreadMsgCount = _GetTotalUnreadMsgCountPtr.asFunction<
+          'HideAllConversations');
+  late final _HideAllConversations = _HideAllConversationsPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>)>();
+
+  void ClearConversationAndDeleteAllMsg(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+  ) {
+    return _ClearConversationAndDeleteAllMsg(
+      operationID,
+      conversationID,
+    );
+  }
+
+  late final _ClearConversationAndDeleteAllMsgPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('ClearConversationAndDeleteAllMsg');
+  late final _ClearConversationAndDeleteAllMsg =
+      _ClearConversationAndDeleteAllMsgPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetInputStates(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> userID,
+  ) {
+    return _GetInputStates(
+      operationID,
+      conversationID,
+      userID,
+    );
+  }
+
+  late final _GetInputStatesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetInputStates');
+  late final _GetInputStates = _GetInputStatesPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void DeleteConversationAndDeleteAllMsg(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+  ) {
+    return _DeleteConversationAndDeleteAllMsg(
+      operationID,
+      conversationID,
+    );
+  }
+
+  late final _DeleteConversationAndDeleteAllMsgPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteConversationAndDeleteAllMsg');
+  late final _DeleteConversationAndDeleteAllMsg =
+      _DeleteConversationAndDeleteAllMsgPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateTextMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> text,
+  ) {
+    return _CreateTextMessage(
+      operationID,
+      text,
+    );
+  }
+
+  late final _CreateTextMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateTextMessage');
+  late final _CreateTextMessage = _CreateTextMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateTextAtMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> text,
+    ffi.Pointer<ffi.Char> atUserList,
+    ffi.Pointer<ffi.Char> atUsersInfo,
+    ffi.Pointer<ffi.Char> message,
+  ) {
+    return _CreateTextAtMessage(
+      operationID,
+      text,
+      atUserList,
+      atUsersInfo,
+      message,
+    );
+  }
+
+  late final _CreateTextAtMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateTextAtMessage');
+  late final _CreateTextAtMessage = _CreateTextAtMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateForwardMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> m,
+  ) {
+    return _CreateForwardMessage(
+      operationID,
+      m,
+    );
+  }
+
+  late final _CreateForwardMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateForwardMessage');
+  late final _CreateForwardMessage = _CreateForwardMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateLocationMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> description,
+    double longitude,
+    double latitude,
+  ) {
+    return _CreateLocationMessage(
+      operationID,
+      description,
+      longitude,
+      latitude,
+    );
+  }
+
+  late final _CreateLocationMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Double,
+              ffi.Double)>>('CreateLocationMessage');
+  late final _CreateLocationMessage = _CreateLocationMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, double, double)>();
+
+  ffi.Pointer<ffi.Char> CreateQuoteMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> text,
+    ffi.Pointer<ffi.Char> message,
+  ) {
+    return _CreateQuoteMessage(
+      operationID,
+      text,
+      message,
+    );
+  }
+
+  late final _CreateQuoteMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateQuoteMessage');
+  late final _CreateQuoteMessage = _CreateQuoteMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateCardMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> cardInfo,
+  ) {
+    return _CreateCardMessage(
+      operationID,
+      cardInfo,
+    );
+  }
+
+  late final _CreateCardMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateCardMessage');
+  late final _CreateCardMessage = _CreateCardMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateCustomMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> data,
+    ffi.Pointer<ffi.Char> extension1,
+    ffi.Pointer<ffi.Char> description,
+  ) {
+    return _CreateCustomMessage(
+      operationID,
+      data,
+      extension1,
+      description,
+    );
+  }
+
+  late final _CreateCustomMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateCustomMessage');
+  late final _CreateCustomMessage = _CreateCustomMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void SendMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> recvID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> offlinePushInfo,
+  ) {
+    return _SendMessage(
+      operationID,
+      message,
+      recvID,
+      groupID,
+      offlinePushInfo,
+    );
+  }
+
+  late final _SendMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SendMessage');
+  late final _SendMessage = _SendMessagePtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void TypingStatusUpdate(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> recvID,
+    ffi.Pointer<ffi.Char> msgTip,
+  ) {
+    return _TypingStatusUpdate(
+      operationID,
+      recvID,
+      msgTip,
+    );
+  }
+
+  late final _TypingStatusUpdatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TypingStatusUpdate');
+  late final _TypingStatusUpdate = _TypingStatusUpdatePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void RevokeMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> clientMsgID,
+  ) {
+    return _RevokeMessage(
+      operationID,
+      conversationID,
+      clientMsgID,
+    );
+  }
+
+  late final _RevokeMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('RevokeMessage');
+  late final _RevokeMessage = _RevokeMessagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void DeleteMessage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> clientMsgID,
+  ) {
+    return _DeleteMessage(
+      operationID,
+      conversationID,
+      clientMsgID,
+    );
+  }
+
+  late final _DeleteMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteMessage');
+  late final _DeleteMessage = _DeleteMessagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void DeleteMessageFromLocalStorage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> clientMsgID,
+  ) {
+    return _DeleteMessageFromLocalStorage(
+      operationID,
+      conversationID,
+      clientMsgID,
+    );
+  }
+
+  late final _DeleteMessageFromLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteMessageFromLocalStorage');
+  late final _DeleteMessageFromLocalStorage =
+      _DeleteMessageFromLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
+
+  void DeleteAllMsgFromLocal(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _DeleteAllMsgFromLocal(
+      operationID,
+    );
+  }
+
+  late final _DeleteAllMsgFromLocalPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'DeleteAllMsgFromLocal');
+  late final _DeleteAllMsgFromLocal = _DeleteAllMsgFromLocalPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
+
+  void DeleteAllMsgFromLocalAndSvr(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _DeleteAllMsgFromLocalAndSvr(
+      operationID,
+    );
+  }
+
+  late final _DeleteAllMsgFromLocalAndSvrPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'DeleteAllMsgFromLocalAndSvr');
+  late final _DeleteAllMsgFromLocalAndSvr = _DeleteAllMsgFromLocalAndSvrPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+
+  void SearchLocalMessages(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> searchParam,
+  ) {
+    return _SearchLocalMessages(
+      operationID,
+      searchParam,
+    );
+  }
+
+  late final _SearchLocalMessagesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SearchLocalMessages');
+  late final _SearchLocalMessages = _SearchLocalMessagesPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetAdvancedHistoryMessageList(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> getMessageOptions,
+  ) {
+    return _GetAdvancedHistoryMessageList(
+      operationID,
+      getMessageOptions,
+    );
+  }
+
+  late final _GetAdvancedHistoryMessageListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageList');
+  late final _GetAdvancedHistoryMessageList =
+      _GetAdvancedHistoryMessageListPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetAdvancedHistoryMessageListReverse(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> getMessageOptions,
+  ) {
+    return _GetAdvancedHistoryMessageListReverse(
+      operationID,
+      getMessageOptions,
+    );
+  }
+
+  late final _GetAdvancedHistoryMessageListReversePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageListReverse');
+  late final _GetAdvancedHistoryMessageListReverse =
+      _GetAdvancedHistoryMessageListReversePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void FindMessageList(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> findMessageOptions,
+  ) {
+    return _FindMessageList(
+      operationID,
+      findMessageOptions,
+    );
+  }
+
+  late final _FindMessageListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('FindMessageList');
+  late final _FindMessageList = _FindMessageListPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void InsertGroupMessageToLocalStorage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> sendID,
+  ) {
+    return _InsertGroupMessageToLocalStorage(
+      operationID,
+      message,
+      groupID,
+      sendID,
+    );
+  }
+
+  late final _InsertGroupMessageToLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('InsertGroupMessageToLocalStorage');
+  late final _InsertGroupMessageToLocalStorage =
+      _InsertGroupMessageToLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void InsertSingleMessageToLocalStorage(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> recvID,
+    ffi.Pointer<ffi.Char> sendID,
+  ) {
+    return _InsertSingleMessageToLocalStorage(
+      operationID,
+      message,
+      recvID,
+      sendID,
+    );
+  }
+
+  late final _InsertSingleMessageToLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('InsertSingleMessageToLocalStorage');
+  late final _InsertSingleMessageToLocalStorage =
+      _InsertSingleMessageToLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void SearchConversation(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> searchParam,
+  ) {
+    return _SearchConversation(
+      operationID,
+      searchParam,
+    );
+  }
+
+  late final _SearchConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SearchConversation');
+  late final _SearchConversation = _SearchConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void SetMessageLocalEx(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> conversationID,
+    ffi.Pointer<ffi.Char> clientMsgID,
+    ffi.Pointer<ffi.Char> localEx,
+  ) {
+    return _SetMessageLocalEx(
+      operationID,
+      conversationID,
+      clientMsgID,
+      localEx,
+    );
+  }
+
+  late final _SetMessageLocalExPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetMessageLocalEx');
+  late final _SetMessageLocalEx = _SetMessageLocalExPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetAtAllTag(
     ffi.Pointer<ffi.Char> operationID,
@@ -10876,131 +11366,6 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> CreateTextAtMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> text,
-    ffi.Pointer<ffi.Char> atUserList,
-    ffi.Pointer<ffi.Char> atUsersInfo,
-    ffi.Pointer<ffi.Char> message,
-  ) {
-    return _CreateTextAtMessage(
-      operationID,
-      text,
-      atUserList,
-      atUsersInfo,
-      message,
-    );
-  }
-
-  late final _CreateTextAtMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateTextAtMessage');
-  late final _CreateTextAtMessage = _CreateTextAtMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateTextMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> text,
-  ) {
-    return _CreateTextMessage(
-      operationID,
-      text,
-    );
-  }
-
-  late final _CreateTextMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateTextMessage');
-  late final _CreateTextMessage = _CreateTextMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateLocationMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> description,
-    double longitude,
-    double latitude,
-  ) {
-    return _CreateLocationMessage(
-      operationID,
-      description,
-      longitude,
-      latitude,
-    );
-  }
-
-  late final _CreateLocationMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Double,
-              ffi.Double)>>('CreateLocationMessage');
-  late final _CreateLocationMessage = _CreateLocationMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, double, double)>();
-
-  ffi.Pointer<ffi.Char> CreateCustomMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> data,
-    ffi.Pointer<ffi.Char> extension1,
-    ffi.Pointer<ffi.Char> description,
-  ) {
-    return _CreateCustomMessage(
-      operationID,
-      data,
-      extension1,
-      description,
-    );
-  }
-
-  late final _CreateCustomMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateCustomMessage');
-  late final _CreateCustomMessage = _CreateCustomMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateQuoteMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> text,
-    ffi.Pointer<ffi.Char> message,
-  ) {
-    return _CreateQuoteMessage(
-      operationID,
-      text,
-      message,
-    );
-  }
-
-  late final _CreateQuoteMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateQuoteMessage');
-  late final _CreateQuoteMessage = _CreateQuoteMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   ffi.Pointer<ffi.Char> CreateAdvancedQuoteMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> text,
@@ -11030,165 +11395,31 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> CreateCardMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> cardInfo,
-  ) {
-    return _CreateCardMessage(
-      operationID,
-      cardInfo,
-    );
-  }
-
-  late final _CreateCardMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateCardMessage');
-  late final _CreateCardMessage = _CreateCardMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateVideoMessageFromFullPath(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> videoFullPath,
-    ffi.Pointer<ffi.Char> videoType,
-    int duration,
-    ffi.Pointer<ffi.Char> snapshotFullPath,
-  ) {
-    return _CreateVideoMessageFromFullPath(
-      operationID,
-      videoFullPath,
-      videoType,
-      duration,
-      snapshotFullPath,
-    );
-  }
-
-  late final _CreateVideoMessageFromFullPathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Int64,
-              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageFromFullPath');
-  late final _CreateVideoMessageFromFullPath =
-      _CreateVideoMessageFromFullPathPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              int,
-              ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateImageMessageFromFullPath(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> imageFullPath,
-  ) {
-    return _CreateImageMessageFromFullPath(
-      operationID,
-      imageFullPath,
-    );
-  }
-
-  late final _CreateImageMessageFromFullPathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateImageMessageFromFullPath');
-  late final _CreateImageMessageFromFullPath =
-      _CreateImageMessageFromFullPathPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateSoundMessageFromFullPath(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> soundFullPath,
-    int duration,
-  ) {
-    return _CreateSoundMessageFromFullPath(
-      operationID,
-      soundFullPath,
-      duration,
-    );
-  }
-
-  late final _CreateSoundMessageFromFullPathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Int64)>>('CreateSoundMessageFromFullPath');
-  late final _CreateSoundMessageFromFullPath =
-      _CreateSoundMessageFromFullPathPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> CreateFileMessageFromFullPath(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> fileFullPath,
-    ffi.Pointer<ffi.Char> fileName,
-  ) {
-    return _CreateFileMessageFromFullPath(
-      operationID,
-      fileFullPath,
-      fileName,
-    );
-  }
-
-  late final _CreateFileMessageFromFullPathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateFileMessageFromFullPath');
-  late final _CreateFileMessageFromFullPath =
-      _CreateFileMessageFromFullPathPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   ffi.Pointer<ffi.Char> CreateImageMessage(
     ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> imagePath,
-  ) {
-    return _CreateImageMessage(
-      operationID,
-      imagePath,
-    );
-  }
-
-  late final _CreateImageMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateImageMessage');
-  late final _CreateImageMessage = _CreateImageMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateImageMessageByURL(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> sourcePath,
+    ffi.Pointer<ffi.Char> imageSourcePath,
     ffi.Pointer<ffi.Char> sourcePicture,
     ffi.Pointer<ffi.Char> bigPicture,
     ffi.Pointer<ffi.Char> snapshotPicture,
   ) {
-    return _CreateImageMessageByURL(
+    return _CreateImageMessage(
       operationID,
-      sourcePath,
+      imageSourcePath,
       sourcePicture,
       bigPicture,
       snapshotPicture,
     );
   }
 
-  late final _CreateImageMessageByURLPtr = _lookup<
+  late final _CreateImageMessagePtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateImageMessageByURL');
-  late final _CreateImageMessageByURL = _CreateImageMessageByURLPtr.asFunction<
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessage');
+  late final _CreateImageMessage = _CreateImageMessagePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>,
@@ -11196,61 +11427,30 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> CreateSoundMessageByURL(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> soundBaseInfo,
-  ) {
-    return _CreateSoundMessageByURL(
-      operationID,
-      soundBaseInfo,
-    );
-  }
-
-  late final _CreateSoundMessageByURLPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateSoundMessageByURL');
-  late final _CreateSoundMessageByURL = _CreateSoundMessageByURLPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   ffi.Pointer<ffi.Char> CreateSoundMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> soundPath,
     int duration,
+    ffi.Pointer<ffi.Char> soundBaseInfo,
   ) {
     return _CreateSoundMessage(
       operationID,
       soundPath,
       duration,
+      soundBaseInfo,
     );
   }
 
   late final _CreateSoundMessagePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Int64)>>('CreateSoundMessage');
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('CreateSoundMessage');
   late final _CreateSoundMessage = _CreateSoundMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> CreateVideoMessageByURL(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> videoBaseInfo,
-  ) {
-    return _CreateVideoMessageByURL(
-      operationID,
-      videoBaseInfo,
-    );
-  }
-
-  late final _CreateVideoMessageByURLPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageByURL');
-  late final _CreateVideoMessageByURL = _CreateVideoMessageByURLPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateVideoMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -11258,6 +11458,7 @@ class FlutterOpenimSdkFfiBindings {
     ffi.Pointer<ffi.Char> videoType,
     int duration,
     ffi.Pointer<ffi.Char> snapshotPath,
+    ffi.Pointer<ffi.Char> videoBaseInfo,
   ) {
     return _CreateVideoMessage(
       operationID,
@@ -11265,6 +11466,7 @@ class FlutterOpenimSdkFfiBindings {
       videoType,
       duration,
       snapshotPath,
+      videoBaseInfo,
     );
   }
 
@@ -11275,6 +11477,7 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Int64,
+              ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('CreateVideoMessage');
   late final _CreateVideoMessage = _CreateVideoMessagePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
@@ -11282,35 +11485,20 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>,
           int,
+          ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> CreateFileMessageByURL(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> fileBaseInfo,
-  ) {
-    return _CreateFileMessageByURL(
-      operationID,
-      fileBaseInfo,
-    );
-  }
-
-  late final _CreateFileMessageByURLPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateFileMessageByURL');
-  late final _CreateFileMessageByURL = _CreateFileMessageByURLPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFileMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> filePath,
     ffi.Pointer<ffi.Char> fileName,
+    ffi.Pointer<ffi.Char> fileBaseInfo,
   ) {
     return _CreateFileMessage(
       operationID,
       filePath,
       fileName,
+      fileBaseInfo,
     );
   }
 
@@ -11319,10 +11507,14 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('CreateFileMessage');
   late final _CreateFileMessage = _CreateFileMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateMergerMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -11372,220 +11564,6 @@ class FlutterOpenimSdkFfiBindings {
       ffi.Pointer<ffi.Char> Function(
           ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> CreateForwardMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> m,
-  ) {
-    return _CreateForwardMessage(
-      operationID,
-      m,
-    );
-  }
-
-  late final _CreateForwardMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('CreateForwardMessage');
-  late final _CreateForwardMessage = _CreateForwardMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  GoString GetConversationIDBySessionType(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> sourceID,
-    int sessionType,
-  ) {
-    return _GetConversationIDBySessionType(
-      operationID,
-      sourceID,
-      sessionType,
-    );
-  }
-
-  late final _GetConversationIDBySessionTypePtr = _lookup<
-      ffi.NativeFunction<
-          GoString Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('GetConversationIDBySessionType');
-  late final _GetConversationIDBySessionType =
-      _GetConversationIDBySessionTypePtr.asFunction<
-          GoString Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void SendMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> message,
-    ffi.Pointer<ffi.Char> recvID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> offlinePushInfo,
-  ) {
-    return _SendMessage(
-      operationID,
-      message,
-      recvID,
-      groupID,
-      offlinePushInfo,
-    );
-  }
-
-  late final _SendMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SendMessage');
-  late final _SendMessage = _SendMessagePtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  void SendMessageNotOss(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> message,
-    ffi.Pointer<ffi.Char> recvID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> offlinePushInfo,
-  ) {
-    return _SendMessageNotOss(
-      operationID,
-      message,
-      recvID,
-      groupID,
-      offlinePushInfo,
-    );
-  }
-
-  late final _SendMessageNotOssPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SendMessageNotOss');
-  late final _SendMessageNotOss = _SendMessageNotOssPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  void FindMessageList(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> findMessageOptions,
-  ) {
-    return _FindMessageList(
-      operationID,
-      findMessageOptions,
-    );
-  }
-
-  late final _FindMessageListPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('FindMessageList');
-  late final _FindMessageList = _FindMessageListPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetAdvancedHistoryMessageList(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> getMessageOptions,
-  ) {
-    return _GetAdvancedHistoryMessageList(
-      operationID,
-      getMessageOptions,
-    );
-  }
-
-  late final _GetAdvancedHistoryMessageListPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageList');
-  late final _GetAdvancedHistoryMessageList =
-      _GetAdvancedHistoryMessageListPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetAdvancedHistoryMessageListReverse(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> getMessageOptions,
-  ) {
-    return _GetAdvancedHistoryMessageListReverse(
-      operationID,
-      getMessageOptions,
-    );
-  }
-
-  late final _GetAdvancedHistoryMessageListReversePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageListReverse');
-  late final _GetAdvancedHistoryMessageListReverse =
-      _GetAdvancedHistoryMessageListReversePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void RevokeMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    ffi.Pointer<ffi.Char> clientMsgID,
-  ) {
-    return _RevokeMessage(
-      operationID,
-      conversationID,
-      clientMsgID,
-    );
-  }
-
-  late final _RevokeMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('RevokeMessage');
-  late final _RevokeMessage = _RevokeMessagePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  void TypingStatusUpdate(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> recvID,
-    ffi.Pointer<ffi.Char> msgTip,
-  ) {
-    return _TypingStatusUpdate(
-      operationID,
-      recvID,
-      msgTip,
-    );
-  }
-
-  late final _TypingStatusUpdatePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('TypingStatusUpdate');
-  late final _TypingStatusUpdate = _TypingStatusUpdatePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  void MarkConversationMessageAsRead(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-  ) {
-    return _MarkConversationMessageAsRead(
-      operationID,
-      conversationID,
-    );
-  }
-
-  late final _MarkConversationMessageAsReadPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('MarkConversationMessageAsRead');
-  late final _MarkConversationMessageAsRead =
-      _MarkConversationMessageAsReadPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   void MarkMessagesAsReadByMsgID(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> conversationID,
@@ -11607,205 +11585,6 @@ class FlutterOpenimSdkFfiBindings {
           void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  void DeleteMessageFromLocalStorage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    ffi.Pointer<ffi.Char> clientMsgID,
-  ) {
-    return _DeleteMessageFromLocalStorage(
-      operationID,
-      conversationID,
-      clientMsgID,
-    );
-  }
-
-  late final _DeleteMessageFromLocalStoragePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('DeleteMessageFromLocalStorage');
-  late final _DeleteMessageFromLocalStorage =
-      _DeleteMessageFromLocalStoragePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>();
-
-  void DeleteMessage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    ffi.Pointer<ffi.Char> clientMsgID,
-  ) {
-    return _DeleteMessage(
-      operationID,
-      conversationID,
-      clientMsgID,
-    );
-  }
-
-  late final _DeleteMessagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('DeleteMessage');
-  late final _DeleteMessage = _DeleteMessagePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
-  void DeleteAllMsgFromLocalAndSvr(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _DeleteAllMsgFromLocalAndSvr(
-      operationID,
-    );
-  }
-
-  late final _DeleteAllMsgFromLocalAndSvrPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'DeleteAllMsgFromLocalAndSvr');
-  late final _DeleteAllMsgFromLocalAndSvr = _DeleteAllMsgFromLocalAndSvrPtr
-      .asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  void DeleteAllMsgFromLocal(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _DeleteAllMsgFromLocal(
-      operationID,
-    );
-  }
-
-  late final _DeleteAllMsgFromLocalPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'DeleteAllMsgFromLocal');
-  late final _DeleteAllMsgFromLocal = _DeleteAllMsgFromLocalPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>)>();
-
-  void ClearConversationAndDeleteAllMsg(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-  ) {
-    return _ClearConversationAndDeleteAllMsg(
-      operationID,
-      conversationID,
-    );
-  }
-
-  late final _ClearConversationAndDeleteAllMsgPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('ClearConversationAndDeleteAllMsg');
-  late final _ClearConversationAndDeleteAllMsg =
-      _ClearConversationAndDeleteAllMsgPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void DeleteConversationAndDeleteAllMsg(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-  ) {
-    return _DeleteConversationAndDeleteAllMsg(
-      operationID,
-      conversationID,
-    );
-  }
-
-  late final _DeleteConversationAndDeleteAllMsgPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('DeleteConversationAndDeleteAllMsg');
-  late final _DeleteConversationAndDeleteAllMsg =
-      _DeleteConversationAndDeleteAllMsgPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void InsertSingleMessageToLocalStorage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> message,
-    ffi.Pointer<ffi.Char> recvID,
-    ffi.Pointer<ffi.Char> sendID,
-  ) {
-    return _InsertSingleMessageToLocalStorage(
-      operationID,
-      message,
-      recvID,
-      sendID,
-    );
-  }
-
-  late final _InsertSingleMessageToLocalStoragePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('InsertSingleMessageToLocalStorage');
-  late final _InsertSingleMessageToLocalStorage =
-      _InsertSingleMessageToLocalStoragePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void InsertGroupMessageToLocalStorage(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> message,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> sendID,
-  ) {
-    return _InsertGroupMessageToLocalStorage(
-      operationID,
-      message,
-      groupID,
-      sendID,
-    );
-  }
-
-  late final _InsertGroupMessageToLocalStoragePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('InsertGroupMessageToLocalStorage');
-  late final _InsertGroupMessageToLocalStorage =
-      _InsertGroupMessageToLocalStoragePtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SearchLocalMessages(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> searchParam,
-  ) {
-    return _SearchLocalMessages(
-      operationID,
-      searchParam,
-    );
-  }
-
-  late final _SearchLocalMessagesPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SearchLocalMessages');
-  late final _SearchLocalMessages = _SearchLocalMessagesPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SetMessageLocalEx(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> conversationID,
-    ffi.Pointer<ffi.Char> clientMsgID,
-    ffi.Pointer<ffi.Char> localEx,
-  ) {
-    return _SetMessageLocalEx(
-      operationID,
-      conversationID,
-      clientMsgID,
-      localEx,
-    );
-  }
-
-  late final _SetMessageLocalExPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SetMessageLocalEx');
-  late final _SetMessageLocalEx = _SetMessageLocalExPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   void UploadFile(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> req,
@@ -11826,171 +11605,6 @@ class FlutterOpenimSdkFfiBindings {
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
-  void GetSpecifiedFriendsInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> userIDList,
-  ) {
-    return _GetSpecifiedFriendsInfo(
-      operationID,
-      userIDList,
-    );
-  }
-
-  late final _GetSpecifiedFriendsInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetSpecifiedFriendsInfo');
-  late final _GetSpecifiedFriendsInfo = _GetSpecifiedFriendsInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetFriendList(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _GetFriendList(
-      operationID,
-    );
-  }
-
-  late final _GetFriendListPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'GetFriendList');
-  late final _GetFriendList =
-      _GetFriendListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  void GetFriendListPage(
-    ffi.Pointer<ffi.Char> operationID,
-    int offset,
-    int count,
-  ) {
-    return _GetFriendListPage(
-      operationID,
-      offset,
-      count,
-    );
-  }
-
-  late final _GetFriendListPagePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32,
-              ffi.Int32)>>('GetFriendListPage');
-  late final _GetFriendListPage = _GetFriendListPagePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, int, int)>();
-
-  void SearchFriends(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> searchParam,
-  ) {
-    return _SearchFriends(
-      operationID,
-      searchParam,
-    );
-  }
-
-  late final _SearchFriendsPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchFriends');
-  late final _SearchFriends = _SearchFriendsPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void CheckFriend(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> userIDList,
-  ) {
-    return _CheckFriend(
-      operationID,
-      userIDList,
-    );
-  }
-
-  late final _CheckFriendPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CheckFriend');
-  late final _CheckFriend = _CheckFriendPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void AddFriend(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> userIDReqMsg,
-  ) {
-    return _AddFriend(
-      operationID,
-      userIDReqMsg,
-    );
-  }
-
-  late final _AddFriendPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AddFriend');
-  late final _AddFriend = _AddFriendPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SetFriendRemark(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> userIDRemark,
-  ) {
-    return _SetFriendRemark(
-      operationID,
-      userIDRemark,
-    );
-  }
-
-  late final _SetFriendRemarkPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SetFriendRemark');
-  late final _SetFriendRemark = _SetFriendRemarkPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void DeleteFriend(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> friendUserID,
-  ) {
-    return _DeleteFriend(
-      operationID,
-      friendUserID,
-    );
-  }
-
-  late final _DeleteFriendPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteFriend');
-  late final _DeleteFriend = _DeleteFriendPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetFriendApplicationListAsRecipient(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _GetFriendApplicationListAsRecipient(
-      operationID,
-    );
-  }
-
-  late final _GetFriendApplicationListAsRecipientPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'GetFriendApplicationListAsRecipient');
-  late final _GetFriendApplicationListAsRecipient =
-      _GetFriendApplicationListAsRecipientPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>)>();
-
-  void GetFriendApplicationListAsApplicant(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _GetFriendApplicationListAsApplicant(
-      operationID,
-    );
-  }
-
-  late final _GetFriendApplicationListAsApplicantPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'GetFriendApplicationListAsApplicant');
-  late final _GetFriendApplicationListAsApplicant =
-      _GetFriendApplicationListAsApplicantPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>)>();
-
   void AcceptFriendApplication(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> userIDHandleMsg,
@@ -12006,23 +11620,6 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Void Function(ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('AcceptFriendApplication');
   late final _AcceptFriendApplication = _AcceptFriendApplicationPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void RefuseFriendApplication(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> userIDHandleMsg,
-  ) {
-    return _RefuseFriendApplication(
-      operationID,
-      userIDHandleMsg,
-    );
-  }
-
-  late final _RefuseFriendApplicationPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('RefuseFriendApplication');
-  late final _RefuseFriendApplication = _RefuseFriendApplicationPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void AddBlack(
@@ -12045,6 +11642,57 @@ class FlutterOpenimSdkFfiBindings {
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
+  void AddFriend(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> userIDReqMsg,
+  ) {
+    return _AddFriend(
+      operationID,
+      userIDReqMsg,
+    );
+  }
+
+  late final _AddFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AddFriend');
+  late final _AddFriend = _AddFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void CheckFriend(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> userIDList,
+  ) {
+    return _CheckFriend(
+      operationID,
+      userIDList,
+    );
+  }
+
+  late final _CheckFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CheckFriend');
+  late final _CheckFriend = _CheckFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void DeleteFriend(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> friendUserID,
+  ) {
+    return _DeleteFriend(
+      operationID,
+      friendUserID,
+    );
+  }
+
+  late final _DeleteFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteFriend');
+  late final _DeleteFriend = _DeleteFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
   void GetBlackList(
     ffi.Pointer<ffi.Char> operationID,
   ) {
@@ -12058,6 +11706,109 @@ class FlutterOpenimSdkFfiBindings {
           'GetBlackList');
   late final _GetBlackList =
       _GetBlackListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+
+  void GetFriendApplicationListAsApplicant(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _GetFriendApplicationListAsApplicant(
+      operationID,
+    );
+  }
+
+  late final _GetFriendApplicationListAsApplicantPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetFriendApplicationListAsApplicant');
+  late final _GetFriendApplicationListAsApplicant =
+      _GetFriendApplicationListAsApplicantPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>)>();
+
+  void GetFriendApplicationListAsRecipient(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _GetFriendApplicationListAsRecipient(
+      operationID,
+    );
+  }
+
+  late final _GetFriendApplicationListAsRecipientPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetFriendApplicationListAsRecipient');
+  late final _GetFriendApplicationListAsRecipient =
+      _GetFriendApplicationListAsRecipientPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>)>();
+
+  void GetFriendList(
+    ffi.Pointer<ffi.Char> operationID,
+    bool filterBlack,
+  ) {
+    return _GetFriendList(
+      operationID,
+      filterBlack,
+    );
+  }
+
+  late final _GetFriendListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Bool)>>('GetFriendList');
+  late final _GetFriendList = _GetFriendListPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, bool)>();
+
+  void GetFriendListPage(
+    ffi.Pointer<ffi.Char> operationID,
+    int offset,
+    int count,
+    bool filterBlack,
+  ) {
+    return _GetFriendListPage(
+      operationID,
+      offset,
+      count,
+      filterBlack,
+    );
+  }
+
+  late final _GetFriendListPagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32,
+              ffi.Bool)>>('GetFriendListPage');
+  late final _GetFriendListPage = _GetFriendListPagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, int, int, bool)>();
+
+  void GetSpecifiedFriendsInfo(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> userIDList,
+    bool filterBlack,
+  ) {
+    return _GetSpecifiedFriendsInfo(
+      operationID,
+      userIDList,
+      filterBlack,
+    );
+  }
+
+  late final _GetSpecifiedFriendsInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('GetSpecifiedFriendsInfo');
+  late final _GetSpecifiedFriendsInfo = _GetSpecifiedFriendsInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+
+  void RefuseFriendApplication(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> userIDHandleMsg,
+  ) {
+    return _RefuseFriendApplication(
+      operationID,
+      userIDHandleMsg,
+    );
+  }
+
+  late final _RefuseFriendApplicationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('RefuseFriendApplication');
+  late final _RefuseFriendApplication = _RefuseFriendApplicationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void RemoveBlack(
     ffi.Pointer<ffi.Char> operationID,
@@ -12074,6 +11825,40 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Void Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RemoveBlack');
   late final _RemoveBlack = _RemoveBlackPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void SearchFriends(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> searchParam,
+  ) {
+    return _SearchFriends(
+      operationID,
+      searchParam,
+    );
+  }
+
+  late final _SearchFriendsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchFriends');
+  late final _SearchFriends = _SearchFriendsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void UpdateFriends(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> req,
+  ) {
+    return _UpdateFriends(
+      operationID,
+      req,
+    );
+  }
+
+  late final _UpdateFriendsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UpdateFriends');
+  late final _UpdateFriends = _UpdateFriendsPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void CreateGroup(
@@ -12121,386 +11906,6 @@ class FlutterOpenimSdkFfiBindings {
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
-  void QuitGroup(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-  ) {
-    return _QuitGroup(
-      operationID,
-      groupID,
-    );
-  }
-
-  late final _QuitGroupPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('QuitGroup');
-  late final _QuitGroup = _QuitGroupPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void DismissGroup(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-  ) {
-    return _DismissGroup(
-      operationID,
-      groupID,
-    );
-  }
-
-  late final _DismissGroupPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DismissGroup');
-  late final _DismissGroup = _DismissGroupPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void ChangeGroupMute(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    bool isMute,
-  ) {
-    return _ChangeGroupMute(
-      operationID,
-      groupID,
-      isMute,
-    );
-  }
-
-  late final _ChangeGroupMutePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Bool)>>('ChangeGroupMute');
-  late final _ChangeGroupMute = _ChangeGroupMutePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
-
-  void ChangeGroupMemberMute(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> userID,
-    int mutedSeconds,
-  ) {
-    return _ChangeGroupMemberMute(
-      operationID,
-      groupID,
-      userID,
-      mutedSeconds,
-    );
-  }
-
-  late final _ChangeGroupMemberMutePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Int)>>('ChangeGroupMemberMute');
-  late final _ChangeGroupMemberMute = _ChangeGroupMemberMutePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  void SetGroupMemberRoleLevel(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> userID,
-    int roleLevel,
-  ) {
-    return _SetGroupMemberRoleLevel(
-      operationID,
-      groupID,
-      userID,
-      roleLevel,
-    );
-  }
-
-  late final _SetGroupMemberRoleLevelPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Int)>>('SetGroupMemberRoleLevel');
-  late final _SetGroupMemberRoleLevel = _SetGroupMemberRoleLevelPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  void SetGroupMemberInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupMemberInfo,
-  ) {
-    return _SetGroupMemberInfo(
-      operationID,
-      groupMemberInfo,
-    );
-  }
-
-  late final _SetGroupMemberInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SetGroupMemberInfo');
-  late final _SetGroupMemberInfo = _SetGroupMemberInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetJoinedGroupList(
-    ffi.Pointer<ffi.Char> operationID,
-  ) {
-    return _GetJoinedGroupList(
-      operationID,
-    );
-  }
-
-  late final _GetJoinedGroupListPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'GetJoinedGroupList');
-  late final _GetJoinedGroupList =
-      _GetJoinedGroupListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  void GetSpecifiedGroupsInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupIDList,
-  ) {
-    return _GetSpecifiedGroupsInfo(
-      operationID,
-      groupIDList,
-    );
-  }
-
-  late final _GetSpecifiedGroupsInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupsInfo');
-  late final _GetSpecifiedGroupsInfo = _GetSpecifiedGroupsInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SearchGroups(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> searchParam,
-  ) {
-    return _SearchGroups(
-      operationID,
-      searchParam,
-    );
-  }
-
-  late final _SearchGroupsPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchGroups');
-  late final _SearchGroups = _SearchGroupsPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SetGroupInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupInfo,
-  ) {
-    return _SetGroupInfo(
-      operationID,
-      groupInfo,
-    );
-  }
-
-  late final _SetGroupInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetGroupInfo');
-  late final _SetGroupInfo = _SetGroupInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void SetGroupVerification(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    int verification,
-  ) {
-    return _SetGroupVerification(
-      operationID,
-      groupID,
-      verification,
-    );
-  }
-
-  late final _SetGroupVerificationPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('SetGroupVerification');
-  late final _SetGroupVerification = _SetGroupVerificationPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void SetGroupLookMemberInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    int rule,
-  ) {
-    return _SetGroupLookMemberInfo(
-      operationID,
-      groupID,
-      rule,
-    );
-  }
-
-  late final _SetGroupLookMemberInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('SetGroupLookMemberInfo');
-  late final _SetGroupLookMemberInfo = _SetGroupLookMemberInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void SetGroupApplyMemberFriend(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    int rule,
-  ) {
-    return _SetGroupApplyMemberFriend(
-      operationID,
-      groupID,
-      rule,
-    );
-  }
-
-  late final _SetGroupApplyMemberFriendPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('SetGroupApplyMemberFriend');
-  late final _SetGroupApplyMemberFriend =
-      _SetGroupApplyMemberFriendPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void GetGroupMemberList(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    int filter,
-    int offset,
-    int count,
-  ) {
-    return _GetGroupMemberList(
-      operationID,
-      groupID,
-      filter,
-      offset,
-      count,
-    );
-  }
-
-  late final _GetGroupMemberListPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int32, ffi.Int32, ffi.Int32)>>('GetGroupMemberList');
-  late final _GetGroupMemberList = _GetGroupMemberListPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int, int)>();
-
-  void GetGroupMemberOwnerAndAdmin(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-  ) {
-    return _GetGroupMemberOwnerAndAdmin(
-      operationID,
-      groupID,
-    );
-  }
-
-  late final _GetGroupMemberOwnerAndAdminPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetGroupMemberOwnerAndAdmin');
-  late final _GetGroupMemberOwnerAndAdmin =
-      _GetGroupMemberOwnerAndAdminPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void GetGroupMemberListByJoinTimeFilter(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    int offset,
-    int count,
-    int joinTimeBegin,
-    int joinTimeEnd,
-    ffi.Pointer<ffi.Char> filterUserIDList,
-  ) {
-    return _GetGroupMemberListByJoinTimeFilter(
-      operationID,
-      groupID,
-      offset,
-      count,
-      joinTimeBegin,
-      joinTimeEnd,
-      filterUserIDList,
-    );
-  }
-
-  late final _GetGroupMemberListByJoinTimeFilterPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Int32,
-              ffi.Int32,
-              ffi.Int64,
-              ffi.Int64,
-              ffi.Pointer<ffi.Char>)>>('GetGroupMemberListByJoinTimeFilter');
-  late final _GetGroupMemberListByJoinTimeFilter =
-      _GetGroupMemberListByJoinTimeFilterPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int,
-              int, int, ffi.Pointer<ffi.Char>)>();
-
-  void GetSpecifiedGroupMembersInfo(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> userIDList,
-  ) {
-    return _GetSpecifiedGroupMembersInfo(
-      operationID,
-      groupID,
-      userIDList,
-    );
-  }
-
-  late final _GetSpecifiedGroupMembersInfoPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupMembersInfo');
-  late final _GetSpecifiedGroupMembersInfo =
-      _GetSpecifiedGroupMembersInfoPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>();
-
-  void KickGroupMember(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> reason,
-    ffi.Pointer<ffi.Char> userIDList,
-  ) {
-    return _KickGroupMember(
-      operationID,
-      groupID,
-      reason,
-      userIDList,
-    );
-  }
-
-  late final _KickGroupMemberPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('KickGroupMember');
-  late final _KickGroupMember = _KickGroupMemberPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void TransferGroupOwner(
-    ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> newOwnerUserID,
-  ) {
-    return _TransferGroupOwner(
-      operationID,
-      groupID,
-      newOwnerUserID,
-    );
-  }
-
-  late final _TransferGroupOwnerPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('TransferGroupOwner');
-  late final _TransferGroupOwner = _TransferGroupOwnerPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
-
   void InviteUserToGroup(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> groupID,
@@ -12525,6 +11930,90 @@ class FlutterOpenimSdkFfiBindings {
   late final _InviteUserToGroup = _InviteUserToGroupPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetJoinedGroupList(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _GetJoinedGroupList(
+      operationID,
+    );
+  }
+
+  late final _GetJoinedGroupListPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetJoinedGroupList');
+  late final _GetJoinedGroupList =
+      _GetJoinedGroupListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+
+  void getJoinedGroupListPage(
+    ffi.Pointer<ffi.Char> operationID,
+    int offset,
+    int count,
+  ) {
+    return _getJoinedGroupListPage(
+      operationID,
+      offset,
+      count,
+    );
+  }
+
+  late final _getJoinedGroupListPagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32,
+              ffi.Int32)>>('getJoinedGroupListPage');
+  late final _getJoinedGroupListPage = _getJoinedGroupListPagePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>, int, int)>();
+
+  void SearchGroups(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> searchParam,
+  ) {
+    return _SearchGroups(
+      operationID,
+      searchParam,
+    );
+  }
+
+  late final _SearchGroupsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchGroups');
+  late final _SearchGroups = _SearchGroupsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetSpecifiedGroupsInfo(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupIDList,
+  ) {
+    return _GetSpecifiedGroupsInfo(
+      operationID,
+      groupIDList,
+    );
+  }
+
+  late final _GetSpecifiedGroupsInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupsInfo');
+  late final _GetSpecifiedGroupsInfo = _GetSpecifiedGroupsInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void SetGroupInfo(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupInfo,
+  ) {
+    return _SetGroupInfo(
+      operationID,
+      groupInfo,
+    );
+  }
+
+  late final _SetGroupInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetGroupInfo');
+  late final _SetGroupInfo = _SetGroupInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupApplicationListAsRecipient(
     ffi.Pointer<ffi.Char> operationID,
@@ -12606,30 +12095,50 @@ class FlutterOpenimSdkFfiBindings {
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  void SetGroupMemberNickname(
+  void GetGroupMemberList(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> groupID,
-    ffi.Pointer<ffi.Char> userID,
-    ffi.Pointer<ffi.Char> groupMemberNickname,
+    int filter,
+    int offset,
+    int count,
   ) {
-    return _SetGroupMemberNickname(
+    return _GetGroupMemberList(
       operationID,
       groupID,
-      userID,
-      groupMemberNickname,
+      filter,
+      offset,
+      count,
     );
   }
 
-  late final _SetGroupMemberNicknamePtr = _lookup<
+  late final _GetGroupMemberListPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('SetGroupMemberNickname');
-  late final _SetGroupMemberNickname = _SetGroupMemberNicknamePtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int32, ffi.Int32, ffi.Int32)>>('GetGroupMemberList');
+  late final _GetGroupMemberList = _GetGroupMemberListPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int, int)>();
+
+  void GetSpecifiedGroupMembersInfo(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> userIDList,
+  ) {
+    return _GetSpecifiedGroupMembersInfo(
+      operationID,
+      groupID,
+      userIDList,
+    );
+  }
+
+  late final _GetSpecifiedGroupMembersInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupMembersInfo');
+  late final _GetSpecifiedGroupMembersInfo =
+      _GetSpecifiedGroupMembersInfoPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   void SearchGroupMembers(
     ffi.Pointer<ffi.Char> operationID,
@@ -12648,6 +12157,199 @@ class FlutterOpenimSdkFfiBindings {
   late final _SearchGroupMembers = _SearchGroupMembersPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
+  void SetGroupMemberInfo(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupMemberInfo,
+  ) {
+    return _SetGroupMemberInfo(
+      operationID,
+      groupMemberInfo,
+    );
+  }
+
+  late final _SetGroupMemberInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetGroupMemberInfo');
+  late final _SetGroupMemberInfo = _SetGroupMemberInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetGroupMemberOwnerAndAdmin(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+  ) {
+    return _GetGroupMemberOwnerAndAdmin(
+      operationID,
+      groupID,
+    );
+  }
+
+  late final _GetGroupMemberOwnerAndAdminPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetGroupMemberOwnerAndAdmin');
+  late final _GetGroupMemberOwnerAndAdmin =
+      _GetGroupMemberOwnerAndAdminPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetGroupMemberListByJoinTimeFilter(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    int offset,
+    int count,
+    int joinTimeBegin,
+    int joinTimeEnd,
+    ffi.Pointer<ffi.Char> filterUserIDList,
+  ) {
+    return _GetGroupMemberListByJoinTimeFilter(
+      operationID,
+      groupID,
+      offset,
+      count,
+      joinTimeBegin,
+      joinTimeEnd,
+      filterUserIDList,
+    );
+  }
+
+  late final _GetGroupMemberListByJoinTimeFilterPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int64,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('GetGroupMemberListByJoinTimeFilter');
+  late final _GetGroupMemberListByJoinTimeFilter =
+      _GetGroupMemberListByJoinTimeFilterPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int,
+              int, int, ffi.Pointer<ffi.Char>)>();
+
+  void KickGroupMember(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> reason,
+    ffi.Pointer<ffi.Char> userIDList,
+  ) {
+    return _KickGroupMember(
+      operationID,
+      groupID,
+      reason,
+      userIDList,
+    );
+  }
+
+  late final _KickGroupMemberPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('KickGroupMember');
+  late final _KickGroupMember = _KickGroupMemberPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void ChangeGroupMemberMute(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> userID,
+    int mutedSeconds,
+  ) {
+    return _ChangeGroupMemberMute(
+      operationID,
+      groupID,
+      userID,
+      mutedSeconds,
+    );
+  }
+
+  late final _ChangeGroupMemberMutePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('ChangeGroupMemberMute');
+  late final _ChangeGroupMemberMute = _ChangeGroupMemberMutePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, int)>();
+
+  void ChangeGroupMute(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    bool isMute,
+  ) {
+    return _ChangeGroupMute(
+      operationID,
+      groupID,
+      isMute,
+    );
+  }
+
+  late final _ChangeGroupMutePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('ChangeGroupMute');
+  late final _ChangeGroupMute = _ChangeGroupMutePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+
+  void TransferGroupOwner(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> newOwnerUserID,
+  ) {
+    return _TransferGroupOwner(
+      operationID,
+      groupID,
+      newOwnerUserID,
+    );
+  }
+
+  late final _TransferGroupOwnerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TransferGroupOwner');
+  late final _TransferGroupOwner = _TransferGroupOwnerPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void DismissGroup(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+  ) {
+    return _DismissGroup(
+      operationID,
+      groupID,
+    );
+  }
+
+  late final _DismissGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DismissGroup');
+  late final _DismissGroup = _DismissGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetUsersInGroup(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> userIDList,
+  ) {
+    return _GetUsersInGroup(
+      operationID,
+      groupID,
+      userIDList,
+    );
+  }
+
+  late final _GetUsersInGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetUsersInGroup');
+  late final _GetUsersInGroup = _GetUsersInGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
   void IsJoinGroup(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> groupID,
@@ -12663,6 +12365,23 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Void Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('IsJoinGroup');
   late final _IsJoinGroup = _IsJoinGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void QuitGroup(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> groupID,
+  ) {
+    return _QuitGroup(
+      operationID,
+      groupID,
+    );
+  }
+
+  late final _QuitGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('QuitGroup');
+  late final _QuitGroup = _QuitGroupPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetSdkVersion() {
@@ -12886,25 +12605,53 @@ class FlutterOpenimSdkFfiBindings {
   late final _GetSelfUserInfo =
       _GetSelfUserInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
-  void UpdateMsgSenderInfo(
+  void SubscribeUsersStatus(
     ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> nickname,
-    ffi.Pointer<ffi.Char> faceURL,
+    ffi.Pointer<ffi.Char> userIDs,
   ) {
-    return _UpdateMsgSenderInfo(
+    return _SubscribeUsersStatus(
       operationID,
-      nickname,
-      faceURL,
+      userIDs,
     );
   }
 
-  late final _UpdateMsgSenderInfoPtr = _lookup<
+  late final _SubscribeUsersStatusPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('UpdateMsgSenderInfo');
-  late final _UpdateMsgSenderInfo = _UpdateMsgSenderInfoPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SubscribeUsersStatus');
+  late final _SubscribeUsersStatus = _SubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void UnsubscribeUsersStatus(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> userIDs,
+  ) {
+    return _UnsubscribeUsersStatus(
+      operationID,
+      userIDs,
+    );
+  }
+
+  late final _UnsubscribeUsersStatusPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('UnsubscribeUsersStatus');
+  late final _UnsubscribeUsersStatus = _UnsubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void GetSubscribeUsersStatus(
+    ffi.Pointer<ffi.Char> operationID,
+  ) {
+    return _GetSubscribeUsersStatus(
+      operationID,
+    );
+  }
+
+  late final _GetSubscribeUsersStatusPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetSubscribeUsersStatus');
+  late final _GetSubscribeUsersStatus = _GetSubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   int sched_yield() {
     return _sched_yield();
@@ -13281,64 +13028,67 @@ class FlutterOpenimSdkFfiBindings {
       .asFunction<int Function(ffi.Pointer<timespec>, ffi.Pointer<timespec>)>();
 
   int clock_getres(
-    int __clock_id,
+    clockid_t __clock_id,
     ffi.Pointer<timespec> __res,
   ) {
     return _clock_getres(
-      __clock_id,
+      __clock_id.value,
       __res,
     );
   }
 
   late final _clock_getresPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_getres');
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_getres');
   late final _clock_getres =
       _clock_getresPtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
   int clock_gettime(
-    int __clock_id,
+    clockid_t __clock_id,
     ffi.Pointer<timespec> __tp,
   ) {
     return _clock_gettime(
-      __clock_id,
+      __clock_id.value,
       __tp,
     );
   }
 
   late final _clock_gettimePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_gettime');
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_gettime');
   late final _clock_gettime =
       _clock_gettimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
-  int clock_gettime_nsec_np(
-    int __clock_id,
+  Dart__uint64_t clock_gettime_nsec_np(
+    clockid_t __clock_id,
   ) {
     return _clock_gettime_nsec_np(
-      __clock_id,
+      __clock_id.value,
     );
   }
 
   late final _clock_gettime_nsec_npPtr =
-      _lookup<ffi.NativeFunction<__uint64_t Function(ffi.Int32)>>(
+      _lookup<ffi.NativeFunction<__uint64_t Function(ffi.UnsignedInt)>>(
           'clock_gettime_nsec_np');
   late final _clock_gettime_nsec_np =
       _clock_gettime_nsec_npPtr.asFunction<int Function(int)>();
 
   int clock_settime(
-    int __clock_id,
+    clockid_t __clock_id,
     ffi.Pointer<timespec> __tp,
   ) {
     return _clock_settime(
-      __clock_id,
+      __clock_id.value,
       __tp,
     );
   }
 
   late final _clock_settimePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_settime');
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_settime');
   late final _clock_settime =
       _clock_settimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
@@ -15484,6 +15234,45 @@ class FlutterOpenimSdkFfiBindings {
       _getIMListenerPtr.asFunction<Openim_Listener Function()>();
 }
 
+typedef __int8_t = ffi.SignedChar;
+typedef Dart__int8_t = int;
+typedef __uint8_t = ffi.UnsignedChar;
+typedef Dart__uint8_t = int;
+typedef __int16_t = ffi.Short;
+typedef Dart__int16_t = int;
+typedef __uint16_t = ffi.UnsignedShort;
+typedef Dart__uint16_t = int;
+typedef __int32_t = ffi.Int;
+typedef Dart__int32_t = int;
+typedef __uint32_t = ffi.UnsignedInt;
+typedef Dart__uint32_t = int;
+typedef __int64_t = ffi.LongLong;
+typedef Dart__int64_t = int;
+typedef __uint64_t = ffi.UnsignedLongLong;
+typedef Dart__uint64_t = int;
+typedef __darwin_intptr_t = ffi.Long;
+typedef Dart__darwin_intptr_t = int;
+typedef __darwin_natural_t = ffi.UnsignedInt;
+typedef Dart__darwin_natural_t = int;
+
+/// The rune type below is declared to be an ``int'' instead of the more natural
+/// ``unsigned long'' or ``long''.  Two things are happening here.  It is not
+/// unsigned so that EOF (-1) can be naturally assigned to it and used.  Also,
+/// it looks like 10646 will be a 31 bit standard.  This means that if your
+/// ints cannot hold 32 bits, you will be in trouble.  The reason an int was
+/// chosen over a long is that the is*() and to*() routines take ints (says
+/// ANSI C), but they use __darwin_ct_rune_t instead of int.  By changing it
+/// here, you lose a bit of ANSI conformance, but your programs will still
+/// work.
+///
+/// NOTE: rune_t is not covered by ANSI nor other standards, and should not
+/// be instantiated outside of lib/libc/locale.  Use wchar_t.  wchar_t and
+/// rune_t must be the same type.  Also wint_t must be no narrower than
+/// wchar_t, and should also be able to hold all members of the largest
+/// character set plus one extra value (WEOF). wint_t must be at least 16 bits.
+typedef __darwin_ct_rune_t = ffi.Int;
+typedef Dart__darwin_ct_rune_t = int;
+
 /// mbstate_t is an opaque object to keep conversion state, during multibyte
 /// stream conversions.  The content must not be referenced by user programs.
 final class __mbstate_t extends ffi.Union {
@@ -15494,6 +15283,46 @@ final class __mbstate_t extends ffi.Union {
   @ffi.LongLong()
   external int _mbstateL;
 }
+
+typedef __darwin_mbstate_t = __mbstate_t;
+typedef __darwin_ptrdiff_t = ffi.Long;
+typedef Dart__darwin_ptrdiff_t = int;
+typedef __darwin_size_t = ffi.UnsignedLong;
+typedef Dart__darwin_size_t = int;
+typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
+typedef __darwin_va_list = __builtin_va_list;
+typedef __darwin_wchar_t = ffi.Int;
+typedef Dart__darwin_wchar_t = int;
+typedef __darwin_rune_t = __darwin_wchar_t;
+typedef __darwin_wint_t = ffi.Int;
+typedef Dart__darwin_wint_t = int;
+typedef __darwin_clock_t = ffi.UnsignedLong;
+typedef Dart__darwin_clock_t = int;
+typedef __darwin_socklen_t = __uint32_t;
+typedef __darwin_ssize_t = ffi.Long;
+typedef Dart__darwin_ssize_t = int;
+typedef __darwin_time_t = ffi.Long;
+typedef Dart__darwin_time_t = int;
+typedef __darwin_blkcnt_t = __int64_t;
+typedef __darwin_blksize_t = __int32_t;
+typedef __darwin_dev_t = __int32_t;
+typedef __darwin_fsblkcnt_t = ffi.UnsignedInt;
+typedef Dart__darwin_fsblkcnt_t = int;
+typedef __darwin_fsfilcnt_t = ffi.UnsignedInt;
+typedef Dart__darwin_fsfilcnt_t = int;
+typedef __darwin_gid_t = __uint32_t;
+typedef __darwin_id_t = __uint32_t;
+typedef __darwin_ino64_t = __uint64_t;
+typedef __darwin_ino_t = __darwin_ino64_t;
+typedef __darwin_mach_port_name_t = __darwin_natural_t;
+typedef __darwin_mach_port_t = __darwin_mach_port_name_t;
+typedef __darwin_mode_t = __uint16_t;
+typedef __darwin_off_t = __int64_t;
+typedef __darwin_pid_t = __int32_t;
+typedef __darwin_sigset_t = __uint32_t;
+typedef __darwin_suseconds_t = __int32_t;
+typedef __darwin_uid_t = __uint32_t;
+typedef __darwin_useconds_t = __uint32_t;
 
 final class __darwin_pthread_handler_rec extends ffi.Struct {
   /// Routine to call
@@ -15581,6 +15410,48 @@ final class _opaque_pthread_t extends ffi.Struct {
   external ffi.Array<ffi.Char> __opaque;
 }
 
+typedef __darwin_pthread_attr_t = _opaque_pthread_attr_t;
+typedef __darwin_pthread_cond_t = _opaque_pthread_cond_t;
+typedef __darwin_pthread_condattr_t = _opaque_pthread_condattr_t;
+typedef __darwin_pthread_key_t = ffi.UnsignedLong;
+typedef Dart__darwin_pthread_key_t = int;
+typedef __darwin_pthread_mutex_t = _opaque_pthread_mutex_t;
+typedef __darwin_pthread_mutexattr_t = _opaque_pthread_mutexattr_t;
+typedef __darwin_pthread_once_t = _opaque_pthread_once_t;
+typedef __darwin_pthread_rwlock_t = _opaque_pthread_rwlock_t;
+typedef __darwin_pthread_rwlockattr_t = _opaque_pthread_rwlockattr_t;
+typedef __darwin_pthread_t = ffi.Pointer<_opaque_pthread_t>;
+typedef __darwin_nl_item = ffi.Int;
+typedef Dart__darwin_nl_item = int;
+typedef __darwin_wctrans_t = ffi.Int;
+typedef Dart__darwin_wctrans_t = int;
+typedef __darwin_wctype_t = __uint32_t;
+typedef u_int8_t = ffi.UnsignedChar;
+typedef Dartu_int8_t = int;
+typedef u_int16_t = ffi.UnsignedShort;
+typedef Dartu_int16_t = int;
+typedef u_int32_t = ffi.UnsignedInt;
+typedef Dartu_int32_t = int;
+typedef u_int64_t = ffi.UnsignedLongLong;
+typedef Dartu_int64_t = int;
+typedef register_t = ffi.Int64;
+typedef Dartregister_t = int;
+typedef user_addr_t = u_int64_t;
+typedef user_size_t = u_int64_t;
+typedef user_ssize_t = ffi.Int64;
+typedef Dartuser_ssize_t = int;
+typedef user_long_t = ffi.Int64;
+typedef Dartuser_long_t = int;
+typedef user_ulong_t = u_int64_t;
+typedef user_time_t = ffi.Int64;
+typedef Dartuser_time_t = int;
+typedef user_off_t = ffi.Int64;
+typedef Dartuser_off_t = int;
+typedef syscall_arg_t = u_int64_t;
+typedef ptrdiff_t = __darwin_ptrdiff_t;
+typedef rsize_t = __darwin_size_t;
+typedef wint_t = __darwin_wint_t;
+
 final class _GoString_ extends ffi.Struct {
   external ffi.Pointer<ffi.Char> p;
 
@@ -15588,9 +15459,8 @@ final class _GoString_ extends ffi.Struct {
   external int n;
 }
 
-typedef ptrdiff_t = __darwin_ptrdiff_t;
-typedef __darwin_ptrdiff_t = ffi.Long;
-typedef Dart__darwin_ptrdiff_t = int;
+typedef va_list = __darwin_va_list;
+typedef fpos_t = __darwin_off_t;
 
 /// stdio buffers
 final class __sbuf extends ffi.Struct {
@@ -15705,11 +15575,6 @@ final class __sFILE extends ffi.Struct {
   external int _offset;
 }
 
-typedef fpos_t = __darwin_off_t;
-typedef __darwin_off_t = __int64_t;
-typedef __int64_t = ffi.LongLong;
-typedef Dart__int64_t = int;
-
 /// stdio state variables.
 ///
 /// The following always hold:
@@ -15735,21 +15600,71 @@ typedef Dart__int64_t = int;
 ///
 /// NB: see WARNING above before changing the layout of this structure!
 typedef FILE = __sFILE;
-typedef va_list = __darwin_va_list;
-typedef __darwin_va_list = __builtin_va_list;
-typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
 typedef off_t = __darwin_off_t;
 typedef ssize_t = __darwin_ssize_t;
-typedef __darwin_ssize_t = ffi.Long;
-typedef Dart__darwin_ssize_t = int;
+
+/// 7.18.1.2 Minimum-width integer types
+typedef int_least8_t = ffi.Int8;
+typedef Dartint_least8_t = int;
+typedef int_least16_t = ffi.Int16;
+typedef Dartint_least16_t = int;
+typedef int_least32_t = ffi.Int32;
+typedef Dartint_least32_t = int;
+typedef int_least64_t = ffi.Int64;
+typedef Dartint_least64_t = int;
+typedef uint_least8_t = ffi.Uint8;
+typedef Dartuint_least8_t = int;
+typedef uint_least16_t = ffi.Uint16;
+typedef Dartuint_least16_t = int;
+typedef uint_least32_t = ffi.Uint32;
+typedef Dartuint_least32_t = int;
+typedef uint_least64_t = ffi.Uint64;
+typedef Dartuint_least64_t = int;
+
+/// 7.18.1.3 Fastest-width integer types
+typedef int_fast8_t = ffi.Int8;
+typedef Dartint_fast8_t = int;
+typedef int_fast16_t = ffi.Int16;
+typedef Dartint_fast16_t = int;
+typedef int_fast32_t = ffi.Int32;
+typedef Dartint_fast32_t = int;
+typedef int_fast64_t = ffi.Int64;
+typedef Dartint_fast64_t = int;
+typedef uint_fast8_t = ffi.Uint8;
+typedef Dartuint_fast8_t = int;
+typedef uint_fast16_t = ffi.Uint16;
+typedef Dartuint_fast16_t = int;
+typedef uint_fast32_t = ffi.Uint32;
+typedef Dartuint_fast32_t = int;
+typedef uint_fast64_t = ffi.Uint64;
+typedef Dartuint_fast64_t = int;
+typedef intmax_t = ffi.Long;
+typedef Dartintmax_t = int;
+typedef uintmax_t = ffi.UnsignedLong;
+typedef Dartuintmax_t = int;
 
 /// [XSI] The type idtype_t shall be defined as an enumeration type whose
 /// possible values shall include at least P_ALL, P_PID, and P_PGID.
-abstract class idtype_t {
-  static const int P_ALL = 0;
-  static const int P_PID = 1;
-  static const int P_PGID = 2;
+enum idtype_t {
+  P_ALL(0),
+  P_PID(1),
+  P_PGID(2);
+
+  final int value;
+  const idtype_t(this.value);
+
+  static idtype_t fromValue(int value) => switch (value) {
+        0 => P_ALL,
+        1 => P_PID,
+        2 => P_PGID,
+        _ => throw ArgumentError("Unknown value for idtype_t: $value"),
+      };
 }
+
+typedef pid_t = __darwin_pid_t;
+typedef id_t = __darwin_id_t;
+typedef sig_atomic_t = ffi.Int;
+typedef Dartsig_atomic_t = int;
 
 final class __darwin_arm_exception_state extends ffi.Struct {
   /// number of arm exception taken
@@ -15765,9 +15680,6 @@ final class __darwin_arm_exception_state extends ffi.Struct {
   external int __far;
 }
 
-typedef __uint32_t = ffi.UnsignedInt;
-typedef Dart__uint32_t = int;
-
 final class __darwin_arm_exception_state64 extends ffi.Struct {
   /// Virtual Fault Address
   @__uint64_t()
@@ -15782,8 +15694,15 @@ final class __darwin_arm_exception_state64 extends ffi.Struct {
   external int __exception;
 }
 
-typedef __uint64_t = ffi.UnsignedLongLong;
-typedef Dart__uint64_t = int;
+final class __darwin_arm_exception_state64_v2 extends ffi.Struct {
+  /// Virtual Fault Address
+  @__uint64_t()
+  external int __far;
+
+  /// Exception syndrome
+  @__uint64_t()
+  external int __esr;
+}
 
 final class __darwin_arm_thread_state extends ffi.Struct {
   /// General purpose register r0-r12
@@ -15919,6 +15838,9 @@ final class __darwin_mcontext32 extends ffi.Struct {
 
 final class __darwin_mcontext64 extends ffi.Opaque {}
 
+typedef mcontext_t = ffi.Pointer<__darwin_mcontext64>;
+typedef pthread_attr_t = __darwin_pthread_attr_t;
+
 final class __darwin_sigaltstack extends ffi.Struct {
   /// signal stack base
   external ffi.Pointer<ffi.Void> ss_sp;
@@ -15932,8 +15854,7 @@ final class __darwin_sigaltstack extends ffi.Struct {
   external int ss_flags;
 }
 
-typedef __darwin_size_t = ffi.UnsignedLong;
-typedef Dart__darwin_size_t = int;
+typedef stack_t = __darwin_sigaltstack;
 
 final class __darwin_ucontext extends ffi.Struct {
   @ffi.Int()
@@ -15957,7 +15878,10 @@ final class __darwin_ucontext extends ffi.Struct {
   external ffi.Pointer<__darwin_mcontext64> uc_mcontext;
 }
 
-typedef __darwin_sigset_t = __uint32_t;
+/// user context
+typedef ucontext_t = __darwin_ucontext;
+typedef sigset_t = __darwin_sigset_t;
+typedef uid_t = __darwin_uid_t;
 
 final class sigval extends ffi.Union {
   /// Members as suggested by Annex C of POSIX 1003.1b.
@@ -15986,9 +15910,6 @@ final class sigevent extends ffi.Struct {
   /// Notification attributes
   external ffi.Pointer<pthread_attr_t> sigev_notify_attributes;
 }
-
-typedef pthread_attr_t = __darwin_pthread_attr_t;
-typedef __darwin_pthread_attr_t = _opaque_pthread_attr_t;
 
 final class __siginfo extends ffi.Struct {
   /// signal number
@@ -16030,12 +15951,7 @@ final class __siginfo extends ffi.Struct {
   external ffi.Array<ffi.UnsignedLong> __pad;
 }
 
-typedef pid_t = __darwin_pid_t;
-typedef __darwin_pid_t = __int32_t;
-typedef __int32_t = ffi.Int;
-typedef Dart__int32_t = int;
-typedef uid_t = __darwin_uid_t;
-typedef __darwin_uid_t = __uint32_t;
+typedef siginfo_t = __siginfo;
 
 /// union for signal handlers
 final class __sigaction_u extends ffi.Union {
@@ -16068,9 +15984,6 @@ final class __sigaction extends ffi.Struct {
   external int sa_flags;
 }
 
-typedef siginfo_t = __siginfo;
-typedef sigset_t = __darwin_sigset_t;
-
 /// Signal vector "template" used in sigaction call.
 final class sigaction extends ffi.Struct {
   /// signal handler
@@ -16084,6 +15997,10 @@ final class sigaction extends ffi.Struct {
   @ffi.Int()
   external int sa_flags;
 }
+
+typedef sig_tFunction = ffi.Void Function(ffi.Int);
+typedef Dartsig_tFunction = void Function(int);
+typedef sig_t = ffi.Pointer<ffi.NativeFunction<sig_tFunction>>;
 
 /// 4.3 compatibility:
 /// Signal vector "template" used in sigvec call.
@@ -16121,9 +16038,8 @@ final class timeval extends ffi.Struct {
   external int tv_usec;
 }
 
-typedef __darwin_time_t = ffi.Long;
-typedef Dart__darwin_time_t = int;
-typedef __darwin_suseconds_t = __int32_t;
+/// Resource limit type (low 63 bits, excluding the sign bit)
+typedef rlim_t = __uint64_t;
 
 /// A structure representing an accounting of resource utilization.  The
 /// address of an instance of this structure is the second parameter to
@@ -16195,6 +16111,8 @@ final class rusage extends ffi.Struct {
   @ffi.Long()
   external int ru_nivcsw;
 }
+
+typedef rusage_info_t = ffi.Pointer<ffi.Void>;
 
 final class rusage_info_v0 extends ffi.Struct {
   @ffi.Array.multi([16])
@@ -16788,9 +16706,20 @@ final class rusage_info_v6 extends ffi.Struct {
   @ffi.Uint64()
   external int ri_secure_ptime_in_system;
 
-  @ffi.Array.multi([12])
+  @ffi.Uint64()
+  external int ri_neural_footprint;
+
+  @ffi.Uint64()
+  external int ri_lifetime_max_neural_footprint;
+
+  @ffi.Uint64()
+  external int ri_interval_max_neural_footprint;
+
+  @ffi.Array.multi([9])
   external ffi.Array<ffi.Uint64> ri_reserved;
 }
+
+typedef rusage_info_current = rusage_info_v6;
 
 /// A structure representing a resource limit.  The address of an instance
 /// of this structure is the second parameter to getrlimit()/setrlimit().
@@ -16804,9 +16733,6 @@ final class rlimit extends ffi.Struct {
   external int rlim_max;
 }
 
-/// Resource limit type (low 63 bits, excluding the sign bit)
-typedef rlim_t = __uint64_t;
-
 final class proc_rlimit_control_wakeupmon extends ffi.Struct {
   @ffi.Uint32()
   external int wm_flags;
@@ -16815,33 +16741,14 @@ final class proc_rlimit_control_wakeupmon extends ffi.Struct {
   external int wm_rate;
 }
 
-typedef id_t = __darwin_id_t;
-typedef __darwin_id_t = __uint32_t;
-
-/// Functions for byte reversed loads.
-@ffi.Packed(1)
-final class _OSUnalignedU16 extends ffi.Struct {
-  @ffi.Uint16()
-  external int __val;
-}
-
-@ffi.Packed(1)
-final class _OSUnalignedU32 extends ffi.Struct {
-  @ffi.Uint32()
-  external int __val;
-}
-
-@ffi.Packed(1)
-final class _OSUnalignedU64 extends ffi.Struct {
-  @ffi.Uint64()
-  external int __val;
-}
-
 /// Deprecated:
 /// Structure of the information in the status word returned by wait4.
 /// If w_stopval==_WSTOPPED, then the second structure describes
 /// the information returned, else the first.
 final class wait extends ffi.Opaque {}
+
+typedef ct_rune_t = __darwin_ct_rune_t;
+typedef rune_t = __darwin_rune_t;
 
 final class div_t extends ffi.Struct {
   /// quotient
@@ -16871,10 +16778,6 @@ final class lldiv_t extends ffi.Struct {
   external int rem;
 }
 
-/// !!!!!!!!!!!!!!!!!!!!! WARNING WARNING WARNING WARNING !!!!!!!!!!!!!!!!!!!!!
-/// Typed Memory Operations and malloc_type_* functions constitute a private,
-/// unstable interface.  Don't use it, don't depend on it.
-/// !!!!!!!!!!!!!!!!!!!!! WARNING WARNING WARNING WARNING !!!!!!!!!!!!!!!!!!!!!
 typedef malloc_type_id_t = ffi.UnsignedLongLong;
 typedef Dartmalloc_type_id_t = int;
 
@@ -16883,13 +16786,7 @@ final class _malloc_zone_t extends ffi.Opaque {}
 /// <malloc/malloc.h>
 typedef malloc_zone_t = _malloc_zone_t;
 typedef dev_t = __darwin_dev_t;
-typedef __darwin_dev_t = __int32_t;
 typedef mode_t = __darwin_mode_t;
-typedef __darwin_mode_t = __uint16_t;
-typedef __uint16_t = ffi.UnsignedShort;
-typedef Dart__uint16_t = int;
-typedef intmax_t = ffi.Long;
-typedef Dartintmax_t = int;
 
 /// 7.8.2.2
 final class imaxdiv_t extends ffi.Struct {
@@ -16900,30 +16797,42 @@ final class imaxdiv_t extends ffi.Struct {
   external int rem;
 }
 
-typedef uintmax_t = ffi.UnsignedLong;
-typedef Dartuintmax_t = int;
-
 final class _Dart_Isolate extends ffi.Opaque {}
 
+/// An isolate is the unit of concurrency in Dart. Each isolate has
+/// its own memory and thread of control. No state is shared between
+/// isolates. Instead, isolates communicate by message passing.
+///
+/// Each thread keeps track of its current isolate, which is the
+/// isolate which is ready to execute on the current thread. The
+/// current isolate may be NULL, in which case no isolate is ready to
+/// execute. Most of the Dart apis require there to be a current
+/// isolate in order to function without error. The current isolate is
+/// set by any call to Dart_CreateIsolateGroup or Dart_EnterIsolate.
+typedef Dart_Isolate = ffi.Pointer<_Dart_Isolate>;
+
 final class _Dart_IsolateGroup extends ffi.Opaque {}
+
+typedef Dart_IsolateGroup = ffi.Pointer<_Dart_IsolateGroup>;
 
 final class _Dart_Handle extends ffi.Opaque {}
 
 final class _Dart_WeakPersistentHandle extends ffi.Opaque {}
 
+typedef Dart_WeakPersistentHandle = ffi.Pointer<_Dart_WeakPersistentHandle>;
+
 final class _Dart_FinalizableHandle extends ffi.Opaque {}
 
-typedef Dart_WeakPersistentHandle = ffi.Pointer<_Dart_WeakPersistentHandle>;
+typedef Dart_FinalizableHandle = ffi.Pointer<_Dart_FinalizableHandle>;
+typedef Dart_HandleFinalizerFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
+typedef DartDart_HandleFinalizerFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
 
 /// These structs are versioned by DART_API_DL_MAJOR_VERSION, bump the
 /// version when changing this struct.
 typedef Dart_HandleFinalizer
     = ffi.Pointer<ffi.NativeFunction<Dart_HandleFinalizerFunction>>;
-typedef Dart_HandleFinalizerFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
-typedef DartDart_HandleFinalizerFunction = void Function(
-    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
-typedef Dart_FinalizableHandle = ffi.Pointer<_Dart_FinalizableHandle>;
 
 final class Dart_IsolateFlags extends ffi.Struct {
   @ffi.Int32()
@@ -16960,12 +16869,282 @@ final class Dart_IsolateFlags extends ffi.Struct {
   external bool branch_coverage;
 }
 
-/// Forward declaration
-final class Dart_CodeObserver extends ffi.Struct {
-  external ffi.Pointer<ffi.Void> data;
+typedef Dart_IsolateGroupCreateCallbackFunction = Dart_Isolate Function(
+    ffi.Pointer<ffi.Char> script_uri,
+    ffi.Pointer<ffi.Char> main,
+    ffi.Pointer<ffi.Char> package_root,
+    ffi.Pointer<ffi.Char> package_config,
+    ffi.Pointer<Dart_IsolateFlags> flags,
+    ffi.Pointer<ffi.Void> isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
 
-  external Dart_OnNewCodeCallback on_new_code;
-}
+/// An isolate creation and initialization callback function.
+///
+/// This callback, provided by the embedder, is called when the VM
+/// needs to create an isolate. The callback should create an isolate
+/// by calling Dart_CreateIsolateGroup and load any scripts required for
+/// execution.
+///
+/// This callback may be called on a different thread than the one
+/// running the parent isolate.
+///
+/// When the function returns NULL, it is the responsibility of this
+/// function to ensure that Dart_ShutdownIsolate has been called if
+/// required (for example, if the isolate was created successfully by
+/// Dart_CreateIsolateGroup() but the root library fails to load
+/// successfully, then the function should call Dart_ShutdownIsolate
+/// before returning).
+///
+/// When the function returns NULL, the function should set *error to
+/// a malloc-allocated buffer containing a useful error message.  The
+/// caller of this function (the VM) will make sure that the buffer is
+/// freed.
+///
+/// \param script_uri The uri of the main source file or snapshot to load.
+/// Either the URI of the parent isolate set in Dart_CreateIsolateGroup for
+/// Isolate.spawn, or the argument to Isolate.spawnUri canonicalized by the
+/// library tag handler of the parent isolate.
+/// The callback is responsible for loading the program by a call to
+/// Dart_LoadScriptFromKernel.
+/// \param main The name of the main entry point this isolate will
+/// eventually run.  This is provided for advisory purposes only to
+/// improve debugging messages.  The main function is not invoked by
+/// this function.
+/// \param package_root Ignored.
+/// \param package_config Uri of the package configuration file (either in format
+/// of .packages or .dart_tool/package_config.json) for this isolate
+/// to resolve package imports against. If this parameter is not passed the
+/// package resolution of the parent isolate should be used.
+/// \param flags Default flags for this isolate being spawned. Either inherited
+/// from the spawning isolate or passed as parameters when spawning the
+/// isolate from Dart code.
+/// \param isolate_data The isolate data which was passed to the
+/// parent isolate when it was created by calling Dart_CreateIsolateGroup().
+/// \param error A structure into which the embedder can place a
+/// C string containing an error message in the case of failures.
+///
+/// \return The embedder returns NULL if the creation and
+/// initialization was not successful and the isolate if successful.
+typedef Dart_IsolateGroupCreateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCreateCallbackFunction>>;
+typedef Dart_InitializeIsolateCallbackFunction = ffi.Bool Function(
+    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
+typedef DartDart_InitializeIsolateCallbackFunction = bool Function(
+    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
+
+/// An isolate initialization callback function.
+///
+/// This callback, provided by the embedder, is called when the VM has created an
+/// isolate within an existing isolate group (i.e. from the same source as an
+/// existing isolate).
+///
+/// The callback should setup native resolvers and might want to set a custom
+/// message handler via [Dart_SetMessageNotifyCallback] and mark the isolate as
+/// runnable.
+///
+/// This callback may be called on a different thread than the one
+/// running the parent isolate.
+///
+/// When the function returns `false`, it is the responsibility of this
+/// function to ensure that `Dart_ShutdownIsolate` has been called.
+///
+/// When the function returns `false`, the function should set *error to
+/// a malloc-allocated buffer containing a useful error message.  The
+/// caller of this function (the VM) will make sure that the buffer is
+/// freed.
+///
+/// \param child_isolate_data The callback data to associate with the new
+/// child isolate.
+/// \param error A structure into which the embedder can place a
+/// C string containing an error message in the case the initialization fails.
+///
+/// \return The embedder returns true if the initialization was successful and
+/// false otherwise (in which case the VM will terminate the isolate).
+typedef Dart_InitializeIsolateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_InitializeIsolateCallbackFunction>>;
+typedef Dart_IsolateShutdownCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+typedef DartDart_IsolateShutdownCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+
+/// An isolate shutdown callback function.
+///
+/// This callback, provided by the embedder, is called before the vm
+/// shuts down an isolate.  The isolate being shutdown will be the current
+/// isolate. It is safe to run Dart code.
+///
+/// This function should be used to dispose of native resources that
+/// are allocated to an isolate in order to avoid leaks.
+///
+/// \param isolate_group_data The same callback data which was passed to the
+/// isolate group when it was created.
+/// \param isolate_data The same callback data which was passed to the isolate
+/// when it was created.
+typedef Dart_IsolateShutdownCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateShutdownCallbackFunction>>;
+typedef Dart_IsolateCleanupCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+typedef DartDart_IsolateCleanupCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+
+/// An isolate cleanup callback function.
+///
+/// This callback, provided by the embedder, is called after the vm
+/// shuts down an isolate. There will be no current isolate and it is *not*
+/// safe to run Dart code.
+///
+/// This function should be used to dispose of native resources that
+/// are allocated to an isolate in order to avoid leaks.
+///
+/// \param isolate_group_data The same callback data which was passed to the
+/// isolate group when it was created.
+/// \param isolate_data The same callback data which was passed to the isolate
+/// when it was created.
+typedef Dart_IsolateCleanupCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateCleanupCallbackFunction>>;
+typedef Dart_IsolateGroupCleanupCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data);
+typedef DartDart_IsolateGroupCleanupCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data);
+
+/// An isolate group cleanup callback function.
+///
+/// This callback, provided by the embedder, is called after the vm
+/// shuts down an isolate group.
+///
+/// This function should be used to dispose of native resources that
+/// are allocated to an isolate in order to avoid leaks.
+///
+/// \param isolate_group_data The same callback data which was passed to the
+/// isolate group when it was created.
+typedef Dart_IsolateGroupCleanupCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCleanupCallbackFunction>>;
+typedef Dart_ThreadStartCallbackFunction = ffi.Void Function();
+typedef DartDart_ThreadStartCallbackFunction = void Function();
+
+/// A thread start callback function.
+/// This callback, provided by the embedder, is called after a thread in the
+/// vm thread pool starts.
+/// This function could be used to adjust thread priority or attach native
+/// resources to the thread.
+typedef Dart_ThreadStartCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadStartCallbackFunction>>;
+typedef Dart_ThreadExitCallbackFunction = ffi.Void Function();
+typedef DartDart_ThreadExitCallbackFunction = void Function();
+
+/// A thread death callback function.
+/// This callback, provided by the embedder, is called before a thread in the
+/// vm thread pool exits.
+/// This function could be used to dispose of native resources that
+/// are associated and attached to the thread, in order to avoid leaks.
+typedef Dart_ThreadExitCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadExitCallbackFunction>>;
+typedef Dart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, ffi.Bool write);
+typedef DartDart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, bool write);
+
+/// Opens a file for reading or writing.
+///
+/// Callback provided by the embedder for file operations. If the
+/// embedder does not allow file operations this callback can be
+/// NULL.
+///
+/// \param name The name of the file to open.
+/// \param write A boolean variable which indicates if the file is to
+/// opened for writing. If there is an existing file it needs to truncated.
+typedef Dart_FileOpenCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileOpenCallbackFunction>>;
+typedef Dart_FileReadCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
+    ffi.Pointer<ffi.IntPtr> file_length,
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileReadCallbackFunction = void Function(
+    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
+    ffi.Pointer<ffi.IntPtr> file_length,
+    ffi.Pointer<ffi.Void> stream);
+
+/// Read contents of file.
+///
+/// Callback provided by the embedder for file operations. If the
+/// embedder does not allow file operations this callback can be
+/// NULL.
+///
+/// \param data Buffer allocated in the callback into which the contents
+/// of the file are read into. It is the responsibility of the caller to
+/// free this buffer.
+/// \param file_length A variable into which the length of the file is returned.
+/// In the case of an error this value would be -1.
+/// \param stream Handle to the opened file.
+typedef Dart_FileReadCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileReadCallbackFunction>>;
+typedef Dart_FileWriteCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> data,
+    ffi.IntPtr length,
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileWriteCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> data, int length, ffi.Pointer<ffi.Void> stream);
+
+/// Write data into file.
+///
+/// Callback provided by the embedder for file operations. If the
+/// embedder does not allow file operations this callback can be
+/// NULL.
+///
+/// \param data Buffer which needs to be written into the file.
+/// \param length Length of the buffer.
+/// \param stream Handle to the opened file.
+typedef Dart_FileWriteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileWriteCallbackFunction>>;
+typedef Dart_FileCloseCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileCloseCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> stream);
+
+/// Closes the opened file.
+///
+/// Callback provided by the embedder for file operations. If the
+/// embedder does not allow file operations this callback can be
+/// NULL.
+///
+/// \param stream Handle to the opened file.
+typedef Dart_FileCloseCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileCloseCallbackFunction>>;
+typedef Dart_EntropySourceFunction = ffi.Bool Function(
+    ffi.Pointer<ffi.Uint8> buffer, ffi.IntPtr length);
+typedef DartDart_EntropySourceFunction = bool Function(
+    ffi.Pointer<ffi.Uint8> buffer, int length);
+typedef Dart_EntropySource
+    = ffi.Pointer<ffi.NativeFunction<Dart_EntropySourceFunction>>;
+typedef Dart_GetVMServiceAssetsArchiveFunction = ffi.Handle Function();
+typedef DartDart_GetVMServiceAssetsArchiveFunction = Object Function();
+
+/// Callback provided by the embedder that is used by the vmservice isolate
+/// to request the asset archive. The asset archive must be an uncompressed tar
+/// archive that is stored in a Uint8List.
+///
+/// If the embedder has no vmservice isolate assets, the callback can be NULL.
+///
+/// \return The embedder must return a handle to a Uint8List containing an
+/// uncompressed tar archive or null.
+typedef Dart_GetVMServiceAssetsArchive
+    = ffi.Pointer<ffi.NativeFunction<Dart_GetVMServiceAssetsArchiveFunction>>;
+typedef Dart_OnNewCodeCallbackFunction = ffi.Void Function(
+    ffi.Pointer<Dart_CodeObserver> observer,
+    ffi.Pointer<ffi.Char> name,
+    ffi.UintPtr base,
+    ffi.UintPtr size);
+typedef DartDart_OnNewCodeCallbackFunction = void Function(
+    ffi.Pointer<Dart_CodeObserver> observer,
+    ffi.Pointer<ffi.Char> name,
+    int base,
+    int size);
 
 /// Callback provided by the embedder that is used by the VM to notify on code
 /// object creation, *before* it is invoked the first time.
@@ -16977,16 +17156,49 @@ final class Dart_CodeObserver extends ffi.Struct {
 /// address ranges.
 typedef Dart_OnNewCodeCallback
     = ffi.Pointer<ffi.NativeFunction<Dart_OnNewCodeCallbackFunction>>;
-typedef Dart_OnNewCodeCallbackFunction = ffi.Void Function(
-    ffi.Pointer<Dart_CodeObserver> observer,
-    ffi.Pointer<ffi.Char> name,
-    ffi.UintPtr base,
-    ffi.UintPtr size);
-typedef DartDart_OnNewCodeCallbackFunction = void Function(
-    ffi.Pointer<Dart_CodeObserver> observer,
-    ffi.Pointer<ffi.Char> name,
-    int base,
-    int size);
+
+/// Forward declaration
+final class Dart_CodeObserver extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> data;
+
+  external Dart_OnNewCodeCallback on_new_code;
+}
+
+typedef Dart_RegisterKernelBlobCallbackFunction
+    = ffi.Pointer<ffi.Char> Function(
+        ffi.Pointer<ffi.Uint8> kernel_buffer, ffi.IntPtr kernel_buffer_size);
+typedef DartDart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Uint8> kernel_buffer, int kernel_buffer_size);
+
+/// Optional callback provided by the embedder that is used by the VM to
+/// implement registration of kernel blobs for the subsequent Isolate.spawnUri
+/// If no callback is provided, the registration of kernel blobs will throw
+/// an error.
+///
+/// \param kernel_buffer A buffer which contains a kernel program. Callback
+/// should copy the contents of `kernel_buffer` as
+/// it may be freed immediately after registration.
+/// \param kernel_buffer_size The size of `kernel_buffer`.
+///
+/// \return A C string representing URI which can be later used
+/// to spawn a new isolate. This C String should be scope allocated
+/// or owned by the embedder.
+/// Returns NULL if embedder runs out of memory.
+typedef Dart_RegisterKernelBlobCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_RegisterKernelBlobCallbackFunction>>;
+typedef Dart_UnregisterKernelBlobCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Char> kernel_blob_uri);
+typedef DartDart_UnregisterKernelBlobCallbackFunction = void Function(
+    ffi.Pointer<ffi.Char> kernel_blob_uri);
+
+/// Optional callback provided by the embedder that is used by the VM to
+/// unregister kernel blobs.
+/// If no callback is provided, the unregistration of kernel blobs will throw
+/// an error.
+///
+/// \param kernel_blob_uri URI of the kernel blob to unregister.
+typedef Dart_UnregisterKernelBlobCallback = ffi
+    .Pointer<ffi.NativeFunction<Dart_UnregisterKernelBlobCallbackFunction>>;
 
 /// Describes how to initialize the VM. Used with Dart_Initialize.
 final class Dart_InitializeParams extends ffi.Struct {
@@ -17059,327 +17271,17 @@ final class Dart_InitializeParams extends ffi.Struct {
   external Dart_UnregisterKernelBlobCallback unregister_kernel_blob;
 }
 
-/// An isolate creation and initialization callback function.
-///
-/// This callback, provided by the embedder, is called when the VM
-/// needs to create an isolate. The callback should create an isolate
-/// by calling Dart_CreateIsolateGroup and load any scripts required for
-/// execution.
-///
-/// This callback may be called on a different thread than the one
-/// running the parent isolate.
-///
-/// When the function returns NULL, it is the responsibility of this
-/// function to ensure that Dart_ShutdownIsolate has been called if
-/// required (for example, if the isolate was created successfully by
-/// Dart_CreateIsolateGroup() but the root library fails to load
-/// successfully, then the function should call Dart_ShutdownIsolate
-/// before returning).
-///
-/// When the function returns NULL, the function should set *error to
-/// a malloc-allocated buffer containing a useful error message.  The
-/// caller of this function (the VM) will make sure that the buffer is
-/// freed.
-///
-/// \param script_uri The uri of the main source file or snapshot to load.
-/// Either the URI of the parent isolate set in Dart_CreateIsolateGroup for
-/// Isolate.spawn, or the argument to Isolate.spawnUri canonicalized by the
-/// library tag handler of the parent isolate.
-/// The callback is responsible for loading the program by a call to
-/// Dart_LoadScriptFromKernel.
-/// \param main The name of the main entry point this isolate will
-/// eventually run.  This is provided for advisory purposes only to
-/// improve debugging messages.  The main function is not invoked by
-/// this function.
-/// \param package_root Ignored.
-/// \param package_config Uri of the package configuration file (either in format
-/// of .packages or .dart_tool/package_config.json) for this isolate
-/// to resolve package imports against. If this parameter is not passed the
-/// package resolution of the parent isolate should be used.
-/// \param flags Default flags for this isolate being spawned. Either inherited
-/// from the spawning isolate or passed as parameters when spawning the
-/// isolate from Dart code.
-/// \param isolate_data The isolate data which was passed to the
-/// parent isolate when it was created by calling Dart_CreateIsolateGroup().
-/// \param error A structure into which the embedder can place a
-/// C string containing an error message in the case of failures.
-///
-/// \return The embedder returns NULL if the creation and
-/// initialization was not successful and the isolate if successful.
-typedef Dart_IsolateGroupCreateCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCreateCallbackFunction>>;
-typedef Dart_IsolateGroupCreateCallbackFunction = Dart_Isolate Function(
-    ffi.Pointer<ffi.Char> script_uri,
-    ffi.Pointer<ffi.Char> main,
-    ffi.Pointer<ffi.Char> package_root,
-    ffi.Pointer<ffi.Char> package_config,
-    ffi.Pointer<Dart_IsolateFlags> flags,
-    ffi.Pointer<ffi.Void> isolate_data,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
-
-/// An isolate is the unit of concurrency in Dart. Each isolate has
-/// its own memory and thread of control. No state is shared between
-/// isolates. Instead, isolates communicate by message passing.
-///
-/// Each thread keeps track of its current isolate, which is the
-/// isolate which is ready to execute on the current thread. The
-/// current isolate may be NULL, in which case no isolate is ready to
-/// execute. Most of the Dart apis require there to be a current
-/// isolate in order to function without error. The current isolate is
-/// set by any call to Dart_CreateIsolateGroup or Dart_EnterIsolate.
-typedef Dart_Isolate = ffi.Pointer<_Dart_Isolate>;
-
-/// An isolate initialization callback function.
-///
-/// This callback, provided by the embedder, is called when the VM has created an
-/// isolate within an existing isolate group (i.e. from the same source as an
-/// existing isolate).
-///
-/// The callback should setup native resolvers and might want to set a custom
-/// message handler via [Dart_SetMessageNotifyCallback] and mark the isolate as
-/// runnable.
-///
-/// This callback may be called on a different thread than the one
-/// running the parent isolate.
-///
-/// When the function returns `false`, it is the responsibility of this
-/// function to ensure that `Dart_ShutdownIsolate` has been called.
-///
-/// When the function returns `false`, the function should set *error to
-/// a malloc-allocated buffer containing a useful error message.  The
-/// caller of this function (the VM) will make sure that the buffer is
-/// freed.
-///
-/// \param child_isolate_data The callback data to associate with the new
-/// child isolate.
-/// \param error A structure into which the embedder can place a
-/// C string containing an error message in the case the initialization fails.
-///
-/// \return The embedder returns true if the initialization was successful and
-/// false otherwise (in which case the VM will terminate the isolate).
-typedef Dart_InitializeIsolateCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_InitializeIsolateCallbackFunction>>;
-typedef Dart_InitializeIsolateCallbackFunction = ffi.Bool Function(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
-typedef DartDart_InitializeIsolateCallbackFunction = bool Function(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
-
-/// An isolate shutdown callback function.
-///
-/// This callback, provided by the embedder, is called before the vm
-/// shuts down an isolate.  The isolate being shutdown will be the current
-/// isolate. It is safe to run Dart code.
-///
-/// This function should be used to dispose of native resources that
-/// are allocated to an isolate in order to avoid leaks.
-///
-/// \param isolate_group_data The same callback data which was passed to the
-/// isolate group when it was created.
-/// \param isolate_data The same callback data which was passed to the isolate
-/// when it was created.
-typedef Dart_IsolateShutdownCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateShutdownCallbackFunction>>;
-typedef Dart_IsolateShutdownCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data,
-    ffi.Pointer<ffi.Void> isolate_data);
-typedef DartDart_IsolateShutdownCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data,
-    ffi.Pointer<ffi.Void> isolate_data);
-
-/// An isolate cleanup callback function.
-///
-/// This callback, provided by the embedder, is called after the vm
-/// shuts down an isolate. There will be no current isolate and it is *not*
-/// safe to run Dart code.
-///
-/// This function should be used to dispose of native resources that
-/// are allocated to an isolate in order to avoid leaks.
-///
-/// \param isolate_group_data The same callback data which was passed to the
-/// isolate group when it was created.
-/// \param isolate_data The same callback data which was passed to the isolate
-/// when it was created.
-typedef Dart_IsolateCleanupCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateCleanupCallbackFunction>>;
-typedef Dart_IsolateCleanupCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data,
-    ffi.Pointer<ffi.Void> isolate_data);
-typedef DartDart_IsolateCleanupCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data,
-    ffi.Pointer<ffi.Void> isolate_data);
-
-/// An isolate group cleanup callback function.
-///
-/// This callback, provided by the embedder, is called after the vm
-/// shuts down an isolate group.
-///
-/// This function should be used to dispose of native resources that
-/// are allocated to an isolate in order to avoid leaks.
-///
-/// \param isolate_group_data The same callback data which was passed to the
-/// isolate group when it was created.
-typedef Dart_IsolateGroupCleanupCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCleanupCallbackFunction>>;
-typedef Dart_IsolateGroupCleanupCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data);
-typedef DartDart_IsolateGroupCleanupCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> isolate_group_data);
-
-/// A thread start callback function.
-/// This callback, provided by the embedder, is called after a thread in the
-/// vm thread pool starts.
-/// This function could be used to adjust thread priority or attach native
-/// resources to the thread.
-typedef Dart_ThreadStartCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadStartCallbackFunction>>;
-typedef Dart_ThreadStartCallbackFunction = ffi.Void Function();
-typedef DartDart_ThreadStartCallbackFunction = void Function();
-
-/// A thread death callback function.
-/// This callback, provided by the embedder, is called before a thread in the
-/// vm thread pool exits.
-/// This function could be used to dispose of native resources that
-/// are associated and attached to the thread, in order to avoid leaks.
-typedef Dart_ThreadExitCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadExitCallbackFunction>>;
-typedef Dart_ThreadExitCallbackFunction = ffi.Void Function();
-typedef DartDart_ThreadExitCallbackFunction = void Function();
-
-/// Opens a file for reading or writing.
-///
-/// Callback provided by the embedder for file operations. If the
-/// embedder does not allow file operations this callback can be
-/// NULL.
-///
-/// \param name The name of the file to open.
-/// \param write A boolean variable which indicates if the file is to
-/// opened for writing. If there is an existing file it needs to truncated.
-typedef Dart_FileOpenCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_FileOpenCallbackFunction>>;
-typedef Dart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
-    ffi.Pointer<ffi.Char> name, ffi.Bool write);
-typedef DartDart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
-    ffi.Pointer<ffi.Char> name, bool write);
-
-/// Read contents of file.
-///
-/// Callback provided by the embedder for file operations. If the
-/// embedder does not allow file operations this callback can be
-/// NULL.
-///
-/// \param data Buffer allocated in the callback into which the contents
-/// of the file are read into. It is the responsibility of the caller to
-/// free this buffer.
-/// \param file_length A variable into which the length of the file is returned.
-/// In the case of an error this value would be -1.
-/// \param stream Handle to the opened file.
-typedef Dart_FileReadCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_FileReadCallbackFunction>>;
-typedef Dart_FileReadCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
-    ffi.Pointer<ffi.IntPtr> file_length,
-    ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileReadCallbackFunction = void Function(
-    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
-    ffi.Pointer<ffi.IntPtr> file_length,
-    ffi.Pointer<ffi.Void> stream);
-
-/// Write data into file.
-///
-/// Callback provided by the embedder for file operations. If the
-/// embedder does not allow file operations this callback can be
-/// NULL.
-///
-/// \param data Buffer which needs to be written into the file.
-/// \param length Length of the buffer.
-/// \param stream Handle to the opened file.
-typedef Dart_FileWriteCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_FileWriteCallbackFunction>>;
-typedef Dart_FileWriteCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> data,
-    ffi.IntPtr length,
-    ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileWriteCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> data, int length, ffi.Pointer<ffi.Void> stream);
-
-/// Closes the opened file.
-///
-/// Callback provided by the embedder for file operations. If the
-/// embedder does not allow file operations this callback can be
-/// NULL.
-///
-/// \param stream Handle to the opened file.
-typedef Dart_FileCloseCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_FileCloseCallbackFunction>>;
-typedef Dart_FileCloseCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileCloseCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> stream);
-typedef Dart_EntropySource
-    = ffi.Pointer<ffi.NativeFunction<Dart_EntropySourceFunction>>;
-typedef Dart_EntropySourceFunction = ffi.Bool Function(
-    ffi.Pointer<ffi.Uint8> buffer, ffi.IntPtr length);
-typedef DartDart_EntropySourceFunction = bool Function(
-    ffi.Pointer<ffi.Uint8> buffer, int length);
-
-/// Callback provided by the embedder that is used by the vmservice isolate
-/// to request the asset archive. The asset archive must be an uncompressed tar
-/// archive that is stored in a Uint8List.
-///
-/// If the embedder has no vmservice isolate assets, the callback can be NULL.
-///
-/// \return The embedder must return a handle to a Uint8List containing an
-/// uncompressed tar archive or null.
-typedef Dart_GetVMServiceAssetsArchive
-    = ffi.Pointer<ffi.NativeFunction<Dart_GetVMServiceAssetsArchiveFunction>>;
-typedef Dart_GetVMServiceAssetsArchiveFunction = ffi.Handle Function();
-typedef DartDart_GetVMServiceAssetsArchiveFunction = Object Function();
-
-/// Optional callback provided by the embedder that is used by the VM to
-/// implement registration of kernel blobs for the subsequent Isolate.spawnUri
-/// If no callback is provided, the registration of kernel blobs will throw
-/// an error.
-///
-/// \param kernel_buffer A buffer which contains a kernel program. Callback
-/// should copy the contents of `kernel_buffer` as
-/// it may be freed immediately after registration.
-/// \param kernel_buffer_size The size of `kernel_buffer`.
-///
-/// \return A C string representing URI which can be later used
-/// to spawn a new isolate. This C String should be scope allocated
-/// or owned by the embedder.
-/// Returns NULL if embedder runs out of memory.
-typedef Dart_RegisterKernelBlobCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_RegisterKernelBlobCallbackFunction>>;
-typedef Dart_RegisterKernelBlobCallbackFunction
-    = ffi.Pointer<ffi.Char> Function(
-        ffi.Pointer<ffi.Uint8> kernel_buffer, ffi.IntPtr kernel_buffer_size);
-typedef DartDart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char>
-    Function(ffi.Pointer<ffi.Uint8> kernel_buffer, int kernel_buffer_size);
-
-/// Optional callback provided by the embedder that is used by the VM to
-/// unregister kernel blobs.
-/// If no callback is provided, the unregistration of kernel blobs will throw
-/// an error.
-///
-/// \param kernel_blob_uri URI of the kernel blob to unregister.
-typedef Dart_UnregisterKernelBlobCallback = ffi
-    .Pointer<ffi.NativeFunction<Dart_UnregisterKernelBlobCallbackFunction>>;
-typedef Dart_UnregisterKernelBlobCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Char> kernel_blob_uri);
-typedef DartDart_UnregisterKernelBlobCallbackFunction = void Function(
-    ffi.Pointer<ffi.Char> kernel_blob_uri);
-typedef Dart_IsolateGroup = ffi.Pointer<_Dart_IsolateGroup>;
-
 /// Gets an id that uniquely identifies current isolate group.
 ///
 /// It is the responsibility of the caller to free the returned ID.
 typedef Dart_IsolateGroupId = ffi.Int64;
 typedef DartDart_IsolateGroupId = int;
-typedef Dart_HeapSamplingCreateCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingCreateCallbackFunction>>;
+typedef Dart_HeapSamplingReportCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
+typedef DartDart_HeapSamplingReportCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
+typedef Dart_HeapSamplingReportCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingReportCallbackFunction>>;
 typedef Dart_HeapSamplingCreateCallbackFunction
     = ffi.Pointer<ffi.Void> Function(
         Dart_Isolate isolate,
@@ -17392,37 +17294,53 @@ typedef DartDart_HeapSamplingCreateCallbackFunction
         Dart_IsolateGroup isolate_group,
         ffi.Pointer<ffi.Char> cls_name,
         int allocation_size);
-typedef Dart_HeapSamplingDeleteCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingDeleteCallbackFunction>>;
+typedef Dart_HeapSamplingCreateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingCreateCallbackFunction>>;
 typedef Dart_HeapSamplingDeleteCallbackFunction = ffi.Void Function(
     ffi.Pointer<ffi.Void> data);
 typedef DartDart_HeapSamplingDeleteCallbackFunction = void Function(
     ffi.Pointer<ffi.Void> data);
-typedef Dart_HeapSamplingReportCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingReportCallbackFunction>>;
-typedef Dart_HeapSamplingReportCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
-typedef DartDart_HeapSamplingReportCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
+typedef Dart_HeapSamplingDeleteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingDeleteCallbackFunction>>;
 
-abstract class Dart_PerformanceMode {
+enum Dart_PerformanceMode {
   /// Balanced
-  static const int Dart_PerformanceMode_Default = 0;
+  Dart_PerformanceMode_Default(0),
 
   /// Optimize for low latency, at the expense of throughput and memory overhead
   /// by performing work in smaller batches (requiring more overhead) or by
   /// delaying work (requiring more memory). An embedder should not remain in
   /// this mode indefinitely.
-  static const int Dart_PerformanceMode_Latency = 1;
+  Dart_PerformanceMode_Latency(1),
 
   /// Optimize for high throughput, at the expense of latency and memory overhead
   /// by performing work in larger batches with more intervening growth.
-  static const int Dart_PerformanceMode_Throughput = 2;
+  Dart_PerformanceMode_Throughput(2),
 
   /// Optimize for low memory, at the expensive of throughput and latency by more
   /// frequently performing work.
-  static const int Dart_PerformanceMode_Memory = 3;
+  Dart_PerformanceMode_Memory(3);
+
+  final int value;
+  const Dart_PerformanceMode(this.value);
+
+  static Dart_PerformanceMode fromValue(int value) => switch (value) {
+        0 => Dart_PerformanceMode_Default,
+        1 => Dart_PerformanceMode_Latency,
+        2 => Dart_PerformanceMode_Throughput,
+        3 => Dart_PerformanceMode_Memory,
+        _ =>
+          throw ArgumentError("Unknown value for Dart_PerformanceMode: $value"),
+      };
 }
+
+/// A port is used to send or receive inter-isolate messages
+typedef Dart_Port = ffi.Int64;
+typedef DartDart_Port = int;
+typedef Dart_MessageNotifyCallbackFunction = ffi.Void Function(
+    Dart_Isolate destination_isolate);
+typedef DartDart_MessageNotifyCallbackFunction = void Function(
+    Dart_Isolate destination_isolate);
 
 /// A message notification callback.
 ///
@@ -17433,41 +17351,67 @@ abstract class Dart_PerformanceMode {
 /// destination isolate set as the current isolate to process the message.
 typedef Dart_MessageNotifyCallback
     = ffi.Pointer<ffi.NativeFunction<Dart_MessageNotifyCallbackFunction>>;
-typedef Dart_MessageNotifyCallbackFunction = ffi.Void Function(
-    Dart_Isolate destination_isolate);
-typedef DartDart_MessageNotifyCallbackFunction = void Function(
-    Dart_Isolate destination_isolate);
 
-/// A port is used to send or receive inter-isolate messages
-typedef Dart_Port = ffi.Int64;
-typedef DartDart_Port = int;
+enum Dart_CoreType_Id {
+  Dart_CoreType_Dynamic(0),
+  Dart_CoreType_Int(1),
+  Dart_CoreType_String(2);
 
-abstract class Dart_CoreType_Id {
-  static const int Dart_CoreType_Dynamic = 0;
-  static const int Dart_CoreType_Int = 1;
-  static const int Dart_CoreType_String = 2;
+  final int value;
+  const Dart_CoreType_Id(this.value);
+
+  static Dart_CoreType_Id fromValue(int value) => switch (value) {
+        0 => Dart_CoreType_Dynamic,
+        1 => Dart_CoreType_Int,
+        2 => Dart_CoreType_String,
+        _ => throw ArgumentError("Unknown value for Dart_CoreType_Id: $value"),
+      };
 }
 
 /// ==========
 /// Typed Data
 /// ==========
-abstract class Dart_TypedData_Type {
-  static const int Dart_TypedData_kByteData = 0;
-  static const int Dart_TypedData_kInt8 = 1;
-  static const int Dart_TypedData_kUint8 = 2;
-  static const int Dart_TypedData_kUint8Clamped = 3;
-  static const int Dart_TypedData_kInt16 = 4;
-  static const int Dart_TypedData_kUint16 = 5;
-  static const int Dart_TypedData_kInt32 = 6;
-  static const int Dart_TypedData_kUint32 = 7;
-  static const int Dart_TypedData_kInt64 = 8;
-  static const int Dart_TypedData_kUint64 = 9;
-  static const int Dart_TypedData_kFloat32 = 10;
-  static const int Dart_TypedData_kFloat64 = 11;
-  static const int Dart_TypedData_kInt32x4 = 12;
-  static const int Dart_TypedData_kFloat32x4 = 13;
-  static const int Dart_TypedData_kFloat64x2 = 14;
-  static const int Dart_TypedData_kInvalid = 15;
+enum Dart_TypedData_Type {
+  Dart_TypedData_kByteData(0),
+  Dart_TypedData_kInt8(1),
+  Dart_TypedData_kUint8(2),
+  Dart_TypedData_kUint8Clamped(3),
+  Dart_TypedData_kInt16(4),
+  Dart_TypedData_kUint16(5),
+  Dart_TypedData_kInt32(6),
+  Dart_TypedData_kUint32(7),
+  Dart_TypedData_kInt64(8),
+  Dart_TypedData_kUint64(9),
+  Dart_TypedData_kFloat32(10),
+  Dart_TypedData_kFloat64(11),
+  Dart_TypedData_kInt32x4(12),
+  Dart_TypedData_kFloat32x4(13),
+  Dart_TypedData_kFloat64x2(14),
+  Dart_TypedData_kInvalid(15);
+
+  final int value;
+  const Dart_TypedData_Type(this.value);
+
+  static Dart_TypedData_Type fromValue(int value) => switch (value) {
+        0 => Dart_TypedData_kByteData,
+        1 => Dart_TypedData_kInt8,
+        2 => Dart_TypedData_kUint8,
+        3 => Dart_TypedData_kUint8Clamped,
+        4 => Dart_TypedData_kInt16,
+        5 => Dart_TypedData_kUint16,
+        6 => Dart_TypedData_kInt32,
+        7 => Dart_TypedData_kUint32,
+        8 => Dart_TypedData_kInt64,
+        9 => Dart_TypedData_kUint64,
+        10 => Dart_TypedData_kFloat32,
+        11 => Dart_TypedData_kFloat64,
+        12 => Dart_TypedData_kInt32x4,
+        13 => Dart_TypedData_kFloat32x4,
+        14 => Dart_TypedData_kFloat64x2,
+        15 => Dart_TypedData_kInvalid,
+        _ =>
+          throw ArgumentError("Unknown value for Dart_TypedData_Type: $value"),
+      };
 }
 
 final class _Dart_NativeArguments extends ffi.Opaque {}
@@ -17480,16 +17424,33 @@ final class _Dart_NativeArguments extends ffi.Opaque {}
 /// native function to be set.
 typedef Dart_NativeArguments = ffi.Pointer<_Dart_NativeArguments>;
 
-abstract class Dart_NativeArgument_Type {
-  static const int Dart_NativeArgument_kBool = 0;
-  static const int Dart_NativeArgument_kInt32 = 1;
-  static const int Dart_NativeArgument_kUint32 = 2;
-  static const int Dart_NativeArgument_kInt64 = 3;
-  static const int Dart_NativeArgument_kUint64 = 4;
-  static const int Dart_NativeArgument_kDouble = 5;
-  static const int Dart_NativeArgument_kString = 6;
-  static const int Dart_NativeArgument_kInstance = 7;
-  static const int Dart_NativeArgument_kNativeFields = 8;
+enum Dart_NativeArgument_Type {
+  Dart_NativeArgument_kBool(0),
+  Dart_NativeArgument_kInt32(1),
+  Dart_NativeArgument_kUint32(2),
+  Dart_NativeArgument_kInt64(3),
+  Dart_NativeArgument_kUint64(4),
+  Dart_NativeArgument_kDouble(5),
+  Dart_NativeArgument_kString(6),
+  Dart_NativeArgument_kInstance(7),
+  Dart_NativeArgument_kNativeFields(8);
+
+  final int value;
+  const Dart_NativeArgument_Type(this.value);
+
+  static Dart_NativeArgument_Type fromValue(int value) => switch (value) {
+        0 => Dart_NativeArgument_kBool,
+        1 => Dart_NativeArgument_kInt32,
+        2 => Dart_NativeArgument_kUint32,
+        3 => Dart_NativeArgument_kInt64,
+        4 => Dart_NativeArgument_kUint64,
+        5 => Dart_NativeArgument_kDouble,
+        6 => Dart_NativeArgument_kString,
+        7 => Dart_NativeArgument_kInstance,
+        8 => Dart_NativeArgument_kNativeFields,
+        _ => throw ArgumentError(
+            "Unknown value for Dart_NativeArgument_Type: $value"),
+      };
 }
 
 final class _Dart_NativeArgument_Descriptor extends ffi.Struct {
@@ -17500,21 +17461,25 @@ final class _Dart_NativeArgument_Descriptor extends ffi.Struct {
   external int index;
 }
 
+typedef Dart_NativeArgument_Descriptor = _Dart_NativeArgument_Descriptor;
+
 final class _Dart_NativeArgument_Value extends ffi.Opaque {}
 
-typedef Dart_NativeArgument_Descriptor = _Dart_NativeArgument_Descriptor;
 typedef Dart_NativeArgument_Value = _Dart_NativeArgument_Value;
+typedef Dart_NativeFunctionFunction = ffi.Void Function(
+    Dart_NativeArguments arguments);
+typedef DartDart_NativeFunctionFunction = void Function(
+    Dart_NativeArguments arguments);
 
-/// An environment lookup callback function.
-///
-/// \param name The name of the value to lookup in the environment.
-///
-/// \return A valid handle to a string if the name exists in the
-/// current environment or Dart_Null() if not.
-typedef Dart_EnvironmentCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_EnvironmentCallbackFunction>>;
-typedef Dart_EnvironmentCallbackFunction = ffi.Handle Function(ffi.Handle name);
-typedef DartDart_EnvironmentCallbackFunction = Object Function(Object name);
+/// A native function.
+typedef Dart_NativeFunction
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeFunctionFunction>>;
+typedef Dart_NativeEntryResolverFunction = Dart_NativeFunction Function(
+    ffi.Handle name,
+    ffi.Int num_of_arguments,
+    ffi.Pointer<ffi.Bool> auto_setup_scope);
+typedef DartDart_NativeEntryResolverFunction = Dart_NativeFunction Function(
+    Object name, int num_of_arguments, ffi.Pointer<ffi.Bool> auto_setup_scope);
 
 /// Native entry resolution callback.
 ///
@@ -17541,20 +17506,8 @@ typedef DartDart_EnvironmentCallbackFunction = Object Function(Object name);
 /// See Dart_SetNativeResolver.
 typedef Dart_NativeEntryResolver
     = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntryResolverFunction>>;
-typedef Dart_NativeEntryResolverFunction = Dart_NativeFunction Function(
-    ffi.Handle name,
-    ffi.Int num_of_arguments,
-    ffi.Pointer<ffi.Bool> auto_setup_scope);
-typedef DartDart_NativeEntryResolverFunction = Dart_NativeFunction Function(
-    Object name, int num_of_arguments, ffi.Pointer<ffi.Bool> auto_setup_scope);
-
-/// A native function.
-typedef Dart_NativeFunction
-    = ffi.Pointer<ffi.NativeFunction<Dart_NativeFunctionFunction>>;
-typedef Dart_NativeFunctionFunction = ffi.Void Function(
-    Dart_NativeArguments arguments);
-typedef DartDart_NativeFunctionFunction = void Function(
-    Dart_NativeArguments arguments);
+typedef Dart_NativeEntrySymbolFunction = ffi.Pointer<ffi.Uint8> Function(
+    Dart_NativeFunction nf);
 
 /// Native entry symbol lookup callback.
 ///
@@ -17571,27 +17524,51 @@ typedef DartDart_NativeFunctionFunction = void Function(
 /// See Dart_SetNativeResolver.
 typedef Dart_NativeEntrySymbol
     = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntrySymbolFunction>>;
-typedef Dart_NativeEntrySymbolFunction = ffi.Pointer<ffi.Uint8> Function(
-    Dart_NativeFunction nf);
+typedef Dart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, ffi.UintPtr args_n);
+typedef DartDart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, int args_n);
 
 /// FFI Native C function pointer resolver callback.
 ///
 /// See Dart_SetFfiNativeResolver.
 typedef Dart_FfiNativeResolver
     = ffi.Pointer<ffi.NativeFunction<Dart_FfiNativeResolverFunction>>;
-typedef Dart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
-    ffi.Pointer<ffi.Char> name, ffi.UintPtr args_n);
-typedef DartDart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
-    ffi.Pointer<ffi.Char> name, int args_n);
+typedef Dart_EnvironmentCallbackFunction = ffi.Handle Function(ffi.Handle name);
+typedef DartDart_EnvironmentCallbackFunction = Object Function(Object name);
+
+/// An environment lookup callback function.
+///
+/// \param name The name of the value to lookup in the environment.
+///
+/// \return A valid handle to a string if the name exists in the
+/// current environment or Dart_Null() if not.
+typedef Dart_EnvironmentCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnvironmentCallbackFunction>>;
 
 /// =====================
 /// Scripts and Libraries
 /// =====================
-abstract class Dart_LibraryTag {
-  static const int Dart_kCanonicalizeUrl = 0;
-  static const int Dart_kImportTag = 1;
-  static const int Dart_kKernelTag = 2;
+enum Dart_LibraryTag {
+  Dart_kCanonicalizeUrl(0),
+  Dart_kImportTag(1),
+  Dart_kKernelTag(2);
+
+  final int value;
+  const Dart_LibraryTag(this.value);
+
+  static Dart_LibraryTag fromValue(int value) => switch (value) {
+        0 => Dart_kCanonicalizeUrl,
+        1 => Dart_kImportTag,
+        2 => Dart_kKernelTag,
+        _ => throw ArgumentError("Unknown value for Dart_LibraryTag: $value"),
+      };
 }
+
+typedef Dart_LibraryTagHandlerFunction = ffi.Handle Function(
+    ffi.UnsignedInt tag, ffi.Handle library_or_package_map_url, ffi.Handle url);
+typedef DartDart_LibraryTagHandlerFunction = Object Function(
+    Dart_LibraryTag tag, Object library_or_package_map_url, Object url);
 
 /// The library tag handler is a multi-purpose callback provided by the
 /// embedder to the Dart VM. The embedder implements the tag handler to
@@ -17625,10 +17602,10 @@ abstract class Dart_LibraryTag {
 /// the kernel bytes.
 typedef Dart_LibraryTagHandler
     = ffi.Pointer<ffi.NativeFunction<Dart_LibraryTagHandlerFunction>>;
-typedef Dart_LibraryTagHandlerFunction = ffi.Handle Function(
-    ffi.Int32 tag, ffi.Handle library_or_package_map_url, ffi.Handle url);
-typedef DartDart_LibraryTagHandlerFunction = Object Function(
-    int tag, Object library_or_package_map_url, Object url);
+typedef Dart_DeferredLoadHandlerFunction = ffi.Handle Function(
+    ffi.IntPtr loading_unit_id);
+typedef DartDart_DeferredLoadHandlerFunction = Object Function(
+    int loading_unit_id);
 
 /// Handles deferred loading requests. When this handler is invoked, it should
 /// eventually load the deferred loading unit with the given id and call
@@ -17644,23 +17621,35 @@ typedef DartDart_LibraryTagHandlerFunction = Object Function(
 /// should return a non-error such as `Dart_Null()`.
 typedef Dart_DeferredLoadHandler
     = ffi.Pointer<ffi.NativeFunction<Dart_DeferredLoadHandlerFunction>>;
-typedef Dart_DeferredLoadHandlerFunction = ffi.Handle Function(
-    ffi.IntPtr loading_unit_id);
-typedef DartDart_DeferredLoadHandlerFunction = Object Function(
-    int loading_unit_id);
 
 /// TODO(33433): Remove kernel service from the embedding API.
-abstract class Dart_KernelCompilationStatus {
-  static const int Dart_KernelCompilationStatus_Unknown = -1;
-  static const int Dart_KernelCompilationStatus_Ok = 0;
-  static const int Dart_KernelCompilationStatus_Error = 1;
-  static const int Dart_KernelCompilationStatus_Crash = 2;
-  static const int Dart_KernelCompilationStatus_MsgFailed = 3;
+enum Dart_KernelCompilationStatus {
+  Dart_KernelCompilationStatus_Unknown(-1),
+  Dart_KernelCompilationStatus_Ok(0),
+  Dart_KernelCompilationStatus_Error(1),
+  Dart_KernelCompilationStatus_Crash(2),
+  Dart_KernelCompilationStatus_MsgFailed(3);
+
+  final int value;
+  const Dart_KernelCompilationStatus(this.value);
+
+  static Dart_KernelCompilationStatus fromValue(int value) => switch (value) {
+        -1 => Dart_KernelCompilationStatus_Unknown,
+        0 => Dart_KernelCompilationStatus_Ok,
+        1 => Dart_KernelCompilationStatus_Error,
+        2 => Dart_KernelCompilationStatus_Crash,
+        3 => Dart_KernelCompilationStatus_MsgFailed,
+        _ => throw ArgumentError(
+            "Unknown value for Dart_KernelCompilationStatus: $value"),
+      };
 }
 
 final class Dart_KernelCompilationResult extends ffi.Struct {
-  @ffi.Int32()
-  external int status;
+  @ffi.Int()
+  external int statusAsInt;
+
+  Dart_KernelCompilationStatus get status =>
+      Dart_KernelCompilationStatus.fromValue(statusAsInt);
 
   external ffi.Pointer<ffi.Char> error;
 
@@ -17670,11 +17659,24 @@ final class Dart_KernelCompilationResult extends ffi.Struct {
   external int kernel_size;
 }
 
-abstract class Dart_KernelCompilationVerbosityLevel {
-  static const int Dart_KernelCompilationVerbosityLevel_Error = 0;
-  static const int Dart_KernelCompilationVerbosityLevel_Warning = 1;
-  static const int Dart_KernelCompilationVerbosityLevel_Info = 2;
-  static const int Dart_KernelCompilationVerbosityLevel_All = 3;
+enum Dart_KernelCompilationVerbosityLevel {
+  Dart_KernelCompilationVerbosityLevel_Error(0),
+  Dart_KernelCompilationVerbosityLevel_Warning(1),
+  Dart_KernelCompilationVerbosityLevel_Info(2),
+  Dart_KernelCompilationVerbosityLevel_All(3);
+
+  final int value;
+  const Dart_KernelCompilationVerbosityLevel(this.value);
+
+  static Dart_KernelCompilationVerbosityLevel fromValue(int value) =>
+      switch (value) {
+        0 => Dart_KernelCompilationVerbosityLevel_Error,
+        1 => Dart_KernelCompilationVerbosityLevel_Warning,
+        2 => Dart_KernelCompilationVerbosityLevel_Info,
+        3 => Dart_KernelCompilationVerbosityLevel_All,
+        _ => throw ArgumentError(
+            "Unknown value for Dart_KernelCompilationVerbosityLevel: $value"),
+      };
 }
 
 final class Dart_SourceFile extends ffi.Struct {
@@ -17683,18 +17685,6 @@ final class Dart_SourceFile extends ffi.Struct {
   external ffi.Pointer<ffi.Char> source;
 }
 
-typedef Dart_StreamingWriteCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingWriteCallbackFunction>>;
-typedef Dart_StreamingWriteCallbackFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Void> callback_data,
-    ffi.Pointer<ffi.Uint8> buffer,
-    ffi.IntPtr size);
-typedef DartDart_StreamingWriteCallbackFunction = void Function(
-    ffi.Pointer<ffi.Void> callback_data,
-    ffi.Pointer<ffi.Uint8> buffer,
-    int size);
-typedef Dart_CreateLoadingUnitCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_CreateLoadingUnitCallbackFunction>>;
 typedef Dart_CreateLoadingUnitCallbackFunction = ffi.Void Function(
     ffi.Pointer<ffi.Void> callback_data,
     ffi.IntPtr loading_unit_id,
@@ -17705,12 +17695,28 @@ typedef DartDart_CreateLoadingUnitCallbackFunction = void Function(
     int loading_unit_id,
     ffi.Pointer<ffi.Pointer<ffi.Void>> write_callback_data,
     ffi.Pointer<ffi.Pointer<ffi.Void>> write_debug_callback_data);
-typedef Dart_StreamingCloseCallback
-    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingCloseCallbackFunction>>;
+typedef Dart_CreateLoadingUnitCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_CreateLoadingUnitCallbackFunction>>;
+typedef Dart_StreamingWriteCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    ffi.Pointer<ffi.Uint8> buffer,
+    ffi.IntPtr size);
+typedef DartDart_StreamingWriteCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    ffi.Pointer<ffi.Uint8> buffer,
+    int size);
+typedef Dart_StreamingWriteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingWriteCallbackFunction>>;
 typedef Dart_StreamingCloseCallbackFunction = ffi.Void Function(
     ffi.Pointer<ffi.Void> callback_data);
 typedef DartDart_StreamingCloseCallbackFunction = void Function(
     ffi.Pointer<ffi.Void> callback_data);
+typedef Dart_StreamingCloseCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingCloseCallbackFunction>>;
+typedef Dart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, ffi.IntPtr count);
+typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, int count);
 
 /// Callback provided by the embedder that is used by the VM to
 /// produce footnotes appended to DWARF stack traces.
@@ -17728,10 +17734,6 @@ typedef DartDart_StreamingCloseCallbackFunction = void Function(
 /// \param count number of elements in the addresses array
 typedef Dart_DwarfStackTraceFootnoteCallback = ffi
     .Pointer<ffi.NativeFunction<Dart_DwarfStackTraceFootnoteCallbackFunction>>;
-typedef Dart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
-    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, ffi.IntPtr count);
-typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
-    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, int count);
 
 /// A Dart_CObject is used for representing Dart objects as native C
 /// data outside the Dart heap. These objects are totally detached from
@@ -17756,31 +17758,104 @@ typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
 /// The receiving side will only see this pointer as an integer and will not
 /// see the specified finalizer.
 /// The specified finalizer will only be invoked if the message is not delivered.
-abstract class Dart_CObject_Type {
-  static const int Dart_CObject_kNull = 0;
-  static const int Dart_CObject_kBool = 1;
-  static const int Dart_CObject_kInt32 = 2;
-  static const int Dart_CObject_kInt64 = 3;
-  static const int Dart_CObject_kDouble = 4;
-  static const int Dart_CObject_kString = 5;
-  static const int Dart_CObject_kArray = 6;
-  static const int Dart_CObject_kTypedData = 7;
-  static const int Dart_CObject_kExternalTypedData = 8;
-  static const int Dart_CObject_kSendPort = 9;
-  static const int Dart_CObject_kCapability = 10;
-  static const int Dart_CObject_kNativePointer = 11;
-  static const int Dart_CObject_kUnsupported = 12;
-  static const int Dart_CObject_kUnmodifiableExternalTypedData = 13;
-  static const int Dart_CObject_kNumberOfTypes = 14;
+enum Dart_CObject_Type {
+  Dart_CObject_kNull(0),
+  Dart_CObject_kBool(1),
+  Dart_CObject_kInt32(2),
+  Dart_CObject_kInt64(3),
+  Dart_CObject_kDouble(4),
+  Dart_CObject_kString(5),
+  Dart_CObject_kArray(6),
+  Dart_CObject_kTypedData(7),
+  Dart_CObject_kExternalTypedData(8),
+  Dart_CObject_kSendPort(9),
+  Dart_CObject_kCapability(10),
+  Dart_CObject_kNativePointer(11),
+  Dart_CObject_kUnsupported(12),
+  Dart_CObject_kUnmodifiableExternalTypedData(13),
+  Dart_CObject_kNumberOfTypes(14);
+
+  final int value;
+  const Dart_CObject_Type(this.value);
+
+  static Dart_CObject_Type fromValue(int value) => switch (value) {
+        0 => Dart_CObject_kNull,
+        1 => Dart_CObject_kBool,
+        2 => Dart_CObject_kInt32,
+        3 => Dart_CObject_kInt64,
+        4 => Dart_CObject_kDouble,
+        5 => Dart_CObject_kString,
+        6 => Dart_CObject_kArray,
+        7 => Dart_CObject_kTypedData,
+        8 => Dart_CObject_kExternalTypedData,
+        9 => Dart_CObject_kSendPort,
+        10 => Dart_CObject_kCapability,
+        11 => Dart_CObject_kNativePointer,
+        12 => Dart_CObject_kUnsupported,
+        13 => Dart_CObject_kUnmodifiableExternalTypedData,
+        14 => Dart_CObject_kNumberOfTypes,
+        _ => throw ArgumentError("Unknown value for Dart_CObject_Type: $value"),
+      };
 }
 
-/// This enum is versioned by DART_API_DL_MAJOR_VERSION, only add at the end
-/// and bump the DART_API_DL_MINOR_VERSION.
-final class _Dart_CObject extends ffi.Struct {
-  @ffi.Int32()
-  external int type;
+final class UnnamedStruct5 extends ffi.Struct {
+  @Dart_Port()
+  external int id;
 
-  external UnnamedUnion1 value;
+  @Dart_Port()
+  external int origin_id;
+}
+
+final class UnnamedStruct6 extends ffi.Struct {
+  @ffi.Int64()
+  external int id;
+}
+
+final class UnnamedStruct7 extends ffi.Struct {
+  @ffi.IntPtr()
+  external int length;
+
+  external ffi.Pointer<ffi.Pointer<_Dart_CObject>> values;
+}
+
+final class UnnamedStruct8 extends ffi.Struct {
+  @ffi.UnsignedInt()
+  external int typeAsInt;
+
+  Dart_TypedData_Type get type => Dart_TypedData_Type.fromValue(typeAsInt);
+
+  /// in elements, not bytes
+  @ffi.IntPtr()
+  external int length;
+
+  external ffi.Pointer<ffi.Uint8> values;
+}
+
+final class UnnamedStruct9 extends ffi.Struct {
+  @ffi.UnsignedInt()
+  external int typeAsInt;
+
+  Dart_TypedData_Type get type => Dart_TypedData_Type.fromValue(typeAsInt);
+
+  /// in elements, not bytes
+  @ffi.IntPtr()
+  external int length;
+
+  external ffi.Pointer<ffi.Uint8> data;
+
+  external ffi.Pointer<ffi.Void> peer;
+
+  external Dart_HandleFinalizer callback;
+}
+
+final class UnnamedStruct10 extends ffi.Struct {
+  @ffi.IntPtr()
+  external int ptr;
+
+  @ffi.IntPtr()
+  external int size;
+
+  external Dart_HandleFinalizer callback;
 }
 
 final class UnnamedUnion1 extends ffi.Union {
@@ -17811,65 +17886,24 @@ final class UnnamedUnion1 extends ffi.Union {
   external UnnamedStruct10 as_native_pointer;
 }
 
-final class UnnamedStruct5 extends ffi.Struct {
-  @Dart_Port()
-  external int id;
+/// This enum is versioned by DART_API_DL_MAJOR_VERSION, only add at the end
+/// and bump the DART_API_DL_MINOR_VERSION.
+final class _Dart_CObject extends ffi.Struct {
+  @ffi.UnsignedInt()
+  external int typeAsInt;
 
-  @Dart_Port()
-  external int origin_id;
-}
+  Dart_CObject_Type get type => Dart_CObject_Type.fromValue(typeAsInt);
 
-final class UnnamedStruct6 extends ffi.Struct {
-  @ffi.Int64()
-  external int id;
-}
-
-final class UnnamedStruct7 extends ffi.Struct {
-  @ffi.IntPtr()
-  external int length;
-
-  external ffi.Pointer<ffi.Pointer<_Dart_CObject>> values;
-}
-
-final class UnnamedStruct8 extends ffi.Struct {
-  @ffi.Int32()
-  external int type;
-
-  /// in elements, not bytes
-  @ffi.IntPtr()
-  external int length;
-
-  external ffi.Pointer<ffi.Uint8> values;
-}
-
-final class UnnamedStruct9 extends ffi.Struct {
-  @ffi.Int32()
-  external int type;
-
-  /// in elements, not bytes
-  @ffi.IntPtr()
-  external int length;
-
-  external ffi.Pointer<ffi.Uint8> data;
-
-  external ffi.Pointer<ffi.Void> peer;
-
-  external Dart_HandleFinalizer callback;
-}
-
-final class UnnamedStruct10 extends ffi.Struct {
-  @ffi.IntPtr()
-  external int ptr;
-
-  @ffi.IntPtr()
-  external int size;
-
-  external Dart_HandleFinalizer callback;
+  external UnnamedUnion1 value;
 }
 
 /// This enum is versioned by DART_API_DL_MAJOR_VERSION, only add at the end
 /// and bump the DART_API_DL_MINOR_VERSION.
 typedef Dart_CObject = _Dart_CObject;
+typedef Dart_NativeMessageHandlerFunction = ffi.Void Function(
+    Dart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_NativeMessageHandlerFunction = void Function(
+    DartDart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
 
 /// A native message handler.
 ///
@@ -17882,16 +17916,6 @@ typedef Dart_CObject = _Dart_CObject;
 /// will be reclaimed when returning to it.
 typedef Dart_NativeMessageHandler
     = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandlerFunction>>;
-typedef Dart_NativeMessageHandlerFunction = ffi.Void Function(
-    Dart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_NativeMessageHandlerFunction = void Function(
-    DartDart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef Dart_PostCObject_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_PostCObject_TypeFunction>>;
-typedef Dart_PostCObject_TypeFunction = ffi.Bool Function(
-    Dart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_PostCObject_TypeFunction = bool Function(
-    DartDart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
 
 /// ============================================================================
 /// IMPORTANT! Never update these signatures without properly updating
@@ -17906,14 +17930,24 @@ typedef DartDart_PostCObject_TypeFunction = bool Function(
 /// comment is added to their definition.
 typedef Dart_Port_DL = ffi.Int64;
 typedef DartDart_Port_DL = int;
-typedef Dart_PostInteger_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_PostInteger_TypeFunction>>;
+typedef Dart_NativeMessageHandler_DLFunction = ffi.Void Function(
+    Dart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_NativeMessageHandler_DLFunction = void Function(
+    DartDart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef Dart_NativeMessageHandler_DL
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandler_DLFunction>>;
+typedef Dart_PostCObject_TypeFunction = ffi.Bool Function(
+    Dart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_PostCObject_TypeFunction = bool Function(
+    DartDart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
+typedef Dart_PostCObject_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PostCObject_TypeFunction>>;
 typedef Dart_PostInteger_TypeFunction = ffi.Bool Function(
     Dart_Port_DL port_id, ffi.Int64 message);
 typedef DartDart_PostInteger_TypeFunction = bool Function(
     DartDart_Port_DL port_id, int message);
-typedef Dart_NewNativePort_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewNativePort_TypeFunction>>;
+typedef Dart_PostInteger_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PostInteger_TypeFunction>>;
 typedef Dart_NewNativePort_TypeFunction = Dart_Port_DL Function(
     ffi.Pointer<ffi.Char> name,
     Dart_NativeMessageHandler_DL handler,
@@ -17922,118 +17956,112 @@ typedef DartDart_NewNativePort_TypeFunction = DartDart_Port_DL Function(
     ffi.Pointer<ffi.Char> name,
     Dart_NativeMessageHandler_DL handler,
     bool handle_concurrently);
-typedef Dart_NativeMessageHandler_DL
-    = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandler_DLFunction>>;
-typedef Dart_NativeMessageHandler_DLFunction = ffi.Void Function(
-    Dart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_NativeMessageHandler_DLFunction = void Function(
-    DartDart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef Dart_CloseNativePort_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_CloseNativePort_TypeFunction>>;
+typedef Dart_NewNativePort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewNativePort_TypeFunction>>;
 typedef Dart_CloseNativePort_TypeFunction = ffi.Bool Function(
     Dart_Port_DL native_port_id);
 typedef DartDart_CloseNativePort_TypeFunction = bool Function(
     DartDart_Port_DL native_port_id);
-typedef Dart_IsError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsError_TypeFunction>>;
+typedef Dart_CloseNativePort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_CloseNativePort_TypeFunction>>;
 typedef Dart_IsError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsApiError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsApiError_TypeFunction>>;
+typedef Dart_IsError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsError_TypeFunction>>;
 typedef Dart_IsApiError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsApiError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsUnhandledExceptionError_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_IsUnhandledExceptionError_TypeFunction>>;
+typedef Dart_IsApiError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsApiError_TypeFunction>>;
 typedef Dart_IsUnhandledExceptionError_TypeFunction = ffi.Bool Function(
     ffi.Handle handle);
 typedef DartDart_IsUnhandledExceptionError_TypeFunction = bool Function(
     Object handle);
-typedef Dart_IsCompilationError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsCompilationError_TypeFunction>>;
+typedef Dart_IsUnhandledExceptionError_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_IsUnhandledExceptionError_TypeFunction>>;
 typedef Dart_IsCompilationError_TypeFunction = ffi.Bool Function(
     ffi.Handle handle);
 typedef DartDart_IsCompilationError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsFatalError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsFatalError_TypeFunction>>;
+typedef Dart_IsCompilationError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsCompilationError_TypeFunction>>;
 typedef Dart_IsFatalError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsFatalError_TypeFunction = bool Function(Object handle);
-typedef Dart_GetError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_GetError_TypeFunction>>;
+typedef Dart_IsFatalError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsFatalError_TypeFunction>>;
 typedef Dart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(
     ffi.Handle handle);
 typedef DartDart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(
     Object handle);
-typedef Dart_ErrorHasException_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorHasException_TypeFunction>>;
+typedef Dart_GetError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_GetError_TypeFunction>>;
 typedef Dart_ErrorHasException_TypeFunction = ffi.Bool Function(
     ffi.Handle handle);
 typedef DartDart_ErrorHasException_TypeFunction = bool Function(Object handle);
-typedef Dart_ErrorGetException_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetException_TypeFunction>>;
+typedef Dart_ErrorHasException_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorHasException_TypeFunction>>;
 typedef Dart_ErrorGetException_TypeFunction = ffi.Handle Function(
     ffi.Handle handle);
 typedef DartDart_ErrorGetException_TypeFunction = Object Function(
     Object handle);
-typedef Dart_ErrorGetStackTrace_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetStackTrace_TypeFunction>>;
+typedef Dart_ErrorGetException_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetException_TypeFunction>>;
 typedef Dart_ErrorGetStackTrace_TypeFunction = ffi.Handle Function(
     ffi.Handle handle);
 typedef DartDart_ErrorGetStackTrace_TypeFunction = Object Function(
     Object handle);
-typedef Dart_NewApiError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewApiError_TypeFunction>>;
+typedef Dart_ErrorGetStackTrace_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetStackTrace_TypeFunction>>;
 typedef Dart_NewApiError_TypeFunction = ffi.Handle Function(
     ffi.Pointer<ffi.Char> error);
 typedef DartDart_NewApiError_TypeFunction = Object Function(
     ffi.Pointer<ffi.Char> error);
-typedef Dart_NewCompilationError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewCompilationError_TypeFunction>>;
+typedef Dart_NewApiError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewApiError_TypeFunction>>;
 typedef Dart_NewCompilationError_TypeFunction = ffi.Handle Function(
     ffi.Pointer<ffi.Char> error);
 typedef DartDart_NewCompilationError_TypeFunction = Object Function(
     ffi.Pointer<ffi.Char> error);
-typedef Dart_NewUnhandledExceptionError_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_NewUnhandledExceptionError_TypeFunction>>;
+typedef Dart_NewCompilationError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewCompilationError_TypeFunction>>;
 typedef Dart_NewUnhandledExceptionError_TypeFunction = ffi.Handle Function(
     ffi.Handle exception);
 typedef DartDart_NewUnhandledExceptionError_TypeFunction = Object Function(
     Object exception);
-typedef Dart_PropagateError_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_PropagateError_TypeFunction>>;
+typedef Dart_NewUnhandledExceptionError_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_NewUnhandledExceptionError_TypeFunction>>;
 typedef Dart_PropagateError_TypeFunction = ffi.Void Function(ffi.Handle handle);
 typedef DartDart_PropagateError_TypeFunction = void Function(Object handle);
-typedef Dart_HandleFromPersistent_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_HandleFromPersistent_TypeFunction>>;
+typedef Dart_PropagateError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PropagateError_TypeFunction>>;
 typedef Dart_HandleFromPersistent_TypeFunction = ffi.Handle Function(
     ffi.Handle object);
 typedef DartDart_HandleFromPersistent_TypeFunction = Object Function(
     Object object);
-typedef Dart_HandleFromWeakPersistent_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_HandleFromWeakPersistent_TypeFunction>>;
+typedef Dart_HandleFromPersistent_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_HandleFromPersistent_TypeFunction>>;
 typedef Dart_HandleFromWeakPersistent_TypeFunction = ffi.Handle Function(
     Dart_WeakPersistentHandle object);
 typedef DartDart_HandleFromWeakPersistent_TypeFunction = Object Function(
     Dart_WeakPersistentHandle object);
-typedef Dart_NewPersistentHandle_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewPersistentHandle_TypeFunction>>;
+typedef Dart_HandleFromWeakPersistent_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_HandleFromWeakPersistent_TypeFunction>>;
 typedef Dart_NewPersistentHandle_TypeFunction = ffi.Handle Function(
     ffi.Handle object);
 typedef DartDart_NewPersistentHandle_TypeFunction = Object Function(
     Object object);
-typedef Dart_SetPersistentHandle_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_SetPersistentHandle_TypeFunction>>;
+typedef Dart_NewPersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewPersistentHandle_TypeFunction>>;
 typedef Dart_SetPersistentHandle_TypeFunction = ffi.Void Function(
     ffi.Handle obj1, ffi.Handle obj2);
 typedef DartDart_SetPersistentHandle_TypeFunction = void Function(
     Object obj1, Object obj2);
-typedef Dart_DeletePersistentHandle_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_DeletePersistentHandle_TypeFunction>>;
+typedef Dart_SetPersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_SetPersistentHandle_TypeFunction>>;
 typedef Dart_DeletePersistentHandle_TypeFunction = ffi.Void Function(
     ffi.Handle object);
 typedef DartDart_DeletePersistentHandle_TypeFunction = void Function(
     Object object);
-typedef Dart_NewWeakPersistentHandle_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_NewWeakPersistentHandle_TypeFunction>>;
+typedef Dart_DeletePersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_DeletePersistentHandle_TypeFunction>>;
 typedef Dart_NewWeakPersistentHandle_TypeFunction
     = Dart_WeakPersistentHandle Function(
         ffi.Handle object,
@@ -18046,14 +18074,14 @@ typedef DartDart_NewWeakPersistentHandle_TypeFunction
         ffi.Pointer<ffi.Void> peer,
         int external_allocation_size,
         Dart_HandleFinalizer callback);
-typedef Dart_DeleteWeakPersistentHandle_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_DeleteWeakPersistentHandle_TypeFunction>>;
+typedef Dart_NewWeakPersistentHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_NewWeakPersistentHandle_TypeFunction>>;
 typedef Dart_DeleteWeakPersistentHandle_TypeFunction = ffi.Void Function(
     Dart_WeakPersistentHandle object);
 typedef DartDart_DeleteWeakPersistentHandle_TypeFunction = void Function(
     Dart_WeakPersistentHandle object);
-typedef Dart_NewFinalizableHandle_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewFinalizableHandle_TypeFunction>>;
+typedef Dart_DeleteWeakPersistentHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_DeleteWeakPersistentHandle_TypeFunction>>;
 typedef Dart_NewFinalizableHandle_TypeFunction
     = Dart_FinalizableHandle Function(
         ffi.Handle object,
@@ -18063,65 +18091,65 @@ typedef Dart_NewFinalizableHandle_TypeFunction
 typedef DartDart_NewFinalizableHandle_TypeFunction
     = Dart_FinalizableHandle Function(Object object, ffi.Pointer<ffi.Void> peer,
         int external_allocation_size, Dart_HandleFinalizer callback);
-typedef Dart_DeleteFinalizableHandle_Type = ffi
-    .Pointer<ffi.NativeFunction<Dart_DeleteFinalizableHandle_TypeFunction>>;
+typedef Dart_NewFinalizableHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewFinalizableHandle_TypeFunction>>;
 typedef Dart_DeleteFinalizableHandle_TypeFunction = ffi.Void Function(
     Dart_FinalizableHandle object, ffi.Handle strong_ref_to_object);
 typedef DartDart_DeleteFinalizableHandle_TypeFunction = void Function(
     Dart_FinalizableHandle object, Object strong_ref_to_object);
+typedef Dart_DeleteFinalizableHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_DeleteFinalizableHandle_TypeFunction>>;
+typedef Dart_CurrentIsolate_TypeFunction = Dart_Isolate Function();
 typedef Dart_CurrentIsolate_Type
     = ffi.Pointer<ffi.NativeFunction<Dart_CurrentIsolate_TypeFunction>>;
-typedef Dart_CurrentIsolate_TypeFunction = Dart_Isolate Function();
-typedef Dart_ExitIsolate_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_ExitIsolate_TypeFunction>>;
 typedef Dart_ExitIsolate_TypeFunction = ffi.Void Function();
 typedef DartDart_ExitIsolate_TypeFunction = void Function();
-typedef Dart_EnterIsolate_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_EnterIsolate_TypeFunction>>;
+typedef Dart_ExitIsolate_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ExitIsolate_TypeFunction>>;
 typedef Dart_EnterIsolate_TypeFunction = ffi.Void Function(Dart_Isolate);
 typedef DartDart_EnterIsolate_TypeFunction = void Function(Dart_Isolate);
-typedef Dart_Post_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_Post_TypeFunction>>;
+typedef Dart_EnterIsolate_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnterIsolate_TypeFunction>>;
 typedef Dart_Post_TypeFunction = ffi.Bool Function(
     Dart_Port_DL port_id, ffi.Handle object);
 typedef DartDart_Post_TypeFunction = bool Function(
     DartDart_Port_DL port_id, Object object);
-typedef Dart_NewSendPort_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_NewSendPort_TypeFunction>>;
+typedef Dart_Post_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_Post_TypeFunction>>;
 typedef Dart_NewSendPort_TypeFunction = ffi.Handle Function(
     Dart_Port_DL port_id);
 typedef DartDart_NewSendPort_TypeFunction = Object Function(
     DartDart_Port_DL port_id);
-typedef Dart_SendPortGetId_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_SendPortGetId_TypeFunction>>;
+typedef Dart_NewSendPort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewSendPort_TypeFunction>>;
 typedef Dart_SendPortGetId_TypeFunction = ffi.Handle Function(
     ffi.Handle port, ffi.Pointer<Dart_Port_DL> port_id);
 typedef DartDart_SendPortGetId_TypeFunction = Object Function(
     Object port, ffi.Pointer<Dart_Port_DL> port_id);
-typedef Dart_EnterScope_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_EnterScope_TypeFunction>>;
+typedef Dart_SendPortGetId_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_SendPortGetId_TypeFunction>>;
 typedef Dart_EnterScope_TypeFunction = ffi.Void Function();
 typedef DartDart_EnterScope_TypeFunction = void Function();
-typedef Dart_ExitScope_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_ExitScope_TypeFunction>>;
+typedef Dart_EnterScope_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnterScope_TypeFunction>>;
 typedef Dart_ExitScope_TypeFunction = ffi.Void Function();
 typedef DartDart_ExitScope_TypeFunction = void Function();
-typedef Dart_IsNull_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_IsNull_TypeFunction>>;
+typedef Dart_ExitScope_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ExitScope_TypeFunction>>;
 typedef Dart_IsNull_TypeFunction = ffi.Bool Function(ffi.Handle);
 typedef DartDart_IsNull_TypeFunction = bool Function(Object);
-typedef Dart_Null_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_Null_TypeFunction>>;
+typedef Dart_IsNull_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsNull_TypeFunction>>;
 typedef Dart_Null_TypeFunction = ffi.Handle Function();
 typedef DartDart_Null_TypeFunction = Object Function();
-typedef Dart_UpdateExternalSize_Type
-    = ffi.Pointer<ffi.NativeFunction<Dart_UpdateExternalSize_TypeFunction>>;
+typedef Dart_Null_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_Null_TypeFunction>>;
 typedef Dart_UpdateExternalSize_TypeFunction = ffi.Void Function(
     Dart_WeakPersistentHandle object, ffi.IntPtr external_allocation_size);
 typedef DartDart_UpdateExternalSize_TypeFunction = void Function(
     Dart_WeakPersistentHandle object, int external_allocation_size);
-typedef Dart_UpdateFinalizableExternalSize_Type = ffi.Pointer<
-    ffi.NativeFunction<Dart_UpdateFinalizableExternalSize_TypeFunction>>;
+typedef Dart_UpdateExternalSize_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_UpdateExternalSize_TypeFunction>>;
 typedef Dart_UpdateFinalizableExternalSize_TypeFunction = ffi.Void Function(
     Dart_FinalizableHandle object,
     ffi.Handle strong_ref_to_object,
@@ -18130,6 +18158,8 @@ typedef DartDart_UpdateFinalizableExternalSize_TypeFunction = void Function(
     Dart_FinalizableHandle object,
     Object strong_ref_to_object,
     int external_allocation_size);
+typedef Dart_UpdateFinalizableExternalSize_Type = ffi.Pointer<
+    ffi.NativeFunction<Dart_UpdateFinalizableExternalSize_TypeFunction>>;
 
 final class Openim_Listener extends ffi.Struct {
   external ffi.Pointer<
@@ -18137,6 +18167,34 @@ final class Openim_Listener extends ffi.Struct {
               ffi.Void Function(Dart_Port_DL, ffi.Pointer<ffi.Char>)>>
       onMethodChannel;
 }
+
+typedef GoInt8 = ffi.SignedChar;
+typedef DartGoInt8 = int;
+typedef GoUint8 = ffi.UnsignedChar;
+typedef DartGoUint8 = int;
+typedef GoInt16 = ffi.Short;
+typedef DartGoInt16 = int;
+typedef GoUint16 = ffi.UnsignedShort;
+typedef DartGoUint16 = int;
+typedef GoInt32 = ffi.Int;
+typedef DartGoInt32 = int;
+typedef GoUint32 = ffi.UnsignedInt;
+typedef DartGoUint32 = int;
+typedef GoInt64 = ffi.LongLong;
+typedef DartGoInt64 = int;
+typedef GoUint64 = ffi.UnsignedLongLong;
+typedef DartGoUint64 = int;
+typedef GoInt = GoInt64;
+typedef GoUint = GoUint64;
+typedef GoUintptr = ffi.Size;
+typedef DartGoUintptr = int;
+typedef GoFloat32 = ffi.Float;
+typedef DartGoFloat32 = double;
+typedef GoFloat64 = ffi.Double;
+typedef DartGoFloat64 = double;
+typedef GoString = _GoString_;
+typedef GoMap = ffi.Pointer<ffi.Void>;
+typedef GoChan = ffi.Pointer<ffi.Void>;
 
 final class GoInterface extends ffi.Struct {
   external ffi.Pointer<ffi.Void> t;
@@ -18154,11 +18212,6 @@ final class GoSlice extends ffi.Struct {
   external int cap;
 }
 
-typedef GoInt = GoInt64;
-typedef GoInt64 = ffi.LongLong;
-typedef DartGoInt64 = int;
-typedef GoString = _GoString_;
-
 final class sched_param extends ffi.Struct {
   @ffi.Int()
   external int sched_priority;
@@ -18166,6 +18219,9 @@ final class sched_param extends ffi.Struct {
   @ffi.Array.multi([4])
   external ffi.Array<ffi.Char> __opaque;
 }
+
+typedef clock_t = __darwin_clock_t;
+typedef time_t = __darwin_time_t;
 
 final class timespec extends ffi.Struct {
   @__darwin_time_t()
@@ -18220,26 +18276,43 @@ final class tm extends ffi.Struct {
   external ffi.Pointer<ffi.Char> tm_zone;
 }
 
-typedef clock_t = __darwin_clock_t;
-typedef __darwin_clock_t = ffi.UnsignedLong;
-typedef Dart__darwin_clock_t = int;
-typedef time_t = __darwin_time_t;
+enum clockid_t {
+  _CLOCK_REALTIME(0),
+  _CLOCK_MONOTONIC(6),
+  _CLOCK_MONOTONIC_RAW(4),
+  _CLOCK_MONOTONIC_RAW_APPROX(5),
+  _CLOCK_UPTIME_RAW(8),
+  _CLOCK_UPTIME_RAW_APPROX(9),
+  _CLOCK_PROCESS_CPUTIME_ID(12),
+  _CLOCK_THREAD_CPUTIME_ID(16);
 
-abstract class clockid_t {
-  static const int _CLOCK_REALTIME = 0;
-  static const int _CLOCK_MONOTONIC = 6;
-  static const int _CLOCK_MONOTONIC_RAW = 4;
-  static const int _CLOCK_MONOTONIC_RAW_APPROX = 5;
-  static const int _CLOCK_UPTIME_RAW = 8;
-  static const int _CLOCK_UPTIME_RAW_APPROX = 9;
-  static const int _CLOCK_PROCESS_CPUTIME_ID = 12;
-  static const int _CLOCK_THREAD_CPUTIME_ID = 16;
+  final int value;
+  const clockid_t(this.value);
+
+  static clockid_t fromValue(int value) => switch (value) {
+        0 => _CLOCK_REALTIME,
+        6 => _CLOCK_MONOTONIC,
+        4 => _CLOCK_MONOTONIC_RAW,
+        5 => _CLOCK_MONOTONIC_RAW_APPROX,
+        8 => _CLOCK_UPTIME_RAW,
+        9 => _CLOCK_UPTIME_RAW_APPROX,
+        12 => _CLOCK_PROCESS_CPUTIME_ID,
+        16 => _CLOCK_THREAD_CPUTIME_ID,
+        _ => throw ArgumentError("Unknown value for clockid_t: $value"),
+      };
 }
 
+typedef pthread_cond_t = __darwin_pthread_cond_t;
+typedef pthread_condattr_t = __darwin_pthread_condattr_t;
+typedef pthread_key_t = __darwin_pthread_key_t;
+typedef pthread_mutex_t = __darwin_pthread_mutex_t;
+typedef pthread_mutexattr_t = __darwin_pthread_mutexattr_t;
+typedef pthread_once_t = __darwin_pthread_once_t;
+typedef pthread_rwlock_t = __darwin_pthread_rwlock_t;
+typedef pthread_rwlockattr_t = __darwin_pthread_rwlockattr_t;
+typedef pthread_t = __darwin_pthread_t;
 typedef qos_class_t = ffi.UnsignedInt;
 typedef Dartqos_class_t = int;
-typedef pthread_t = __darwin_pthread_t;
-typedef __darwin_pthread_t = ffi.Pointer<_opaque_pthread_t>;
 
 final class pthread_override_s extends ffi.Opaque {}
 
@@ -18263,28 +18336,11 @@ final class pthread_override_s extends ffi.Opaque {}
 /// value and the effect of an override is not visible to the qos_class_self()
 /// and pthread_get_qos_class_np() interfaces.
 typedef pthread_override_t = ffi.Pointer<pthread_override_s>;
-typedef pthread_cond_t = __darwin_pthread_cond_t;
-typedef __darwin_pthread_cond_t = _opaque_pthread_cond_t;
-typedef pthread_condattr_t = __darwin_pthread_condattr_t;
-typedef __darwin_pthread_condattr_t = _opaque_pthread_condattr_t;
-typedef pthread_mutex_t = __darwin_pthread_mutex_t;
-typedef __darwin_pthread_mutex_t = _opaque_pthread_mutex_t;
-typedef pthread_key_t = __darwin_pthread_key_t;
-typedef __darwin_pthread_key_t = ffi.UnsignedLong;
-typedef Dart__darwin_pthread_key_t = int;
-typedef pthread_mutexattr_t = __darwin_pthread_mutexattr_t;
-typedef __darwin_pthread_mutexattr_t = _opaque_pthread_mutexattr_t;
-typedef pthread_once_t = __darwin_pthread_once_t;
-typedef __darwin_pthread_once_t = _opaque_pthread_once_t;
-typedef pthread_rwlock_t = __darwin_pthread_rwlock_t;
-typedef __darwin_pthread_rwlock_t = _opaque_pthread_rwlock_t;
-typedef pthread_rwlockattr_t = __darwin_pthread_rwlockattr_t;
-typedef __darwin_pthread_rwlockattr_t = _opaque_pthread_rwlockattr_t;
 typedef mach_port_t = __darwin_mach_port_t;
-typedef __darwin_mach_port_t = __darwin_mach_port_name_t;
-typedef __darwin_mach_port_name_t = __darwin_natural_t;
-typedef __darwin_natural_t = ffi.UnsignedInt;
-typedef Dart__darwin_natural_t = int;
+typedef pthread_jit_write_callback_tFunction = ffi.Int Function(
+    ffi.Pointer<ffi.Void> ctx);
+typedef Dartpthread_jit_write_callback_tFunction = int Function(
+    ffi.Pointer<ffi.Void> ctx);
 
 /// !
 /// @typedef pthread_jit_write_callback_t
@@ -18301,10 +18357,6 @@ typedef Dart__darwin_natural_t = int;
 /// the value of this result.
 typedef pthread_jit_write_callback_t
     = ffi.Pointer<ffi.NativeFunction<pthread_jit_write_callback_tFunction>>;
-typedef pthread_jit_write_callback_tFunction = ffi.Int Function(
-    ffi.Pointer<ffi.Void> ctx);
-typedef Dartpthread_jit_write_callback_tFunction = int Function(
-    ffi.Pointer<ffi.Void> ctx);
 
 final class ThreadArgs extends ffi.Struct {
   @Dart_Port_DL()
@@ -18541,6 +18593,14 @@ const int __MAC_14_3 = 140300;
 
 const int __MAC_14_4 = 140400;
 
+const int __MAC_14_5 = 140500;
+
+const int __MAC_15_0 = 150000;
+
+const int __MAC_15_1 = 150100;
+
+const int __MAC_15_2 = 150200;
+
 const int __IPHONE_2_0 = 20000;
 
 const int __IPHONE_2_1 = 20100;
@@ -18697,6 +18757,14 @@ const int __IPHONE_17_3 = 170300;
 
 const int __IPHONE_17_4 = 170400;
 
+const int __IPHONE_17_5 = 170500;
+
+const int __IPHONE_18_0 = 180000;
+
+const int __IPHONE_18_1 = 180100;
+
+const int __IPHONE_18_2 = 180200;
+
 const int __WATCHOS_1_0 = 10000;
 
 const int __WATCHOS_2_0 = 20000;
@@ -18788,6 +18856,14 @@ const int __WATCHOS_10_2 = 100200;
 const int __WATCHOS_10_3 = 100300;
 
 const int __WATCHOS_10_4 = 100400;
+
+const int __WATCHOS_10_5 = 100500;
+
+const int __WATCHOS_11_0 = 110000;
+
+const int __WATCHOS_11_1 = 110100;
+
+const int __WATCHOS_11_2 = 110200;
 
 const int __TVOS_9_0 = 90000;
 
@@ -18883,6 +18959,14 @@ const int __TVOS_17_3 = 170300;
 
 const int __TVOS_17_4 = 170400;
 
+const int __TVOS_17_5 = 170500;
+
+const int __TVOS_18_0 = 180000;
+
+const int __TVOS_18_1 = 180100;
+
+const int __TVOS_18_2 = 180200;
+
 const int __BRIDGEOS_2_0 = 20000;
 
 const int __BRIDGEOS_3_0 = 30000;
@@ -18933,6 +19017,14 @@ const int __BRIDGEOS_8_3 = 80300;
 
 const int __BRIDGEOS_8_4 = 80400;
 
+const int __BRIDGEOS_8_5 = 80500;
+
+const int __BRIDGEOS_9_0 = 90000;
+
+const int __BRIDGEOS_9_1 = 90100;
+
+const int __BRIDGEOS_9_2 = 90200;
+
 const int __DRIVERKIT_19_0 = 190000;
 
 const int __DRIVERKIT_20_0 = 200000;
@@ -18957,9 +19049,25 @@ const int __DRIVERKIT_23_3 = 230300;
 
 const int __DRIVERKIT_23_4 = 230400;
 
+const int __DRIVERKIT_23_5 = 230500;
+
+const int __DRIVERKIT_24_0 = 240000;
+
+const int __DRIVERKIT_24_1 = 240100;
+
+const int __DRIVERKIT_24_2 = 240200;
+
 const int __VISIONOS_1_0 = 10000;
 
 const int __VISIONOS_1_1 = 10100;
+
+const int __VISIONOS_1_2 = 10200;
+
+const int __VISIONOS_2_0 = 20000;
+
+const int __VISIONOS_2_1 = 20100;
+
+const int __VISIONOS_2_2 = 20200;
 
 const int MAC_OS_X_VERSION_10_0 = 1000;
 
@@ -19081,9 +19189,17 @@ const int MAC_OS_VERSION_14_3 = 140300;
 
 const int MAC_OS_VERSION_14_4 = 140400;
 
-const int __MAC_OS_X_VERSION_MIN_REQUIRED = 140000;
+const int MAC_OS_VERSION_14_5 = 140500;
 
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 140400;
+const int MAC_OS_VERSION_15_0 = 150000;
+
+const int MAC_OS_VERSION_15_1 = 150100;
+
+const int MAC_OS_VERSION_15_2 = 150200;
+
+const int __MAC_OS_X_VERSION_MIN_REQUIRED = 150000;
+
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150200;
 
 const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
 
@@ -19693,13 +19809,13 @@ const int __DARWIN_BIG_ENDIAN = 4321;
 
 const int __DARWIN_PDP_ENDIAN = 3412;
 
-const int __DARWIN_BYTE_ORDER = 1234;
-
 const int LITTLE_ENDIAN = 1234;
 
 const int BIG_ENDIAN = 4321;
 
 const int PDP_ENDIAN = 3412;
+
+const int __DARWIN_BYTE_ORDER = 1234;
 
 const int BYTE_ORDER = 1234;
 

@@ -1,6 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
-
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 /*
  * Summary: 扩展字符串
@@ -43,6 +41,11 @@ class _PortMethod {
   /// 根据会话id获取多个会话
   static const String getMultipleConversation = 'GetMultipleConversation';
   static const String setSelfInfo = 'SetSelfInfo';
+  static const String subscribeUsersStatus = 'SubscribeUsersStatus';
+  static const String unsubscribeUsersStatus = 'UnsubscribeUsersStatus';
+  static const String getSubscribeUsersStatus = 'GetSubscribeUsersStatus';
+  static const String getUserStatus = 'GetUserStatus';
+  static const String setMessageLocalEx = 'SetMessageLocalEx';
 
   /// 通过会话id删除指定会话
   static const String deleteConversation = 'DeleteConversation';
@@ -125,6 +128,9 @@ class _PortMethod {
   static const String acceptFriendApplication = 'AcceptFriendApplication';
   static const String refuseFriendApplication = 'RefuseFriendApplication';
   static const String searchFriends = 'SearchFriends';
+  static const String getFriendListPage = 'GetFriendListPage';
+  static const String getFriendListMap = 'GetFriendListMap';
+  static const String getFriendListPageMap = 'GetFriendListPageMap';
 
   /// OrganizationManager
   static const String getSubDepartment = 'GetSubDepartment';
@@ -163,8 +169,8 @@ class _PortMethod {
   static const String joinGroup = 'JoinGroup';
   static const String quitGroup = 'QuitGroup';
   static const String transferGroupOwner = 'TransferGroupOwner';
-  static const String getRecvGroupApplicationList = 'GetRecvGroupApplicationList';
-  static const String getSendGroupApplicationList = 'GetSendGroupApplicationList';
+  static const String getGroupApplicationListAsRecipient = 'GetGroupApplicationListAsRecipient';
+  static const String getGroupApplicationListAsApplicant = 'GetGroupApplicationListAsApplicant';
   static const String acceptGroupApplication = 'AcceptGroupApplication';
   static const String refuseGroupApplication = 'RefuseGroupApplication';
   static const String dismissGroup = 'DismissGroup';
@@ -180,6 +186,11 @@ class _PortMethod {
   static const String getGroupMemberOwnerAndAdmin = 'GetGroupMemberOwnerAndAdmin';
   static const String searchGroupMembers = 'SearchGroupMembers';
   static const String setGroupMemberInfo = 'SetGroupMemberInfo';
+  static const String getGroupMemberListMap = 'GetGroupMemberListMap';
+  static const String getJoinedGroupListMap = 'GetJoinedGroupListMap';
+  static const String isJoinedGroup = 'isJoinedGroup';
+  static const String searchGroupMembersListMap = 'searchGroupMembersListMap';
+  static const String getUsersInGroup = 'getUsersInGroup';
 
   static const String networkStatusChanged = 'NetworkStatusChanged';
   static const String setAppBackgroundStatus = 'SetAppBackgroundStatus';

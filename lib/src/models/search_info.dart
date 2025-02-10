@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class SearchResult {
   /// Total number of messages obtained
@@ -28,11 +28,15 @@ class SearchResult {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'totalCount': totalCount,
-      'searchResultItems': searchResultItems?.map((v) => v.toJson()).toList(),
-      'findResultItems': findResultItems?.map((v) => v.toJson()).toList(),
-    };
+    final data = <String, dynamic>{};
+    data['totalCount'] = totalCount;
+    if (searchResultItems != null) {
+      data['searchResultItems'] = searchResultItems!.map((v) => v.toJson()).toList();
+    }
+    if (findResultItems != null) {
+      data['findResultItems'] = findResultItems!.map((v) => v.toJson()).toList();
+    }
+    return data;
   }
 }
 
@@ -72,14 +76,16 @@ class SearchResultItems {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'conversationID': conversationID,
-      'conversationType': conversationType,
-      'showName': showName,
-      'faceURL': faceURL,
-      'messageCount': messageCount,
-      'messageList': messageList?.map((v) => v.toJson()).toList(),
-    };
+    final data = <String, dynamic>{};
+    data['conversationID'] = conversationID;
+    data['conversationType'] = conversationType;
+    data['showName'] = showName;
+    data['faceURL'] = faceURL;
+    data['messageCount'] = messageCount;
+    if (messageList != null) {
+      data['messageList'] = messageList!.map((v) => v.toJson()).toList();
+    }
+    return data;
   }
 }
 
@@ -100,10 +106,10 @@ class SearchParams {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'conversationID': conversationID,
-      'clientMsgIDList': clientMsgIDList,
-    };
+    final data = <String, dynamic>{};
+    data['conversationID'] = conversationID;
+    data['clientMsgIDList'] = clientMsgIDList;
+    return data;
   }
 }
 
@@ -117,8 +123,8 @@ class SearchFriendsInfo extends FriendInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return {
-      'relationship': relationship,
-    };
+    final data = super.toJson();
+    data['relationship'] = relationship;
+    return data;
   }
 }

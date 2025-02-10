@@ -1,19 +1,16 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class UserManager {
   /// 获取用户资料
-  /// [uidList] 用户ID列表
-  Future<List<FullUserInfo>> getUsersInfo({
-    required List<String> uidList,
-    String? operationID,
-  }) async {
+  /// [userIDList] 用户ID列表
+  Future<List<PublicUserInfo>> getUsersInfo({required List<String> userIDList, String? operationID}) async {
     ReceivePort receivePort = ReceivePort();
 
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getUsersInfo,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'uidList': uidList,
+        'userIDList': userIDList,
       },
       sendPort: receivePort.sendPort,
     ));
@@ -24,9 +21,7 @@ class UserManager {
   }
 
   /// 获取当前登录用户的信息
-  Future<UserInfo> getSelfUserInfo({
-    String? operationID,
-  }) async {
+  Future<UserInfo> getSelfUserInfo({String? operationID}) async {
     ReceivePort receivePort = ReceivePort();
 
     OpenIMManager._sendPort.send(_PortModel(
@@ -42,24 +37,14 @@ class UserManager {
 
   /// 修改当前登录用户资料
   /// [nickname] 昵称
+  ///
   /// [faceURL] 头像
-  /// [gender] 性别
-  /// [appMangerLevel]
-  /// [phoneNumber] 手机号
-  /// [birth] 出生日期
-  /// [email] 邮箱
+  ///
+  /// [globalRecvMsgOpt] 全局消息接收选项
+  ///
   /// [ex] 扩展字段
-  Future<String?> setSelfInfo({
-    String? nickname,
-    String? faceURL,
-    int? gender,
-    int? appMangerLevel,
-    String? phoneNumber,
-    int? birth,
-    String? email,
-    String? ex,
-    String? operationID,
-  }) async {
+  ///
+  Future<String?> setSelfInfo({String? nickname, String? faceURL, int? globalRecvMsgOpt, String? ex, String? operationID}) async {
     ReceivePort receivePort = ReceivePort();
 
     OpenIMManager._sendPort.send(_PortModel(
@@ -67,12 +52,71 @@ class UserManager {
       data: {
         'nickname': nickname,
         'faceURL': faceURL,
-        'gender': gender,
-        'appMangerLevel': appMangerLevel,
-        'phoneNumber': phoneNumber,
-        'birth': birth,
-        'email': email,
+        'globalRecvMsgOpt': globalRecvMsgOpt,
         'ex': ex,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+    return result.value;
+  }
+
+  Future<List<UserStatusInfo>> subscribeUsersStatus(List<String> userIDs, {String? operationID}) async {
+    ReceivePort receivePort = ReceivePort();
+
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.subscribeUsersStatus,
+      data: {
+        'userIDs': userIDs,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+    return result.value;
+  }
+
+  Future unsubscribeUsersStatus(List<String> userIDs, {String? operationID}) async {
+    ReceivePort receivePort = ReceivePort();
+
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.unsubscribeUsersStatus,
+      data: {
+        'userIDs': userIDs,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+    return result.value;
+  }
+
+  Future<List<UserStatusInfo>> getSubscribeUsersStatus({String? operationID}) async {
+    ReceivePort receivePort = ReceivePort();
+
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getSubscribeUsersStatus,
+      data: {
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+    return result.value;
+  }
+
+  Future<List<UserStatusInfo>> getUserStatus(List<String> userIDs, {String? operationID}) async {
+    ReceivePort receivePort = ReceivePort();
+
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getUserStatus,
+      data: {
+        'userIDs': userIDs,
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,

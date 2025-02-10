@@ -131,7 +131,7 @@ extern void GetAllConversationList(char* operationID);
 extern void GetConversationListSplit(char* operationID, int offset, int count);
 extern void GetOneConversation(char* operationID, int32_t sessionType, char* sourceID);
 extern void GetMultipleConversation(char* operationID, char* conversationIDList);
-extern GoString GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
+extern char* GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
 extern void GetTotalUnreadMsgCount(char* operationID);
 extern void MarkConversationMessageAsRead(char* operationID, char* conversationID);
 extern void MarkAllConversationMessageAsRead(char* operationID);

@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class ConversationInfo {
   // Unique identifier for the conversation
@@ -117,28 +117,28 @@ class ConversationInfo {
 
   // Method to convert the ConversationInfo object to a JSON map
   Map<String, dynamic> toJson() {
-    return {
-      'conversationID': conversationID,
-      'conversationType': conversationType,
-      'userID': userID,
-      'groupID': groupID,
-      'showName': showName,
-      'faceURL': faceURL,
-      'recvMsgOpt': recvMsgOpt,
-      'unreadCount': unreadCount,
-      'latestMsg': latestMsg?.toJson(),
-      'latestMsgSendTime': latestMsgSendTime,
-      'draftText': draftText,
-      'draftTextTime': draftTextTime,
-      'isPinned': isPinned,
-      'isPrivateChat': isPrivateChat,
-      'burnDuration': burnDuration,
-      'isNotInGroup': isNotInGroup,
-      'groupAtType': groupAtType,
-      'ex': ex,
-      'isMsgDestruct': isMsgDestruct,
-      'msgDestructTime': msgDestructTime,
-    };
+    final data = <String, dynamic>{};
+    data['conversationID'] = conversationID;
+    data['conversationType'] = conversationType;
+    data['userID'] = userID;
+    data['groupID'] = groupID;
+    data['showName'] = showName;
+    data['faceURL'] = faceURL;
+    data['recvMsgOpt'] = recvMsgOpt;
+    data['unreadCount'] = unreadCount;
+    data['latestMsg'] = latestMsg?.toJson();
+    data['latestMsgSendTime'] = latestMsgSendTime;
+    data['draftText'] = draftText;
+    data['draftTextTime'] = draftTextTime;
+    data['isPinned'] = isPinned;
+    data['isPrivateChat'] = isPrivateChat;
+    data['burnDuration'] = burnDuration;
+    data['isNotInGroup'] = isNotInGroup;
+    data['groupAtType'] = groupAtType;
+    data['ex'] = ex;
+    data['isMsgDestruct'] = isMsgDestruct;
+    data['msgDestructTime'] = msgDestructTime;
+    return data;
   }
 
   // Check if it's a single chat

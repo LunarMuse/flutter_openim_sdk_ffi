@@ -1,6 +1,4 @@
-// ignore_for_file: file_names
-
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
   switch (data.method) {

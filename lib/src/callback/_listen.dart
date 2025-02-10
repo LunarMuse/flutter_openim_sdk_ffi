@@ -1,5 +1,4 @@
-// ignore_for_file: file_names
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listen(_PortModel channel) {
   switch (channel.method) {
