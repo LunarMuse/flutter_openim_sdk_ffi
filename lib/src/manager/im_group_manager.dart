@@ -114,40 +114,6 @@ class GroupManager {
     return result.value;
   }
 
-  /// 分页获取组成员列表
-  ///
-  /// [groupID] 群ID
-  ///
-  /// [filter] 过滤成员 0所有，1普通成员, 2群主，3管理员，4管理员+普通成员
-  ///
-  /// [offset] 开始下标
-  ///
-  /// [count] 总数
-  Future<List<dynamic>> getGroupMemberListMap({
-    required String groupID,
-    int filter = 0,
-    int offset = 0,
-    int count = 0,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getGroupMemberListMap,
-      data: {
-        'groupID': groupID,
-        'filter': filter,
-        'offset': offset,
-        'count': count,
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-
-    return IMUtils.toListMap(result.value);
-  }
-
   /// 查询已加入的组列表
   Future<List<GroupInfo>> getJoinedGroupList({
     String? operationID,
@@ -165,32 +131,16 @@ class GroupManager {
     return result.value;
   }
 
-  /// 查询已加入的组列表
-  Future<List<dynamic>> getJoinedGroupListMap({String? operationID}) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getJoinedGroupListMap,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-
-    return IMUtils.toListMap(result.value);
-  }
-
   /// 检查是否已加入组
   ///
   /// [groupID] 组ID
-  Future<bool> isJoinedGroup({
+  Future<bool> isJoinGroup({
     required String groupID,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.isJoinedGroup,
+      method: _PortMethod.isJoinGroup,
       data: {
         'groupID': groupID,
         'operationID': IMUtils.checkOperationID(operationID),
@@ -664,45 +614,6 @@ class GroupManager {
     ));
     _PortResult result = await receivePort.first;
     receivePort.close();
-    return result.value;
-  }
-
-  /// 查询群
-  /// [groupID] 群id
-  /// [keywordList] 搜索关键词，目前仅支持一个关键词搜索，不能为空
-  /// [isSearchUserID] 是否以关键词搜成员id
-  /// [isSearchMemberNickname] 是否以关键词搜索成员昵称
-  /// [offset] 开始index
-  ///
-  /// [count] 每次获取的总数
-  Future<List<dynamic>> searchGroupMembersListMap({
-    required String groupID,
-    List<String> keywordList = const [],
-    bool isSearchUserID = false,
-    bool isSearchMemberNickname = false,
-    int offset = 0,
-    int count = 40,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.searchGroupMembersListMap,
-      data: {
-        'searchParam': {
-          'groupID': groupID,
-          'keywordList': keywordList,
-          'isSearchUserID': isSearchUserID,
-          'isSearchMemberNickname': isSearchMemberNickname,
-          'offset': offset,
-          'count': count,
-        },
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-
     return result.value;
   }
 

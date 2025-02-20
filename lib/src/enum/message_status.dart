@@ -1,18 +1,15 @@
 part of '../../flutter_openim_sdk_ffi.dart';
 
 /// Message Send Status
-class MessageStatus {
-  /// Sending
-  static const sending = 1;
+enum MessageStatus {
+  sending(1),
+  succeeded(2),
+  failed(3),
+  deleted(4);
 
-  /// Successfully sent
-  static const succeeded = 2;
+  final int rawValue;
 
-  /// Send failed
-  static const failed = 3;
-
-  /// Already deleted
-  static const deleted = 4;
+  const MessageStatus(this.rawValue);
 }
 
 enum GetHistoryViewType {

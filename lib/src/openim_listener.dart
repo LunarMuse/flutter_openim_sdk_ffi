@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../flutter_openim_sdk_ffi.dart';
 
 /*
  * Summary: 文件描述
@@ -113,7 +113,7 @@ mixin OpenIMListener {
   /// 未读消息总数发送改变
   void onTotalUnreadMessageCountChanged(int i) {}
 
-  void onConversationUserInputStatusChanged(InputStatesChangedData data) {}
+  // void onConversationUserInputStatusChanged(InputStatesChangedData data) {}
 
   /// 群申请已被接受
   void onGroupApplicationAccepted(GroupApplicationInfo info) {}
@@ -146,32 +146,32 @@ mixin OpenIMListener {
   void onJoinedGroupDeleted(GroupInfo info) {}
 
   /// 被邀请者收到：邀请者取消音视频通话
-  void onInvitationCancelled(SignalingInfo info) {}
+  // void onInvitationCancelled(SignalingInfo info) {}
 
-  /// 邀请者收到：被邀请者超时未接通
-  void onInvitationTimeout(SignalingInfo info) {}
+  // /// 邀请者收到：被邀请者超时未接通
+  // void onInvitationTimeout(SignalingInfo info) {}
 
-  /// 邀请者收到：被邀请者同意音视频通话
-  void onInviteeAccepted(SignalingInfo info) {}
+  // /// 邀请者收到：被邀请者同意音视频通话
+  // void onInviteeAccepted(SignalingInfo info) {}
 
-  /// 邀请者收到：被邀请者拒绝音视频通话
-  void onInviteeRejected(SignalingInfo info) {}
+  // /// 邀请者收到：被邀请者拒绝音视频通话
+  // void onInviteeRejected(SignalingInfo info) {}
 
-  /// 被邀请者收到：音视频通话邀请
-  void onReceiveNewInvitation(SignalingInfo info) {}
+  // /// 被邀请者收到：音视频通话邀请
+  // void onReceiveNewInvitation(SignalingInfo info) {}
 
-  /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
-  void onInviteeAcceptedByOtherDevice(SignalingInfo info) {}
+  // /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
+  // void onInviteeAcceptedByOtherDevice(SignalingInfo info) {}
 
-  /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
-  void onInviteeRejectedByOtherDevice(SignalingInfo info) {}
+  // /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
+  // void onInviteeRejectedByOtherDevice(SignalingInfo info) {}
 
-  /// 被挂断
-  void onHangup(SignalingInfo info) {}
-  void onRoomParticipantConnected(RoomCallingInfo info) {}
-  void onRoomParticipantDisconnected(RoomCallingInfo info) {}
-  void onMeetingStreamChanged(MeetingStreamEvent event) {}
-  void onReceiveCustomSignal(CustomSignaling info) {}
+  // /// 被挂断
+  // void onHangup(SignalingInfo info) {}
+  // void onRoomParticipantConnected(RoomCallingInfo info) {}
+  // void onRoomParticipantDisconnected(RoomCallingInfo info) {}
+  // void onMeetingStreamChanged(MeetingStreamEvent event) {}
+  // void onReceiveCustomSignal(CustomSignaling info) {}
 
   /// 朋友圈信息发送改变
   void onRecvNewNotification() {}
@@ -179,7 +179,7 @@ mixin OpenIMListener {
   /// 组织架构有更新
   void onOrganizationUpdated() {}
 
-  void onStreamChangedEvent(MeetingStreamEvent event) {}
+  // void onStreamChangedEvent(MeetingStreamEvent event) {}
 
   void onRecvCustomBusinessMessage(String s) {}
 

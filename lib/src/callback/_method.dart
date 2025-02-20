@@ -7,16 +7,22 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.login:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final userID = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
       final token = (msg.data['token'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.Login(operationID, uid, token);
+      bindings.Login(operationID, userID, token);
       calloc.free(operationID);
-      calloc.free(uid);
+      calloc.free(userID);
       calloc.free(token);
       break;
     case _PortMethod.version:
       String version = bindings.GetSdkVersion().cast<Utf8>().toDartString();
       msg.sendPort?.send(_PortResult(data: version));
+      break;
+    case _PortMethod.getLoginStatus:
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      int status = bindings.GetLoginStatus(operationID);
+      msg.sendPort?.send(_PortResult(data: status));
+      calloc.free(operationID);
       break;
     case _PortMethod.getUsersInfo:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
@@ -25,6 +31,47 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       bindings.GetUsersInfo(operationID, uidList);
       calloc.free(operationID);
       calloc.free(uidList);
+      break;
+    case _PortMethod.logout:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.Logout(operationID);
+      calloc.free(operationID);
+      break;
+
+    case _PortMethod.uploadFile:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uuid = (msg.data['uuid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final req = jsonEncode(msg.data).toNativeUtf8().cast<ffi.Char>();
+      bindings.UploadFile(operationID, req, uuid);
+      calloc.free(operationID);
+      calloc.free(req);
+      calloc.free(uuid);
+      break;
+    case _PortMethod.uploadLogs:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uuid = (msg.data['uuid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final ex = (msg.data['ex'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.UploadLogs(operationID, msg.data['line'], ex, uuid);
+      calloc.free(operationID);
+      calloc.free(ex);
+      calloc.free(uuid);
+      break;
+    case _PortMethod.logs:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final file = (msg.data['file'] as String).toNativeUtf8().cast<ffi.Char>();
+      final msgs = (msg.data['msgs'] as String).toNativeUtf8().cast<ffi.Char>();
+      final err = (msg.data['err'] as String).toNativeUtf8().cast<ffi.Char>();
+      final keyAndValue = (msg.data['keyAndValue'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.Logs(operationID, msg.data['logLevel'], file, msg.data['line'], msgs, err, keyAndValue);
+      calloc.free(operationID);
+      calloc.free(file);
+      calloc.free(msgs);
+      calloc.free(err);
+      calloc.free(keyAndValue);
       break;
     case _PortMethod.getSelfUserInfo:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
@@ -77,22 +124,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(groupID);
       calloc.free(offlinePushInfo);
       calloc.free(clientMsgID);
-    case _PortMethod.sendMessageNotOss:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final message = jsonEncode(msg.data['message']).toNativeUtf8().cast<ffi.Char>();
-      final userID = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final groupID = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final offlinePushInfo = jsonEncode(msg.data['offlinePushInfo']).toNativeUtf8().cast<ffi.Char>();
-      final clientMsgID = jsonEncode(msg.data['message']['clientMsgID']).toNativeUtf8().cast<ffi.Char>();
-      bindings.SendMessageNotOss(operationID, message, userID, groupID, offlinePushInfo);
-      calloc.free(operationID);
-      calloc.free(message);
-      calloc.free(userID);
-      calloc.free(groupID);
-      calloc.free(offlinePushInfo);
-      calloc.free(clientMsgID);
-      break;
+
     case _PortMethod.insertSingleMessageToLocalStorage:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -416,36 +448,12 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(conversationID);
       calloc.free(draftText);
       break;
-    case _PortMethod.pinConversation:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.PinConversation(operationID, conversationID, msg.data['isPinned']);
-      calloc.free(operationID);
-      calloc.free(conversationID);
-      break;
+
     case _PortMethod.getTotalUnreadMsgCount:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.GetTotalUnreadMsgCount(operationID);
       calloc.free(operationID);
-      break;
-
-    case _PortMethod.setConversationRecvMessageOpt:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final conversationIDList = jsonEncode(msg.data['conversationIDList']).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetConversationRecvMessageOpt(operationID, conversationIDList, msg.data['status']);
-      calloc.free(operationID);
-      calloc.free(conversationIDList);
-      break;
-    case _PortMethod.getConversationRecvMessageOpt:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final conversationIDList = jsonEncode(msg.data['conversationIDList']).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetConversationRecvMessageOpt(operationID, conversationIDList);
-      calloc.free(operationID);
-      calloc.free(conversationIDList);
       break;
 
     // case _PortMethod.deleteAllConversationFromLocal:
@@ -454,21 +462,6 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     //   bindings.DeleteAllConversationFromLocal(operationID);
     //   calloc.free(operationID);
     //   break;
-    case _PortMethod.resetConversationGroupAtType:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final conversationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.ResetConversationGroupAtType(operationID, conversationID);
-      calloc.free(operationID);
-      calloc.free(conversationID);
-      break;
-
-    case _PortMethod.setGlobalRecvMessageOpt:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGlobalRecvMessageOpt(operationID, msg.data['status']);
-      calloc.free(operationID);
-      break;
 
     case _PortMethod.markConversationMessageAsRead:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
@@ -509,26 +502,18 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getFriendList:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetFriendList(operationID);
+      bindings.GetFriendList(operationID, msg.data['filterBlack']);
       calloc.free(operationID);
       break;
     case _PortMethod.getFriendsList:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final userIDList = jsonEncode(msg.data['userIDList']).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetSpecifiedFriendsInfo(operationID, userIDList);
+      bindings.GetSpecifiedFriendsInfo(operationID, userIDList, msg.data['filterBlack']);
       calloc.free(operationID);
       calloc.free(userIDList);
       break;
-    case _PortMethod.setFriendRemark:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final ops = jsonEncode(msg.data).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetFriendRemark(operationID, ops);
-      calloc.free(operationID);
-      calloc.free(ops);
-      break;
-    case _PortMethod.addBlack:
+    case _PortMethod.addBlacklist:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final userID = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -544,7 +529,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       bindings.GetBlackList(operationID);
       calloc.free(operationID);
       break;
-    case _PortMethod.removeBlack:
+    case _PortMethod.removeBlacklist:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final userID = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -737,18 +722,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(gid);
       calloc.free(uid);
       break;
-    case _PortMethod.setGroupMemberNickname:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final groupNickname = (msg.data['groupNickname'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGroupMemberNickname(operationID, gid, uid, msg.data['groupNickname']);
-      calloc.free(operationID);
-      calloc.free(gid);
-      calloc.free(uid);
-      calloc.free(groupNickname);
-      break;
+
     case _PortMethod.searchGroups:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -757,16 +731,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(ops);
       break;
-    case _PortMethod.setGroupMemberRoleLevel:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGroupMemberRoleLevel(operationID, gid, uid, msg.data['roleLevel']);
-      calloc.free(operationID);
-      calloc.free(gid);
-      calloc.free(uid);
-      break;
+
     case _PortMethod.getGroupMemberListByJoinTimeFilter:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -776,30 +741,6 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(gid);
       calloc.free(uIds);
-      break;
-    case _PortMethod.setGroupVerification:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGroupVerification(operationID, gid, msg.data['needVerification']);
-      calloc.free(operationID);
-      calloc.free(gid);
-      break;
-    case _PortMethod.setGroupLookMemberInfo:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGroupLookMemberInfo(operationID, gid, msg.data['status']);
-      calloc.free(operationID);
-      calloc.free(gid);
-      break;
-    case _PortMethod.setGroupApplyMemberFriend:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.SetGroupApplyMemberFriend(operationID, gid, msg.data['status']);
-      calloc.free(operationID);
-      calloc.free(gid);
       break;
 
     case _PortMethod.getGroupMemberOwnerAndAdmin:
@@ -847,22 +788,6 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(fcmToken);
       break;
 
-    case _PortMethod.logout:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.Logout(operationID);
-      calloc.free(operationID);
-      break;
-    case _PortMethod.uploadFile:
-      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
-      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uuid = (msg.data['uuid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final req = jsonEncode(msg.data).toNativeUtf8().cast<ffi.Char>();
-      bindings.UploadFile(operationID, req, uuid);
-      calloc.free(operationID);
-      calloc.free(req);
-      calloc.free(uuid);
-      break;
     case _PortMethod.setSelfInfo:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

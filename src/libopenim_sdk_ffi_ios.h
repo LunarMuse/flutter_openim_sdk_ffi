@@ -44,6 +44,14 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 #line 1 "cgo-generated-wrapper"
 
+#line 3 "logs.go"
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#line 1 "cgo-generated-wrapper"
+
 #line 3 "openim_sdk_ffi.go"
 
 #include <stdio.h>
@@ -145,12 +153,15 @@ extern void GetInputStates(char* operationID, char* conversationID, char* userID
 extern void DeleteConversationAndDeleteAllMsg(char* operationID, char* conversationID);
 extern char* CreateTextMessage(char* operationID, char* text);
 extern char* CreateTextAtMessage(char* operationID, char* text, char* atUserList, char* atUsersInfo, char* message);
+extern char* CreateImageMessageFromFullPath(char* operationID, char* imageFullPath);
+extern char* CreateImageMessageByURL(char* operationID, char* sourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
 extern char* CreateForwardMessage(char* operationID, char* m);
 extern char* CreateLocationMessage(char* operationID, char* description, double longitude, double latitude);
 extern char* CreateQuoteMessage(char* operationID, char* text, char* message);
 extern char* CreateCardMessage(char* operationID, char* cardInfo);
 extern char* CreateCustomMessage(char* operationID, char* data, char* extension, char* description);
 extern void SendMessage(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
+extern void SendMessageNotOss(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
 extern void TypingStatusUpdate(char* operationID, char* recvID, char* msgTip);
 extern void RevokeMessage(char* operationID, char* conversationID, char* clientMsgID);
 extern void DeleteMessage(char* operationID, char* conversationID, char* clientMsgID);
@@ -168,13 +179,19 @@ extern void SetMessageLocalEx(char* operationID, char* conversationID, char* cli
 extern char* GetAtAllTag(char* operationID);
 extern char* CreateAdvancedTextMessage(char* operationID, char* text, char* messageEntityList);
 extern char* CreateAdvancedQuoteMessage(char* operationID, char* text, char* message, char* messageEntityList);
-extern char* CreateImageMessage(char* operationID, char* imageSourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
-extern char* CreateSoundMessage(char* operationID, char* soundPath, int64_t duration, char* soundBaseInfo);
-extern char* CreateVideoMessage(char* operationID, char* videoPath, char* videoType, int64_t duration, char* snapshotPath, char* videoBaseInfo);
-extern char* CreateFileMessage(char* operationID, char* filePath, char* fileName, char* fileBaseInfo);
+extern char* CreateImageMessage(char* operationID, char* imagePath);
+extern char* CreateSoundMessage(char* operationID, char* soundPath, int64_t duration);
+extern char* CreateSoundMessageByURL(char* operationID, char* soundBaseInfo);
+extern char* CreateVideoMessage(char* operationID, char* videoPath, char* videoType, int64_t duration, char* snapshotPath);
+extern char* CreateVideoMessageByURL(char* operationID, char* videoBaseInfo);
+extern char* CreateFileMessage(char* operationID, char* filePath, char* fileName);
 extern char* CreateMergerMessage(char* operationID, char* messageList, char* title, char* summaryList);
 extern char* CreateFaceMessage(char* operationID, int index, char* data);
 extern void MarkMessagesAsReadByMsgID(char* operationID, char* conversationID, char* clientMsgIDs);
+extern char* CreateFileMessageByURL(char* operationID, char* fileBaseInfo);
+extern char* CreateFileMessageFromFullPath(char* operationID, char* fileFullPath, char* fileName);
+extern char* CreateSoundMessageFromFullPath(char* operationID, char* soundFullPath, int64_t duration);
+extern char* CreateVideoMessageFromFullPath(char* operationID, char* videoFullPath, char* videoType, int64_t duration, char* snapshotFullPath);
 extern void UploadFile(char* operationID, char* req, char* uuid);
 extern void AcceptFriendApplication(char* operationID, char* userIDHandleMsg);
 extern void AddBlack(char* operationID, char* blackUserID, char* ex);
@@ -217,6 +234,8 @@ extern void DismissGroup(char* operationID, char* groupID);
 extern void GetUsersInGroup(char* operationID, char* groupID, char* userIDList);
 extern void IsJoinGroup(char* operationID, char* groupID);
 extern void QuitGroup(char* operationID, char* groupID);
+extern void UploadLogs(char* operationID, int line, char* ex, char* uuid);
+extern void Logs(char* operationID, int logLevel, char* file, int line, char* msgs, char* err, char* keyAndValue);
 extern char* GetSdkVersion();
 extern _Bool InitSDK(Openim_Listener imListener, Dart_Port_DL port, char* operationID, char* config);
 extern void Login(char* operationID, char* userID, char* token);

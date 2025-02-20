@@ -35,9 +35,9 @@ void _listen(_PortModel channel) {
     case ListenerType.onTotalUnreadMessageCountChanged:
       OpenIMManager._onEvent((listener) => listener.onTotalUnreadMessageCountChanged(channel.errCode ?? 0));
       break;
-    case ListenerType.onConversationUserInputStatusChanged:
-      OpenIMManager._onEvent((listener) => listener.onConversationUserInputStatusChanged(channel.data));
-      break;
+    // case ListenerType.onConversationUserInputStatusChanged:
+    //   OpenIMManager._onEvent((listener) => listener.onConversationUserInputStatusChanged(channel.data));
+    //   break;
     case ListenerType.onProgress:
       OpenIMManager._onEvent((listener) => listener.onProgress(channel.data ?? '', channel.errCode ?? 0));
     case ListenerType.onRecvNewMessage:
@@ -128,36 +128,36 @@ void _listen(_PortModel channel) {
     case ListenerType.onFriendDeleted:
       OpenIMManager._onEvent((listener) => listener.onFriendDeleted(channel.data));
       break;
-    case ListenerType.onInvitationCancelled:
-      OpenIMManager._onEvent((listener) => listener.onInvitationCancelled(channel.data));
-      break;
-    case ListenerType.onInvitationTimeout:
-      OpenIMManager._onEvent((listener) => listener.onInvitationTimeout(channel.data));
-      break;
-    case ListenerType.onInviteeAccepted:
-      OpenIMManager._onEvent((listener) => listener.onInviteeAccepted(channel.data));
-      break;
-    case ListenerType.onInviteeRejected:
-      OpenIMManager._onEvent((listener) => listener.onInviteeRejected(channel.data));
-      break;
-    case ListenerType.onReceiveNewInvitation:
-      OpenIMManager._onEvent((listener) => listener.onReceiveNewInvitation(channel.data));
-      break;
-    case ListenerType.onInviteeAcceptedByOtherDevice:
-      OpenIMManager._onEvent((listener) => listener.onInviteeAcceptedByOtherDevice(channel.data));
-      break;
-    case ListenerType.onInviteeRejectedByOtherDevice:
-      OpenIMManager._onEvent((listener) => listener.onInviteeRejectedByOtherDevice(channel.data));
-      break;
-    case ListenerType.onHangUp:
-      OpenIMManager._onEvent((listener) => listener.onHangup(channel.data));
-      break;
-    case ListenerType.onRoomParticipantConnected:
-      OpenIMManager._onEvent((listener) => listener.onRoomParticipantConnected(channel.data));
-      break;
-    case ListenerType.onRoomParticipantDisconnected:
-      OpenIMManager._onEvent((listener) => listener.onRoomParticipantDisconnected(channel.data));
-      break;
+    // case ListenerType.onInvitationCancelled:
+    //   OpenIMManager._onEvent((listener) => listener.onInvitationCancelled(channel.data));
+    //   break;
+    // case ListenerType.onInvitationTimeout:
+    //   OpenIMManager._onEvent((listener) => listener.onInvitationTimeout(channel.data));
+    //   break;
+    // case ListenerType.onInviteeAccepted:
+    //   OpenIMManager._onEvent((listener) => listener.onInviteeAccepted(channel.data));
+    //   break;
+    // case ListenerType.onInviteeRejected:
+    //   OpenIMManager._onEvent((listener) => listener.onInviteeRejected(channel.data));
+    //   break;
+    // case ListenerType.onReceiveNewInvitation:
+    //   OpenIMManager._onEvent((listener) => listener.onReceiveNewInvitation(channel.data));
+    //   break;
+    // case ListenerType.onInviteeAcceptedByOtherDevice:
+    //   OpenIMManager._onEvent((listener) => listener.onInviteeAcceptedByOtherDevice(channel.data));
+    //   break;
+    // case ListenerType.onInviteeRejectedByOtherDevice:
+    //   OpenIMManager._onEvent((listener) => listener.onInviteeRejectedByOtherDevice(channel.data));
+    //   break;
+    // case ListenerType.onHangUp:
+    //   OpenIMManager._onEvent((listener) => listener.onHangup(channel.data));
+    //   break;
+    // case ListenerType.onRoomParticipantConnected:
+    //   OpenIMManager._onEvent((listener) => listener.onRoomParticipantConnected(channel.data));
+    //   break;
+    // case ListenerType.onRoomParticipantDisconnected:
+    //   OpenIMManager._onEvent((listener) => listener.onRoomParticipantDisconnected(channel.data));
+    //   break;
     // case ListenerType.onStreamChange:
     //   OpenIMManager._onEvent((listener) => listener.onStreamChangedEvent(channel.data));
     //   break;

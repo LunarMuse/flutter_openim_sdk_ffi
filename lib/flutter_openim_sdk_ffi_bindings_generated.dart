@@ -10648,7 +10648,7 @@ class FlutterOpenimSdkFfiBindings {
   late final _GetMultipleConversation = _GetMultipleConversationPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  GoString GetConversationIDBySessionType(
+  ffi.Pointer<ffi.Char> GetConversationIDBySessionType(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> sourceID,
     int sessionType,
@@ -10662,11 +10662,13 @@ class FlutterOpenimSdkFfiBindings {
 
   late final _GetConversationIDBySessionTypePtr = _lookup<
       ffi.NativeFunction<
-          GoString Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
               ffi.Int)>>('GetConversationIDBySessionType');
   late final _GetConversationIDBySessionType =
       _GetConversationIDBySessionTypePtr.asFunction<
-          GoString Function(
+          ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   void GetTotalUnreadMsgCount(
@@ -10912,6 +10914,57 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> CreateImageMessageFromFullPath(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> imageFullPath,
+  ) {
+    return _CreateImageMessageFromFullPath(
+      operationID,
+      imageFullPath,
+    );
+  }
+
+  late final _CreateImageMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessageFromFullPath');
+  late final _CreateImageMessageFromFullPath =
+      _CreateImageMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateImageMessageByURL(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> sourcePath,
+    ffi.Pointer<ffi.Char> sourcePicture,
+    ffi.Pointer<ffi.Char> bigPicture,
+    ffi.Pointer<ffi.Char> snapshotPicture,
+  ) {
+    return _CreateImageMessageByURL(
+      operationID,
+      sourcePath,
+      sourcePicture,
+      bigPicture,
+      snapshotPicture,
+    );
+  }
+
+  late final _CreateImageMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessageByURL');
+  late final _CreateImageMessageByURL = _CreateImageMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<ffi.Char> CreateForwardMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> m,
@@ -11048,6 +11101,38 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('SendMessage');
   late final _SendMessage = _SendMessagePtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void SendMessageNotOss(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> recvID,
+    ffi.Pointer<ffi.Char> groupID,
+    ffi.Pointer<ffi.Char> offlinePushInfo,
+  ) {
+    return _SendMessageNotOss(
+      operationID,
+      message,
+      recvID,
+      groupID,
+      offlinePushInfo,
+    );
+  }
+
+  late final _SendMessageNotOssPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SendMessageNotOss');
+  late final _SendMessageNotOss = _SendMessageNotOssPtr.asFunction<
       void Function(
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>,
@@ -11397,60 +11482,59 @@ class FlutterOpenimSdkFfiBindings {
 
   ffi.Pointer<ffi.Char> CreateImageMessage(
     ffi.Pointer<ffi.Char> operationID,
-    ffi.Pointer<ffi.Char> imageSourcePath,
-    ffi.Pointer<ffi.Char> sourcePicture,
-    ffi.Pointer<ffi.Char> bigPicture,
-    ffi.Pointer<ffi.Char> snapshotPicture,
+    ffi.Pointer<ffi.Char> imagePath,
   ) {
     return _CreateImageMessage(
       operationID,
-      imageSourcePath,
-      sourcePicture,
-      bigPicture,
-      snapshotPicture,
+      imagePath,
     );
   }
 
   late final _CreateImageMessagePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('CreateImageMessage');
   late final _CreateImageMessage = _CreateImageMessagePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateSoundMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> soundPath,
     int duration,
-    ffi.Pointer<ffi.Char> soundBaseInfo,
   ) {
     return _CreateSoundMessage(
       operationID,
       soundPath,
       duration,
-      soundBaseInfo,
     );
   }
 
   late final _CreateSoundMessagePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Int64,
-              ffi.Pointer<ffi.Char>)>>('CreateSoundMessage');
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int64)>>('CreateSoundMessage');
   late final _CreateSoundMessage = _CreateSoundMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  ffi.Pointer<ffi.Char> CreateSoundMessageByURL(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> soundBaseInfo,
+  ) {
+    return _CreateSoundMessageByURL(
+      operationID,
+      soundBaseInfo,
+    );
+  }
+
+  late final _CreateSoundMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateSoundMessageByURL');
+  late final _CreateSoundMessageByURL = _CreateSoundMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateVideoMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -11458,7 +11542,6 @@ class FlutterOpenimSdkFfiBindings {
     ffi.Pointer<ffi.Char> videoType,
     int duration,
     ffi.Pointer<ffi.Char> snapshotPath,
-    ffi.Pointer<ffi.Char> videoBaseInfo,
   ) {
     return _CreateVideoMessage(
       operationID,
@@ -11466,7 +11549,6 @@ class FlutterOpenimSdkFfiBindings {
       videoType,
       duration,
       snapshotPath,
-      videoBaseInfo,
     );
   }
 
@@ -11477,7 +11559,6 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Int64,
-              ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('CreateVideoMessage');
   late final _CreateVideoMessage = _CreateVideoMessagePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
@@ -11485,20 +11566,35 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>,
           int,
-          ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateVideoMessageByURL(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> videoBaseInfo,
+  ) {
+    return _CreateVideoMessageByURL(
+      operationID,
+      videoBaseInfo,
+    );
+  }
+
+  late final _CreateVideoMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageByURL');
+  late final _CreateVideoMessageByURL = _CreateVideoMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFileMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> filePath,
     ffi.Pointer<ffi.Char> fileName,
-    ffi.Pointer<ffi.Char> fileBaseInfo,
   ) {
     return _CreateFileMessage(
       operationID,
       filePath,
       fileName,
-      fileBaseInfo,
     );
   }
 
@@ -11507,14 +11603,10 @@ class FlutterOpenimSdkFfiBindings {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('CreateFileMessage');
   late final _CreateFileMessage = _CreateFileMessagePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateMergerMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -11583,6 +11675,103 @@ class FlutterOpenimSdkFfiBindings {
   late final _MarkMessagesAsReadByMsgID =
       _MarkMessagesAsReadByMsgIDPtr.asFunction<
           void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateFileMessageByURL(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> fileBaseInfo,
+  ) {
+    return _CreateFileMessageByURL(
+      operationID,
+      fileBaseInfo,
+    );
+  }
+
+  late final _CreateFileMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateFileMessageByURL');
+  late final _CreateFileMessageByURL = _CreateFileMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateFileMessageFromFullPath(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> fileFullPath,
+    ffi.Pointer<ffi.Char> fileName,
+  ) {
+    return _CreateFileMessageFromFullPath(
+      operationID,
+      fileFullPath,
+      fileName,
+    );
+  }
+
+  late final _CreateFileMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateFileMessageFromFullPath');
+  late final _CreateFileMessageFromFullPath =
+      _CreateFileMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> CreateSoundMessageFromFullPath(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> soundFullPath,
+    int duration,
+  ) {
+    return _CreateSoundMessageFromFullPath(
+      operationID,
+      soundFullPath,
+      duration,
+    );
+  }
+
+  late final _CreateSoundMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64)>>('CreateSoundMessageFromFullPath');
+  late final _CreateSoundMessageFromFullPath =
+      _CreateSoundMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  ffi.Pointer<ffi.Char> CreateVideoMessageFromFullPath(
+    ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> videoFullPath,
+    ffi.Pointer<ffi.Char> videoType,
+    int duration,
+    ffi.Pointer<ffi.Char> snapshotFullPath,
+  ) {
+    return _CreateVideoMessageFromFullPath(
+      operationID,
+      videoFullPath,
+      videoType,
+      duration,
+      snapshotFullPath,
+    );
+  }
+
+  late final _CreateVideoMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageFromFullPath');
+  late final _CreateVideoMessageFromFullPath =
+      _CreateVideoMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
               ffi.Pointer<ffi.Char>)>();
 
   void UploadFile(
@@ -12383,6 +12572,68 @@ class FlutterOpenimSdkFfiBindings {
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('QuitGroup');
   late final _QuitGroup = _QuitGroupPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void UploadLogs(
+    ffi.Pointer<ffi.Char> operationID,
+    int line,
+    ffi.Pointer<ffi.Char> ex,
+    ffi.Pointer<ffi.Char> uuid,
+  ) {
+    return _UploadLogs(
+      operationID,
+      line,
+      ex,
+      uuid,
+    );
+  }
+
+  late final _UploadLogsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UploadLogs');
+  late final _UploadLogs = _UploadLogsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  void Logs(
+    ffi.Pointer<ffi.Char> operationID,
+    int logLevel,
+    ffi.Pointer<ffi.Char> file,
+    int line,
+    ffi.Pointer<ffi.Char> msgs,
+    ffi.Pointer<ffi.Char> err,
+    ffi.Pointer<ffi.Char> keyAndValue,
+  ) {
+    return _Logs(
+      operationID,
+      logLevel,
+      file,
+      line,
+      msgs,
+      err,
+      keyAndValue,
+    );
+  }
+
+  late final _LogsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('Logs');
+  late final _Logs = _LogsPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          int,
+          ffi.Pointer<ffi.Char>,
+          int,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetSdkVersion() {
     return _GetSdkVersion();

@@ -1,5 +1,3 @@
-library flutter_openim_sdk_ffi;
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -21,6 +19,7 @@ part 'src/callback/_listen.dart';
 part 'src/callback/_listen_to_class.dart';
 part 'src/callback/_method.dart';
 part 'src/callback/_success.dart';
+
 /// enum
 part 'src/enum/_port_method.dart';
 part 'src/enum/conversation_type.dart';
@@ -33,8 +32,7 @@ part 'src/enum/listener_type.dart';
 part 'src/enum/message_status.dart';
 part 'src/enum/message_type.dart';
 part 'src/enum/sdk_error_code.dart';
-/// logger
-part 'src/logger.dart';
+
 /// manager
 part 'src/manager/im_conversation_manager.dart';
 part 'src/manager/im_friendship_manager.dart';
@@ -42,6 +40,7 @@ part 'src/manager/im_group_manager.dart';
 part 'src/manager/im_manager.dart';
 part 'src/manager/im_message_manager.dart';
 part 'src/manager/im_user_manager.dart';
+
 /// models
 part 'src/models/conversation_info.dart';
 part 'src/models/group_info.dart';
@@ -53,6 +52,7 @@ part 'src/models/search_info.dart';
 part 'src/models/set_group_member_info.dart';
 part 'src/models/update_req.dart';
 part 'src/models/user_info.dart';
+
 /// root
 part 'src/openim.dart';
 part 'src/openim_error.dart';
