@@ -44,6 +44,14 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 #line 1 "cgo-generated-wrapper"
 
+#line 3 "logs.go"
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#line 1 "cgo-generated-wrapper"
+
 #line 3 "openim_sdk_ffi.go"
 
 #include <stdio.h>
@@ -145,12 +153,15 @@ extern __declspec(dllexport) void GetInputStates(char* operationID, char* conver
 extern __declspec(dllexport) void DeleteConversationAndDeleteAllMsg(char* operationID, char* conversationID);
 extern __declspec(dllexport) char* CreateTextMessage(char* operationID, char* text);
 extern __declspec(dllexport) char* CreateTextAtMessage(char* operationID, char* text, char* atUserList, char* atUsersInfo, char* message);
+extern __declspec(dllexport) char* CreateImageMessageFromFullPath(char* operationID, char* imageFullPath);
+extern __declspec(dllexport) char* CreateImageMessageByURL(char* operationID, char* sourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
 extern __declspec(dllexport) char* CreateForwardMessage(char* operationID, char* m);
 extern __declspec(dllexport) char* CreateLocationMessage(char* operationID, char* description, double longitude, double latitude);
 extern __declspec(dllexport) char* CreateQuoteMessage(char* operationID, char* text, char* message);
 extern __declspec(dllexport) char* CreateCardMessage(char* operationID, char* cardInfo);
 extern __declspec(dllexport) char* CreateCustomMessage(char* operationID, char* data, char* extension, char* description);
 extern __declspec(dllexport) void SendMessage(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
+extern __declspec(dllexport) void SendMessageNotOss(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
 extern __declspec(dllexport) void TypingStatusUpdate(char* operationID, char* recvID, char* msgTip);
 extern __declspec(dllexport) void RevokeMessage(char* operationID, char* conversationID, char* clientMsgID);
 extern __declspec(dllexport) void DeleteMessage(char* operationID, char* conversationID, char* clientMsgID);
@@ -168,13 +179,19 @@ extern __declspec(dllexport) void SetMessageLocalEx(char* operationID, char* con
 extern __declspec(dllexport) char* GetAtAllTag(char* operationID);
 extern __declspec(dllexport) char* CreateAdvancedTextMessage(char* operationID, char* text, char* messageEntityList);
 extern __declspec(dllexport) char* CreateAdvancedQuoteMessage(char* operationID, char* text, char* message, char* messageEntityList);
-extern __declspec(dllexport) char* CreateImageMessage(char* operationID, char* imageSourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
-extern __declspec(dllexport) char* CreateSoundMessage(char* operationID, char* soundPath, int64_t duration, char* soundBaseInfo);
-extern __declspec(dllexport) char* CreateVideoMessage(char* operationID, char* videoPath, char* videoType, int64_t duration, char* snapshotPath, char* videoBaseInfo);
-extern __declspec(dllexport) char* CreateFileMessage(char* operationID, char* filePath, char* fileName, char* fileBaseInfo);
+extern __declspec(dllexport) char* CreateImageMessage(char* operationID, char* imagePath);
+extern __declspec(dllexport) char* CreateSoundMessage(char* operationID, char* soundPath, int64_t duration);
+extern __declspec(dllexport) char* CreateSoundMessageByURL(char* operationID, char* soundBaseInfo);
+extern __declspec(dllexport) char* CreateVideoMessage(char* operationID, char* videoPath, char* videoType, int64_t duration, char* snapshotPath);
+extern __declspec(dllexport) char* CreateVideoMessageByURL(char* operationID, char* videoBaseInfo);
+extern __declspec(dllexport) char* CreateFileMessage(char* operationID, char* filePath, char* fileName);
 extern __declspec(dllexport) char* CreateMergerMessage(char* operationID, char* messageList, char* title, char* summaryList);
 extern __declspec(dllexport) char* CreateFaceMessage(char* operationID, int index, char* data);
 extern __declspec(dllexport) void MarkMessagesAsReadByMsgID(char* operationID, char* conversationID, char* clientMsgIDs);
+extern __declspec(dllexport) char* CreateFileMessageByURL(char* operationID, char* fileBaseInfo);
+extern __declspec(dllexport) char* CreateFileMessageFromFullPath(char* operationID, char* fileFullPath, char* fileName);
+extern __declspec(dllexport) char* CreateSoundMessageFromFullPath(char* operationID, char* soundFullPath, int64_t duration);
+extern __declspec(dllexport) char* CreateVideoMessageFromFullPath(char* operationID, char* videoFullPath, char* videoType, int64_t duration, char* snapshotFullPath);
 extern __declspec(dllexport) void UploadFile(char* operationID, char* req, char* uuid);
 extern __declspec(dllexport) void AcceptFriendApplication(char* operationID, char* userIDHandleMsg);
 extern __declspec(dllexport) void AddBlack(char* operationID, char* blackUserID, char* ex);
@@ -217,6 +234,8 @@ extern __declspec(dllexport) void DismissGroup(char* operationID, char* groupID)
 extern __declspec(dllexport) void GetUsersInGroup(char* operationID, char* groupID, char* userIDList);
 extern __declspec(dllexport) void IsJoinGroup(char* operationID, char* groupID);
 extern __declspec(dllexport) void QuitGroup(char* operationID, char* groupID);
+extern __declspec(dllexport) void UploadLogs(char* operationID, int line, char* ex, char* uuid);
+extern __declspec(dllexport) void Logs(char* operationID, int logLevel, char* file, int line, char* msgs, char* err, char* keyAndValue);
 extern __declspec(dllexport) char* GetSdkVersion();
 extern __declspec(dllexport) _Bool InitSDK(Openim_Listener imListener, Dart_Port_DL port, char* operationID, char* config);
 extern __declspec(dllexport) void Login(char* operationID, char* userID, char* token);

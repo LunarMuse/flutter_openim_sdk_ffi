@@ -53,7 +53,7 @@ class IMManager {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.login,
-      data: {'operationID': IMUtils.checkOperationID(operationID), 'uid': userID, 'token': token},
+      data: {'operationID': IMUtils.checkOperationID(operationID), 'userID': userID, 'token': token},
       sendPort: receivePort.sendPort,
     ));
     _PortResult result = await receivePort.first;
