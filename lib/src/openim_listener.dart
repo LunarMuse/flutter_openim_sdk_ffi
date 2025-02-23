@@ -104,11 +104,13 @@ mixin OpenIMListener {
   /// 有新会话产生
   void onNewConversation(List<ConversationInfo> list) {}
 
-  void onSyncServerFailed() {}
+  void onSyncServerFailed(bool reinstalled) {}
 
-  void onSyncServerFinish() {}
+  void onSyncServerFinish(bool reinstalled) {}
 
-  void onSyncServerStart() {}
+  void onSyncServerStart(bool reinstalled) {}
+
+  void onSyncServerProgress(int progress) {}
 
   /// 未读消息总数发送改变
   void onTotalUnreadMessageCountChanged(int i) {}

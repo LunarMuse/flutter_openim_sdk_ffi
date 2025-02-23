@@ -142,10 +142,10 @@ class ConversationInfo {
   }
 
   // Check if it's a single chat
-  bool get isSingleChat => conversationType == ConversationType.single;
+  bool get isSingleChat => conversationType == ConversationType.single.rawValue;
 
   // Check if it's a group chat
-  bool get isGroupChat => conversationType == ConversationType.group || conversationType == ConversationType.superGroup;
+  bool get isGroupChat => conversationType == ConversationType.group.rawValue || conversationType == ConversationType.superGroup.rawValue;
 
   // Check if it's a valid conversation (not in a group if isNotInGroup is true)
   bool get isValid => isSingleChat || (isGroupChat && !isNotInGroup!);

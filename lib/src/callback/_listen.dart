@@ -1,6 +1,7 @@
 part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listen(_PortModel channel) {
+  print(channel.toJson());
   switch (channel.method) {
     case ListenerType.onConnectFailed:
       OpenIMManager._onEvent((listener) => listener.onConnectFailed(channel.errCode, ''));
@@ -18,13 +19,16 @@ void _listen(_PortModel channel) {
       OpenIMManager._onEvent((listener) => listener.onUserTokenExpired());
       break;
     case ListenerType.onSyncServerStart:
-      OpenIMManager._onEvent((listener) => listener.onSyncServerStart());
+      OpenIMManager._onEvent((listener) => listener.onSyncServerStart(channel.errCode));
+      break;
+    case ListenerType.onSyncServerProgress:
+      OpenIMManager._onEvent((listener) => listener.onSyncServerProgress(channel.errCode));
       break;
     case ListenerType.onSyncServerFinish:
-      OpenIMManager._onEvent((listener) => listener.onSyncServerFinish());
+      OpenIMManager._onEvent((listener) => listener.onSyncServerFinish(channel.errCode));
       break;
     case ListenerType.onSyncServerFailed:
-      OpenIMManager._onEvent((listener) => listener.onSyncServerFailed());
+      OpenIMManager._onEvent((listener) => listener.onSyncServerFailed(channel.errCode));
       break;
     case ListenerType.onNewConversation:
       OpenIMManager._onEvent((listener) => listener.onNewConversation(channel.data));

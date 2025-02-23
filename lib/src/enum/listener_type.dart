@@ -41,6 +41,7 @@ class ListenerType {
 
   /// OnConversationListener
   static const String onSyncServerStart = 'OnSyncServerStart';
+  static const String onSyncServerProgress = 'OnSyncServerProgress';
   static const String onSyncServerFinish = 'OnSyncServerFinish';
   static const String onSyncServerFailed = 'OnSyncServerFailed';
   static const String onNewConversation = 'OnNewConversation';
