@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class UserInfo {
   /// User ID
@@ -50,16 +50,16 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userID': userID,
-      'nickname': nickname,
-      'faceURL': faceURL,
-      'remark': remark,
-      'ex': ex,
-      'createTime': createTime,
-      'globalRecvMsgOpt': globalRecvMsgOpt,
-      'appMangerLevel': appMangerLevel,
-    };
+    final data = <String, dynamic>{};
+    data['appMangerLevel'] = appMangerLevel;
+    data['userID'] = userID;
+    data['nickname'] = nickname;
+    data['faceURL'] = faceURL;
+    data['ex'] = ex;
+    data['createTime'] = createTime;
+    data['remark'] = remark;
+    data['globalRecvMsgOpt'] = globalRecvMsgOpt;
+    return data;
   }
 
   String getShowName() => _isNull(remark) ?? _isNull(nickname) ?? userID!;
@@ -74,47 +74,6 @@ class UserInfo {
 
   @override
   int get hashCode => userID.hashCode;
-}
-
-class FullUserInfo {
-  /// User's public information
-  PublicUserInfo? publicInfo;
-
-  /// Information visible only to friends
-  FriendInfo? friendInfo;
-
-  /// Blacklist information
-  BlacklistInfo? blackInfo;
-
-  FullUserInfo.fromJson(Map<String, dynamic> json) {
-    publicInfo = json['publicInfo'] != null ? PublicUserInfo.fromJson(json['publicInfo']) : null;
-    friendInfo = json['friendInfo'] != null ? FriendInfo.fromJson(json['friendInfo']) : null;
-    blackInfo = json['blackInfo'] != null ? BlacklistInfo.fromJson(json['blackInfo']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'publicInfo': publicInfo?.toJson(),
-      'friendInfo': friendInfo?.toJson(),
-      'blackInfo': blackInfo?.toJson(),
-    };
-  }
-
-  String get userID {
-    return publicInfo?.userID ?? friendInfo?.userID ?? blackInfo?.userID ?? '';
-  }
-
-  String get nickname {
-    return publicInfo?.nickname ?? friendInfo?.nickname ?? blackInfo?.nickname ?? '';
-  }
-
-  String get faceURL {
-    return publicInfo?.faceURL ?? friendInfo?.faceURL ?? blackInfo?.faceURL ?? '';
-  }
-
-  String get showName {
-    return friendInfo?.nickname ?? nickname;
-  }
 }
 
 class PublicUserInfo {
@@ -152,13 +111,13 @@ class PublicUserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userID': userID,
-      'nickname': nickname,
-      'faceURL': faceURL,
-      'appManagerLevel': appManagerLevel,
-      'ex': ex,
-    };
+    final data = <String, dynamic>{};
+    data['userID'] = userID;
+    data['nickname'] = nickname;
+    data['faceURL'] = faceURL;
+    data['appMangerLevel'] = appManagerLevel;
+    data['ex'] = ex;
+    return data;
   }
 }
 
@@ -220,18 +179,18 @@ class FriendInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'ownerUserID': ownerUserID,
-      'userID': userID,
-      'remark': remark,
-      'createTime': createTime,
-      'addSource': addSource,
-      'operatorUserID': operatorUserID,
-      'nickname': nickname,
-      'faceURL': faceURL,
-      'friendUserID': friendUserID,
-      'ex': ex,
-    };
+    final data = <String, dynamic>{};
+    data['ownerUserID'] = ownerUserID;
+    data['userID'] = userID;
+    data['remark'] = remark;
+    data['createTime'] = createTime;
+    data['addSource'] = addSource;
+    data['operatorUserID'] = operatorUserID;
+    data['nickname'] = nickname;
+    data['faceURL'] = faceURL;
+    data['friendUserID'] = friendUserID;
+    data['ex'] = ex;
+    return data;
   }
 
   String getShowName() => _isNull(remark) ?? _isNull(nickname) ?? userID!;
@@ -300,18 +259,18 @@ class BlacklistInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      "ownerUserID": ownerUserID,
-      "blockUserID": blockUserID,
-      "userID": userID,
-      "nickname": nickname,
-      "faceURL": faceURL,
-      "gender": gender,
-      "createTime": createTime,
-      "addSource": addSource,
-      "operatorUserID": operatorUserID,
-      "ex": ex,
-    };
+    final data = <String, dynamic>{};
+    data['ownerUserID'] = ownerUserID;
+    data['blockUserID'] = blockUserID;
+    data['userID'] = userID;
+    data['nickname'] = nickname;
+    data['faceURL'] = faceURL;
+    data['gender'] = gender;
+    data['createTime'] = createTime;
+    data['addSource'] = addSource;
+    data['operatorUserID'] = operatorUserID;
+    data['ex'] = ex;
+    return data;
   }
 }
 
@@ -330,58 +289,42 @@ class FriendshipInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      "userID": userID,
-      "result": result,
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userID'] = userID;
+    data['result'] = result;
+    return data;
   }
 }
 
 class FriendApplicationInfo {
   /// Initiator user ID
-  ///
-  /// 添加者ID
   String? fromUserID;
 
   /// Initiator user nickname
   String? fromNickname;
 
   /// Initiator user profile picture
-  ///
-  /// 添加者头像
   String? fromFaceURL;
 
   /// Recipient user ID
-  ///
-  /// 被添加者ID
   String? toUserID;
 
   /// Recipient user nickname
-  ///
-  /// 被添加者昵称
   String? toNickname;
 
   /// Recipient user profile picture
-  ///
-  /// 被添加者头像
   String? toFaceURL;
 
   /// Handling result
-  ///
-  /// 处理结果（1 同意  -1 拒绝  0 未处理）
   int? handleResult;
 
   /// Request message
-  ///
-  /// 申请添加好友时附带的消息
   String? reqMsg;
 
   /// Creation time
   int? createTime;
 
   /// Handler user ID
-  ///
-  /// 处理者ID
   String? handlerUserID;
 
   /// Handling remark
@@ -412,20 +355,21 @@ class FriendApplicationInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'fromUserID': fromUserID,
-      'fromNickname': fromNickname,
-      'fromFaceURL': fromFaceURL,
-      'toUserID': toUserID,
-      'toNickname': toNickname,
-      'toFaceURL': toFaceURL,
-      'handleResult': handleResult,
-      'reqMsg': reqMsg,
-      'createTime': createTime,
-      'handlerUserID': handlerUserID,
-      'handleMsg': handleMsg,
-      'handleTime': handleTime,
-    };
+    final data = <String, dynamic>{};
+    data['fromUserID'] = fromUserID;
+    data['fromNickname'] = fromNickname;
+    data['fromFaceURL'] = fromFaceURL;
+    data['toUserID'] = toUserID;
+    data['toNickname'] = toNickname;
+    data['toFaceURL'] = toFaceURL;
+    data['handleResult'] = handleResult;
+    data['reqMsg'] = reqMsg;
+    data['createTime'] = createTime;
+    data['handlerUserID'] = handlerUserID;
+    data['handleMsg'] = handleMsg;
+    data['handleTime'] = handleTime;
+    data['ex'] = ex;
+    return data;
   }
 
   /// Waiting to be processed
@@ -461,10 +405,10 @@ class UserStatusInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userID': userID,
-      'status': status,
-      'platformIDs': platformIDs == null ? [] : List<dynamic>.from(platformIDs!.map((x) => x)),
-    };
+    final data = <String, dynamic>{};
+    data['userID'] = userID;
+    data['status'] = status;
+    data['platformIDs'] = List<dynamic>.from(platformIDs!.map((x) => x));
+    return data;
   }
 }

@@ -1,6 +1,6 @@
 name: flutter_openim_sdk_ffi
 description: openim_sdk in flutter by ffi
-version: 0.0.1-alpha.3
+version: 3.8.3-alpha.1
 homepage: https://github.com/Spicely/flutter_openim_sdk_ffi
 
 environment:
@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: 
-  ffi:
-  path_provider: 
-  uuid:
+  ffi: ^2.1.4
+  path_provider: ^2.1.5
+  uuid: ^4.5.1
 
 dev_dependencies:
   ffigen: 

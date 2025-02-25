@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 /// Group Information
 class GroupInfo {
@@ -93,29 +93,29 @@ class GroupInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'groupID': groupID,
-      'groupName': groupName,
-      'notification': notification,
-      'introduction': introduction,
-      'faceURL': faceURL,
-      'ownerUserID': ownerUserID,
-      'createTime': createTime,
-      'memberCount': memberCount,
-      'status': status,
-      'creatorUserID': creatorUserID,
-      'groupType': groupType,
-      'ex': ex,
-      'needVerification': needVerification,
-      'lookMemberInfo': lookMemberInfo,
-      'applyMemberFriend': applyMemberFriend,
-      'notificationUpdateTime': notificationUpdateTime,
-      'notificationUserID': notificationUserID,
-    };
+    final data = <String, dynamic>{};
+    data['groupID'] = groupID;
+    data['groupName'] = groupName;
+    data['notification'] = notification;
+    data['introduction'] = introduction;
+    data['faceURL'] = faceURL;
+    data['ownerUserID'] = ownerUserID;
+    data['createTime'] = createTime;
+    data['memberCount'] = memberCount;
+    data['status'] = status;
+    data['creatorUserID'] = creatorUserID;
+    data['groupType'] = groupType;
+    data['ex'] = ex;
+    data['needVerification'] = needVerification;
+    data['lookMemberInfo'] = lookMemberInfo;
+    data['applyMemberFriend'] = applyMemberFriend;
+    data['notificationUpdateTime'] = notificationUpdateTime;
+    data['notificationUserID'] = notificationUserID;
+    return data;
   }
 
   /// Corresponding Conversation Type for Group Type
-  int get sessionType => groupType == GroupType.general ? ConversationType.group : ConversationType.superGroup;
+  int get sessionType => groupType == GroupType.general ? ConversationType.group.rawValue : ConversationType.superGroup.rawValue;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GroupInfo && runtimeType == other.runtimeType && groupID == other.groupID;
@@ -193,20 +193,20 @@ class GroupMembersInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'groupID': groupID,
-      'userID': userID,
-      'roleLevel': roleLevel,
-      'joinTime': joinTime,
-      'nickname': nickname,
-      'faceURL': faceURL,
-      'ex': ex,
-      'joinSource': joinSource,
-      'operatorUserID': operatorUserID,
-      'muteEndTime': muteEndTime,
-      'appManagerLevel': appManagerLevel,
-      'inviterUserID': inviterUserID,
-    };
+    final data = <String, dynamic>{};
+    data['groupID'] = groupID;
+    data['userID'] = userID;
+    data['roleLevel'] = roleLevel;
+    data['joinTime'] = joinTime;
+    data['nickname'] = nickname;
+    data['faceURL'] = faceURL;
+    data['ex'] = ex;
+    data['joinSource'] = joinSource;
+    data['operatorUserID'] = operatorUserID;
+    data['muteEndTime'] = muteEndTime;
+    data['appManagerLevel'] = appManagerLevel;
+    data['inviterUserID'] = inviterUserID;
+    return data;
   }
 
   @override
@@ -232,10 +232,10 @@ class GroupMemberRole {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userID': userID,
-      'roleLevel': roleLevel,
-    };
+    final data = <String, dynamic>{};
+    data['userID'] = userID;
+    data['roleLevel'] = roleLevel;
+    return data;
   }
 }
 
@@ -368,32 +368,32 @@ class GroupApplicationInfo {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'groupID': groupID,
-      'groupName': groupName,
-      'notification': notification,
-      'introduction': introduction,
-      'groupFaceURL': groupFaceURL,
-      'createTime': createTime,
-      'status': status,
-      'creatorUserID': creatorUserID,
-      'groupType': groupType,
-      'ownerUserID': ownerUserID,
-      'memberCount': memberCount,
-      'userID': userID,
-      'nickname': nickname,
-      'userFaceURL': userFaceURL,
-      'gender': gender,
-      'handleResult': handleResult,
-      'reqMsg': reqMsg,
-      'handledMsg': handledMsg,
-      'reqTime': reqTime,
-      'handleUserID': handleUserID,
-      'handledTime': handledTime,
-      'ex': ex,
-      'inviterUserID': inviterUserID,
-      'joinSource': joinSource,
-    };
+    final data = <String, dynamic>{};
+    data['groupID'] = groupID;
+    data['groupName'] = groupName;
+    data['notification'] = notification;
+    data['introduction'] = introduction;
+    data['groupFaceURL'] = groupFaceURL;
+    data['createTime'] = createTime;
+    data['status'] = status;
+    data['creatorUserID'] = creatorUserID;
+    data['groupType'] = groupType;
+    data['ownerUserID'] = ownerUserID;
+    data['memberCount'] = memberCount;
+    data['userID'] = userID;
+    data['nickname'] = nickname;
+    data['userFaceURL'] = userFaceURL;
+    data['gender'] = gender;
+    data['handleResult'] = handleResult;
+    data['reqMsg'] = reqMsg;
+    data['handledMsg'] = handledMsg;
+    data['reqTime'] = reqTime;
+    data['handleUserID'] = handleUserID;
+    data['handledTime'] = handledTime;
+    data['ex'] = ex;
+    data['inviterUserID'] = inviterUserID;
+    data['joinSource'] = joinSource;
+    return data;
   }
 }
 
@@ -410,9 +410,9 @@ class GroupInviteResult {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userID': userID,
-      'result': result,
-    };
+    final data = <String, dynamic>{};
+    data['userID'] = userID;
+    data['result'] = result;
+    return data;
   }
 }

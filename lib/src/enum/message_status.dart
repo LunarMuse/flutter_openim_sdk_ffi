@@ -1,16 +1,22 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
-/// 消息发送状态
-class MessageStatus {
-  /// 发送中
-  static const sending = 1;
+/// Message Send Status
+enum MessageStatus {
+  sending(1),
+  succeeded(2),
+  failed(3),
+  deleted(4);
 
-  /// 已发送成功
-  static const succeeded = 2;
+  final int rawValue;
 
-  ///  发送失败
-  static const failed = 3;
+  const MessageStatus(this.rawValue);
+}
 
-  /// 已经删除
-  static const deleted = 4;
+enum GetHistoryViewType {
+  history(0),
+  search(1);
+
+  final int rawValue;
+
+  const GetHistoryViewType(this.rawValue);
 }

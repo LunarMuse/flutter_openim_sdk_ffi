@@ -9,7 +9,7 @@ class OpenIMManager {
   /// 获取线程里的通信端口
   static SendPort get _sendPort => _imManager.isolatePort;
 
-  static int getIMPlatform() {
+  static IMPlatform getIMPlatform() {
     if (kIsWeb) {
       return IMPlatform.web;
     }
@@ -117,7 +117,7 @@ class OpenIMManager {
           dataDir = document.path;
         }
         String config = jsonEncode({
-          'platformID': getIMPlatform(),
+          'platformID': getIMPlatform().rawValue,
           'apiAddr': data.apiAddr,
           'wsAddr': data.wsAddr,
           'dataDir': dataDir,

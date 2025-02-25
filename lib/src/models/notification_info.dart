@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 /// OA notification
 class OANotification {
@@ -55,26 +55,26 @@ class OANotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['notificationName'] = this.notificationName;
-    data['notificationFaceURL'] = this.notificationFaceURL;
-    data['notificationType'] = this.notificationType;
-    data['text'] = this.text;
-    data['externalUrl'] = this.externalUrl;
-    data['mixType'] = this.mixType;
-    if (this.pictureElem != null) {
-      data['pictureElem'] = this.pictureElem!.toJson();
+    final data = <String, dynamic>{};
+    data['notificationName'] = notificationName;
+    data['notificationFaceURL'] = notificationFaceURL;
+    data['notificationType'] = notificationType;
+    data['text'] = text;
+    data['externalUrl'] = externalUrl;
+    data['mixType'] = mixType;
+    if (pictureElem != null) {
+      data['pictureElem'] = pictureElem!.toJson();
     }
-    if (this.soundElem != null) {
-      data['soundElem'] = this.soundElem!.toJson();
+    if (soundElem != null) {
+      data['soundElem'] = soundElem!.toJson();
     }
-    if (this.videoElem != null) {
-      data['videoElem'] = this.videoElem!.toJson();
+    if (videoElem != null) {
+      data['videoElem'] = videoElem!.toJson();
     }
-    if (this.fileElem != null) {
-      data['fileElem'] = this.fileElem!.toJson();
+    if (fileElem != null) {
+      data['fileElem'] = fileElem!.toJson();
     }
-    data['ex'] = this.ex;
+    data['ex'] = ex;
     return data;
   }
 }
@@ -113,18 +113,18 @@ class GroupNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.groupOwnerUser != null) {
-      data['groupOwnerUser'] = this.groupOwnerUser!.toJson();
+    if (groupOwnerUser != null) {
+      data['groupOwnerUser'] = groupOwnerUser!.toJson();
     }
-    if (this.memberList != null) {
-      data['memberList'] = this.memberList!.map((v) => v.toJson()).toList();
+    if (memberList != null) {
+      data['memberList'] = memberList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -155,15 +155,15 @@ class InvitedJoinGroupNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.invitedUserList != null) {
-      data['invitedUserList'] = this.invitedUserList!.map((v) => v.toJson()).toList();
+    if (invitedUserList != null) {
+      data['invitedUserList'] = invitedUserList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -194,15 +194,15 @@ class KickedGroupMemeberNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.kickedUserList != null) {
-      data['kickedUserList'] = this.kickedUserList!.map((v) => v.toJson()).toList();
+    if (kickedUserList != null) {
+      data['kickedUserList'] = kickedUserList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -224,12 +224,12 @@ class QuitGroupNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.quitUser != null) {
-      data['quitUser'] = this.quitUser!.toJson();
+    if (quitUser != null) {
+      data['quitUser'] = quitUser!.toJson();
     }
     return data;
   }
@@ -251,12 +251,12 @@ class EnterGroupNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.entrantUser != null) {
-      data['quitUser'] = this.entrantUser!.toJson();
+    if (entrantUser != null) {
+      data['quitUser'] = entrantUser!.toJson();
     }
     return data;
   }
@@ -286,15 +286,15 @@ class GroupRightsTransferNoticication {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.newGroupOwner != null) {
-      data['newGroupOwner'] = this.newGroupOwner!.toJson();
+    if (newGroupOwner != null) {
+      data['newGroupOwner'] = newGroupOwner!.toJson();
     }
     return data;
   }
@@ -329,17 +329,17 @@ class MuteMemberNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.mutedUser != null) {
-      data['mutedUser'] = this.mutedUser!.toJson();
+    if (mutedUser != null) {
+      data['mutedUser'] = mutedUser!.toJson();
     }
-    data['mutedSeconds'] = this.mutedSeconds;
+    data['mutedSeconds'] = mutedSeconds;
     return data;
   }
 }
@@ -364,10 +364,10 @@ class BurnAfterReadingNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['recvID'] = this.recvID;
-    data['sendID'] = this.sendID;
-    data['isPrivate'] = this.isPrivate;
+    final data = <String, dynamic>{};
+    data['recvID'] = recvID;
+    data['sendID'] = sendID;
+    data['isPrivate'] = isPrivate;
     return data;
   }
 }
@@ -396,15 +396,15 @@ class GroupMemberInfoChangedNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    if (this.group != null) {
-      data['group'] = this.group!.toJson();
+    final data = <String, dynamic>{};
+    if (group != null) {
+      data['group'] = group!.toJson();
     }
-    if (this.opUser != null) {
-      data['opUser'] = this.opUser!.toJson();
+    if (opUser != null) {
+      data['opUser'] = opUser!.toJson();
     }
-    if (this.changedUser != null) {
-      data['changedUser'] = this.changedUser!.toJson();
+    if (changedUser != null) {
+      data['changedUser'] = changedUser!.toJson();
     }
     return data;
   }

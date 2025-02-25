@@ -1,16 +1,13 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 /// 会话类型
-class ConversationType {
-  /// 单聊
-  static const single = 1;
+enum ConversationType {
+  single(1),
+  group(2),
+  superGroup(3),
+  notification(4);
 
-  /// 群
-  static const group = 2;
+  final int rawValue;
 
-  /// 大群
-  static const superGroup = 3;
-
-  /// 通知
-  static const notification = 4;
+  const ConversationType(this.rawValue);
 }

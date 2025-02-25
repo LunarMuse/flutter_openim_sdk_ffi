@@ -1,4 +1,4 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class IMManager {
   late ConversationManager conversationManager;
@@ -6,10 +6,6 @@ class IMManager {
   late MessageManager messageManager;
   late GroupManager groupManager;
   late UserManager userManager;
-
-  // late OfflinePushManager offlinePushManager;
-  late SignalingManager signalingManager;
-  late OrganizationManager organizationManager;
 
   String? uid;
 
@@ -24,9 +20,6 @@ class IMManager {
     messageManager = MessageManager();
     groupManager = GroupManager();
     userManager = UserManager();
-    // offlinePushManager = OfflinePushManager(_channel);
-    signalingManager = SignalingManager();
-    organizationManager = OrganizationManager();
   }
 
   /// 反初始化SDK
@@ -60,7 +53,7 @@ class IMManager {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.login,
-      data: {'operationID': IMUtils.checkOperationID(operationID), 'uid': userID, 'token': token},
+      data: {'operationID': IMUtils.checkOperationID(operationID), 'userID': userID, 'token': token},
       sendPort: receivePort.sendPort,
     ));
     _PortResult result = await receivePort.first;

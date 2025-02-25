@@ -32,10 +32,19 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #line 1 "cgo-generated-wrapper"
 
 #line 3 "group.go"
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#line 1 "cgo-generated-wrapper"
+
+#line 3 "logs.go"
 
 #include <stdio.h>
 #include <stdint.h>
@@ -130,107 +139,103 @@ extern void GetAllConversationList(char* operationID);
 extern void GetConversationListSplit(char* operationID, int offset, int count);
 extern void GetOneConversation(char* operationID, int32_t sessionType, char* sourceID);
 extern void GetMultipleConversation(char* operationID, char* conversationIDList);
-extern void SetGlobalRecvMessageOpt(char* operationID, int opt);
-extern void SetConversationMsgDestructTime(char* operationID, char* conversationID, int64_t msgDestructTime);
-extern void SetConversationIsMsgDestruct(char* operationID, char* conversationID, _Bool isMsgDestruct);
-extern void HideConversation(char* operationID, char* conversationID);
-extern void GetConversationRecvMessageOpt(char* operationID, char* conversationIDList);
-extern void SetConversationDraft(char* operationID, char* conversationID, char* draftText);
-extern void ResetConversationGroupAtType(char* operationID, char* conversationID);
-extern void PinConversation(char* operationID, char* conversationID, _Bool isPinned);
-extern void SetConversationPrivateChat(char* operationID, char* conversationID, _Bool isPrivate);
-extern void SetConversationBurnDuration(char* operationID, char* conversationID, int32_t duration);
-extern void SetConversationRecvMessageOpt(char* operationID, char* conversationID, int opt);
+extern char* GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
 extern void GetTotalUnreadMsgCount(char* operationID);
+extern void MarkConversationMessageAsRead(char* operationID, char* conversationID);
+extern void MarkAllConversationMessageAsRead(char* operationID);
+extern void SetConversation(char* operationID, char* conversationID, char* draftText);
+extern void SetConversationDraft(char* operationID, char* conversationID, char* draftText);
+extern void HideConversation(char* operationID, char* conversationID);
+extern void ChangeInputStates(char* operationID, char* conversationID, _Bool focus);
+extern void HideAllConversations(char* operationID);
+extern void ClearConversationAndDeleteAllMsg(char* operationID, char* conversationID);
+extern void GetInputStates(char* operationID, char* conversationID, char* userID);
+extern void DeleteConversationAndDeleteAllMsg(char* operationID, char* conversationID);
+extern char* CreateTextMessage(char* operationID, char* text);
+extern char* CreateTextAtMessage(char* operationID, char* text, char* atUserList, char* atUsersInfo, char* message);
+extern char* CreateImageMessageFromFullPath(char* operationID, char* imageFullPath);
+extern char* CreateImageMessageByURL(char* operationID, char* sourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
+extern char* CreateForwardMessage(char* operationID, char* m);
+extern char* CreateLocationMessage(char* operationID, char* description, double longitude, double latitude);
+extern char* CreateQuoteMessage(char* operationID, char* text, char* message);
+extern char* CreateCardMessage(char* operationID, char* cardInfo);
+extern char* CreateCustomMessage(char* operationID, char* data, char* extension, char* description);
+extern void SendMessage(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
+extern void SendMessageNotOss(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
+extern void TypingStatusUpdate(char* operationID, char* recvID, char* msgTip);
+extern void RevokeMessage(char* operationID, char* conversationID, char* clientMsgID);
+extern void DeleteMessage(char* operationID, char* conversationID, char* clientMsgID);
+extern void DeleteMessageFromLocalStorage(char* operationID, char* conversationID, char* clientMsgID);
+extern void DeleteAllMsgFromLocal(char* operationID);
+extern void DeleteAllMsgFromLocalAndSvr(char* operationID);
+extern void SearchLocalMessages(char* operationID, char* searchParam);
+extern void GetAdvancedHistoryMessageList(char* operationID, char* getMessageOptions);
+extern void GetAdvancedHistoryMessageListReverse(char* operationID, char* getMessageOptions);
+extern void FindMessageList(char* operationID, char* findMessageOptions);
+extern void InsertGroupMessageToLocalStorage(char* operationID, char* message, char* groupID, char* sendID);
+extern void InsertSingleMessageToLocalStorage(char* operationID, char* message, char* recvID, char* sendID);
+extern void SearchConversation(char* operationID, char* searchParam);
+extern void SetMessageLocalEx(char* operationID, char* conversationID, char* clientMsgID, char* localEx);
 extern char* GetAtAllTag(char* operationID);
 extern char* CreateAdvancedTextMessage(char* operationID, char* text, char* messageEntityList);
-extern char* CreateTextAtMessage(char* operationID, char* text, char* atUserList, char* atUsersInfo, char* message);
-extern char* CreateTextMessage(char* operationID, char* text);
-extern char* CreateLocationMessage(char* operationID, char* description, double longitude, double latitude);
-extern char* CreateCustomMessage(char* operationID, char* data, char* extension, char* description);
-extern char* CreateQuoteMessage(char* operationID, char* text, char* message);
 extern char* CreateAdvancedQuoteMessage(char* operationID, char* text, char* message, char* messageEntityList);
-extern char* CreateCardMessage(char* operationID, char* cardInfo);
-extern char* CreateVideoMessageFromFullPath(char* operationID, char* videoFullPath, char* videoType, int64_t duration, char* snapshotFullPath);
-extern char* CreateImageMessageFromFullPath(char* operationID, char* imageFullPath);
-extern char* CreateSoundMessageFromFullPath(char* operationID, char* soundFullPath, int64_t duration);
-extern char* CreateFileMessageFromFullPath(char* operationID, char* fileFullPath, char* fileName);
 extern char* CreateImageMessage(char* operationID, char* imagePath);
-extern char* CreateImageMessageByURL(char* operationID, char* sourcePath, char* sourcePicture, char* bigPicture, char* snapshotPicture);
-extern char* CreateSoundMessageByURL(char* operationID, char* soundBaseInfo);
 extern char* CreateSoundMessage(char* operationID, char* soundPath, int64_t duration);
-extern char* CreateVideoMessageByURL(char* operationID, char* videoBaseInfo);
+extern char* CreateSoundMessageByURL(char* operationID, char* soundBaseInfo);
 extern char* CreateVideoMessage(char* operationID, char* videoPath, char* videoType, int64_t duration, char* snapshotPath);
-extern char* CreateFileMessageByURL(char* operationID, char* fileBaseInfo);
+extern char* CreateVideoMessageByURL(char* operationID, char* videoBaseInfo);
 extern char* CreateFileMessage(char* operationID, char* filePath, char* fileName);
 extern char* CreateMergerMessage(char* operationID, char* messageList, char* title, char* summaryList);
 extern char* CreateFaceMessage(char* operationID, int index, char* data);
-extern char* CreateForwardMessage(char* operationID, char* m);
-extern GoString GetConversationIDBySessionType(char* operationID, char* sourceID, int sessionType);
-extern void SendMessage(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
-extern void SendMessageNotOss(char* operationID, char* message, char* recvID, char* groupID, char* offlinePushInfo);
-extern void FindMessageList(char* operationID, char* findMessageOptions);
-extern void GetAdvancedHistoryMessageList(char* operationID, char* getMessageOptions);
-extern void GetAdvancedHistoryMessageListReverse(char* operationID, char* getMessageOptions);
-extern void RevokeMessage(char* operationID, char* conversationID, char* clientMsgID);
-extern void TypingStatusUpdate(char* operationID, char* recvID, char* msgTip);
-extern void MarkConversationMessageAsRead(char* operationID, char* conversationID);
 extern void MarkMessagesAsReadByMsgID(char* operationID, char* conversationID, char* clientMsgIDs);
-extern void DeleteMessageFromLocalStorage(char* operationID, char* conversationID, char* clientMsgID);
-extern void DeleteMessage(char* operationID, char* conversationID, char* clientMsgID);
-extern void DeleteAllMsgFromLocalAndSvr(char* operationID);
-extern void DeleteAllMsgFromLocal(char* operationID);
-extern void ClearConversationAndDeleteAllMsg(char* operationID, char* conversationID);
-extern void DeleteConversationAndDeleteAllMsg(char* operationID, char* conversationID);
-extern void InsertSingleMessageToLocalStorage(char* operationID, char* message, char* recvID, char* sendID);
-extern void InsertGroupMessageToLocalStorage(char* operationID, char* message, char* groupID, char* sendID);
-extern void SearchLocalMessages(char* operationID, char* searchParam);
-extern void SetMessageLocalEx(char* operationID, char* conversationID, char* clientMsgID, char* localEx);
+extern char* CreateFileMessageByURL(char* operationID, char* fileBaseInfo);
+extern char* CreateFileMessageFromFullPath(char* operationID, char* fileFullPath, char* fileName);
+extern char* CreateSoundMessageFromFullPath(char* operationID, char* soundFullPath, int64_t duration);
+extern char* CreateVideoMessageFromFullPath(char* operationID, char* videoFullPath, char* videoType, int64_t duration, char* snapshotFullPath);
 extern void UploadFile(char* operationID, char* req, char* uuid);
-extern void GetSpecifiedFriendsInfo(char* operationID, char* userIDList);
-extern void GetFriendList(char* operationID);
-extern void GetFriendListPage(char* operationID, int32_t offset, int32_t count);
-extern void SearchFriends(char* operationID, char* searchParam);
-extern void CheckFriend(char* operationID, char* userIDList);
-extern void AddFriend(char* operationID, char* userIDReqMsg);
-extern void SetFriendRemark(char* operationID, char* userIDRemark);
-extern void DeleteFriend(char* operationID, char* friendUserID);
-extern void GetFriendApplicationListAsRecipient(char* operationID);
-extern void GetFriendApplicationListAsApplicant(char* operationID);
 extern void AcceptFriendApplication(char* operationID, char* userIDHandleMsg);
-extern void RefuseFriendApplication(char* operationID, char* userIDHandleMsg);
 extern void AddBlack(char* operationID, char* blackUserID, char* ex);
+extern void AddFriend(char* operationID, char* userIDReqMsg);
+extern void CheckFriend(char* operationID, char* userIDList);
+extern void DeleteFriend(char* operationID, char* friendUserID);
 extern void GetBlackList(char* operationID);
+extern void GetFriendApplicationListAsApplicant(char* operationID);
+extern void GetFriendApplicationListAsRecipient(char* operationID);
+extern void GetFriendList(char* operationID, _Bool filterBlack);
+extern void GetFriendListPage(char* operationID, int32_t offset, int32_t count, _Bool filterBlack);
+extern void GetSpecifiedFriendsInfo(char* operationID, char* userIDList, _Bool filterBlack);
+extern void RefuseFriendApplication(char* operationID, char* userIDHandleMsg);
 extern void RemoveBlack(char* operationID, char* removeUserID);
+extern void SearchFriends(char* operationID, char* searchParam);
+extern void UpdateFriends(char* operationID, char* req);
 extern void CreateGroup(char* operationID, char* groupReqInfo);
 extern void JoinGroup(char* operationID, char* groupID, char* reqMsg, int32_t joinSource, char* ex);
-extern void QuitGroup(char* operationID, char* groupID);
-extern void DismissGroup(char* operationID, char* groupID);
-extern void ChangeGroupMute(char* operationID, char* groupID, _Bool isMute);
-extern void ChangeGroupMemberMute(char* operationID, char* groupID, char* userID, int mutedSeconds);
-extern void SetGroupMemberRoleLevel(char* operationID, char* groupID, char* userID, int roleLevel);
-extern void SetGroupMemberInfo(char* operationID, char* groupMemberInfo);
-extern void GetJoinedGroupList(char* operationID);
-extern void GetSpecifiedGroupsInfo(char* operationID, char* groupIDList);
-extern void SearchGroups(char* operationID, char* searchParam);
-extern void SetGroupInfo(char* operationID, char* groupInfo);
-extern void SetGroupVerification(char* operationID, char* groupID, int32_t verification);
-extern void SetGroupLookMemberInfo(char* operationID, char* groupID, int32_t rule);
-extern void SetGroupApplyMemberFriend(char* operationID, char* groupID, int32_t rule);
-extern void GetGroupMemberList(char* operationID, char* groupID, int32_t filter, int32_t offset, int32_t count);
-extern void GetGroupMemberOwnerAndAdmin(char* operationID, char* groupID);
-extern void GetGroupMemberListByJoinTimeFilter(char* operationID, char* groupID, int32_t offset, int32_t count, int64_t joinTimeBegin, int64_t joinTimeEnd, char* filterUserIDList);
-extern void GetSpecifiedGroupMembersInfo(char* operationID, char* groupID, char* userIDList);
-extern void KickGroupMember(char* operationID, char* groupID, char* reason, char* userIDList);
-extern void TransferGroupOwner(char* operationID, char* groupID, char* newOwnerUserID);
 extern void InviteUserToGroup(char* operationID, char* groupID, char* reason, char* userIDList);
+extern void GetJoinedGroupList(char* operationID);
+extern void getJoinedGroupListPage(char* operationID, int32_t offset, int32_t count);
+extern void SearchGroups(char* operationID, char* searchParam);
+extern void GetSpecifiedGroupsInfo(char* operationID, char* groupIDList);
+extern void SetGroupInfo(char* operationID, char* groupInfo);
 extern void GetGroupApplicationListAsRecipient(char* operationID);
 extern void GetGroupApplicationListAsApplicant(char* operationID);
 extern void AcceptGroupApplication(char* operationID, char* groupID, char* fromUserID, char* handleMsg);
 extern void RefuseGroupApplication(char* operationID, char* groupID, char* fromUserID, char* handleMsg);
-extern void SetGroupMemberNickname(char* operationID, char* groupID, char* userID, char* groupMemberNickname);
+extern void GetGroupMemberList(char* operationID, char* groupID, int32_t filter, int32_t offset, int32_t count);
+extern void GetSpecifiedGroupMembersInfo(char* operationID, char* groupID, char* userIDList);
 extern void SearchGroupMembers(char* operationID, char* searchParam);
+extern void SetGroupMemberInfo(char* operationID, char* groupMemberInfo);
+extern void GetGroupMemberOwnerAndAdmin(char* operationID, char* groupID);
+extern void GetGroupMemberListByJoinTimeFilter(char* operationID, char* groupID, int32_t offset, int32_t count, int64_t joinTimeBegin, int64_t joinTimeEnd, char* filterUserIDList);
+extern void KickGroupMember(char* operationID, char* groupID, char* reason, char* userIDList);
+extern void ChangeGroupMemberMute(char* operationID, char* groupID, char* userID, int mutedSeconds);
+extern void ChangeGroupMute(char* operationID, char* groupID, _Bool isMute);
+extern void TransferGroupOwner(char* operationID, char* groupID, char* newOwnerUserID);
+extern void DismissGroup(char* operationID, char* groupID);
+extern void GetUsersInGroup(char* operationID, char* groupID, char* userIDList);
 extern void IsJoinGroup(char* operationID, char* groupID);
+extern void QuitGroup(char* operationID, char* groupID);
+extern void UploadLogs(char* operationID, int line, char* ex, char* uuid);
+extern void Logs(char* operationID, int logLevel, char* file, int line, char* msgs, char* err, char* keyAndValue);
 extern char* GetSdkVersion();
 extern _Bool InitSDK(Openim_Listener imListener, Dart_Port_DL port, char* operationID, char* config);
 extern void Login(char* operationID, char* userID, char* token);
@@ -245,7 +250,9 @@ extern void GetUsersInfo(char* operationID, char* userIDList);
 extern void GetUsersInfoFromSrv(char* operationID, char* userIDList);
 extern void SetSelfInfo(char* operationID, char* userInfo);
 extern void GetSelfUserInfo(char* operationID);
-extern void UpdateMsgSenderInfo(char* operationID, char* nickname, char* faceURL);
+extern void SubscribeUsersStatus(char* operationID, char* userIDs);
+extern void UnsubscribeUsersStatus(char* operationID, char* userIDs);
+extern void GetSubscribeUsersStatus(char* operationID);
 
 #ifdef __cplusplus
 }

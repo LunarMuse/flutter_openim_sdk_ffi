@@ -1,6 +1,4 @@
-// ignore_for_file: file_names
-
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
   switch (data.method) {
@@ -69,22 +67,22 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = IMUtils.toList(data.data, (map) => map);
       task.sendPort.send(data);
       break;
-    case ListenerType.onInvitationCancelled:
-    case ListenerType.onInvitationTimeout:
-    case ListenerType.onInviteeAccepted:
-    case ListenerType.onInviteeRejected:
-    case ListenerType.onReceiveNewInvitation:
-    case ListenerType.onInviteeAcceptedByOtherDevice:
-    case ListenerType.onInviteeRejectedByOtherDevice:
-    case ListenerType.onHangUp:
-      data.data = IMUtils.toList(data.data, (map) => SignalingInfo.fromJson(map));
-      task.sendPort.send(data);
-      break;
-    case ListenerType.onRoomParticipantConnected:
-    case ListenerType.onRoomParticipantDisconnected:
-      data.data = IMUtils.toObj(data.data, (map) => RoomCallingInfo.fromJson(map));
-      task.sendPort.send(data);
-      break;
+    // case ListenerType.onInvitationCancelled:
+    // case ListenerType.onInvitationTimeout:
+    // case ListenerType.onInviteeAccepted:
+    // case ListenerType.onInviteeRejected:
+    // case ListenerType.onReceiveNewInvitation:
+    // case ListenerType.onInviteeAcceptedByOtherDevice:
+    // case ListenerType.onInviteeRejectedByOtherDevice:
+    // case ListenerType.onHangUp:
+    //   data.data = IMUtils.toList(data.data, (map) => SignalingInfo.fromJson(map));
+    //   task.sendPort.send(data);
+    //   break;
+    // case ListenerType.onRoomParticipantConnected:
+    // case ListenerType.onRoomParticipantDisconnected:
+    //   data.data = IMUtils.toObj(data.data, (map) => RoomCallingInfo.fromJson(map));
+    //   task.sendPort.send(data);
+    //   break;
     case ListenerType.onRecvC2CReadReceipt:
     case ListenerType.onRecvGroupReadReceipt:
       data.data = IMUtils.toList(data.data, (map) => ReadReceiptInfo.fromJson(map));
@@ -108,10 +106,10 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = jsonDecode(data.data);
       task.sendPort.send(data);
       break;
-    case ListenerType.onConversationUserInputStatusChanged:
-      data.data = IMUtils.toObj(data.data, (map) => InputStatesChangedData.fromJson(map));
-      task.sendPort.send(data);
-      break;
+    // case ListenerType.onConversationUserInputStatusChanged:
+    //   data.data = IMUtils.toObj(data.data, (map) => InputStatesChangedData.fromJson(map));
+    //   task.sendPort.send(data);
+    //   break;
     default:
       task.sendPort.send(data);
   }

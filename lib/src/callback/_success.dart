@@ -1,6 +1,4 @@
-// ignore_for_file: file_names
-
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 void _success(_PortModel msg) {
   switch (msg.callMethodName) {
@@ -15,12 +13,7 @@ void _success(_PortModel msg) {
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;
-    case _PortMethod.getConversationRecvMessageOpt:
-      if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => v)));
-        OpenIMManager._sendPortMap.remove(msg.operationID!);
-      }
-      break;
+
     case _PortMethod.getAdvancedHistoryMessageList:
     case _PortMethod.getAdvancedHistoryMessageListReverse:
       if (msg.operationID != null) {
@@ -42,7 +35,7 @@ void _success(_PortModel msg) {
       break;
     case _PortMethod.getUsersInfo:
       if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => FullUserInfo.fromJson(v))));
+        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => PublicUserInfo.fromJson(v))));
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;
@@ -91,13 +84,13 @@ void _success(_PortModel msg) {
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;
-    case _PortMethod.getRecvGroupApplicationList:
-    case _PortMethod.getSendGroupApplicationList:
-      if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toObj(msg.data, (v) => GroupApplicationInfo.fromJson(v))));
-        OpenIMManager._sendPortMap.remove(msg.operationID!);
-      }
-      break;
+    // case _PortMethod.getRecvGroupApplicationList:
+    // case _PortMethod.getSendGroupApplicationList:
+    //   if (msg.operationID != null) {
+    //     OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toObj(msg.data, (v) => GroupApplicationInfo.fromJson(v))));
+    //     OpenIMManager._sendPortMap.remove(msg.operationID!);
+    //   }
+    //   break;
     case _PortMethod.getTotalUnreadMsgCount:
       if (msg.operationID != null) {
         OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: int.parse(msg.data)));
@@ -119,7 +112,7 @@ void _success(_PortModel msg) {
     case _PortMethod.getFriendsList:
     case _PortMethod.getFriendList:
       if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => FullUserInfo.fromJson(v))));
+        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => PublicUserInfo.fromJson(v))));
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;

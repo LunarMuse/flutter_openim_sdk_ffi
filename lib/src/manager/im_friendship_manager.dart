@@ -1,58 +1,25 @@
-part of flutter_openim_sdk_ffi;
+part of '../../flutter_openim_sdk_ffi.dart';
 
 class FriendshipManager {
-  /// 同意对方添加自己为好友，双方建立双向好友关系
-  ///
-  /// [userID] 用户ID
-  ///
-  /// [handleMsg]备注说明
-  Future<void> acceptFriendApplication({
-    required String userID,
-    String? handleMsg,
+  Future<List<FriendInfo>> getFriendsInfo({
+    required List<String> userIDList,
+    bool filterBlack = false,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.acceptFriendApplication,
       data: {
+        'userIDList': userIDList,
+        'filterBlack': filterBlack,
         'operationID': IMUtils.checkOperationID(operationID),
-        'toUserID': userID,
-        'handleMsg': handleMsg,
       },
       sendPort: receivePort.sendPort,
     ));
     _PortResult result = await receivePort.first;
 
     receivePort.close();
-    if (result.error != null) {
-      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
-    }
-  }
-
-  /// 把对方添加到黑名单中
-  ///
-  /// [userID] 被加入黑名单的好友ID
-  Future<dynamic> addBlack({
-    required String userID,
-    String? operationID,
-    String? ex,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.addBlack,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-        'userID': userID,
-        'ex': ex ?? '',
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-
-    receivePort.close();
-    if (result.error != null) {
-      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
-    }
+    return result.data;
   }
 
   /// 发起好友申请，请求添加对方为好友
@@ -83,65 +50,13 @@ class FriendshipManager {
     }
   }
 
-  /// 检验好友关系，检查是否在自己的好友列表中
-  ///
-  /// 由于好友关系是双向关系，仅检验对方是否在自己的好友列表中，并不能检验自己是否在对方的好友列表中
-  ///
-  /// [userIDList] 用户 ID 列表
-  Future<List<FriendshipInfo>> checkFriend({
-    required List<String> userIDList,
+  /// 获取本人作为被添加者，收到的好友申请
+  Future<List<FriendApplicationInfo>> getFriendApplicationListAsRecipient({
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.checkFriend,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-        'userIDList': userIDList,
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-
-    return result.value;
-  }
-
-  /// 删除好友
-  ///
-  ///（1）由于是双向好友关系，此函数仅把对方从自己的好友列表中删除；
-  ///
-  ///（2）删除好友并不会自动删除会话，如要删除会话，可以再调用删除会话的函数。
-  ///
-  /// [userID] 用户ID
-  Future<void> deleteFriend({
-    required String userID,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.deleteFriend,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-        'userID': userID,
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-
-    receivePort.close();
-    if (result.error != null) {
-      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
-    }
-  }
-
-  /// 获取黑名单列表
-  Future<List<BlacklistInfo>> getBlackList({
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getBlackList,
+      method: _PortMethod.getFriendApplicationListAsRecipient,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
       },
@@ -171,26 +86,8 @@ class FriendshipManager {
     return result.value;
   }
 
-  /// 获取本人作为被添加者，收到的好友申请
-  Future<List<FriendApplicationInfo>> getFriendApplicationListAsRecipient({
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getFriendApplicationListAsRecipient,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-
-    return result.value;
-  }
-
   /// 获取好友列表，返回的列表包含了已拉入黑名单的好友
-  Future<List<FullUserInfo>> getFriendList({
+  Future<List<FriendInfo>> getFriendList({
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
@@ -207,17 +104,20 @@ class FriendshipManager {
     return result.value;
   }
 
-  /// 获取指定好友的昵称、头像、备注，此函数从 APP 本地获取，建议一次最大10000个
-  Future<List<FullUserInfo>> getFriendsList({
-    required List<String> userIDList,
+  Future<List<FriendInfo>> getFriendListPage({
+    bool filterBlack = false,
+    int offset = 0,
+    int count = 40,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getFriendsList,
+      method: _PortMethod.getFriendListPage,
       data: {
+        'offset': offset,
+        'count': count,
+        'filterBlack': filterBlack,
         'operationID': IMUtils.checkOperationID(operationID),
-        'userIDList': userIDList,
       },
       sendPort: receivePort.sendPort,
     ));
@@ -225,6 +125,189 @@ class FriendshipManager {
     receivePort.close();
 
     return result.value;
+  }
+
+  Future<List<dynamic>> getFriendListMap({
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getFriendListMap,
+      data: {
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
+  Future<List<dynamic>> getFriendListPageMap({
+    bool filterBlack = false,
+    int offset = 0,
+    int count = 40,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getFriendListPageMap,
+      data: {
+        'offset': offset,
+        'count': count,
+        'filterBlack': filterBlack,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
+  /// 把对方添加到黑名单中
+  ///
+  /// [userID] 被加入黑名单的好友ID
+  Future<dynamic> addBlacklist({
+    required String userID,
+    String? operationID,
+    String? ex,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.addBlacklist,
+      data: {
+        'userID': userID,
+        'ex': ex ?? '',
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+
+    receivePort.close();
+    if (result.error != null) {
+      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
+    }
+  }
+
+  /// 获取黑名单列表
+  Future<List<BlacklistInfo>> getBlackList({
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getBlackList,
+      data: {
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
+  Future<dynamic> removeBlacklist({
+    required String userID,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.removeBlacklist,
+      data: {
+        'userID': userID,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
+  /// 检验好友关系，检查是否在自己的好友列表中
+  ///
+  /// 由于好友关系是双向关系，仅检验对方是否在自己的好友列表中，并不能检验自己是否在对方的好友列表中
+  ///
+  /// [userIDList] 用户 ID 列表
+  Future<List<FriendshipInfo>> checkFriend({
+    required List<String> userIDList,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.checkFriend,
+      data: {
+        'userIDList': userIDList,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
+  /// 删除好友
+  ///
+  ///（1）由于是双向好友关系，此函数仅把对方从自己的好友列表中删除；
+  ///
+  ///（2）删除好友并不会自动删除会话，如要删除会话，可以再调用删除会话的函数。
+  ///
+  /// [userID] 用户ID
+  Future<void> deleteFriend({
+    required String userID,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.deleteFriend,
+      data: {
+        'userID': userID,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+
+    receivePort.close();
+    if (result.error != null) {
+      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
+    }
+  }
+
+  /// 同意对方添加自己为好友，双方建立双向好友关系
+  ///
+  /// [userID] 用户ID
+  ///
+  /// [handleMsg]备注说明
+  Future<void> acceptFriendApplication({
+    required String userID,
+    String? handleMsg,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.acceptFriendApplication,
+      data: {
+        'toUserID': userID,
+        'handleMsg': handleMsg,
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+
+    receivePort.close();
+    if (result.error != null) {
+      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
+    }
   }
 
   /// 拒绝对方添加自己为好友
@@ -241,33 +324,9 @@ class FriendshipManager {
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.refuseFriendApplication,
       data: {
-        'operationID': IMUtils.checkOperationID(operationID),
         'toUserID': userID,
         'handleMsg': handleMsg,
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-
-    receivePort.close();
-    if (result.error != null) {
-      throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
-    }
-  }
-
-  /// 把用户从自己的黑名单中移除
-  ///
-  /// [userID] 用户ID
-  Future<dynamic> removeBlack({
-    required String userID,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.removeBlack,
-      data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'userID': userID,
       },
       sendPort: receivePort.sendPort,
     ));
@@ -302,11 +361,11 @@ class FriendshipManager {
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.searchFriends,
       data: {
-        'operationID': IMUtils.checkOperationID(operationID),
         'keywordList': keywordList,
         'isSearchUserID': isSearchUserID,
         'isSearchNickname': isSearchNickname,
         'isSearchRemark': isSearchRemark,
+        'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
     ));
@@ -315,28 +374,20 @@ class FriendshipManager {
     return result.value;
   }
 
-  /// 修改好友备注，为空时会删除备注
-  ///
-  /// [userID] 好友的userID
-  ///
-  /// [remark] 好友的备注
-  Future<void> setFriendRemark({
-    required String userID,
-    required String remark,
+  Future<dynamic> updateFriends({
+    required UpdateFriendsReq updateFriendsReq,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.setFriendRemark,
+      method: _PortMethod.updateFriends,
       data: {
+        'req': updateFriendsReq.toJson(),
         'operationID': IMUtils.checkOperationID(operationID),
-        'userID': userID,
-        'remark': remark,
       },
       sendPort: receivePort.sendPort,
     ));
     _PortResult result = await receivePort.first;
-
     receivePort.close();
     if (result.error != null) {
       throw OpenIMError(result.errCode!, result.error!, methodName: result.callMethodName);
