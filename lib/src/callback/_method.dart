@@ -589,7 +589,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.inviteUserToGroup:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final groupId = (msg.data['groupId'] as String).toNativeUtf8().cast<ffi.Char>();
+      final groupId = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       final reason = (msg.data['reason'] as String).toNativeUtf8().cast<ffi.Char>();
       final uidList = jsonEncode(msg.data['uidList']).toNativeUtf8().cast<ffi.Char>();
       bindings.InviteUserToGroup(operationID, groupId, reason, uidList);
@@ -601,7 +601,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.kickGroupMember:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final groupId = (msg.data['groupId'] as String).toNativeUtf8().cast<ffi.Char>();
+      final groupId = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       final reason = (msg.data['reason'] as String).toNativeUtf8().cast<ffi.Char>();
       final uidList = jsonEncode(msg.data['uidList']).toNativeUtf8().cast<ffi.Char>();
       bindings.KickGroupMember(operationID, groupId, reason, uidList);
@@ -621,7 +621,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getGroupMemberList:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final groupId = (msg.data['groupId'] as String).toNativeUtf8().cast<ffi.Char>();
+      final groupId = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.GetGroupMemberList(operationID, groupId, msg.data['filter'], msg.data['offset'], msg.data['count']);
       calloc.free(operationID);
       calloc.free(groupId);
@@ -644,7 +644,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.joinGroup:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       final reason = (msg.data['reason'] as String).toNativeUtf8().cast<ffi.Char>();
       final ex = (msg.data['ex'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.JoinGroup(operationID, gid, reason, msg.data['joinSource'], ex);
@@ -656,7 +656,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.quitGroup:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.QuitGroup(operationID, gid);
       calloc.free(operationID);
       calloc.free(gid);
@@ -664,8 +664,8 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.transferGroupOwner:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uid = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.TransferGroupOwner(operationID, gid, uid);
       calloc.free(operationID);
       calloc.free(gid);
@@ -675,8 +675,8 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.acceptGroupApplication:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uid = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
       final handleMsg = (msg.data['handleMsg'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.AcceptGroupApplication(operationID, gid, uid, handleMsg);
       calloc.free(operationID);
@@ -687,8 +687,8 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.refuseGroupApplication:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uid = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
       final handleMsg = (msg.data['handleMsg'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.RefuseGroupApplication(operationID, gid, uid, handleMsg);
       calloc.free(operationID);
@@ -699,7 +699,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.dismissGroup:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.DismissGroup(operationID, gid);
       calloc.free(operationID);
       calloc.free(gid);
@@ -707,7 +707,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.changeGroupMute:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.ChangeGroupMute(operationID, gid, msg.data['mute']);
       calloc.free(operationID);
       calloc.free(gid);
@@ -715,8 +715,8 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.changeGroupMemberMute:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uid = (msg.data['uid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final uid = (msg.data['userID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.ChangeGroupMemberMute(operationID, gid, uid, msg.data['seconds']);
       calloc.free(operationID);
       calloc.free(gid);
@@ -735,7 +735,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getGroupMemberListByJoinTimeFilter:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       final uIds = jsonEncode(msg.data['excludeUserIDList']).toNativeUtf8().cast<ffi.Char>();
       bindings.GetGroupMemberListByJoinTimeFilter(operationID, gid, msg.data['offset'], msg.data['count'], msg.data['joinTimeBegin'], msg.data['joinTimeEnd'], uIds);
       calloc.free(operationID);
@@ -746,7 +746,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getGroupMemberOwnerAndAdmin:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final gid = (msg.data['gid'] as String).toNativeUtf8().cast<ffi.Char>();
+      final gid = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
       bindings.GetGroupMemberOwnerAndAdmin(operationID, gid);
       calloc.free(operationID);
       calloc.free(gid);
