@@ -16,176 +16,125 @@ part of '../flutter_openim_sdk_ffi.dart';
  * Date      	By	Comments
  */
 mixin OpenIMListener {
-  /// SDK连接服务器失败
-  void onConnectFailed(int code, String errorMsg) {}
-
-  /// SDK连接服务器成功
-  void onConnectSuccess() {}
-
-  /// SDK正在连接服务器
-  void onConnecting() {}
-
-  /// 账号已在其他地方登录，当前设备被踢下线
-  void onKickedOffline() {}
-
-  ///  登录凭证过期，需要重新登录
-  void onUserTokenExpired() {}
-
-  /// 自身信息发送变化回调
-  void onSelfInfoUpdated(UserInfo info) {}
-
-  /// C2C消息已读回执
-  void onRecvC2CMessageReadReceipt(List<ReadReceiptInfo> list) {}
-
-  ///  群消息已读回执
-  void onRecvGroupMessageReadReceipt(List<ReadReceiptInfo> list) {}
-
-  /// 收到了一条新消息
-  void _onRecvNewMessage(Message msg) {
-    if (msg.contentType == MessageType.typing) {
-      onTypingStatusChanged(msg);
-    } else {
-      onRecvNewMessage(msg);
-    }
-  }
-
-  /// 对方正在输入
-  void onTypingStatusChanged(Message msg) {}
-
-  /// 收到了一条新消息
-  void onRecvNewMessage(Message msg) {}
-
-  /// 消息被撤回
-  void onNewRecvMessageRevoked(RevokedInfo info) {}
-
-  // /// 收到拓展消息kv改变
-  // void onRecvMessageExtensionsChanged(String msgID, List<KeyValue> list) {}
-
-  /// 收到扩展消息被删除
-  /// [list] 被删除的TypeKey
-  void onRecvMessageExtensionsDeleted(String msgID, List<String> list) {}
-
-  // /// 收到拓展消息kv新增
-  // void onRecvMessageExtensionsAdded(String msgID, List<KeyValue> list) {}
-
-  /// 消息发送进度
+  /// 消息发送进度回调，一般在发送文件类消息时使用。
   void onProgress(String clientMsgID, int progress) {}
 
-  /// 已被加入黑名单
-  void onBlackAdded(BlacklistInfo u) {}
+  /// 在同步服务器进度。
+  void onSyncServerProgress(int progress) {}
 
-  /// 已从黑名单移除
-  void onBlackDeleted(BlacklistInfo u) {}
+  /// 某个用户的黑名单列表增加时会收到该回调
+  void onBlacklistAdded(BlacklistInfo u) {}
 
-  /// 好友已添加
-  void onFriendAdded(FriendInfo u) {}
+  /// 某个用户的黑名单列表减少时会收到该回调。
+  void onBlacklistDeleted(BlacklistInfo u) {}
+
+  /// 某些会话的关键信息发生变化时，会触发该回调，例如会话的未读数发生变化，会话的最后一条消息发生变化等。
+  void onConversationChanged(List<ConversationInfo> list) {}
+
+  /// 两个用户成功建立好友关系后双方都会收到该回调。
+  void onFriendAdded(FriendInfo info) {}
 
   /// 好友申请被同意时，申请发起方和接收方都会收到该回调，双方成功建立好友关系。
   void onFriendApplicationAccepted(FriendApplicationInfo u) {}
 
-  /// 用户发起好友申请后，申请发起者和接收者都会收到此回调，接收者可以选择同意或拒绝好友申请
+  /// 用户发起好友申请后，申请发起者和接收者都会收到此回调，接收者可以选择同意或拒绝好友申请。
   void onFriendApplicationAdded(FriendApplicationInfo u) {}
-
-  /// 好友申请已被删除
-  void onFriendApplicationDeleted(FriendApplicationInfo u) {}
 
   /// 好友申请被拒绝时，申请发起方和接收方都会收到该回调。
   void onFriendApplicationRejected(FriendApplicationInfo u) {}
 
-  /// 好友已被删除
+  /// 某个用户的好友列表减少时会收到该回调。
   void onFriendDeleted(FriendInfo u) {}
 
-  ///  好友个人信息（包括备注）改变时会收到此回调
+  /// 好友个人信息（包括备注）改变时会收到此回调。
   void onFriendInfoChanged(FriendInfo u) {}
 
-  /// 会话发生改变
-  void onConversationChanged(List<ConversationInfo> list) {}
+  /// 入群申请被同意时，申请发起者以及该群的群主、管理员会收到此回调。
+  void onGroupApplicationAccepted(GroupApplicationInfo u) {}
 
-  /// 有新会话产生
-  void onNewConversation(List<ConversationInfo> list) {}
+  /// 用户发起入群申请后，如进群需要审批， 则申请发起者以及该群的群主、管理员会收到此回调。
+  void onGroupApplicationAdded(GroupApplicationInfo u) {}
 
-  void onSyncServerFailed(bool reinstalled) {}
+  /// 入群申请被拒绝时，申请发起者以及该群的群主、管理员会收到此回调。
+  void onGroupApplicationRejected(GroupApplicationInfo u) {}
 
-  void onSyncServerFinish(bool reinstalled) {}
+  /// 群组被解散时，该群所有群成员会收到此回调。
+  void onGroupDismissed(GroupInfo info) {}
 
-  void onSyncServerStart(bool reinstalled) {}
-
-  void onSyncServerProgress(int progress) {}
-
-  /// 未读消息总数发送改变
-  void onTotalUnreadMessageCountChanged(int i) {}
-
-  // void onConversationUserInputStatusChanged(InputStatesChangedData data) {}
-
-  /// 群申请已被接受
-  void onGroupApplicationAccepted(GroupApplicationInfo info) {}
-
-  /// 群申请已被添加
-  void onGroupApplicationAdded(GroupApplicationInfo info) {}
-
-  /// 群申请已被删除
-  void onGroupApplicationDeleted(GroupApplicationInfo info) {}
-
-  /// 群申请已被拒绝
-  void onGroupApplicationRejected(GroupApplicationInfo info) {}
-
-  /// 群资料发生改变
+  /// 群组信息（头像、群名称等，也包括群主变化）改变时，该群所有群成员会收到此回调。
   void onGroupInfoChanged(GroupInfo info) {}
 
-  /// 群成员已添加
+  /// 群成员增加（如用户被邀请进群），其他群成员会收到此回调。
   void onGroupMemberAdded(GroupMembersInfo info) {}
 
-  /// 群成员已删除
+  /// 群成员减少（如群成员退群）， 其他群成员会收到此回调。
   void onGroupMemberDeleted(GroupMembersInfo info) {}
 
-  /// 群成员信息发送改变
+  /// 群成员信息改变（群昵称、头像等）后回调，该群所有群成员会收到此回调。
   void onGroupMemberInfoChanged(GroupMembersInfo info) {}
 
-  /// 已加入的群有新增
+  /// 用户所在群组的数量增加时（被邀请入群、入群申请被同意等），会收到此回调。
   void onJoinedGroupAdded(GroupInfo info) {}
 
-  /// 已加入的群减少
+  /// 用户所在群组的数量减少时（主动退群、群被解散等），会收到此回调。
   void onJoinedGroupDeleted(GroupInfo info) {}
 
-  /// 被邀请者收到：邀请者取消音视频通话
-  // void onInvitationCancelled(SignalingInfo info) {}
+  /// 有新会话产生时，会收到此回调。
+  void onNewConversation(List<ConversationInfo> list) {}
 
-  // /// 邀请者收到：被邀请者超时未接通
-  // void onInvitationTimeout(SignalingInfo info) {}
+  /// 收到的消息被撤回或自己发出的消息被撤回时，会收到此回调。
+  void onNewRecvMessageRevoked(RevokedInfo info) {}
 
-  // /// 邀请者收到：被邀请者同意音视频通话
-  // void onInviteeAccepted(SignalingInfo info) {}
+  /// 自己发出的单聊消息被对方标记为已读后，消息发送者会收到此回调。
+  void onRecvC2CReadReceipt(List<ReadReceiptInfo> list) {}
 
-  // /// 邀请者收到：被邀请者拒绝音视频通话
-  // void onInviteeRejected(SignalingInfo info) {}
+  /// 自己发出的群聊消息被群成员标记为已读后，消息发送者和标记者均会收到此回调。
+  void onRecvGroupReadReceipt(List<ReadReceiptInfo> list) {}
 
-  // /// 被邀请者收到：音视频通话邀请
-  // void onReceiveNewInvitation(SignalingInfo info) {}
+  /// 接收到新消息时会收到此回调，回调中只会携带一条消息。
+  void onRecvNewMessage(Message msg) {}
 
-  // /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
-  // void onInviteeAcceptedByOtherDevice(SignalingInfo info) {}
+  ///当应用在后台运行，接收到新消息时，会收到该回调，回调中只会携带一条消息。
+  void onRecvOfflineNewMessage(Message msg) {}
 
-  // /// 被邀请者（其他端）收到：比如被邀请者在手机拒接，在pc上会收到此回调
-  // void onInviteeRejectedByOtherDevice(SignalingInfo info) {}
+  /// 当前登录用户个人信息改变时会收到此回调。
+  void onSelfInfoUpdated(UserInfo info) {}
 
-  // /// 被挂断
-  // void onHangup(SignalingInfo info) {}
-  // void onRoomParticipantConnected(RoomCallingInfo info) {}
-  // void onRoomParticipantDisconnected(RoomCallingInfo info) {}
-  // void onMeetingStreamChanged(MeetingStreamEvent event) {}
-  // void onReceiveCustomSignal(CustomSignaling info) {}
+  /// 向服务器同步会话失败时的回调。
+  void onSyncServerFailed(bool reinstalled) {}
 
-  /// 朋友圈信息发送改变
-  void onRecvNewNotification() {}
+  /// 向服务器同步会话成功时的回调。
+  void onSyncServerFinish(bool reinstalled) {}
 
-  /// 组织架构有更新
-  void onOrganizationUpdated() {}
+  /// 向服务器同步会话开始时的回调。
+  void onSyncServerStart(bool reinstalled) {}
 
-  // void onStreamChangedEvent(MeetingStreamEvent event) {}
+  /// token无效回调。
+  void onTotalUnreadMessageCountChanged(int count) {}
 
-  void onRecvCustomBusinessMessage(String s) {}
+  /// 已订阅用户的在线状态发生变化时，会触发此回调。
+  void onUserStatusChanged(UserStatusInfo info) {}
 
-  // void onMessageKvInfoChanged(List<MessageKv> list) {}
+  /// 建立WebSocket连接失败返回后，触发此回调
+  void onConnectFailed(int code, String errorMsg) {}
+
+  /// 建立WebSocket连接成功返回后，触发此回调
+  void onConnectSuccess() {}
+
+  /// 建立WebSocket连接中，触发此回调
+  void onConnecting() {}
+
+  /// 已订阅用户的在线状态发生变化时，会触发此回调。
+  void onInputStatusChanged(InputStatusChangedData info) {}
+
+  /// 由于 APP 管理员强制用户下线，或由于登录策略导致用户被踢下线
+  void onKickedOffline() {}
+
+  /// token过期。
+  void onUserTokenExpired() {}
+
+  /// token无效回调。
+  void onUserTokenInvalid(String error) {}
 
   /// 文件打开的大小
   void onUploadFileOpen(String id, int size) {}
@@ -210,7 +159,4 @@ mixin OpenIMListener {
 
   /// 上传完成
   void onUploadFileComplete(String id, int size, String url, int type) {}
-
-  /// 当应用在后台运行，接收到新消息时，会收到该回调，回调中只会携带一条消息。
-  void onRecvOfflineNewMessage(Message message) {}
 }

@@ -8,12 +8,14 @@ class ListenerType {
   static const String onConnectFailed = 'OnConnectFailed';
   static const String onKickedOffline = 'OnKickedOffline';
   static const String onUserTokenExpired = 'OnUserTokenExpired';
+  static const String onUserTokenInvalid = 'OnUserTokenInvalid';
 
-  /// SendMsgCallBack
+  /// SendMsgCallBackListener
   static const String onProgress = 'OnProgress';
 
-  /// OnUserListener
+  /// UserListener
   static const String onSelfInfoUpdated = 'OnSelfInfoUpdated';
+  static const String onUserStatusChanged = 'OnUserStatusChanged';
 
   /// OnGroupListener
   static const String onJoinedGroupAdded = 'OnJoinedGroupAdded';
@@ -21,7 +23,6 @@ class ListenerType {
   static const String onGroupMemberAdded = 'OnGroupMemberAdded';
   static const String onGroupMemberDeleted = 'OnGroupMemberDeleted';
   static const String onGroupApplicationAdded = 'OnGroupApplicationAdded';
-  static const String onGroupApplicationDeleted = 'OnGroupApplicationDeleted';
   static const String onGroupInfoChanged = 'OnGroupInfoChanged';
   static const String onGroupDismissed = 'OnGroupDismissed';
   static const String onGroupMemberInfoChanged = 'OnGroupMemberInfoChanged';
@@ -69,7 +70,7 @@ class ListenerType {
   static const String onRecvCustomBusinessMessage = 'OnRecvCustomBusinessMessage';
 
   /// OnMessageKvInfoListener
-  static const String onMessageKvInfoChanged = 'OnMessageKvInfoChanged';
+  static const String onInputStatusChanged = 'OnInputStatusChanged';
 
   /// OnListenerForService
   // static const String onGroupApplicationAdded = 'OnGroupApplicationAdded';
