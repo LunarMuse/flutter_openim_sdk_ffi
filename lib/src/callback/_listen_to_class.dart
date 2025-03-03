@@ -31,6 +31,7 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
     case ListenerType.onGroupInfoChanged:
     case ListenerType.onJoinedGroupAdded:
     case ListenerType.onJoinedGroupDeleted:
+    case ListenerType.onGroupDismissed:
       data.data = IMUtils.toObj(data.data, (map) => GroupInfo.fromJson(map));
       task.sendPort.send(data);
       break;
@@ -68,6 +69,10 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       break;
     case ListenerType.onNewRecvMessageRevoked:
       data.data = IMUtils.toObj(data.data, (map) => RevokedInfo.fromJson(map));
+      task.sendPort.send(data);
+      break;
+    case ListenerType.onUserStatusChanged:
+      data.data = IMUtils.toObj(data.data, (map) => UserStatusInfo.fromJson(map));
       task.sendPort.send(data);
       break;
     case ListenerType.open:

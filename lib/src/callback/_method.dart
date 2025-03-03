@@ -177,6 +177,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(text);
       break;
+
     case _PortMethod.createTextAtMessage:
       Map<String, dynamic>? quoteMessage = msg.data['quoteMessage'];
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -280,6 +281,22 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(title);
       calloc.free(summaryList);
       break;
+    case _PortMethod.deleteMessage:
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final clientMsgID = (msg.data['clientMsgID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.DeleteMessage(operationID, conversationID, clientMsgID);
+      calloc.free(operationID);
+      calloc.free(conversationID);
+      calloc.free(clientMsgID);
+    case _PortMethod.deleteMessageFromLocalStorage:
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final clientMsgID = (msg.data['clientMsgID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.DeleteMessageFromLocalStorage(operationID, conversationID, clientMsgID);
+      calloc.free(operationID);
+      calloc.free(conversationID);
+      calloc.free(clientMsgID);
     case _PortMethod.createForwardMessage:
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final message = jsonEncode(msg.data['message']).toNativeUtf8().cast<ffi.Char>();

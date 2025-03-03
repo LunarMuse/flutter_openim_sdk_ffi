@@ -7,6 +7,7 @@ void _listen(_PortModel channel) {
     case ListenerType.onConnecting:
       OpenIMManager._onEvent((listener) => listener.onConnecting());
       break;
+
     case ListenerType.onConnectSuccess:
       OpenIMManager._onEvent((listener) => listener.onConnectSuccess());
       break;
@@ -108,14 +109,6 @@ void _listen(_PortModel channel) {
     case ListenerType.onRecvOfflineNewMessage:
       OpenIMManager._onEvent((listener) => listener.onRecvOfflineNewMessage(channel.data));
       break;
-    // case ListenerType.onRecvMessageExtensionsChanged:
-    //   OpenIMManager._onEvent((listener) => listener.onRecvMessageExtensionsChanged(channel., channel.data));
-    //   break;
-    // case ListenerType.onRecvMessageExtensionsDeleted:
-    //   OpenIMManager._onEvent((listener) => listener.onRecvMessageExtensionsDeleted(channel.data));
-    // case ListenerType.onRecvMessageExtensionsAdded:
-    //   OpenIMManager._onEvent((listener) => listener.onRecvMessageExtensionsAdded(channel.data));
-    //   break;
 
     case ListenerType.onBlackAdded:
       OpenIMManager._onEvent((listener) => listener.onBlacklistAdded(channel.data));
@@ -129,9 +122,6 @@ void _listen(_PortModel channel) {
     case ListenerType.onFriendApplicationAdded:
       OpenIMManager._onEvent((listener) => listener.onFriendApplicationAdded(channel.data));
       break;
-    // case ListenerType.onFriendApplicationDeleted:
-    //   OpenIMManager._onEvent((listener) => listener.onFriendApplicationDeleted(channel.data));
-    //   break;
     case ListenerType.onFriendApplicationRejected:
       OpenIMManager._onEvent((listener) => listener.onFriendApplicationRejected(channel.data));
       break;
