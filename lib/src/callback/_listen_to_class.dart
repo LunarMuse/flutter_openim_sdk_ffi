@@ -71,8 +71,8 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = IMUtils.toObj(data.data, (map) => RevokedInfo.fromJson(map));
       task.sendPort.send(data);
       break;
-    case ListenerType.onUserStatusChanged:
-      data.data = IMUtils.toObj(data.data, (map) => UserStatusInfo.fromJson(map));
+    case ListenerType.onConversationUserInputStatusChanged:
+      data.data = IMUtils.toObj(data.data, (map) => InputStatusChangedData.fromJson(map));
       task.sendPort.send(data);
       break;
     case ListenerType.open:

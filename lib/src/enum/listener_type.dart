@@ -69,9 +69,6 @@ class ListenerType {
   /// OnCustomBusinessListener
   static const String onRecvCustomBusinessMessage = 'OnRecvCustomBusinessMessage';
 
-  /// OnMessageKvInfoListener
-  static const String onInputStatusChanged = 'OnInputStatusChanged';
-
   /// OnListenerForService
   // static const String onGroupApplicationAdded = 'OnGroupApplicationAdded';
   // static const String onGroupApplicationAccepted = 'OnGroupApplicationAccepted';
