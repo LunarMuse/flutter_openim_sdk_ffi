@@ -24,7 +24,6 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       break;
     case ListenerType.onGroupApplicationAccepted:
     case ListenerType.onGroupApplicationAdded:
-    case ListenerType.onGroupApplicationDeleted:
     case ListenerType.onGroupApplicationRejected:
       data.data = IMUtils.toObj(data.data, (map) => GroupApplicationInfo.fromJson(map));
       task.sendPort.send(data);
@@ -32,6 +31,7 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
     case ListenerType.onGroupInfoChanged:
     case ListenerType.onJoinedGroupAdded:
     case ListenerType.onJoinedGroupDeleted:
+    case ListenerType.onGroupDismissed:
       data.data = IMUtils.toObj(data.data, (map) => GroupInfo.fromJson(map));
       task.sendPort.send(data);
       break;
@@ -58,31 +58,10 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = IMUtils.toObj(data.data, (map) => FriendApplicationInfo.fromJson(map));
       task.sendPort.send(data);
       break;
-    // case ListenerType.onRecvMessageExtensionsChanged:
-    // case ListenerType.onRecvMessageExtensionsAdded:
-    //   data.data = IMUtils.toList(data.data, (map) => KeyValue.fromJson(map));
-    //   task.sendPort.send(data);
-    //   break;
     case ListenerType.onRecvMessageExtensionsDeleted:
       data.data = IMUtils.toList(data.data, (map) => map);
       task.sendPort.send(data);
       break;
-    // case ListenerType.onInvitationCancelled:
-    // case ListenerType.onInvitationTimeout:
-    // case ListenerType.onInviteeAccepted:
-    // case ListenerType.onInviteeRejected:
-    // case ListenerType.onReceiveNewInvitation:
-    // case ListenerType.onInviteeAcceptedByOtherDevice:
-    // case ListenerType.onInviteeRejectedByOtherDevice:
-    // case ListenerType.onHangUp:
-    //   data.data = IMUtils.toList(data.data, (map) => SignalingInfo.fromJson(map));
-    //   task.sendPort.send(data);
-    //   break;
-    // case ListenerType.onRoomParticipantConnected:
-    // case ListenerType.onRoomParticipantDisconnected:
-    //   data.data = IMUtils.toObj(data.data, (map) => RoomCallingInfo.fromJson(map));
-    //   task.sendPort.send(data);
-    //   break;
     case ListenerType.onRecvC2CReadReceipt:
     case ListenerType.onRecvGroupReadReceipt:
       data.data = IMUtils.toList(data.data, (map) => ReadReceiptInfo.fromJson(map));
@@ -92,10 +71,10 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = IMUtils.toObj(data.data, (map) => RevokedInfo.fromJson(map));
       task.sendPort.send(data);
       break;
-    // case ListenerType.onMessageKvInfoChanged:
-    //   data.data = IMUtils.toList(data.data, (map) => MessageKv.fromJson(map));
-    //   task.sendPort.send(data);
-    //   break;
+    case ListenerType.onConversationUserInputStatusChanged:
+      data.data = IMUtils.toObj(data.data, (map) => InputStatusChangedData.fromJson(map));
+      task.sendPort.send(data);
+      break;
     case ListenerType.open:
     case ListenerType.partSize:
     case ListenerType.hashPartProgress:
@@ -106,10 +85,6 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
       data.data = jsonDecode(data.data);
       task.sendPort.send(data);
       break;
-    // case ListenerType.onConversationUserInputStatusChanged:
-    //   data.data = IMUtils.toObj(data.data, (map) => InputStatesChangedData.fromJson(map));
-    //   task.sendPort.send(data);
-    //   break;
     default:
       task.sendPort.send(data);
   }

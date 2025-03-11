@@ -66,7 +66,7 @@ class MessageManager {
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.deleteMessageFromLocalAndSvr,
+      method: _PortMethod.deleteMessage,
       data: {
         'conversationID': conversationID,
         'clientMsgID': clientMsgID,

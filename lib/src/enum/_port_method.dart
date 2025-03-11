@@ -22,7 +22,6 @@ class _PortMethod {
   static const String login = 'Login';
   static const String logout = 'Logout';
   static const String getLoginStatus = 'GetLoginStatus';
-  static const String getLoginUserID = 'GetLoginUserID';
 
   /// 用户相关
   static const String getSelfUserInfo = 'GetSelfUserInfo';
@@ -54,7 +53,6 @@ class _PortMethod {
   static const String joinGroup = 'JoinGroup';
   static const String inviteUserToGroup = 'InviteUserToGroup';
   static const String getJoinedGroupList = 'GetJoinedGroupList';
-  static const String getJoinedGroupListPage = 'GetJoinedGroupListPage';
   static const String searchGroups = 'SearchGroups';
   static const String getGroupsInfo = 'GetSpecifiedGroupsInfo';
   static const String setGroupInfo = 'SetGroupInfo';
@@ -105,7 +103,6 @@ class _PortMethod {
   static const String createVideoMessageByURL = 'CreateVideoMessageByURL';
   static const String createFileMessageFromFullPath = 'CreateFileMessageFromFullPath';
   static const String createFileMessageByURL = 'CreateFileMessageByURL';
-  static const String createMergeMessage = 'CreateMergeMessage';
   static const String createForwardMessage = 'CreateForwardMessage';
   static const String createLocationMessage = 'CreateLocationMessage';
   static const String createQuoteMessage = 'CreateQuoteMessage';
@@ -154,7 +151,6 @@ class _PortMethod {
 
   /// 消息
 
-  static const String deleteMessageFromLocalAndSvr = 'DeleteMessageFromLocalAndSvr';
   static const String markMessageAsReadByMsgID = 'markMessageAsReadByMsgID';
 
   static const String createAdvancedTextMessage = 'CreateAdvancedTextMessage';
