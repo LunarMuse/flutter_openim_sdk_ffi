@@ -1,16 +1,25 @@
-## 0.0.1
+## 3.8.3-alpha.4
 
-- 支持 windows、macos、linux、android、ios.
+- 修复 android 启动报错问题
 
-## 0.0.1-alpha.3
+## 3.8.3-alpha.3
 
-- 修复 3.24 打包失败问题
-
-## 3.8.3-alpha.1
-
-- SDK 升级到 3.8.3
-- 版本随 open-im 改变
+- Fixed the issue of incorrect group chat type judgment
+- Fixed the issue that input events did not respond
 
 ## 3.8.3-alpha.2
 
 - 补充了部分功能
+
+## 3.8.3-alpha.1
+
+- SDK to 3.8.3
+- Version changes with open-im
+
+## 0.0.1-alpha.3
+
+- Fix 3.24 packaging failure issue
+
+## 0.0.1
+
+- Support windows, macos, linux, android, ios.

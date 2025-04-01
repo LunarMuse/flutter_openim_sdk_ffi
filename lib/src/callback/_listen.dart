@@ -14,7 +14,7 @@ void _listen(_PortModel channel) {
     case ListenerType.onConnectFailed:
       OpenIMManager._onEvent((listener) => listener.onConnectFailed(channel.errCode, channel.data));
       break;
-    case ListenerType.onInputStatusChanged:
+    case ListenerType.onConversationUserInputStatusChanged:
       OpenIMManager._onEvent((listener) => listener.onInputStatusChanged(channel.data));
       break;
     case ListenerType.onKickedOffline:
