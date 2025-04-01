@@ -6,6 +6,7 @@
 
 - Fixed the issue of incorrect group chat type judgment
 - Fixed the issue that input events did not respond
+- Fix 3.24 packaging failure issue
 
 ## 3.8.3-alpha.2
 
