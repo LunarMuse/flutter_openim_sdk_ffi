@@ -156,8 +156,8 @@ class _PortMethod {
   static const String createAdvancedTextMessage = 'CreateAdvancedTextMessage';
   static const String createAdvancedQuoteMessage = 'CreateAdvancedQuoteMessage';
 
-  static const String getFriendListMap = 'GetFriendListMap';
-  static const String getFriendListPageMap = 'GetFriendListPageMap';
+  // static const String getFriendListMap = 'GetFriendListMap';
+  // static const String getFriendListPageMap = 'GetFriendListPageMap';
 
   static const String networkStatusChanged = 'NetworkStatusChanged';
   static const String setAppBackgroundStatus = 'SetAppBackgroundStatus';

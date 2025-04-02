@@ -111,8 +111,9 @@ void _success(_PortModel msg) {
       break;
     case _PortMethod.getFriendsList:
     case _PortMethod.getFriendList:
+    case _PortMethod.getFriendListPage:
       if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => PublicUserInfo.fromJson(v))));
+        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => FriendInfo.fromJson(v))));
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;

@@ -522,6 +522,12 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       bindings.GetFriendList(operationID, msg.data['filterBlack']);
       calloc.free(operationID);
       break;
+    case _PortMethod.getFriendListPage:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetFriendListPage(operationID, msg.data['offset'], msg.data['count'], msg.data['filterBlack']);
+      calloc.free(operationID);
+      break;
     case _PortMethod.getFriendsList:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

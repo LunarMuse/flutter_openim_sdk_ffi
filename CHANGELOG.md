@@ -1,3 +1,7 @@
+## 3.8.3-alpha.5
+
+- 修复#8(https://github.com/Spicely/flutter_openim_sdk_ffi/issues/8)
+
 ## 3.8.3-alpha.4
 
 - 修复 android 启动报错问题

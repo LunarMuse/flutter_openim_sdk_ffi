@@ -89,12 +89,14 @@ class FriendshipManager {
   /// 获取好友列表，返回的列表包含了已拉入黑名单的好友
   Future<List<FriendInfo>> getFriendList({
     String? operationID,
+    bool filterBlack = false,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getFriendList,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
+        'filterBlack': filterBlack,
       },
       sendPort: receivePort.sendPort,
     ));
@@ -127,45 +129,45 @@ class FriendshipManager {
     return result.value;
   }
 
-  Future<List<dynamic>> getFriendListMap({
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getFriendListMap,
-      data: {
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
+  // Future<List<dynamic>> getFriendListMap({
+  //   String? operationID,
+  // }) async {
+  //   ReceivePort receivePort = ReceivePort();
+  //   OpenIMManager._sendPort.send(_PortModel(
+  //     method: _PortMethod.getFriendListMap,
+  //     data: {
+  //       'operationID': IMUtils.checkOperationID(operationID),
+  //     },
+  //     sendPort: receivePort.sendPort,
+  //   ));
+  //   _PortResult result = await receivePort.first;
+  //   receivePort.close();
 
-    return result.value;
-  }
+  //   return result.value;
+  // }
 
-  Future<List<dynamic>> getFriendListPageMap({
-    bool filterBlack = false,
-    int offset = 0,
-    int count = 40,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getFriendListPageMap,
-      data: {
-        'offset': offset,
-        'count': count,
-        'filterBlack': filterBlack,
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
+  // Future<List<dynamic>> getFriendListPageMap({
+  //   bool filterBlack = false,
+  //   int offset = 0,
+  //   int count = 40,
+  //   String? operationID,
+  // }) async {
+  //   ReceivePort receivePort = ReceivePort();
+  //   OpenIMManager._sendPort.send(_PortModel(
+  //     method: _PortMethod.getFriendListPageMap,
+  //     data: {
+  //       'offset': offset,
+  //       'count': count,
+  //       'filterBlack': filterBlack,
+  //       'operationID': IMUtils.checkOperationID(operationID),
+  //     },
+  //     sendPort: receivePort.sendPort,
+  //   ));
+  //   _PortResult result = await receivePort.first;
+  //   receivePort.close();
 
-    return result.value;
-  }
+  //   return result.value;
+  // }
 
   /// 把对方添加到黑名单中
   ///
