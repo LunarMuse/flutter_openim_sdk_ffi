@@ -337,7 +337,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       break;
     case _PortMethod.createCardMessage:
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final data = jsonEncode(msg.data['data']).toNativeUtf8().cast<ffi.Char>();
+      final data = jsonEncode(msg.data).toNativeUtf8().cast<ffi.Char>();
       final newMsg = bindings.CreateCardMessage(operationID, data);
       msg.sendPort?.send(_PortResult(data: IMUtils.toObj(newMsg.cast<Utf8>().toDartString(), (v) => Message.fromJson(v))));
       calloc.free(operationID);
