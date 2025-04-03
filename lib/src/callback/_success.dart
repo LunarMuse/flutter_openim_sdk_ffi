@@ -130,6 +130,12 @@ void _success(_PortModel msg) {
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;
+    case _PortMethod.checkFriend:
+      if (msg.operationID != null) {
+        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => FriendshipInfo.fromJson(v))));
+        OpenIMManager._sendPortMap.remove(msg.operationID!);
+      }
+      break;
     default:
       if (msg.operationID != null) {
         OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: msg.data));

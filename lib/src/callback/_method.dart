@@ -27,7 +27,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getUsersInfo:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      final uidList = (jsonEncode(msg.data['uidList'] as List<String>)).toNativeUtf8().cast<ffi.Char>();
+      final uidList = (jsonEncode(msg.data['userIDList'] as List<String>)).toNativeUtf8().cast<ffi.Char>();
       bindings.GetUsersInfo(operationID, uidList);
       calloc.free(operationID);
       calloc.free(uidList);
