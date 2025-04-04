@@ -568,6 +568,16 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(userIDList);
       break;
+
+    case _PortMethod.updateFriends:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.UpdateFriends(operationID, req);
+      calloc.free(operationID);
+      calloc.free(req);
+      break;
+
     case _PortMethod.deleteFriend:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

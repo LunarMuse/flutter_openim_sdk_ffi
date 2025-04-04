@@ -1,27 +1,6 @@
 part of '../../flutter_openim_sdk_ffi.dart';
 
 class FriendshipManager {
-  Future<List<FriendInfo>> getFriendsInfo({
-    required List<String> userIDList,
-    bool filterBlack = false,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.acceptFriendApplication,
-      data: {
-        'userIDList': userIDList,
-        'filterBlack': filterBlack,
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-
-    receivePort.close();
-    return result.data;
-  }
-
   /// 发起好友申请，请求添加对方为好友
   ///
   /// [userID] 要添加的用户ID
@@ -106,6 +85,7 @@ class FriendshipManager {
     return result.value;
   }
 
+  /// 分页获取指定数量好友的列表。offset为获取时的偏移量, count为获取数量
   Future<List<FriendInfo>> getFriendListPage({
     bool filterBlack = false,
     int offset = 0,
@@ -128,46 +108,6 @@ class FriendshipManager {
 
     return result.value;
   }
-
-  // Future<List<dynamic>> getFriendListMap({
-  //   String? operationID,
-  // }) async {
-  //   ReceivePort receivePort = ReceivePort();
-  //   OpenIMManager._sendPort.send(_PortModel(
-  //     method: _PortMethod.getFriendListMap,
-  //     data: {
-  //       'operationID': IMUtils.checkOperationID(operationID),
-  //     },
-  //     sendPort: receivePort.sendPort,
-  //   ));
-  //   _PortResult result = await receivePort.first;
-  //   receivePort.close();
-
-  //   return result.value;
-  // }
-
-  // Future<List<dynamic>> getFriendListPageMap({
-  //   bool filterBlack = false,
-  //   int offset = 0,
-  //   int count = 40,
-  //   String? operationID,
-  // }) async {
-  //   ReceivePort receivePort = ReceivePort();
-  //   OpenIMManager._sendPort.send(_PortModel(
-  //     method: _PortMethod.getFriendListPageMap,
-  //     data: {
-  //       'offset': offset,
-  //       'count': count,
-  //       'filterBlack': filterBlack,
-  //       'operationID': IMUtils.checkOperationID(operationID),
-  //     },
-  //     sendPort: receivePort.sendPort,
-  //   ));
-  //   _PortResult result = await receivePort.first;
-  //   receivePort.close();
-
-  //   return result.value;
-  // }
 
   /// 把对方添加到黑名单中
   ///
@@ -213,6 +153,7 @@ class FriendshipManager {
     return result.value;
   }
 
+  /// 把用户从自己的黑名单中移除。
   Future<dynamic> removeBlacklist({
     required String userID,
     String? operationID,
@@ -376,6 +317,7 @@ class FriendshipManager {
     return result.value;
   }
 
+  /// 修改好友信息，包括置顶，备注，ex 字段。
   Future<dynamic> updateFriends({
     required UpdateFriendsReq updateFriendsReq,
     String? operationID,
