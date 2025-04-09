@@ -56,31 +56,6 @@ class GroupManager {
     return result.value;
   }
 
-  /// 查询组成员资料
-  ///
-  /// [groupID] 组ID
-  ///
-  /// [userIDList] 用户ID列表
-  Future<List<GroupMembersInfo>> getGroupMembersInfo({
-    required String groupID,
-    required List<String> userIDList,
-    String? operationID,
-  }) async {
-    ReceivePort receivePort = ReceivePort();
-    OpenIMManager._sendPort.send(_PortModel(
-      method: _PortMethod.getGroupMembersInfo,
-      data: {
-        'groupID': groupID,
-        'userIDList': userIDList,
-        'operationID': IMUtils.checkOperationID(operationID),
-      },
-      sendPort: receivePort.sendPort,
-    ));
-    _PortResult result = await receivePort.first;
-    receivePort.close();
-    return result.value;
-  }
-
   /// 分页获取组成员列表
   ///
   /// [groupID] 群ID
@@ -94,7 +69,7 @@ class GroupManager {
     required String groupID,
     int filter = 0,
     int offset = 0,
-    int count = 0,
+    int count = 10,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
@@ -149,7 +124,7 @@ class GroupManager {
     ));
     _PortResult result = await receivePort.first;
     receivePort.close();
-    return result.value;
+    return result.value == 'true';
   }
 
   /// 创建一个组

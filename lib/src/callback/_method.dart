@@ -282,6 +282,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(summaryList);
       break;
     case _PortMethod.deleteMessage:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final clientMsgID = (msg.data['clientMsgID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -290,6 +291,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(conversationID);
       calloc.free(clientMsgID);
     case _PortMethod.deleteMessageFromLocalStorage:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final clientMsgID = (msg.data['clientMsgID'] as String).toNativeUtf8().cast<ffi.Char>();
@@ -297,6 +299,13 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(conversationID);
       calloc.free(clientMsgID);
+    case _PortMethod.isJoinGroup:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final groupID = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.IsJoinGroup(operationID, groupID);
+      calloc.free(operationID);
+      calloc.free(groupID);
     case _PortMethod.createForwardMessage:
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final message = jsonEncode(msg.data['message']).toNativeUtf8().cast<ffi.Char>();
@@ -328,7 +337,7 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.createQuoteMessage:
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final text = (msg.data['text'] as String).toNativeUtf8().cast<ffi.Char>();
-      final message = jsonEncode(msg.data['message']).toNativeUtf8().cast<ffi.Char>();
+      final message = jsonEncode(msg.data['quoteMsg']).toNativeUtf8().cast<ffi.Char>();
       final newMsg = bindings.CreateQuoteMessage(operationID, text, message);
       msg.sendPort?.send(_PortResult(data: IMUtils.toObj(newMsg.cast<Utf8>().toDartString(), (v) => Message.fromJson(v))));
       calloc.free(operationID);
@@ -455,6 +464,25 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(operationID);
       calloc.free(getMessageOptions);
       break;
+    case _PortMethod.setConversation:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.SetConversation(operationID, conversationID, req);
+      calloc.free(operationID);
+      calloc.free(conversationID);
+      calloc.free(req);
+      break;
+    case _PortMethod.hideConversation:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final conversationID = (msg.data['conversationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.HideConversation(operationID, conversationID);
+      calloc.free(operationID);
+      calloc.free(conversationID);
+      break;
+
     case _PortMethod.setConversationDraft:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

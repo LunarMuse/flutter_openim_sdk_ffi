@@ -61,7 +61,6 @@ class _PortMethod {
   static const String acceptGroupApplication = 'AcceptGroupApplication';
   static const String refuseGroupApplication = 'RefuseGroupApplication';
   static const String getGroupMemberList = 'GetGroupMemberList';
-  static const String getGroupMembersInfo = 'GetSpecifiedGroupMembersInfo';
   static const String searchGroupMembers = 'SearchGroupMembers';
   static const String setGroupMemberInfo = 'SetGroupMemberInfo';
   static const String getGroupMemberOwnerAndAdmin = 'GetGroupMemberOwnerAndAdmin';
