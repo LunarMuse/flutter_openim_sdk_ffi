@@ -42,7 +42,7 @@ class _PortMethod {
   static const String getFriendApplicationListAsRecipient = 'GetFriendApplicationListAsRecipient';
   static const String getFriendList = 'GetFriendList';
   static const String getFriendListPage = 'GetFriendListPage';
-  static const String getFriendsList = 'GetSpecifiedFriendsInfo';
+  static const String getFriendsInfo = 'GetSpecifiedFriendsInfo';
   static const String refuseFriendApplication = 'RefuseFriendApplication';
   static const String removeBlacklist = 'RemoveBlacklist';
   static const String searchFriends = 'SearchFriends';

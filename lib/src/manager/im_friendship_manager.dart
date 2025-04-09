@@ -153,6 +153,26 @@ class FriendshipManager {
     return result.value;
   }
 
+  /// 获取黑名单列表
+  Future<List<FriendInfo>> getFriendsInfo({
+    required List<String> userIDList,
+    bool filterBlack = false,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.getFriendsInfo,
+      data: {
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
   /// 把用户从自己的黑名单中移除。
   Future<dynamic> removeBlacklist({
     required String userID,

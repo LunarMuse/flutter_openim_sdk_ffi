@@ -1,3 +1,7 @@
+## 3.8.3-alpha.13
+
+- 补充遗漏的方法
+
 ## 3.8.3-alpha.12
 
 - 修复[#21](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/21)

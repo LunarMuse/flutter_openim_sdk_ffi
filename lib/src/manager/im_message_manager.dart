@@ -858,6 +858,27 @@ class MessageManager {
     return result.value;
   }
 
+  Future<Message> typingStatusUpdate({
+    required String userID,
+    String? msgTip,
+    String? operationID,
+  }) async {
+    ReceivePort receivePort = ReceivePort();
+    OpenIMManager._sendPort.send(_PortModel(
+      method: _PortMethod.typingStatusUpdate,
+      data: {
+        'userID': userID,
+        'msgTip': msgTip ?? '',
+        'operationID': IMUtils.checkOperationID(operationID),
+      },
+      sendPort: receivePort.sendPort,
+    ));
+    _PortResult result = await receivePort.first;
+    receivePort.close();
+
+    return result.value;
+  }
+
   /// 发送消息
   ///
   /// [message] 消息体 [createImageMessageByURL],[createSoundMessageByURL],[createVideoMessageByURL],[createFileMessageByURL]

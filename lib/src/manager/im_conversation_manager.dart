@@ -139,7 +139,7 @@ class ConversationManager {
     }
   }
 
-  Future<void> hideAllConversations({
+  Future<void> hideAllConversation({
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
