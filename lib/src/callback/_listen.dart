@@ -1,7 +1,6 @@
 part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listen(_PortModel channel) {
-  print(channel.toJson());
   switch (channel.method) {
     /// OnConnListener
     case ListenerType.onConnecting:
