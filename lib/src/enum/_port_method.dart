@@ -65,6 +65,7 @@ class _PortMethod {
   static const String setGroupMemberInfo = 'SetGroupMemberInfo';
   static const String getGroupMemberOwnerAndAdmin = 'GetGroupMemberOwnerAndAdmin';
   static const String getGroupMemberListByJoinTimeFilter = 'GetGroupMemberListByJoinTimeFilter';
+  static const String getGroupMembersInfo = 'GetSpecifiedGroupMembersInfo';
   static const String kickGroupMember = 'KickGroupMember';
   static const String changeGroupMemberMute = 'ChangeGroupMemberMute';
   static const String changeGroupMute = 'ChangeGroupMute';

@@ -137,6 +137,17 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       calloc.free(receiverID);
       calloc.free(senderID);
       break;
+
+    case _PortMethod.getGroupMembersInfo:
+      OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
+      final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
+      final userIDList = jsonEncode(msg.data['userIDList']).toNativeUtf8().cast<ffi.Char>();
+      final groupID = (msg.data['groupID'] as String).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetSpecifiedGroupMembersInfo(operationID, groupID, userIDList);
+      calloc.free(operationID);
+      calloc.free(groupID);
+      break;
+
     case _PortMethod.insertGroupMessageToLocalStorage:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

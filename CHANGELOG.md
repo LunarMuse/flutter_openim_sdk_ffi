@@ -1,3 +1,7 @@
+## 3.8.3-alpha.11
+
+- 恢复 getGroupMembersInfo 方法
+
 ## 3.8.3-alpha.10
 
 - 修复#16(https://github.com/Spicely/flutter_openim_sdk_ffi/issues/16)

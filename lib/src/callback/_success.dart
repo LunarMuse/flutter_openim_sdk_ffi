@@ -60,6 +60,7 @@ void _success(_PortModel msg) {
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;
+    case _PortMethod.getGroupMembersInfo:
     case _PortMethod.getGroupMemberList:
     case _PortMethod.getGroupMemberListByJoinTimeFilter:
     case _PortMethod.getGroupMemberOwnerAndAdmin:
