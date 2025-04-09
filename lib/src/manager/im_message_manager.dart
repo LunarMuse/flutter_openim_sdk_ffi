@@ -683,7 +683,7 @@ class MessageManager {
     _PortResult result = await receivePort.first;
     receivePort.close();
 
-    return SearchResult.fromJson(Map.from(result.value));
+    return result.value;
   }
 
   /// 撤回一条消息，支持撤回自己发送的消息，或管理员与群主撤回群成员消息

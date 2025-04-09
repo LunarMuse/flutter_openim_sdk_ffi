@@ -1,3 +1,10 @@
+## 3.8.3-alpha.14
+
+- 修复[#23](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/23)
+- 修复[#24](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/24)
+- 修复[#25](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/25)
+- 修复[#26](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/26)
+
 ## 3.8.3-alpha.13
 
 - 补充遗漏的方法

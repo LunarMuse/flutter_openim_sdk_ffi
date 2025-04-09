@@ -18,7 +18,7 @@ class GroupManager {
       data: {
         'groupID': groupID,
         'userIDList': userIDList,
-        'reason': reason,
+        'reason': reason ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
@@ -46,7 +46,7 @@ class GroupManager {
       data: {
         'groupID': groupID,
         'userIDList': userIDList,
-        'reason': reason,
+        'reason': reason ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
@@ -243,9 +243,9 @@ class GroupManager {
       method: _PortMethod.joinGroup,
       data: {
         'groupID': groupID,
-        'reason': reason,
+        'reason': reason ?? '',
         'joinSource': joinSource,
-        'ex': ex,
+        'ex': ex ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
