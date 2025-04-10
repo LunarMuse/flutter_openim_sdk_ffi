@@ -9,6 +9,7 @@ void _success(_PortModel msg) {
         OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => ConversationInfo.fromJson(v))));
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
+      break;
     case _PortMethod.searchLocalMessages:
       if (msg.operationID != null) {
         OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toObj(msg.data, (v) => SearchResult.fromJson(v))));
