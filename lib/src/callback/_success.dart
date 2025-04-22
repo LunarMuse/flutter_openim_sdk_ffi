@@ -60,7 +60,7 @@ void _success(_PortModel msg) {
     case _PortMethod.inviteUserToGroup:
     case _PortMethod.kickGroupMember:
       if (msg.operationID != null) {
-        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data, (v) => GroupInviteResult.fromJson(v))));
+        OpenIMManager._sendPortMap[msg.operationID!]?.send(_PortResult(data: IMUtils.toList(msg.data == '""' ? '[]' : msg.data, (v) => GroupInviteResult.fromJson(v))));
         OpenIMManager._sendPortMap.remove(msg.operationID!);
       }
       break;

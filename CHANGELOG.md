@@ -1,3 +1,7 @@
+## 3.8.3-alpha.16
+
+- 修复[#29](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/29)
+
 ## 3.8.3-alpha.15
 
 - 修复[#27](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/27)
