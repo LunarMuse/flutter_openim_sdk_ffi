@@ -1,3 +1,0 @@
-protocol OnWorkMomentsListener {
-    func onRecvNewNotification()
-}

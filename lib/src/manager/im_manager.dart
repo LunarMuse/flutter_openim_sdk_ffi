@@ -92,10 +92,13 @@ class IMManager {
   }
 
   /// 获取登录状态
-  Future<int?> getLoginStatus() async {
+  Future<int?> getLoginStatus({
+    String? operationID,
+  }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getLoginStatus,
+      data: {'operationID': IMUtils.checkOperationID(operationID)},
       sendPort: receivePort.sendPort,
     ));
     _PortResult result = await receivePort.first;

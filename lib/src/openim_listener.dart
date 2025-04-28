@@ -159,4 +159,7 @@ mixin OpenIMListener {
 
   /// 上传完成
   void onUploadFileComplete(String id, int size, String url, int type) {}
+
+  /// 自定义通知
+  void onRecvCustomBusinessMessage(String businessMessage) {}
 }

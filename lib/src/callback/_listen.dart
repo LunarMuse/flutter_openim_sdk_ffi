@@ -1,7 +1,6 @@
 part of '../../flutter_openim_sdk_ffi.dart';
 
 void _listen(_PortModel channel) {
-  print(channel.toJson());
   switch (channel.method) {
     /// OnConnListener
     case ListenerType.onConnecting:
@@ -159,6 +158,10 @@ void _listen(_PortModel channel) {
       break;
     case ListenerType.complete:
       OpenIMManager._onEvent((listener) => listener.onUploadFileComplete(channel.operationID!, channel.data['size'], channel.data['url'], channel.data['typ']));
+      break;
+
+    case ListenerType.onRecvCustomBusinessMessage:
+      OpenIMManager._onEvent((listener) => listener.onRecvCustomBusinessMessage(channel.data));
       break;
   }
 }

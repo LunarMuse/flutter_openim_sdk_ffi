@@ -37,7 +37,7 @@ class ConversationManager {
     _PortResult result = await receivePort.first;
     receivePort.close();
 
-    return IMUtils.toList(result.value, (map) => ConversationInfo.fromJson(map));
+    return result.value;
   }
 
   /// 查询会话，如果会话不存在会自动生成一个
@@ -86,7 +86,7 @@ class ConversationManager {
     _PortResult result = await receivePort.first;
     receivePort.close();
 
-    return IMUtils.toList(result.value, (map) => ConversationInfo.fromJson(map));
+    return result.value;
   }
 
   /// 设置会话草稿
@@ -139,7 +139,7 @@ class ConversationManager {
     }
   }
 
-  Future<void> hideAllConversations({
+  Future<void> hideAllConversation({
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();

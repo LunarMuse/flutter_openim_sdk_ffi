@@ -42,7 +42,7 @@ class _PortMethod {
   static const String getFriendApplicationListAsRecipient = 'GetFriendApplicationListAsRecipient';
   static const String getFriendList = 'GetFriendList';
   static const String getFriendListPage = 'GetFriendListPage';
-  static const String getFriendsList = 'GetSpecifiedFriendsInfo';
+  static const String getFriendsInfo = 'GetSpecifiedFriendsInfo';
   static const String refuseFriendApplication = 'RefuseFriendApplication';
   static const String removeBlacklist = 'RemoveBlacklist';
   static const String searchFriends = 'SearchFriends';
@@ -61,11 +61,11 @@ class _PortMethod {
   static const String acceptGroupApplication = 'AcceptGroupApplication';
   static const String refuseGroupApplication = 'RefuseGroupApplication';
   static const String getGroupMemberList = 'GetGroupMemberList';
-  static const String getGroupMembersInfo = 'GetSpecifiedGroupMembersInfo';
   static const String searchGroupMembers = 'SearchGroupMembers';
   static const String setGroupMemberInfo = 'SetGroupMemberInfo';
   static const String getGroupMemberOwnerAndAdmin = 'GetGroupMemberOwnerAndAdmin';
   static const String getGroupMemberListByJoinTimeFilter = 'GetGroupMemberListByJoinTimeFilter';
+  static const String getGroupMembersInfo = 'GetSpecifiedGroupMembersInfo';
   static const String kickGroupMember = 'KickGroupMember';
   static const String changeGroupMemberMute = 'ChangeGroupMemberMute';
   static const String changeGroupMute = 'ChangeGroupMute';
@@ -156,8 +156,8 @@ class _PortMethod {
   static const String createAdvancedTextMessage = 'CreateAdvancedTextMessage';
   static const String createAdvancedQuoteMessage = 'CreateAdvancedQuoteMessage';
 
-  static const String getFriendListMap = 'GetFriendListMap';
-  static const String getFriendListPageMap = 'GetFriendListPageMap';
+  // static const String getFriendListMap = 'GetFriendListMap';
+  // static const String getFriendListPageMap = 'GetFriendListPageMap';
 
   static const String networkStatusChanged = 'NetworkStatusChanged';
   static const String setAppBackgroundStatus = 'SetAppBackgroundStatus';

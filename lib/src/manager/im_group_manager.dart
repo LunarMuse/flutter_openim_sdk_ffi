@@ -18,7 +18,7 @@ class GroupManager {
       data: {
         'groupID': groupID,
         'userIDList': userIDList,
-        'reason': reason,
+        'reason': reason ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
@@ -46,7 +46,7 @@ class GroupManager {
       data: {
         'groupID': groupID,
         'userIDList': userIDList,
-        'reason': reason,
+        'reason': reason ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,
@@ -94,7 +94,7 @@ class GroupManager {
     required String groupID,
     int filter = 0,
     int offset = 0,
-    int count = 0,
+    int count = 10,
     String? operationID,
   }) async {
     ReceivePort receivePort = ReceivePort();
@@ -149,7 +149,7 @@ class GroupManager {
     ));
     _PortResult result = await receivePort.first;
     receivePort.close();
-    return result.value;
+    return result.value == 'true';
   }
 
   /// 创建一个组
@@ -243,9 +243,9 @@ class GroupManager {
       method: _PortMethod.joinGroup,
       data: {
         'groupID': groupID,
-        'reason': reason,
+        'reason': reason ?? '',
         'joinSource': joinSource,
-        'ex': ex,
+        'ex': ex ?? '',
         'operationID': IMUtils.checkOperationID(operationID),
       },
       sendPort: receivePort.sendPort,

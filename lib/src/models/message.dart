@@ -301,10 +301,10 @@ class Message {
   }
 
   /// Single chat message
-  bool get isSingleChat => sessionType == ConversationType.single;
+  bool get isSingleChat => sessionType == ConversationType.single.rawValue;
 
   /// Group chat message
-  bool get isGroupChat => sessionType == ConversationType.group || sessionType == ConversationType.superGroup;
+  bool get isGroupChat => sessionType == ConversationType.group.rawValue || sessionType == ConversationType.superGroup.rawValue;
 }
 
 /// Image message content
