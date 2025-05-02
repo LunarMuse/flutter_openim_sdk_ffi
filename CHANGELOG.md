@@ -1,3 +1,7 @@
+## 3.8.3-alpha.19
+
+- 更新 SDK 版本到 v3.8.3-patch.3
+
 ## 3.8.3-alpha.18
 
 - 修复[#32](https://github.com/Spicely/flutter_openim_sdk_ffi/issues/32)
