@@ -164,6 +164,8 @@ class FriendshipManager {
       method: _PortMethod.getFriendsInfo,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
+        'userIDList': userIDList,
+        'filterBlack': filterBlack,
       },
       sendPort: receivePort.sendPort,
     ));
