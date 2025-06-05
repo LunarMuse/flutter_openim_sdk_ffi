@@ -1,4 +1,4 @@
-// ignore_for_file: always_specify_types, unused_element, unused_field
+// ignore_for_file: always_specify_types
 // ignore_for_file: camel_case_types
 // ignore_for_file: non_constant_identifier_names
 
@@ -14,13 +14,18 @@ import 'dart:ffi' as ffi;
 ///
 class FlutterOpenimSdkFfiBindings {
   /// Holds the symbol lookup function.
-  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) _lookup;
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+      _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
-  FlutterOpenimSdkFfiBindings(ffi.DynamicLibrary dynamicLibrary) : _lookup = dynamicLibrary.lookup;
+  FlutterOpenimSdkFfiBindings(ffi.DynamicLibrary dynamicLibrary)
+      : _lookup = dynamicLibrary.lookup;
 
   /// The symbols are looked up with [lookup].
-  FlutterOpenimSdkFfiBindings.fromLookup(ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup) : _lookup = lookup;
+  FlutterOpenimSdkFfiBindings.fromLookup(
+      ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+          lookup)
+      : _lookup = lookup;
 
   int renameat(
     int arg0,
@@ -36,8 +41,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _renameatPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>)>>('renameat');
-  late final _renameat = _renameatPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _renameatPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Pointer<ffi.Char>)>>('renameat');
+  late final _renameat = _renameatPtr.asFunction<
+      int Function(int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   int renamex_np(
     ffi.Pointer<ffi.Char> arg0,
@@ -51,8 +60,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _renamex_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.UnsignedInt)>>('renamex_np');
-  late final _renamex_np = _renamex_npPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _renamex_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.UnsignedInt)>>('renamex_np');
+  late final _renamex_np = _renamex_npPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   int renameatx_np(
     int arg0,
@@ -70,8 +83,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _renameatx_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>, ffi.UnsignedInt)>>('renameatx_np');
-  late final _renameatx_np = _renameatx_npPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, int)>();
+  late final _renameatx_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Pointer<ffi.Char>, ffi.UnsignedInt)>>('renameatx_np');
+  late final _renameatx_np = _renameatx_npPtr.asFunction<
+      int Function(
+          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, int)>();
 
   int printf(
     ffi.Pointer<ffi.Char> arg0,
@@ -81,22 +99,28 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _printfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('printf');
-  late final _printf = _printfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _printfPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'printf');
+  late final _printf =
+      _printfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
-  late final ffi.Pointer<ffi.Pointer<FILE>> ___stdinp = _lookup<ffi.Pointer<FILE>>('__stdinp');
+  late final ffi.Pointer<ffi.Pointer<FILE>> ___stdinp =
+      _lookup<ffi.Pointer<FILE>>('__stdinp');
 
   ffi.Pointer<FILE> get __stdinp => ___stdinp.value;
 
   set __stdinp(ffi.Pointer<FILE> value) => ___stdinp.value = value;
 
-  late final ffi.Pointer<ffi.Pointer<FILE>> ___stdoutp = _lookup<ffi.Pointer<FILE>>('__stdoutp');
+  late final ffi.Pointer<ffi.Pointer<FILE>> ___stdoutp =
+      _lookup<ffi.Pointer<FILE>>('__stdoutp');
 
   ffi.Pointer<FILE> get __stdoutp => ___stdoutp.value;
 
   set __stdoutp(ffi.Pointer<FILE> value) => ___stdoutp.value = value;
 
-  late final ffi.Pointer<ffi.Pointer<FILE>> ___stderrp = _lookup<ffi.Pointer<FILE>>('__stderrp');
+  late final ffi.Pointer<ffi.Pointer<FILE>> ___stderrp =
+      _lookup<ffi.Pointer<FILE>>('__stderrp');
 
   ffi.Pointer<FILE> get __stderrp => ___stderrp.value;
 
@@ -111,8 +135,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _clearerrPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>('clearerr');
-  late final _clearerr = _clearerrPtr.asFunction<void Function(ffi.Pointer<FILE>)>();
+  late final _clearerrPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>(
+          'clearerr');
+  late final _clearerr =
+      _clearerrPtr.asFunction<void Function(ffi.Pointer<FILE>)>();
 
   int fclose(
     ffi.Pointer<FILE> arg0,
@@ -122,7 +149,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fclosePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fclose');
+  late final _fclosePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'fclose');
   late final _fclose = _fclosePtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int feof(
@@ -133,7 +162,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _feofPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('feof');
+  late final _feofPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('feof');
   late final _feof = _feofPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int ferror(
@@ -144,7 +174,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ferrorPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('ferror');
+  late final _ferrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'ferror');
   late final _ferror = _ferrorPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int fflush(
@@ -155,7 +187,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fflushPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fflush');
+  late final _fflushPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'fflush');
   late final _fflush = _fflushPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int fgetc(
@@ -166,7 +200,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fgetcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fgetc');
+  late final _fgetcPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fgetc');
   late final _fgetc = _fgetcPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int fgetpos(
@@ -179,8 +214,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fgetposPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>>('fgetpos');
-  late final _fgetpos = _fgetposPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>();
+  late final _fgetposPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>>('fgetpos');
+  late final _fgetpos = _fgetposPtr
+      .asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>();
 
   ffi.Pointer<ffi.Char> fgets(
     ffi.Pointer<ffi.Char> arg0,
@@ -194,8 +232,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fgetsPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<FILE>)>>('fgets');
-  late final _fgets = _fgetsPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<FILE>)>();
+  late final _fgetsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<FILE>)>>('fgets');
+  late final _fgets = _fgetsPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<FILE>)>();
 
   ffi.Pointer<FILE> fopen(
     ffi.Pointer<ffi.Char> __filename,
@@ -207,8 +250,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fopenPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('fopen');
-  late final _fopen = _fopenPtr.asFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _fopenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('fopen');
+  late final _fopen = _fopenPtr.asFunction<
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   int fprintf(
     ffi.Pointer<FILE> arg0,
@@ -220,8 +268,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('fprintf');
-  late final _fprintf = _fprintfPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
+  late final _fprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('fprintf');
+  late final _fprintf = _fprintfPtr
+      .asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
 
   int fputc(
     int arg0,
@@ -233,8 +285,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fputcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('fputc');
-  late final _fputc = _fputcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final _fputcPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          'fputc');
+  late final _fputc =
+      _fputcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   int fputs(
     ffi.Pointer<ffi.Char> arg0,
@@ -246,8 +301,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fputsPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>>('fputs');
-  late final _fputs = _fputsPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>();
+  late final _fputsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>>('fputs');
+  late final _fputs = _fputsPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>();
 
   int fread(
     ffi.Pointer<ffi.Void> __ptr,
@@ -263,8 +321,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _freadPtr = _lookup<ffi.NativeFunction<ffi.UnsignedLong Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<FILE>)>>('fread');
-  late final _fread = _freadPtr.asFunction<int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<FILE>)>();
+  late final _freadPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLong Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
+              ffi.Pointer<FILE>)>>('fread');
+  late final _fread = _freadPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<FILE>)>();
 
   ffi.Pointer<FILE> freopen(
     ffi.Pointer<ffi.Char> arg0,
@@ -278,8 +340,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _freopenPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>>('freopen');
-  late final _freopen = _freopenPtr.asFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>();
+  late final _freopenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>>('freopen');
+  late final _freopen = _freopenPtr.asFunction<
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<FILE>)>();
 
   int fscanf(
     ffi.Pointer<FILE> arg0,
@@ -291,8 +358,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('fscanf');
-  late final _fscanf = _fscanfPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
+  late final _fscanfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('fscanf');
+  late final _fscanf = _fscanfPtr
+      .asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
 
   int fseek(
     ffi.Pointer<FILE> arg0,
@@ -306,8 +377,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fseekPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Long, ffi.Int)>>('fseek');
-  late final _fseek = _fseekPtr.asFunction<int Function(ffi.Pointer<FILE>, int, int)>();
+  late final _fseekPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, ffi.Long, ffi.Int)>>('fseek');
+  late final _fseek =
+      _fseekPtr.asFunction<int Function(ffi.Pointer<FILE>, int, int)>();
 
   int fsetpos(
     ffi.Pointer<FILE> arg0,
@@ -319,8 +393,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fsetposPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>>('fsetpos');
-  late final _fsetpos = _fsetposPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>();
+  late final _fsetposPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>>('fsetpos');
+  late final _fsetpos = _fsetposPtr
+      .asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<fpos_t>)>();
 
   int ftell(
     ffi.Pointer<FILE> arg0,
@@ -330,7 +407,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ftellPtr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<FILE>)>>('ftell');
+  late final _ftellPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<FILE>)>>(
+          'ftell');
   late final _ftell = _ftellPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int fwrite(
@@ -347,8 +426,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fwritePtr = _lookup<ffi.NativeFunction<ffi.UnsignedLong Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<FILE>)>>('fwrite');
-  late final _fwrite = _fwritePtr.asFunction<int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<FILE>)>();
+  late final _fwritePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLong Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
+              ffi.Pointer<FILE>)>>('fwrite');
+  late final _fwrite = _fwritePtr.asFunction<
+      int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<FILE>)>();
 
   int getc(
     ffi.Pointer<FILE> arg0,
@@ -358,14 +441,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('getc');
+  late final _getcPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('getc');
   late final _getc = _getcPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int getchar() {
     return _getchar();
   }
 
-  late final _getcharPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('getchar');
+  late final _getcharPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('getchar');
   late final _getchar = _getcharPtr.asFunction<int Function()>();
 
   ffi.Pointer<ffi.Char> gets(
@@ -376,8 +461,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getsPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('gets');
-  late final _gets = _getsPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _getsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('gets');
+  late final _gets = _getsPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   void perror(
     ffi.Pointer<ffi.Char> arg0,
@@ -387,8 +475,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _perrorPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('perror');
-  late final _perror = _perrorPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _perrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'perror');
+  late final _perror =
+      _perrorPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   int putc(
     int arg0,
@@ -400,8 +491,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('putc');
-  late final _putc = _putcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final _putcPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          'putc');
+  late final _putc =
+      _putcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   int putchar(
     int arg0,
@@ -411,7 +505,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putcharPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('putchar');
+  late final _putcharPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('putchar');
   late final _putchar = _putcharPtr.asFunction<int Function(int)>();
 
   int puts(
@@ -422,7 +517,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putsPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('puts');
+  late final _putsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'puts');
   late final _puts = _putsPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int remove(
@@ -433,8 +530,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _removePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('remove');
-  late final _remove = _removePtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _removePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'remove');
+  late final _remove =
+      _removePtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int rename(
     ffi.Pointer<ffi.Char> __old,
@@ -446,8 +546,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _renamePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('rename');
-  late final _rename = _renamePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _renamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('rename');
+  late final _rename = _renamePtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void rewind(
     ffi.Pointer<FILE> arg0,
@@ -457,8 +561,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _rewindPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>('rewind');
-  late final _rewind = _rewindPtr.asFunction<void Function(ffi.Pointer<FILE>)>();
+  late final _rewindPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>(
+          'rewind');
+  late final _rewind =
+      _rewindPtr.asFunction<void Function(ffi.Pointer<FILE>)>();
 
   int scanf(
     ffi.Pointer<ffi.Char> arg0,
@@ -468,8 +575,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _scanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('scanf');
-  late final _scanf = _scanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _scanfPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'scanf');
+  late final _scanf =
+      _scanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   void setbuf(
     ffi.Pointer<FILE> arg0,
@@ -481,8 +591,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setbufPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('setbuf');
-  late final _setbuf = _setbufPtr.asFunction<void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
+  late final _setbufPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>>('setbuf');
+  late final _setbuf = _setbufPtr
+      .asFunction<void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>)>();
 
   int setvbuf(
     ffi.Pointer<FILE> arg0,
@@ -498,8 +612,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setvbufPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Size)>>('setvbuf');
-  late final _setvbuf = _setvbufPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, int, int)>();
+  late final _setvbufPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Size)>>('setvbuf');
+  late final _setvbuf = _setvbufPtr.asFunction<
+      int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, int, int)>();
 
   int sprintf(
     ffi.Pointer<ffi.Char> arg0,
@@ -511,8 +629,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _sprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('sprintf');
-  late final _sprintf = _sprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _sprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('sprintf');
+  late final _sprintf = _sprintfPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   int sscanf(
     ffi.Pointer<ffi.Char> arg0,
@@ -524,14 +646,19 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _sscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('sscanf');
-  late final _sscanf = _sscanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _sscanfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('sscanf');
+  late final _sscanf = _sscanfPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<FILE> tmpfile() {
     return _tmpfile();
   }
 
-  late final _tmpfilePtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function()>>('tmpfile');
+  late final _tmpfilePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function()>>('tmpfile');
   late final _tmpfile = _tmpfilePtr.asFunction<ffi.Pointer<FILE> Function()>();
 
   ffi.Pointer<ffi.Char> tmpnam(
@@ -542,8 +669,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _tmpnamPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('tmpnam');
-  late final _tmpnam = _tmpnamPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _tmpnamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('tmpnam');
+  late final _tmpnam = _tmpnamPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   int ungetc(
     int arg0,
@@ -555,8 +685,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ungetcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('ungetc');
-  late final _ungetc = _ungetcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final _ungetcPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          'ungetc');
+  late final _ungetc =
+      _ungetcPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   int vfprintf(
     ffi.Pointer<FILE> arg0,
@@ -570,8 +703,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vfprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>>('vfprintf');
-  late final _vfprintf = _vfprintfPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vfprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>>('vfprintf');
+  late final _vfprintf = _vfprintfPtr.asFunction<
+      int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
 
   int vprintf(
     ffi.Pointer<ffi.Char> arg0,
@@ -583,8 +720,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, va_list)>>('vprintf');
-  late final _vprintf = _vprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vprintfPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, va_list)>>(
+      'vprintf');
+  late final _vprintf =
+      _vprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, va_list)>();
 
   int vsprintf(
     ffi.Pointer<ffi.Char> arg0,
@@ -598,8 +738,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vsprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>>('vsprintf');
-  late final _vsprintf = _vsprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vsprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              va_list)>>('vsprintf');
+  late final _vsprintf = _vsprintfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>();
 
   ffi.Pointer<ffi.Char> ctermid(
     ffi.Pointer<ffi.Char> arg0,
@@ -609,8 +753,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ctermidPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('ctermid');
-  late final _ctermid = _ctermidPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _ctermidPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('ctermid');
+  late final _ctermid = _ctermidPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<FILE> fdopen(
     int arg0,
@@ -622,8 +769,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fdopenPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Int, ffi.Pointer<ffi.Char>)>>('fdopen');
-  late final _fdopen = _fdopenPtr.asFunction<ffi.Pointer<FILE> Function(int, ffi.Pointer<ffi.Char>)>();
+  late final _fdopenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(
+              ffi.Int, ffi.Pointer<ffi.Char>)>>('fdopen');
+  late final _fdopen = _fdopenPtr
+      .asFunction<ffi.Pointer<FILE> Function(int, ffi.Pointer<ffi.Char>)>();
 
   int fileno(
     ffi.Pointer<FILE> arg0,
@@ -633,7 +784,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _filenoPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fileno');
+  late final _filenoPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'fileno');
   late final _fileno = _filenoPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int pclose(
@@ -644,7 +797,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pclosePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('pclose');
+  late final _pclosePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'pclose');
   late final _pclose = _pclosePtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   ffi.Pointer<FILE> popen(
@@ -657,8 +812,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _popenPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('popen');
-  late final _popen = _popenPtr.asFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _popenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('popen');
+  late final _popen = _popenPtr.asFunction<
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   /// Functions internal to the implementation.
   int __srget(
@@ -669,8 +829,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___srgetPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('__srget');
-  late final ___srget = ___srgetPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
+  late final ___srgetPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          '__srget');
+  late final ___srget =
+      ___srgetPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int __svfscanf(
     ffi.Pointer<FILE> arg0,
@@ -684,8 +847,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___svfscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>>('__svfscanf');
-  late final ___svfscanf = ___svfscanfPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final ___svfscanfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>,
+              va_list)>>('__svfscanf');
+  late final ___svfscanf = ___svfscanfPtr.asFunction<
+      int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
 
   int __swbuf(
     int arg0,
@@ -697,8 +864,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___swbufPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('__swbuf');
-  late final ___swbuf = ___swbufPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final ___swbufPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          '__swbuf');
+  late final ___swbuf =
+      ___swbufPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   void flockfile(
     ffi.Pointer<FILE> arg0,
@@ -708,8 +878,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _flockfilePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>('flockfile');
-  late final _flockfile = _flockfilePtr.asFunction<void Function(ffi.Pointer<FILE>)>();
+  late final _flockfilePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>(
+          'flockfile');
+  late final _flockfile =
+      _flockfilePtr.asFunction<void Function(ffi.Pointer<FILE>)>();
 
   int ftrylockfile(
     ffi.Pointer<FILE> arg0,
@@ -719,8 +892,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ftrylockfilePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('ftrylockfile');
-  late final _ftrylockfile = _ftrylockfilePtr.asFunction<int Function(ffi.Pointer<FILE>)>();
+  late final _ftrylockfilePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'ftrylockfile');
+  late final _ftrylockfile =
+      _ftrylockfilePtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   void funlockfile(
     ffi.Pointer<FILE> arg0,
@@ -730,8 +906,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _funlockfilePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>('funlockfile');
-  late final _funlockfile = _funlockfilePtr.asFunction<void Function(ffi.Pointer<FILE>)>();
+  late final _funlockfilePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>)>>(
+          'funlockfile');
+  late final _funlockfile =
+      _funlockfilePtr.asFunction<void Function(ffi.Pointer<FILE>)>();
 
   int getc_unlocked(
     ffi.Pointer<FILE> arg0,
@@ -741,15 +920,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getc_unlockedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('getc_unlocked');
-  late final _getc_unlocked = _getc_unlockedPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
+  late final _getc_unlockedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'getc_unlocked');
+  late final _getc_unlocked =
+      _getc_unlockedPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int getchar_unlocked() {
     return _getchar_unlocked();
   }
 
-  late final _getchar_unlockedPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('getchar_unlocked');
-  late final _getchar_unlocked = _getchar_unlockedPtr.asFunction<int Function()>();
+  late final _getchar_unlockedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('getchar_unlocked');
+  late final _getchar_unlocked =
+      _getchar_unlockedPtr.asFunction<int Function()>();
 
   int putc_unlocked(
     int arg0,
@@ -761,8 +945,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putc_unlockedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('putc_unlocked');
-  late final _putc_unlocked = _putc_unlockedPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final _putc_unlockedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          'putc_unlocked');
+  late final _putc_unlocked =
+      _putc_unlockedPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   int putchar_unlocked(
     int arg0,
@@ -772,8 +959,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putchar_unlockedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('putchar_unlocked');
-  late final _putchar_unlocked = _putchar_unlockedPtr.asFunction<int Function(int)>();
+  late final _putchar_unlockedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
+          'putchar_unlocked');
+  late final _putchar_unlocked =
+      _putchar_unlockedPtr.asFunction<int Function(int)>();
 
   int getw(
     ffi.Pointer<FILE> arg0,
@@ -783,7 +973,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getwPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('getw');
+  late final _getwPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('getw');
   late final _getw = _getwPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int putw(
@@ -796,8 +987,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putwPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>('putw');
-  late final _putw = _putwPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
+  late final _putwPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<FILE>)>>(
+          'putw');
+  late final _putw =
+      _putwPtr.asFunction<int Function(int, ffi.Pointer<FILE>)>();
 
   ffi.Pointer<ffi.Char> tempnam(
     ffi.Pointer<ffi.Char> __dir,
@@ -809,8 +1003,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _tempnamPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('tempnam');
-  late final _tempnam = _tempnamPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _tempnamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('tempnam');
+  late final _tempnam = _tempnamPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   int fseeko(
     ffi.Pointer<FILE> __stream,
@@ -824,8 +1023,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fseekoPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, off_t, ffi.Int)>>('fseeko');
-  late final _fseeko = _fseekoPtr.asFunction<int Function(ffi.Pointer<FILE>, int, int)>();
+  late final _fseekoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<FILE>, off_t, ffi.Int)>>('fseeko');
+  late final _fseeko =
+      _fseekoPtr.asFunction<int Function(ffi.Pointer<FILE>, int, int)>();
 
   int ftello(
     ffi.Pointer<FILE> __stream,
@@ -835,7 +1037,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ftelloPtr = _lookup<ffi.NativeFunction<off_t Function(ffi.Pointer<FILE>)>>('ftello');
+  late final _ftelloPtr =
+      _lookup<ffi.NativeFunction<off_t Function(ffi.Pointer<FILE>)>>('ftello');
   late final _ftello = _ftelloPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int snprintf(
@@ -850,8 +1053,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _snprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Pointer<ffi.Char>)>>('snprintf');
-  late final _snprintf = _snprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _snprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size,
+              ffi.Pointer<ffi.Char>)>>('snprintf');
+  late final _snprintf = _snprintfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   int vfscanf(
     ffi.Pointer<FILE> __stream,
@@ -865,8 +1072,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vfscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>>('vfscanf');
-  late final _vfscanf = _vfscanfPtr.asFunction<int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vfscanfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>>('vfscanf');
+  late final _vfscanf = _vfscanfPtr.asFunction<
+      int Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, va_list)>();
 
   int vscanf(
     ffi.Pointer<ffi.Char> __format,
@@ -878,8 +1089,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, va_list)>>('vscanf');
-  late final _vscanf = _vscanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vscanfPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, va_list)>>(
+      'vscanf');
+  late final _vscanf =
+      _vscanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, va_list)>();
 
   int vsnprintf(
     ffi.Pointer<ffi.Char> __str,
@@ -895,8 +1109,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vsnprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Pointer<ffi.Char>, va_list)>>('vsnprintf');
-  late final _vsnprintf = _vsnprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vsnprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size,
+              ffi.Pointer<ffi.Char>, va_list)>>('vsnprintf');
+  late final _vsnprintf = _vsnprintfPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, va_list)>();
 
   int vsscanf(
     ffi.Pointer<ffi.Char> __str,
@@ -910,8 +1129,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vsscanfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>>('vsscanf');
-  late final _vsscanf = _vsscanfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vsscanfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              va_list)>>('vsscanf');
+  late final _vsscanf = _vsscanfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, va_list)>();
 
   int dprintf(
     int arg0,
@@ -923,8 +1146,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _dprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>)>>('dprintf');
-  late final _dprintf = _dprintfPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>)>();
+  late final _dprintfPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>)>>(
+      'dprintf');
+  late final _dprintf =
+      _dprintfPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>)>();
 
   int vdprintf(
     int arg0,
@@ -938,8 +1164,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vdprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, va_list)>>('vdprintf');
-  late final _vdprintf = _vdprintfPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vdprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Int, ffi.Pointer<ffi.Char>, va_list)>>('vdprintf');
+  late final _vdprintf = _vdprintfPtr
+      .asFunction<int Function(int, ffi.Pointer<ffi.Char>, va_list)>();
 
   int getdelim(
     ffi.Pointer<ffi.Pointer<ffi.Char>> __linep,
@@ -955,8 +1185,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getdelimPtr = _lookup<ffi.NativeFunction<ssize_t Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>, ffi.Int, ffi.Pointer<FILE>)>>('getdelim');
-  late final _getdelim = _getdelimPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>, int, ffi.Pointer<FILE>)>();
+  late final _getdelimPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Size>, ffi.Int, ffi.Pointer<FILE>)>>('getdelim');
+  late final _getdelim = _getdelimPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>,
+          int, ffi.Pointer<FILE>)>();
 
   int getline(
     ffi.Pointer<ffi.Pointer<ffi.Char>> __linep,
@@ -970,8 +1205,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getlinePtr = _lookup<ffi.NativeFunction<ssize_t Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>, ffi.Pointer<FILE>)>>('getline');
-  late final _getline = _getlinePtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>, ffi.Pointer<FILE>)>();
+  late final _getlinePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Size>, ffi.Pointer<FILE>)>>('getline');
+  late final _getline = _getlinePtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>,
+          ffi.Pointer<FILE>)>();
 
   ffi.Pointer<FILE> fmemopen(
     ffi.Pointer<ffi.Void> __buf,
@@ -985,8 +1225,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fmemopenPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Pointer<ffi.Char>)>>('fmemopen');
-  late final _fmemopen = _fmemopenPtr.asFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
+  late final _fmemopenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              ffi.Pointer<ffi.Char>)>>('fmemopen');
+  late final _fmemopen = _fmemopenPtr.asFunction<
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<FILE> open_memstream(
     ffi.Pointer<ffi.Pointer<ffi.Char>> __bufp,
@@ -998,19 +1243,26 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _open_memstreamPtr = _lookup<ffi.NativeFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>)>>('open_memstream');
-  late final _open_memstream = _open_memstreamPtr.asFunction<ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>)>();
+  late final _open_memstreamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Size>)>>('open_memstream');
+  late final _open_memstream = _open_memstreamPtr.asFunction<
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Size>)>();
 
   /// perror(3) external variables
   late final ffi.Pointer<ffi.Int> _sys_nerr = _lookup<ffi.Int>('sys_nerr');
 
   int get sys_nerr => _sys_nerr.value;
 
-  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> _sys_errlist = _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('sys_errlist');
+  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> _sys_errlist =
+      _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('sys_errlist');
 
   ffi.Pointer<ffi.Pointer<ffi.Char>> get sys_errlist => _sys_errlist.value;
 
-  set sys_errlist(ffi.Pointer<ffi.Pointer<ffi.Char>> value) => _sys_errlist.value = value;
+  set sys_errlist(ffi.Pointer<ffi.Pointer<ffi.Char>> value) =>
+      _sys_errlist.value = value;
 
   int asprintf(
     ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
@@ -1022,8 +1274,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _asprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>>('asprintf');
-  late final _asprintf = _asprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
+  late final _asprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Char>)>>('asprintf');
+  late final _asprintf = _asprintfPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> ctermid_r(
     ffi.Pointer<ffi.Char> arg0,
@@ -1033,8 +1290,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ctermid_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('ctermid_r');
-  late final _ctermid_r = _ctermid_rPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _ctermid_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('ctermid_r');
+  late final _ctermid_r = _ctermid_rPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> fgetln(
     ffi.Pointer<FILE> arg0,
@@ -1046,8 +1306,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fgetlnPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Size>)>>('fgetln');
-  late final _fgetln = _fgetlnPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Size>)>();
+  late final _fgetlnPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Size>)>>('fgetln');
+  late final _fgetln = _fgetlnPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<FILE>, ffi.Pointer<ffi.Size>)>();
 
   ffi.Pointer<ffi.Char> fmtcheck(
     ffi.Pointer<ffi.Char> arg0,
@@ -1059,8 +1324,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fmtcheckPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('fmtcheck');
-  late final _fmtcheck = _fmtcheckPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _fmtcheckPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('fmtcheck');
+  late final _fmtcheck = _fmtcheckPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   int fpurge(
     ffi.Pointer<FILE> arg0,
@@ -1070,7 +1340,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fpurgePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('fpurge');
+  late final _fpurgePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'fpurge');
   late final _fpurge = _fpurgePtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   void setbuffer(
@@ -1085,8 +1357,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setbufferPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, ffi.Int)>>('setbuffer');
-  late final _setbuffer = _setbufferPtr.asFunction<void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, int)>();
+  late final _setbufferPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, ffi.Int)>>('setbuffer');
+  late final _setbuffer = _setbufferPtr.asFunction<
+      void Function(ffi.Pointer<FILE>, ffi.Pointer<ffi.Char>, int)>();
 
   int setlinebuf(
     ffi.Pointer<FILE> arg0,
@@ -1096,8 +1372,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setlinebufPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>('setlinebuf');
-  late final _setlinebuf = _setlinebufPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
+  late final _setlinebufPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<FILE>)>>(
+          'setlinebuf');
+  late final _setlinebuf =
+      _setlinebufPtr.asFunction<int Function(ffi.Pointer<FILE>)>();
 
   int vasprintf(
     ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
@@ -1111,16 +1390,33 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vasprintfPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>, va_list)>>('vasprintf');
-  late final _vasprintf = _vasprintfPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>, va_list)>();
+  late final _vasprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Char>, va_list)>>('vasprintf');
+  late final _vasprintf = _vasprintfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>,
+          va_list)>();
 
   /// Stdio function-access interface.
   ffi.Pointer<FILE> funopen(
     ffi.Pointer<ffi.Void> arg0,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> arg1,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> arg2,
-    ffi.Pointer<ffi.NativeFunction<fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>> arg3,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>> arg4,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(
+                    ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>
+        arg1,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(
+                    ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>
+        arg2,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>>
+        arg3,
+    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>
+        arg4,
   ) {
     return _funopen(
       arg0,
@@ -1133,11 +1429,38 @@ class FlutterOpenimSdkFfiBindings {
 
   late final _funopenPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>,
-              ffi.Pointer<ffi.NativeFunction<fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>)>>('funopen');
+          ffi.Pointer<FILE> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Char>, ffi.Int)>>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Char>, ffi.Int)>>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>)>>)>>('funopen');
   late final _funopen = _funopenPtr.asFunction<
-      ffi.Pointer<FILE> Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>,
-          ffi.Pointer<ffi.NativeFunction<fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>)>();
+      ffi.Pointer<FILE> Function(
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>>,
+          ffi.Pointer<
+              ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>)>();
 
   int __sprintf_chk(
     ffi.Pointer<ffi.Char> arg0,
@@ -1153,8 +1476,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___sprintf_chkPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Size, ffi.Pointer<ffi.Char>)>>('__sprintf_chk');
-  late final ___sprintf_chk = ___sprintf_chkPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int, ffi.Pointer<ffi.Char>)>();
+  late final ___sprintf_chkPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Size,
+              ffi.Pointer<ffi.Char>)>>('__sprintf_chk');
+  late final ___sprintf_chk = ___sprintf_chkPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, int, ffi.Pointer<ffi.Char>)>();
 
   int __snprintf_chk(
     ffi.Pointer<ffi.Char> arg0,
@@ -1172,8 +1499,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___snprintf_chkPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Int, ffi.Size, ffi.Pointer<ffi.Char>)>>('__snprintf_chk');
-  late final ___snprintf_chk = ___snprintf_chkPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int, int, ffi.Pointer<ffi.Char>)>();
+  late final ___snprintf_chkPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Int, ffi.Size,
+              ffi.Pointer<ffi.Char>)>>('__snprintf_chk');
+  late final ___snprintf_chk = ___snprintf_chkPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, int, int, int, ffi.Pointer<ffi.Char>)>();
 
   int __vsprintf_chk(
     ffi.Pointer<ffi.Char> arg0,
@@ -1191,8 +1523,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___vsprintf_chkPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Size, ffi.Pointer<ffi.Char>, va_list)>>('__vsprintf_chk');
-  late final ___vsprintf_chk = ___vsprintf_chkPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int, ffi.Pointer<ffi.Char>, va_list)>();
+  late final ___vsprintf_chkPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Size,
+              ffi.Pointer<ffi.Char>, va_list)>>('__vsprintf_chk');
+  late final ___vsprintf_chk = ___vsprintf_chkPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, int, int, ffi.Pointer<ffi.Char>, va_list)>();
 
   int __vsnprintf_chk(
     ffi.Pointer<ffi.Char> arg0,
@@ -1212,8 +1549,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___vsnprintf_chkPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Int, ffi.Size, ffi.Pointer<ffi.Char>, va_list)>>('__vsnprintf_chk');
-  late final ___vsnprintf_chk = ___vsnprintf_chkPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int, int, ffi.Pointer<ffi.Char>, va_list)>();
+  late final ___vsnprintf_chkPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Int, ffi.Size,
+              ffi.Pointer<ffi.Char>, va_list)>>('__vsnprintf_chk');
+  late final ___vsnprintf_chk = ___vsnprintf_chkPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, int, int, ffi.Pointer<ffi.Char>,
+          va_list)>();
 
   /// For historical reasons; programs expect signal's return value to be
   /// defined by <sys/signal.h>.
@@ -1227,8 +1569,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _signalPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(ffi.Int, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>>('signal');
-  late final _signal = _signalPtr.asFunction<ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(int, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>();
+  late final _signalPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
+              ffi.Int,
+              ffi.Pointer<
+                  ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>>('signal');
+  late final _signal = _signalPtr.asFunction<
+      ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
+          int, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>();
 
   int getpriority(
     int arg0,
@@ -1240,8 +1589,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getpriorityPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t)>>('getpriority');
-  late final _getpriority = _getpriorityPtr.asFunction<int Function(int, int)>();
+  late final _getpriorityPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t)>>(
+          'getpriority');
+  late final _getpriority =
+      _getpriorityPtr.asFunction<int Function(int, int)>();
 
   int getiopolicy_np(
     int arg0,
@@ -1253,8 +1605,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getiopolicy_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('getiopolicy_np');
-  late final _getiopolicy_np = _getiopolicy_npPtr.asFunction<int Function(int, int)>();
+  late final _getiopolicy_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>(
+          'getiopolicy_np');
+  late final _getiopolicy_np =
+      _getiopolicy_npPtr.asFunction<int Function(int, int)>();
 
   int getrlimit(
     int arg0,
@@ -1266,8 +1621,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getrlimitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>('getrlimit');
-  late final _getrlimit = _getrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
+  late final _getrlimitPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>(
+      'getrlimit');
+  late final _getrlimit =
+      _getrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
 
   int getrusage(
     int arg0,
@@ -1279,8 +1637,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getrusagePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rusage>)>>('getrusage');
-  late final _getrusage = _getrusagePtr.asFunction<int Function(int, ffi.Pointer<rusage>)>();
+  late final _getrusagePtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rusage>)>>(
+      'getrusage');
+  late final _getrusage =
+      _getrusagePtr.asFunction<int Function(int, ffi.Pointer<rusage>)>();
 
   int setpriority(
     int arg0,
@@ -1294,8 +1655,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setpriorityPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t, ffi.Int)>>('setpriority');
-  late final _setpriority = _setpriorityPtr.asFunction<int Function(int, int, int)>();
+  late final _setpriorityPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t, ffi.Int)>>(
+          'setpriority');
+  late final _setpriority =
+      _setpriorityPtr.asFunction<int Function(int, int, int)>();
 
   int setiopolicy_np(
     int arg0,
@@ -1309,8 +1673,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setiopolicy_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int, ffi.Int)>>('setiopolicy_np');
-  late final _setiopolicy_np = _setiopolicy_npPtr.asFunction<int Function(int, int, int)>();
+  late final _setiopolicy_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int, ffi.Int)>>(
+          'setiopolicy_np');
+  late final _setiopolicy_np =
+      _setiopolicy_npPtr.asFunction<int Function(int, int, int)>();
 
   int setrlimit(
     int arg0,
@@ -1322,19 +1689,24 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setrlimitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>('setrlimit');
-  late final _setrlimit = _setrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
+  late final _setrlimitPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>(
+      'setrlimit');
+  late final _setrlimit =
+      _setrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
 
-  int wait1(
+  int wait$1(
     ffi.Pointer<ffi.Int> arg0,
   ) {
-    return _wait1(
+    return _wait$1(
       arg0,
     );
   }
 
-  late final _wait1Ptr = _lookup<ffi.NativeFunction<pid_t Function(ffi.Pointer<ffi.Int>)>>('wait');
-  late final _wait1 = _wait1Ptr.asFunction<int Function(ffi.Pointer<ffi.Int>)>();
+  late final _wait$1Ptr =
+      _lookup<ffi.NativeFunction<pid_t Function(ffi.Pointer<ffi.Int>)>>('wait');
+  late final _wait$1 =
+      _wait$1Ptr.asFunction<int Function(ffi.Pointer<ffi.Int>)>();
 
   int waitpid(
     int arg0,
@@ -1348,8 +1720,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _waitpidPtr = _lookup<ffi.NativeFunction<pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int)>>('waitpid');
-  late final _waitpid = _waitpidPtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int)>();
+  late final _waitpidPtr = _lookup<
+      ffi.NativeFunction<
+          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int)>>('waitpid');
+  late final _waitpid =
+      _waitpidPtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int)>();
 
   int waitid(
     idtype_t arg0,
@@ -1365,8 +1740,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _waitidPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.UnsignedInt, id_t, ffi.Pointer<siginfo_t>, ffi.Int)>>('waitid');
-  late final _waitid = _waitidPtr.asFunction<int Function(int, int, ffi.Pointer<siginfo_t>, int)>();
+  late final _waitidPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.UnsignedInt, id_t, ffi.Pointer<siginfo_t>,
+              ffi.Int)>>('waitid');
+  late final _waitid = _waitidPtr
+      .asFunction<int Function(int, int, ffi.Pointer<siginfo_t>, int)>();
 
   int wait3(
     ffi.Pointer<ffi.Int> arg0,
@@ -1380,8 +1759,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wait3Ptr = _lookup<ffi.NativeFunction<pid_t Function(ffi.Pointer<ffi.Int>, ffi.Int, ffi.Pointer<rusage>)>>('wait3');
-  late final _wait3 = _wait3Ptr.asFunction<int Function(ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
+  late final _wait3Ptr = _lookup<
+      ffi.NativeFunction<
+          pid_t Function(
+              ffi.Pointer<ffi.Int>, ffi.Int, ffi.Pointer<rusage>)>>('wait3');
+  late final _wait3 = _wait3Ptr.asFunction<
+      int Function(ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
 
   int wait4(
     int arg0,
@@ -1397,8 +1780,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wait4Ptr = _lookup<ffi.NativeFunction<pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int, ffi.Pointer<rusage>)>>('wait4');
-  late final _wait4 = _wait4Ptr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
+  late final _wait4Ptr = _lookup<
+      ffi.NativeFunction<
+          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int,
+              ffi.Pointer<rusage>)>>('wait4');
+  late final _wait4 = _wait4Ptr.asFunction<
+      int Function(int, ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
 
   ffi.Pointer<ffi.Void> alloca(
     int arg0,
@@ -1408,10 +1795,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _allocaPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>('alloca');
-  late final _alloca = _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+  late final _allocaPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
+          'alloca');
+  late final _alloca =
+      _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
-  late final ffi.Pointer<ffi.Int> ___mb_cur_max = _lookup<ffi.Int>('__mb_cur_max');
+  late final ffi.Pointer<ffi.Int> ___mb_cur_max =
+      _lookup<ffi.Int>('__mb_cur_max');
 
   int get __mb_cur_max => ___mb_cur_max.value;
 
@@ -1428,8 +1819,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_mallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, malloc_type_id_t)>>('malloc_type_malloc');
-  late final _malloc_type_malloc = _malloc_type_mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
+  late final _malloc_type_mallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Size, malloc_type_id_t)>>('malloc_type_malloc');
+  late final _malloc_type_malloc = _malloc_type_mallocPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_calloc(
     int count,
@@ -1443,8 +1838,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_callocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_calloc');
-  late final _malloc_type_calloc = _malloc_type_callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int, int)>();
+  late final _malloc_type_callocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_calloc');
+  late final _malloc_type_calloc = _malloc_type_callocPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(int, int, int)>();
 
   void malloc_type_free(
     ffi.Pointer<ffi.Void> ptr,
@@ -1456,8 +1855,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_freePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, malloc_type_id_t)>>('malloc_type_free');
-  late final _malloc_type_free = _malloc_type_freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
+  late final _malloc_type_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>, malloc_type_id_t)>>('malloc_type_free');
+  late final _malloc_type_free = _malloc_type_freePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_realloc(
     ffi.Pointer<ffi.Void> ptr,
@@ -1471,8 +1874,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_reallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Size, malloc_type_id_t)>>('malloc_type_realloc');
-  late final _malloc_type_realloc = _malloc_type_reallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+  late final _malloc_type_reallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              malloc_type_id_t)>>('malloc_type_realloc');
+  late final _malloc_type_realloc = _malloc_type_reallocPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_valloc(
     int size,
@@ -1484,8 +1891,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_vallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, malloc_type_id_t)>>('malloc_type_valloc');
-  late final _malloc_type_valloc = _malloc_type_vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
+  late final _malloc_type_vallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Size, malloc_type_id_t)>>('malloc_type_valloc');
+  late final _malloc_type_valloc = _malloc_type_vallocPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_aligned_alloc(
     int alignment,
@@ -1499,8 +1910,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_aligned_allocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_aligned_alloc');
-  late final _malloc_type_aligned_alloc = _malloc_type_aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int, int)>();
+  late final _malloc_type_aligned_allocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size,
+              malloc_type_id_t)>>('malloc_type_aligned_alloc');
+  late final _malloc_type_aligned_alloc = _malloc_type_aligned_allocPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(int, int, int)>();
 
   /// rdar://120689514
   int malloc_type_posix_memalign(
@@ -1517,8 +1932,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_posix_memalignPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_posix_memalign');
-  late final _malloc_type_posix_memalign = _malloc_type_posix_memalignPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int, int)>();
+  late final _malloc_type_posix_memalignPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size, malloc_type_id_t)>>('malloc_type_posix_memalign');
+  late final _malloc_type_posix_memalign =
+      _malloc_type_posix_memalignPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_zone_malloc(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1532,8 +1952,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_mallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size, malloc_type_id_t)>>('malloc_type_zone_malloc');
-  late final _malloc_type_zone_malloc = _malloc_type_zone_mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int)>();
+  late final _malloc_type_zone_mallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size,
+              malloc_type_id_t)>>('malloc_type_zone_malloc');
+  late final _malloc_type_zone_malloc = _malloc_type_zone_mallocPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_zone_calloc(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1549,8 +1973,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_callocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_zone_calloc');
-  late final _malloc_type_zone_calloc = _malloc_type_zone_callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int, int)>();
+  late final _malloc_type_zone_callocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size,
+              ffi.Size, malloc_type_id_t)>>('malloc_type_zone_calloc');
+  late final _malloc_type_zone_calloc = _malloc_type_zone_callocPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(
+          ffi.Pointer<malloc_zone_t>, int, int, int)>();
 
   void malloc_type_zone_free(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1564,8 +1993,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_freePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, malloc_type_id_t)>>('malloc_type_zone_free');
-  late final _malloc_type_zone_free = _malloc_type_zone_freePtr.asFunction<void Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, int)>();
+  late final _malloc_type_zone_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>,
+              malloc_type_id_t)>>('malloc_type_zone_free');
+  late final _malloc_type_zone_free = _malloc_type_zone_freePtr.asFunction<
+      void Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_zone_realloc(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1581,8 +2014,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_reallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, ffi.Size, malloc_type_id_t)>>('malloc_type_zone_realloc');
-  late final _malloc_type_zone_realloc = _malloc_type_zone_reallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, int, int)>();
+  late final _malloc_type_zone_reallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<malloc_zone_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              malloc_type_id_t)>>('malloc_type_zone_realloc');
+  late final _malloc_type_zone_realloc =
+      _malloc_type_zone_reallocPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<malloc_zone_t>, ffi.Pointer<ffi.Void>, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_zone_valloc(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1596,8 +2038,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_vallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size, malloc_type_id_t)>>('malloc_type_zone_valloc');
-  late final _malloc_type_zone_valloc = _malloc_type_zone_vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int)>();
+  late final _malloc_type_zone_vallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size,
+              malloc_type_id_t)>>('malloc_type_zone_valloc');
+  late final _malloc_type_zone_valloc = _malloc_type_zone_vallocPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc_type_zone_memalign(
     ffi.Pointer<malloc_zone_t> zone,
@@ -1613,8 +2059,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _malloc_type_zone_memalignPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size, ffi.Size, malloc_type_id_t)>>('malloc_type_zone_memalign');
-  late final _malloc_type_zone_memalign = _malloc_type_zone_memalignPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, int, int, int)>();
+  late final _malloc_type_zone_memalignPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<malloc_zone_t>, ffi.Size,
+              ffi.Size, malloc_type_id_t)>>('malloc_type_zone_memalign');
+  late final _malloc_type_zone_memalign =
+      _malloc_type_zone_memalignPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<malloc_zone_t>, int, int, int)>();
 
   ffi.Pointer<ffi.Void> malloc(
     int __size,
@@ -1624,8 +2076,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>('malloc');
-  late final _malloc = _mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+  late final _mallocPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
+          'malloc');
+  late final _malloc =
+      _mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
   ffi.Pointer<ffi.Void> calloc(
     int __count,
@@ -1637,8 +2092,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _callocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc = _callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
+  late final _callocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
+  late final _calloc =
+      _callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
   void free(
     ffi.Pointer<ffi.Void> arg0,
@@ -1648,8 +2106,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _freePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>('free');
-  late final _free = _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'free');
+  late final _free =
+      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<ffi.Void> realloc(
     ffi.Pointer<ffi.Void> __ptr,
@@ -1661,8 +2122,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _reallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc = _reallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+  late final _reallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
+  late final _realloc = _reallocPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
   ffi.Pointer<ffi.Void> reallocf(
     ffi.Pointer<ffi.Void> __ptr,
@@ -1674,8 +2139,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _reallocfPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
-  late final _reallocf = _reallocfPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+  late final _reallocfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
+  late final _reallocf = _reallocfPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
   ffi.Pointer<ffi.Void> valloc(
     int __size,
@@ -1685,8 +2154,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _vallocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>('valloc');
-  late final _valloc = _vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+  late final _vallocPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
+          'valloc');
+  late final _valloc =
+      _vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
   ffi.Pointer<ffi.Void> aligned_alloc(
     int __alignment,
@@ -1698,8 +2170,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _aligned_allocPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc = _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
+  late final _aligned_allocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
+  late final _aligned_alloc =
+      _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
   /// rdar://120689514
   int posix_memalign(
@@ -1714,14 +2189,19 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _posix_memalignPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size, ffi.Size)>>('posix_memalign');
-  late final _posix_memalign = _posix_memalignPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
+  late final _posix_memalignPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
+  late final _posix_memalign = _posix_memalignPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
   void abort() {
     return _abort();
   }
 
-  late final _abortPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
+  late final _abortPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
   late final _abort = _abortPtr.asFunction<void Function()>();
 
   int abs(
@@ -1732,7 +2212,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _absPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
+  late final _absPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
   late final _abs = _absPtr.asFunction<int Function(int)>();
 
   int atexit(
@@ -1743,8 +2224,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _atexitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit = _atexitPtr.asFunction<int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+  late final _atexitPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
+  late final _atexit = _atexitPtr.asFunction<
+      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
   int at_quick_exit(
     ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> arg0,
@@ -1754,8 +2239,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _at_quick_exitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('at_quick_exit');
-  late final _at_quick_exit = _at_quick_exitPtr.asFunction<int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+  late final _at_quick_exitPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
+      'at_quick_exit');
+  late final _at_quick_exit = _at_quick_exitPtr.asFunction<
+      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
   double atof(
     ffi.Pointer<ffi.Char> arg0,
@@ -1765,8 +2255,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _atofPtr = _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>('atof');
-  late final _atof = _atofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
+  late final _atofPtr =
+      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
+          'atof');
+  late final _atof =
+      _atofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
 
   int atoi(
     ffi.Pointer<ffi.Char> arg0,
@@ -1776,7 +2269,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _atoiPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('atoi');
+  late final _atoiPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'atoi');
   late final _atoi = _atoiPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int atol(
@@ -1787,7 +2282,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _atolPtr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>('atol');
+  late final _atolPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
+          'atol');
   late final _atol = _atolPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int atoll(
@@ -1798,15 +2295,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _atollPtr = _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>('atoll');
-  late final _atoll = _atollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _atollPtr =
+      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
+          'atoll');
+  late final _atoll =
+      _atollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Void> bsearch(
     ffi.Pointer<ffi.Void> __key,
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _bsearch(
       __key,
@@ -1817,8 +2320,27 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _bsearchPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('bsearch');
-  late final _bsearch = _bsearchPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _bsearchPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('bsearch');
+  late final _bsearch = _bsearchPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
   /// calloc is now declared in _malloc.h
   div_t div(
@@ -1831,7 +2353,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _divPtr = _lookup<ffi.NativeFunction<div_t Function(ffi.Int, ffi.Int)>>('div');
+  late final _divPtr =
+      _lookup<ffi.NativeFunction<div_t Function(ffi.Int, ffi.Int)>>('div');
   late final _div = _divPtr.asFunction<div_t Function(int, int)>();
 
   void exit(
@@ -1842,7 +2365,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _exitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
+  late final _exitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
   late final _exit = _exitPtr.asFunction<void Function(int)>();
 
   /// free is now declared in _malloc.h
@@ -1854,8 +2378,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getenvPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv = _getenvPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _getenvPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
+  late final _getenv = _getenvPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   int labs(
     int arg0,
@@ -1865,7 +2392,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _labsPtr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
+  late final _labsPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
   late final _labs = _labsPtr.asFunction<int Function(int)>();
 
   ldiv_t ldiv(
@@ -1878,7 +2406,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ldivPtr = _lookup<ffi.NativeFunction<ldiv_t Function(ffi.Long, ffi.Long)>>('ldiv');
+  late final _ldivPtr =
+      _lookup<ffi.NativeFunction<ldiv_t Function(ffi.Long, ffi.Long)>>('ldiv');
   late final _ldiv = _ldivPtr.asFunction<ldiv_t Function(int, int)>();
 
   int llabs(
@@ -1889,7 +2418,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _llabsPtr = _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
+  late final _llabsPtr =
+      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
   late final _llabs = _llabsPtr.asFunction<int Function(int)>();
 
   lldiv_t lldiv(
@@ -1902,7 +2432,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _lldivPtr = _lookup<ffi.NativeFunction<lldiv_t Function(ffi.LongLong, ffi.LongLong)>>('lldiv');
+  late final _lldivPtr =
+      _lookup<ffi.NativeFunction<lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
+          'lldiv');
   late final _lldiv = _lldivPtr.asFunction<lldiv_t Function(int, int)>();
 
   /// malloc is now declared in _malloc.h
@@ -1916,8 +2448,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mblenPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen = _mblenPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
+  late final _mblenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
+  late final _mblen =
+      _mblenPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs(
     ffi.Pointer<ffi.WChar> arg0,
@@ -1931,8 +2466,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mbstowcsPtr = _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, ffi.Size)>>('mbstowcs');
-  late final _mbstowcs = _mbstowcsPtr.asFunction<int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
+  late final _mbstowcsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
+  late final _mbstowcs = _mbstowcsPtr.asFunction<
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc(
     ffi.Pointer<ffi.WChar> arg0,
@@ -1946,15 +2485,22 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mbtowcPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, ffi.Size)>>('mbtowc');
-  late final _mbtowc = _mbtowcPtr.asFunction<int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
+  late final _mbtowcPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
+  late final _mbtowc = _mbtowcPtr.asFunction<
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   /// posix_memalign is now declared in _malloc.h
   void qsort(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _qsort(
       __base,
@@ -1964,8 +2510,25 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _qsortPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('qsort');
-  late final _qsort = _qsortPtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _qsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('qsort');
+  late final _qsort = _qsortPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
   void quick_exit(
     int arg0,
@@ -1975,7 +2538,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _quick_exitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
+  late final _quick_exitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
   late final _quick_exit = _quick_exitPtr.asFunction<void Function(int)>();
 
   int rand() {
@@ -1994,7 +2558,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _srandPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
+  late final _srandPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
   late final _srand = _srandPtr.asFunction<void Function(int)>();
 
   double strtod(
@@ -2007,8 +2572,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtodPtr = _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod = _strtodPtr.asFunction<double Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _strtodPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Double Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
+  late final _strtod = _strtodPtr.asFunction<
+      double Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   double strtof(
     ffi.Pointer<ffi.Char> arg0,
@@ -2020,8 +2590,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtofPtr = _lookup<ffi.NativeFunction<ffi.Float Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof = _strtofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _strtofPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Float Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
+  late final _strtof = _strtofPtr.asFunction<
+      double Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int strtol(
     ffi.Pointer<ffi.Char> __str,
@@ -2035,8 +2610,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtolPtr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol = _strtolPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
+  late final _strtol = _strtolPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int strtoll(
     ffi.Pointer<ffi.Char> __str,
@@ -2050,8 +2630,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtollPtr = _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll = _strtollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtollPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
+  late final _strtoll = _strtollPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int strtoul(
     ffi.Pointer<ffi.Char> __str,
@@ -2065,8 +2650,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtoulPtr = _lookup<ffi.NativeFunction<ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul = _strtoulPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtoulPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
+  late final _strtoul = _strtoulPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int strtoull(
     ffi.Pointer<ffi.Char> __str,
@@ -2080,8 +2670,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtoullPtr = _lookup<ffi.NativeFunction<ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull = _strtoullPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtoullPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
+  late final _strtoull = _strtoullPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int system(
     ffi.Pointer<ffi.Char> arg0,
@@ -2091,8 +2686,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _systemPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('system');
-  late final _system = _systemPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _systemPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'system');
+  late final _system =
+      _systemPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int wcstombs(
     ffi.Pointer<ffi.Char> arg0,
@@ -2106,8 +2704,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wcstombsPtr = _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, ffi.Size)>>('wcstombs');
-  late final _wcstombs = _wcstombsPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
+  late final _wcstombsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
+  late final _wcstombs = _wcstombsPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int wctomb(
     ffi.Pointer<ffi.Char> arg0,
@@ -2119,8 +2721,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wctombPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb = _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
+  late final _wctombPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
+  late final _wctomb =
+      _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   void _Exit(
     int arg0,
@@ -2130,7 +2735,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final __ExitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
+  late final __ExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
   late final __Exit = __ExitPtr.asFunction<void Function(int)>();
 
   int a64l(
@@ -2141,14 +2747,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _a64lPtr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>('a64l');
+  late final _a64lPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
+          'a64l');
   late final _a64l = _a64lPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   double drand48() {
     return _drand48();
   }
 
-  late final _drand48Ptr = _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
+  late final _drand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
   late final _drand48 = _drand48Ptr.asFunction<double Function()>();
 
   ffi.Pointer<ffi.Char> ecvt(
@@ -2165,8 +2774,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ecvtPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt = _ecvtPtr.asFunction<ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+  late final _ecvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
+  late final _ecvt = _ecvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
 
   double erand48(
     ffi.Pointer<ffi.UnsignedShort> arg0,
@@ -2176,8 +2790,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _erand48Ptr = _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand48 = _erand48Ptr.asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
+  late final _erand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
+  late final _erand48 =
+      _erand48Ptr.asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
 
   ffi.Pointer<ffi.Char> fcvt(
     double arg0,
@@ -2193,8 +2810,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _fcvtPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt = _fcvtPtr.asFunction<ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+  late final _fcvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
+  late final _fcvt = _fcvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
 
   ffi.Pointer<ffi.Char> gcvt(
     double arg0,
@@ -2208,8 +2830,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _gcvtPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt = _gcvtPtr.asFunction<ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
+  late final _gcvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
+  late final _gcvt = _gcvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
 
   int getsubopt(
     ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
@@ -2223,8 +2849,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getsuboptPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt = _getsuboptPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _getsuboptPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
+  late final _getsubopt = _getsuboptPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int grantpt(
     int arg0,
@@ -2234,7 +2869,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _grantptPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('grantpt');
+  late final _grantptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('grantpt');
   late final _grantpt = _grantptPtr.asFunction<int Function(int)>();
 
   ffi.Pointer<ffi.Char> initstate(
@@ -2249,8 +2885,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _initstatePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate = _initstatePtr.asFunction<ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
+  late final _initstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
+  late final _initstate = _initstatePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
   int jrand48(
     ffi.Pointer<ffi.UnsignedShort> arg0,
@@ -2260,8 +2900,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _jrand48Ptr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand48 = _jrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
+  late final _jrand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
+  late final _jrand48 =
+      _jrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
 
   ffi.Pointer<ffi.Char> l64a(
     int arg0,
@@ -2271,7 +2914,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _l64aPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>('l64a');
+  late final _l64aPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
+          'l64a');
   late final _l64a = _l64aPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
   void lcong48(
@@ -2282,14 +2927,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _lcong48Ptr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong48 = _lcong48Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
+  late final _lcong48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
+  late final _lcong48 =
+      _lcong48Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
 
   int lrand48() {
     return _lrand48();
   }
 
-  late final _lrand48Ptr = _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
+  late final _lrand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
   late final _lrand48 = _lrand48Ptr.asFunction<int Function()>();
 
   ffi.Pointer<ffi.Char> mktemp(
@@ -2300,8 +2949,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mktempPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp = _mktempPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _mktempPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
+  late final _mktemp = _mktempPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   int mkstemp(
     ffi.Pointer<ffi.Char> arg0,
@@ -2311,14 +2963,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mkstempPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('mkstemp');
-  late final _mkstemp = _mkstempPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _mkstempPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'mkstemp');
+  late final _mkstemp =
+      _mkstempPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int mrand48() {
     return _mrand48();
   }
 
-  late final _mrand48Ptr = _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
+  late final _mrand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
   late final _mrand48 = _mrand48Ptr.asFunction<int Function()>();
 
   int nrand48(
@@ -2329,8 +2985,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _nrand48Ptr = _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand48 = _nrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
+  late final _nrand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
+  late final _nrand48 =
+      _nrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
 
   int posix_openpt(
     int arg0,
@@ -2340,7 +2999,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _posix_openptPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('posix_openpt');
+  late final _posix_openptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('posix_openpt');
   late final _posix_openpt = _posix_openptPtr.asFunction<int Function(int)>();
 
   ffi.Pointer<ffi.Char> ptsname(
@@ -2351,8 +3011,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ptsnamePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>('ptsname');
-  late final _ptsname = _ptsnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
+  late final _ptsnamePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>(
+          'ptsname');
+  late final _ptsname =
+      _ptsnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
   int ptsname_r(
     int fildes,
@@ -2366,8 +3029,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ptsname_rPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('ptsname_r');
-  late final _ptsname_r = _ptsname_rPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
+  late final _ptsname_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('ptsname_r');
+  late final _ptsname_r =
+      _ptsname_rPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
 
   int putenv(
     ffi.Pointer<ffi.Char> arg0,
@@ -2377,14 +3044,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _putenvPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('putenv');
-  late final _putenv = _putenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _putenvPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'putenv');
+  late final _putenv =
+      _putenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int random() {
     return _random();
   }
 
-  late final _randomPtr = _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
+  late final _randomPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
   late final _random = _randomPtr.asFunction<int Function()>();
 
   int rand_r(
@@ -2395,8 +3066,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _rand_rPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>('rand_r');
-  late final _rand_r = _rand_rPtr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
+  late final _rand_rPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
+      'rand_r');
+  late final _rand_r =
+      _rand_rPtr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
 
   ffi.Pointer<ffi.Char> realpath(
     ffi.Pointer<ffi.Char> arg0,
@@ -2408,8 +3082,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _realpathPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath = _realpathPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _realpathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
+  late final _realpath = _realpathPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.UnsignedShort> seed48(
     ffi.Pointer<ffi.UnsignedShort> arg0,
@@ -2419,8 +3098,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _seed48Ptr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.UnsignedShort> Function(ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed48 = _seed48Ptr.asFunction<ffi.Pointer<ffi.UnsignedShort> Function(ffi.Pointer<ffi.UnsignedShort>)>();
+  late final _seed48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.UnsignedShort> Function(
+              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
+  late final _seed48 = _seed48Ptr.asFunction<
+      ffi.Pointer<ffi.UnsignedShort> Function(
+          ffi.Pointer<ffi.UnsignedShort>)>();
 
   int setenv(
     ffi.Pointer<ffi.Char> __name,
@@ -2434,8 +3118,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setenvPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int)>>('setenv');
-  late final _setenv = _setenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _setenvPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('setenv');
+  late final _setenv = _setenvPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   void setkey(
     ffi.Pointer<ffi.Char> arg0,
@@ -2445,8 +3133,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setkeyPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('setkey');
-  late final _setkey = _setkeyPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _setkeyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'setkey');
+  late final _setkey =
+      _setkeyPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> setstate(
     ffi.Pointer<ffi.Char> arg0,
@@ -2456,8 +3147,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setstatePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate = _setstatePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _setstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
+  late final _setstate = _setstatePtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   void srand48(
     int arg0,
@@ -2467,7 +3161,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _srand48Ptr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
+  late final _srand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
   late final _srand48 = _srand48Ptr.asFunction<void Function(int)>();
 
   void srandom(
@@ -2478,7 +3173,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _srandomPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srandom');
+  late final _srandomPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
+          'srandom');
   late final _srandom = _srandomPtr.asFunction<void Function(int)>();
 
   int unlockpt(
@@ -2489,7 +3186,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _unlockptPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('unlockpt');
+  late final _unlockptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('unlockpt');
   late final _unlockpt = _unlockptPtr.asFunction<int Function(int)>();
 
   int unsetenv(
@@ -2500,14 +3198,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _unsetenvPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('unsetenv');
-  late final _unsetenv = _unsetenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _unsetenvPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'unsetenv');
+  late final _unsetenv =
+      _unsetenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int arc4random() {
     return _arc4random();
   }
 
-  late final _arc4randomPtr = _lookup<ffi.NativeFunction<ffi.Uint32 Function()>>('arc4random');
+  late final _arc4randomPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint32 Function()>>('arc4random');
   late final _arc4random = _arc4randomPtr.asFunction<int Function()>();
 
   void arc4random_addrandom(
@@ -2520,8 +3222,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _arc4random_addrandomPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.UnsignedChar>, ffi.Int)>>('arc4random_addrandom');
-  late final _arc4random_addrandom = _arc4random_addrandomPtr.asFunction<void Function(ffi.Pointer<ffi.UnsignedChar>, int)>();
+  late final _arc4random_addrandomPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.UnsignedChar>, ffi.Int)>>('arc4random_addrandom');
+  late final _arc4random_addrandom = _arc4random_addrandomPtr
+      .asFunction<void Function(ffi.Pointer<ffi.UnsignedChar>, int)>();
 
   void arc4random_buf(
     ffi.Pointer<ffi.Void> __buf,
@@ -2533,15 +3239,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _arc4random_bufPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size)>>('arc4random_buf');
-  late final _arc4random_buf = _arc4random_bufPtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
+  late final _arc4random_bufPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size)>>(
+      'arc4random_buf');
+  late final _arc4random_buf = _arc4random_bufPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
 
   void arc4random_stir() {
     return _arc4random_stir();
   }
 
-  late final _arc4random_stirPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('arc4random_stir');
-  late final _arc4random_stir = _arc4random_stirPtr.asFunction<void Function()>();
+  late final _arc4random_stirPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('arc4random_stir');
+  late final _arc4random_stir =
+      _arc4random_stirPtr.asFunction<void Function()>();
 
   int arc4random_uniform(
     int __upper_bound,
@@ -2551,8 +3263,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _arc4random_uniformPtr = _lookup<ffi.NativeFunction<ffi.Uint32 Function(ffi.Uint32)>>('arc4random_uniform');
-  late final _arc4random_uniform = _arc4random_uniformPtr.asFunction<int Function(int)>();
+  late final _arc4random_uniformPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint32 Function(ffi.Uint32)>>(
+          'arc4random_uniform');
+  late final _arc4random_uniform =
+      _arc4random_uniformPtr.asFunction<int Function(int)>();
 
   /// getcap(3) functions
   ffi.Pointer<ffi.Char> cgetcap(
@@ -2567,14 +3282,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetcapPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int)>>('cgetcap');
-  late final _cgetcap = _cgetcapPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _cgetcapPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('cgetcap');
+  late final _cgetcap = _cgetcapPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   int cgetclose() {
     return _cgetclose();
   }
 
-  late final _cgetclosePtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('cgetclose');
+  late final _cgetclosePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('cgetclose');
   late final _cgetclose = _cgetclosePtr.asFunction<int Function()>();
 
   int cgetent(
@@ -2589,8 +3310,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetentPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>>('cgetent');
-  late final _cgetent = _cgetentPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
+  late final _cgetentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Char>)>>('cgetent');
+  late final _cgetent = _cgetentPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
 
   int cgetfirst(
     ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
@@ -2602,8 +3330,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetfirstPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetfirst');
-  late final _cgetfirst = _cgetfirstPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _cgetfirstPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetfirst');
+  late final _cgetfirst = _cgetfirstPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int cgetmatch(
     ffi.Pointer<ffi.Char> arg0,
@@ -2615,8 +3348,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetmatchPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('cgetmatch');
-  late final _cgetmatch = _cgetmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _cgetmatchPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('cgetmatch');
+  late final _cgetmatch = _cgetmatchPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   int cgetnext(
     ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
@@ -2628,8 +3365,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetnextPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetnext');
-  late final _cgetnext = _cgetnextPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _cgetnextPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetnext');
+  late final _cgetnext = _cgetnextPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int cgetnum(
     ffi.Pointer<ffi.Char> arg0,
@@ -2643,8 +3385,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetnumPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Long>)>>('cgetnum');
-  late final _cgetnum = _cgetnumPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Long>)>();
+  late final _cgetnumPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Long>)>>('cgetnum');
+  late final _cgetnum = _cgetnumPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Long>)>();
 
   int cgetset(
     ffi.Pointer<ffi.Char> arg0,
@@ -2654,8 +3401,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetsetPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('cgetset');
-  late final _cgetset = _cgetsetPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _cgetsetPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'cgetset');
+  late final _cgetset =
+      _cgetsetPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int cgetstr(
     ffi.Pointer<ffi.Char> arg0,
@@ -2669,8 +3419,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetstrPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetstr');
-  late final _cgetstr = _cgetstrPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _cgetstrPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetstr');
+  late final _cgetstr = _cgetstrPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int cgetustr(
     ffi.Pointer<ffi.Char> arg0,
@@ -2684,8 +3439,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _cgetustrPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetustr');
-  late final _cgetustr = _cgetustrPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _cgetustrPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetustr');
+  late final _cgetustr = _cgetustrPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int daemon(
     int arg0,
@@ -2697,7 +3457,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _daemonPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('daemon');
+  late final _daemonPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('daemon');
   late final _daemon = _daemonPtr.asFunction<int Function(int, int)>();
 
   ffi.Pointer<ffi.Char> devname(
@@ -2710,8 +3471,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _devnamePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(dev_t, mode_t)>>('devname');
-  late final _devname = _devnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int, int)>();
+  late final _devnamePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(dev_t, mode_t)>>(
+      'devname');
+  late final _devname =
+      _devnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int, int)>();
 
   ffi.Pointer<ffi.Char> devname_r(
     int arg0,
@@ -2727,8 +3491,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _devname_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(dev_t, mode_t, ffi.Pointer<ffi.Char>, ffi.Int)>>('devname_r');
-  late final _devname_r = _devname_rPtr.asFunction<ffi.Pointer<ffi.Char> Function(int, int, ffi.Pointer<ffi.Char>, int)>();
+  late final _devname_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              dev_t, mode_t, ffi.Pointer<ffi.Char>, ffi.Int)>>('devname_r');
+  late final _devname_r = _devname_rPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(int, int, ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> getbsize(
     ffi.Pointer<ffi.Int> arg0,
@@ -2740,8 +3508,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getbsizePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>>('getbsize');
-  late final _getbsize = _getbsizePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>();
+  late final _getbsizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>>('getbsize');
+  late final _getbsize = _getbsizePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>();
 
   int getloadavg(
     ffi.Pointer<ffi.Double> arg0,
@@ -2753,15 +3526,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getloadavgPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg = _getloadavgPtr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
+  late final _getloadavgPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
+  late final _getloadavg =
+      _getloadavgPtr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
 
   ffi.Pointer<ffi.Char> getprogname() {
     return _getprogname();
   }
 
-  late final _getprognamePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('getprogname');
-  late final _getprogname = _getprognamePtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _getprognamePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'getprogname');
+  late final _getprogname =
+      _getprognamePtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   void setprogname(
     ffi.Pointer<ffi.Char> arg0,
@@ -2771,14 +3550,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _setprognamePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('setprogname');
-  late final _setprogname = _setprognamePtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _setprognamePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'setprogname');
+  late final _setprogname =
+      _setprognamePtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   int heapsort(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _heapsort(
       __base,
@@ -2788,14 +3573,34 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _heapsortPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('heapsort');
-  late final _heapsort = _heapsortPtr.asFunction<int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _heapsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('heapsort');
+  late final _heapsort = _heapsortPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
   int mergesort(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _mergesort(
       __base,
@@ -2805,14 +3610,34 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mergesortPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('mergesort');
-  late final _mergesort = _mergesortPtr.asFunction<int Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _mergesortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('mergesort');
+  late final _mergesort = _mergesortPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
   void psort(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _psort(
       __base,
@@ -2822,15 +3647,36 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _psortPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('psort');
-  late final _psort = _psortPtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _psortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('psort');
+  late final _psort = _psortPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
   void psort_r(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
     ffi.Pointer<ffi.Void> arg3,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                    ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _psort_r(
       __base,
@@ -2841,15 +3687,40 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _psort_rPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('psort_r');
-  late final _psort_r = _psort_rPtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _psort_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('psort_r');
+  late final _psort_r = _psort_rPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Void>)>>)>();
 
   void qsort_r(
     ffi.Pointer<ffi.Void> __base,
     int __nel,
     int __width,
     ffi.Pointer<ffi.Void> arg3,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>> __compar,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                    ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _qsort_r(
       __base,
@@ -2860,8 +3731,29 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _qsort_rPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>>('qsort_r');
-  late final _qsort_r = _qsort_rPtr.asFunction<void Function(ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+  late final _qsort_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('qsort_r');
+  late final _qsort_r = _qsort_rPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Void>)>>)>();
 
   int radixsort(
     ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
@@ -2877,8 +3769,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _radixsortPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int, ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('radixsort');
-  late final _radixsort = _radixsortPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int, ffi.Pointer<ffi.UnsignedChar>, int)>();
+  late final _radixsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
+              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('radixsort');
+  late final _radixsort = _radixsortPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
+          ffi.Pointer<ffi.UnsignedChar>, int)>();
 
   int rpmatch(
     ffi.Pointer<ffi.Char> arg0,
@@ -2888,8 +3785,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _rpmatchPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('rpmatch');
-  late final _rpmatch = _rpmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _rpmatchPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'rpmatch');
+  late final _rpmatch =
+      _rpmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   int sradixsort(
     ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
@@ -2905,21 +3805,28 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _sradixsortPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int, ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('sradixsort');
-  late final _sradixsort = _sradixsortPtr.asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int, ffi.Pointer<ffi.UnsignedChar>, int)>();
+  late final _sradixsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
+              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('sradixsort');
+  late final _sradixsort = _sradixsortPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
+          ffi.Pointer<ffi.UnsignedChar>, int)>();
 
   void sranddev() {
     return _sranddev();
   }
 
-  late final _sranddevPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('sranddev');
+  late final _sranddevPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('sranddev');
   late final _sranddev = _sranddevPtr.asFunction<void Function()>();
 
   void srandomdev() {
     return _srandomdev();
   }
 
-  late final _srandomdevPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('srandomdev');
+  late final _srandomdevPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('srandomdev');
   late final _srandomdev = _srandomdevPtr.asFunction<void Function()>();
 
   /// reallocf is now declared in _malloc.h
@@ -2937,8 +3844,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtonumPtr = _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.LongLong, ffi.LongLong, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtonum');
-  late final _strtonum = _strtonumPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _strtonumPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.LongLong,
+              ffi.LongLong, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtonum');
+  late final _strtonum = _strtonumPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   int strtoq(
     ffi.Pointer<ffi.Char> __str,
@@ -2952,8 +3864,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtoqPtr = _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq = _strtoqPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtoqPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
+  late final _strtoq = _strtoqPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int strtouq(
     ffi.Pointer<ffi.Char> __str,
@@ -2967,11 +3884,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtouqPtr = _lookup<ffi.NativeFunction<ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq = _strtouqPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtouqPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
+  late final _strtouq = _strtouqPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   /// getsubopt(3) external variable
-  late final ffi.Pointer<ffi.Pointer<ffi.Char>> _suboptarg = _lookup<ffi.Pointer<ffi.Char>>('suboptarg');
+  late final ffi.Pointer<ffi.Pointer<ffi.Char>> _suboptarg =
+      _lookup<ffi.Pointer<ffi.Char>>('suboptarg');
 
   ffi.Pointer<ffi.Char> get suboptarg => _suboptarg.value;
 
@@ -2991,8 +3914,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final ___assert_rtnPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>)>>('__assert_rtn');
-  late final ___assert_rtn = ___assert_rtnPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final ___assert_rtnPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int, ffi.Pointer<ffi.Char>)>>('__assert_rtn');
+  late final ___assert_rtn = ___assert_rtnPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int,
+          ffi.Pointer<ffi.Char>)>();
 
   /// 7.8.2.1
   int imaxabs(
@@ -3003,7 +3931,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _imaxabsPtr = _lookup<ffi.NativeFunction<intmax_t Function(intmax_t)>>('imaxabs');
+  late final _imaxabsPtr =
+      _lookup<ffi.NativeFunction<intmax_t Function(intmax_t)>>('imaxabs');
   late final _imaxabs = _imaxabsPtr.asFunction<int Function(int)>();
 
   imaxdiv_t imaxdiv(
@@ -3016,7 +3945,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _imaxdivPtr = _lookup<ffi.NativeFunction<imaxdiv_t Function(intmax_t, intmax_t)>>('imaxdiv');
+  late final _imaxdivPtr =
+      _lookup<ffi.NativeFunction<imaxdiv_t Function(intmax_t, intmax_t)>>(
+          'imaxdiv');
   late final _imaxdiv = _imaxdivPtr.asFunction<imaxdiv_t Function(int, int)>();
 
   /// 7.8.2.3
@@ -3032,8 +3963,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtoimaxPtr = _lookup<ffi.NativeFunction<intmax_t Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoimax');
-  late final _strtoimax = _strtoimaxPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtoimaxPtr = _lookup<
+      ffi.NativeFunction<
+          intmax_t Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoimax');
+  late final _strtoimax = _strtoimaxPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   int strtoumax(
     ffi.Pointer<ffi.Char> __nptr,
@@ -3047,8 +3983,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strtoumaxPtr = _lookup<ffi.NativeFunction<uintmax_t Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoumax');
-  late final _strtoumax = _strtoumaxPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+  late final _strtoumaxPtr = _lookup<
+      ffi.NativeFunction<
+          uintmax_t Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoumax');
+  late final _strtoumax = _strtoumaxPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
 
   /// 7.8.2.4
   int wcstoimax(
@@ -3063,8 +4004,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wcstoimaxPtr = _lookup<ffi.NativeFunction<intmax_t Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoimax');
-  late final _wcstoimax = _wcstoimaxPtr.asFunction<int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
+  late final _wcstoimaxPtr = _lookup<
+      ffi.NativeFunction<
+          intmax_t Function(ffi.Pointer<ffi.WChar>,
+              ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoimax');
+  late final _wcstoimax = _wcstoimaxPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
 
   int wcstoumax(
     ffi.Pointer<ffi.WChar> __nptr,
@@ -3078,8 +4024,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _wcstoumaxPtr = _lookup<ffi.NativeFunction<uintmax_t Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoumax');
-  late final _wcstoumax = _wcstoumaxPtr.asFunction<int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
+  late final _wcstoumaxPtr = _lookup<
+      ffi.NativeFunction<
+          uintmax_t Function(ffi.Pointer<ffi.WChar>,
+              ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoumax');
+  late final _wcstoumax = _wcstoumaxPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
 
   /// Is this an error handle?
   ///
@@ -3092,8 +4043,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsError');
-  late final _Dart_IsError = _Dart_IsErrorPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsError');
+  late final _Dart_IsError =
+      _Dart_IsErrorPtr.asFunction<bool Function(Object)>();
 
   /// Is this an api error handle?
   ///
@@ -3110,8 +4064,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsApiErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsApiError');
-  late final _Dart_IsApiError = _Dart_IsApiErrorPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsApiErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsApiError');
+  late final _Dart_IsApiError =
+      _Dart_IsApiErrorPtr.asFunction<bool Function(Object)>();
 
   /// Is this an unhandled exception error handle?
   ///
@@ -3131,8 +4088,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsUnhandledExceptionErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsUnhandledExceptionError');
-  late final _Dart_IsUnhandledExceptionError = _Dart_IsUnhandledExceptionErrorPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsUnhandledExceptionErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsUnhandledExceptionError');
+  late final _Dart_IsUnhandledExceptionError =
+      _Dart_IsUnhandledExceptionErrorPtr.asFunction<bool Function(Object)>();
 
   /// Is this a compilation error handle?
   ///
@@ -3149,8 +4109,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsCompilationErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsCompilationError');
-  late final _Dart_IsCompilationError = _Dart_IsCompilationErrorPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsCompilationErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsCompilationError');
+  late final _Dart_IsCompilationError =
+      _Dart_IsCompilationErrorPtr.asFunction<bool Function(Object)>();
 
   /// Is this a fatal error handle?
   ///
@@ -3166,8 +4129,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsFatalErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsFatalError');
-  late final _Dart_IsFatalError = _Dart_IsFatalErrorPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsFatalErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsFatalError');
+  late final _Dart_IsFatalError =
+      _Dart_IsFatalErrorPtr.asFunction<bool Function(Object)>();
 
   /// Gets the error message from an error handle.
   ///
@@ -3185,8 +4151,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetErrorPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Handle)>>('Dart_GetError');
-  late final _Dart_GetError = _Dart_GetErrorPtr.asFunction<ffi.Pointer<ffi.Char> Function(Object)>();
+  late final _Dart_GetErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Handle)>>(
+          'Dart_GetError');
+  late final _Dart_GetError =
+      _Dart_GetErrorPtr.asFunction<ffi.Pointer<ffi.Char> Function(Object)>();
 
   /// Is this an error handle for an unhandled exception?
   bool Dart_ErrorHasException(
@@ -3197,8 +4166,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ErrorHasExceptionPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_ErrorHasException');
-  late final _Dart_ErrorHasException = _Dart_ErrorHasExceptionPtr.asFunction<bool Function(Object)>();
+  late final _Dart_ErrorHasExceptionPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_ErrorHasException');
+  late final _Dart_ErrorHasException =
+      _Dart_ErrorHasExceptionPtr.asFunction<bool Function(Object)>();
 
   /// Gets the exception Object from an unhandled exception error handle.
   Object Dart_ErrorGetException(
@@ -3209,8 +4181,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ErrorGetExceptionPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ErrorGetException');
-  late final _Dart_ErrorGetException = _Dart_ErrorGetExceptionPtr.asFunction<Object Function(Object)>();
+  late final _Dart_ErrorGetExceptionPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ErrorGetException');
+  late final _Dart_ErrorGetException =
+      _Dart_ErrorGetExceptionPtr.asFunction<Object Function(Object)>();
 
   /// Gets the stack trace Object from an unhandled exception error handle.
   Object Dart_ErrorGetStackTrace(
@@ -3221,8 +4196,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ErrorGetStackTracePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ErrorGetStackTrace');
-  late final _Dart_ErrorGetStackTrace = _Dart_ErrorGetStackTracePtr.asFunction<Object Function(Object)>();
+  late final _Dart_ErrorGetStackTracePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ErrorGetStackTrace');
+  late final _Dart_ErrorGetStackTrace =
+      _Dart_ErrorGetStackTracePtr.asFunction<Object Function(Object)>();
 
   /// Produces an api error handle with the provided error message.
   ///
@@ -3237,8 +4215,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewApiErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>('Dart_NewApiError');
-  late final _Dart_NewApiError = _Dart_NewApiErrorPtr.asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
+  late final _Dart_NewApiErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>(
+          'Dart_NewApiError');
+  late final _Dart_NewApiError =
+      _Dart_NewApiErrorPtr.asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
 
   Object Dart_NewCompilationError(
     ffi.Pointer<ffi.Char> error,
@@ -3248,8 +4229,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewCompilationErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>('Dart_NewCompilationError');
-  late final _Dart_NewCompilationError = _Dart_NewCompilationErrorPtr.asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
+  late final _Dart_NewCompilationErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>(
+          'Dart_NewCompilationError');
+  late final _Dart_NewCompilationError = _Dart_NewCompilationErrorPtr
+      .asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
 
   /// Produces a new unhandled exception error handle.
   ///
@@ -3268,8 +4252,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewUnhandledExceptionErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_NewUnhandledExceptionError');
-  late final _Dart_NewUnhandledExceptionError = _Dart_NewUnhandledExceptionErrorPtr.asFunction<Object Function(Object)>();
+  late final _Dart_NewUnhandledExceptionErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_NewUnhandledExceptionError');
+  late final _Dart_NewUnhandledExceptionError =
+      _Dart_NewUnhandledExceptionErrorPtr.asFunction<Object Function(Object)>();
 
   /// Propagates an error.
   ///
@@ -3303,8 +4290,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_PropagateErrorPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>('Dart_PropagateError');
-  late final _Dart_PropagateError = _Dart_PropagateErrorPtr.asFunction<void Function(Object)>();
+  late final _Dart_PropagateErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>(
+          'Dart_PropagateError');
+  late final _Dart_PropagateError =
+      _Dart_PropagateErrorPtr.asFunction<void Function(Object)>();
 
   /// Converts an object to a string.
   ///
@@ -3321,8 +4311,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ToStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ToString');
-  late final _Dart_ToString = _Dart_ToStringPtr.asFunction<Object Function(Object)>();
+  late final _Dart_ToStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ToString');
+  late final _Dart_ToString =
+      _Dart_ToStringPtr.asFunction<Object Function(Object)>();
 
   /// Checks to see if two handles refer to identically equal objects.
   ///
@@ -3344,8 +4337,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IdentityEqualsPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle, ffi.Handle)>>('Dart_IdentityEquals');
-  late final _Dart_IdentityEquals = _Dart_IdentityEqualsPtr.asFunction<bool Function(Object, Object)>();
+  late final _Dart_IdentityEqualsPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_IdentityEquals');
+  late final _Dart_IdentityEquals =
+      _Dart_IdentityEqualsPtr.asFunction<bool Function(Object, Object)>();
 
   /// Allocates a handle in the current scope from a persistent handle.
   Object Dart_HandleFromPersistent(
@@ -3356,8 +4352,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_HandleFromPersistentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_HandleFromPersistent');
-  late final _Dart_HandleFromPersistent = _Dart_HandleFromPersistentPtr.asFunction<Object Function(Object)>();
+  late final _Dart_HandleFromPersistentPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_HandleFromPersistent');
+  late final _Dart_HandleFromPersistent =
+      _Dart_HandleFromPersistentPtr.asFunction<Object Function(Object)>();
 
   /// Allocates a handle in the current scope from a weak persistent handle.
   ///
@@ -3370,8 +4369,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_HandleFromWeakPersistentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_WeakPersistentHandle)>>('Dart_HandleFromWeakPersistent');
-  late final _Dart_HandleFromWeakPersistent = _Dart_HandleFromWeakPersistentPtr.asFunction<Object Function(Dart_WeakPersistentHandle)>();
+  late final _Dart_HandleFromWeakPersistentPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(Dart_WeakPersistentHandle)>>(
+      'Dart_HandleFromWeakPersistent');
+  late final _Dart_HandleFromWeakPersistent = _Dart_HandleFromWeakPersistentPtr
+      .asFunction<Object Function(Dart_WeakPersistentHandle)>();
 
   /// Allocates a persistent handle for an object.
   ///
@@ -3387,8 +4389,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewPersistentHandlePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_NewPersistentHandle');
-  late final _Dart_NewPersistentHandle = _Dart_NewPersistentHandlePtr.asFunction<Object Function(Object)>();
+  late final _Dart_NewPersistentHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_NewPersistentHandle');
+  late final _Dart_NewPersistentHandle =
+      _Dart_NewPersistentHandlePtr.asFunction<Object Function(Object)>();
 
   /// Assign value of local handle to a persistent handle.
   ///
@@ -3406,8 +4411,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetPersistentHandlePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle, ffi.Handle)>>('Dart_SetPersistentHandle');
-  late final _Dart_SetPersistentHandle = _Dart_SetPersistentHandlePtr.asFunction<void Function(Object, Object)>();
+  late final _Dart_SetPersistentHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_SetPersistentHandle');
+  late final _Dart_SetPersistentHandle =
+      _Dart_SetPersistentHandlePtr.asFunction<void Function(Object, Object)>();
 
   /// Deallocates a persistent handle.
   ///
@@ -3420,8 +4428,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DeletePersistentHandlePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>('Dart_DeletePersistentHandle');
-  late final _Dart_DeletePersistentHandle = _Dart_DeletePersistentHandlePtr.asFunction<void Function(Object)>();
+  late final _Dart_DeletePersistentHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>(
+          'Dart_DeletePersistentHandle');
+  late final _Dart_DeletePersistentHandle =
+      _Dart_DeletePersistentHandlePtr.asFunction<void Function(Object)>();
 
   /// Allocates a weak persistent handle for an object.
   ///
@@ -3465,8 +4476,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewWeakPersistentHandlePtr = _lookup<ffi.NativeFunction<Dart_WeakPersistentHandle Function(ffi.Handle, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewWeakPersistentHandle');
-  late final _Dart_NewWeakPersistentHandle = _Dart_NewWeakPersistentHandlePtr.asFunction<Dart_WeakPersistentHandle Function(Object, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewWeakPersistentHandlePtr = _lookup<
+      ffi.NativeFunction<
+          Dart_WeakPersistentHandle Function(
+              ffi.Handle,
+              ffi.Pointer<ffi.Void>,
+              ffi.IntPtr,
+              Dart_HandleFinalizer)>>('Dart_NewWeakPersistentHandle');
+  late final _Dart_NewWeakPersistentHandle =
+      _Dart_NewWeakPersistentHandlePtr.asFunction<
+          Dart_WeakPersistentHandle Function(
+              Object, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
 
   /// Deletes the given weak persistent [object] handle.
   ///
@@ -3479,8 +4499,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DeleteWeakPersistentHandlePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_WeakPersistentHandle)>>('Dart_DeleteWeakPersistentHandle');
-  late final _Dart_DeleteWeakPersistentHandle = _Dart_DeleteWeakPersistentHandlePtr.asFunction<void Function(Dart_WeakPersistentHandle)>();
+  late final _Dart_DeleteWeakPersistentHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(Dart_WeakPersistentHandle)>>(
+          'Dart_DeleteWeakPersistentHandle');
+  late final _Dart_DeleteWeakPersistentHandle =
+      _Dart_DeleteWeakPersistentHandlePtr.asFunction<
+          void Function(Dart_WeakPersistentHandle)>();
 
   /// Allocates a finalizable handle for an object.
   ///
@@ -3528,8 +4552,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewFinalizableHandlePtr = _lookup<ffi.NativeFunction<Dart_FinalizableHandle Function(ffi.Handle, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewFinalizableHandle');
-  late final _Dart_NewFinalizableHandle = _Dart_NewFinalizableHandlePtr.asFunction<Dart_FinalizableHandle Function(Object, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewFinalizableHandlePtr = _lookup<
+      ffi.NativeFunction<
+          Dart_FinalizableHandle Function(ffi.Handle, ffi.Pointer<ffi.Void>,
+              ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewFinalizableHandle');
+  late final _Dart_NewFinalizableHandle =
+      _Dart_NewFinalizableHandlePtr.asFunction<
+          Dart_FinalizableHandle Function(
+              Object, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
 
   /// Deletes the given finalizable [object] handle.
   ///
@@ -3547,8 +4577,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DeleteFinalizableHandlePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_FinalizableHandle, ffi.Handle)>>('Dart_DeleteFinalizableHandle');
-  late final _Dart_DeleteFinalizableHandle = _Dart_DeleteFinalizableHandlePtr.asFunction<void Function(Dart_FinalizableHandle, Object)>();
+  late final _Dart_DeleteFinalizableHandlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(Dart_FinalizableHandle,
+              ffi.Handle)>>('Dart_DeleteFinalizableHandle');
+  late final _Dart_DeleteFinalizableHandle = _Dart_DeleteFinalizableHandlePtr
+      .asFunction<void Function(Dart_FinalizableHandle, Object)>();
 
   /// Gets the version string for the Dart VM.
   ///
@@ -3559,8 +4593,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_VersionString();
   }
 
-  late final _Dart_VersionStringPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('Dart_VersionString');
-  late final _Dart_VersionString = _Dart_VersionStringPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _Dart_VersionStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'Dart_VersionString');
+  late final _Dart_VersionString =
+      _Dart_VersionStringPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   /// Initialize Dart_IsolateFlags with correct version and default values.
   void Dart_IsolateFlagsInitialize(
@@ -3571,8 +4608,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsolateFlagsInitializePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Dart_IsolateFlags>)>>('Dart_IsolateFlagsInitialize');
-  late final _Dart_IsolateFlagsInitialize = _Dart_IsolateFlagsInitializePtr.asFunction<void Function(ffi.Pointer<Dart_IsolateFlags>)>();
+  late final _Dart_IsolateFlagsInitializePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<Dart_IsolateFlags>)>>(
+      'Dart_IsolateFlagsInitialize');
+  late final _Dart_IsolateFlagsInitialize = _Dart_IsolateFlagsInitializePtr
+      .asFunction<void Function(ffi.Pointer<Dart_IsolateFlags>)>();
 
   /// Initializes the VM.
   ///
@@ -3589,8 +4630,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InitializePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<Dart_InitializeParams>)>>('Dart_Initialize');
-  late final _Dart_Initialize = _Dart_InitializePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<Dart_InitializeParams>)>();
+  late final _Dart_InitializePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<Dart_InitializeParams>)>>('Dart_Initialize');
+  late final _Dart_Initialize = _Dart_InitializePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<Dart_InitializeParams>)>();
 
   /// Cleanup state in the VM before process termination.
   ///
@@ -3603,8 +4648,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_Cleanup();
   }
 
-  late final _Dart_CleanupPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('Dart_Cleanup');
-  late final _Dart_Cleanup = _Dart_CleanupPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _Dart_CleanupPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'Dart_Cleanup');
+  late final _Dart_Cleanup =
+      _Dart_CleanupPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   /// Sets command line flags. Should be called before Dart_Initialize.
   ///
@@ -3625,8 +4673,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetVMFlagsPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_SetVMFlags');
-  late final _Dart_SetVMFlags = _Dart_SetVMFlagsPtr.asFunction<ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_SetVMFlagsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_SetVMFlags');
+  late final _Dart_SetVMFlags = _Dart_SetVMFlagsPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Returns true if the named VM flag is of boolean type, specified, and set to
   /// true.
@@ -3641,8 +4694,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsVMFlagSetPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Char>)>>('Dart_IsVMFlagSet');
-  late final _Dart_IsVMFlagSet = _Dart_IsVMFlagSetPtr.asFunction<bool Function(ffi.Pointer<ffi.Char>)>();
+  late final _Dart_IsVMFlagSetPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Char>)>>(
+          'Dart_IsVMFlagSet');
+  late final _Dart_IsVMFlagSet =
+      _Dart_IsVMFlagSetPtr.asFunction<bool Function(ffi.Pointer<ffi.Char>)>();
 
   /// Creates a new isolate. The new isolate becomes the current isolate.
   ///
@@ -3701,10 +4757,27 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateIsolateGroupPtr =
-      _lookup<ffi.NativeFunction<Dart_Isolate Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<Dart_IsolateFlags>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_CreateIsolateGroup');
-  late final _Dart_CreateIsolateGroup =
-      _Dart_CreateIsolateGroupPtr.asFunction<Dart_Isolate Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<Dart_IsolateFlags>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_CreateIsolateGroupPtr = _lookup<
+      ffi.NativeFunction<
+          Dart_Isolate Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<Dart_IsolateFlags>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_CreateIsolateGroup');
+  late final _Dart_CreateIsolateGroup = _Dart_CreateIsolateGroupPtr.asFunction<
+      Dart_Isolate Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<Dart_IsolateFlags>,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Creates a new isolate inside the isolate group of [group_member].
   ///
@@ -3745,8 +4818,25 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateIsolateInGroupPtr = _lookup<ffi.NativeFunction<Dart_Isolate Function(Dart_Isolate, ffi.Pointer<ffi.Char>, Dart_IsolateShutdownCallback, Dart_IsolateCleanupCallback, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_CreateIsolateInGroup');
-  late final _Dart_CreateIsolateInGroup = _Dart_CreateIsolateInGroupPtr.asFunction<Dart_Isolate Function(Dart_Isolate, ffi.Pointer<ffi.Char>, Dart_IsolateShutdownCallback, Dart_IsolateCleanupCallback, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_CreateIsolateInGroupPtr = _lookup<
+          ffi.NativeFunction<
+              Dart_Isolate Function(
+                  Dart_Isolate,
+                  ffi.Pointer<ffi.Char>,
+                  Dart_IsolateShutdownCallback,
+                  Dart_IsolateCleanupCallback,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Pointer<ffi.Char>>)>>(
+      'Dart_CreateIsolateInGroup');
+  late final _Dart_CreateIsolateInGroup =
+      _Dart_CreateIsolateInGroupPtr.asFunction<
+          Dart_Isolate Function(
+              Dart_Isolate,
+              ffi.Pointer<ffi.Char>,
+              Dart_IsolateShutdownCallback,
+              Dart_IsolateCleanupCallback,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Creates a new isolate from a Dart Kernel file. The new isolate
   /// becomes the current isolate.
@@ -3797,10 +4887,29 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateIsolateGroupFromKernelPtr =
-      _lookup<ffi.NativeFunction<Dart_Isolate Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.IntPtr, ffi.Pointer<Dart_IsolateFlags>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_CreateIsolateGroupFromKernel');
+  late final _Dart_CreateIsolateGroupFromKernelPtr = _lookup<
+          ffi.NativeFunction<
+              Dart_Isolate Function(
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.IntPtr,
+                  ffi.Pointer<Dart_IsolateFlags>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Pointer<ffi.Char>>)>>(
+      'Dart_CreateIsolateGroupFromKernel');
   late final _Dart_CreateIsolateGroupFromKernel =
-      _Dart_CreateIsolateGroupFromKernelPtr.asFunction<Dart_Isolate Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, int, ffi.Pointer<Dart_IsolateFlags>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+      _Dart_CreateIsolateGroupFromKernelPtr.asFunction<
+          Dart_Isolate Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Uint8>,
+              int,
+              ffi.Pointer<Dart_IsolateFlags>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Shuts down the current isolate. After this call, the current isolate is NULL.
   /// Any current scopes created by Dart_EnterScope will be exited. Invokes the
@@ -3811,8 +4920,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ShutdownIsolate();
   }
 
-  late final _Dart_ShutdownIsolatePtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ShutdownIsolate');
-  late final _Dart_ShutdownIsolate = _Dart_ShutdownIsolatePtr.asFunction<void Function()>();
+  late final _Dart_ShutdownIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ShutdownIsolate');
+  late final _Dart_ShutdownIsolate =
+      _Dart_ShutdownIsolatePtr.asFunction<void Function()>();
 
   /// Returns the current isolate. Will return NULL if there is no
   /// current isolate.
@@ -3820,8 +4931,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_CurrentIsolate();
   }
 
-  late final _Dart_CurrentIsolatePtr = _lookup<ffi.NativeFunction<Dart_Isolate Function()>>('Dart_CurrentIsolate');
-  late final _Dart_CurrentIsolate = _Dart_CurrentIsolatePtr.asFunction<Dart_Isolate Function()>();
+  late final _Dart_CurrentIsolatePtr =
+      _lookup<ffi.NativeFunction<Dart_Isolate Function()>>(
+          'Dart_CurrentIsolate');
+  late final _Dart_CurrentIsolate =
+      _Dart_CurrentIsolatePtr.asFunction<Dart_Isolate Function()>();
 
   /// Returns the callback data associated with the current isolate. This
   /// data was set when the isolate got created or initialized.
@@ -3829,8 +4943,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_CurrentIsolateData();
   }
 
-  late final _Dart_CurrentIsolateDataPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function()>>('Dart_CurrentIsolateData');
-  late final _Dart_CurrentIsolateData = _Dart_CurrentIsolateDataPtr.asFunction<ffi.Pointer<ffi.Void> Function()>();
+  late final _Dart_CurrentIsolateDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function()>>(
+          'Dart_CurrentIsolateData');
+  late final _Dart_CurrentIsolateData = _Dart_CurrentIsolateDataPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function()>();
 
   /// Returns the callback data associated with the given isolate. This
   /// data was set when the isolate got created or initialized.
@@ -3842,8 +4959,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsolateDataPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>>('Dart_IsolateData');
-  late final _Dart_IsolateData = _Dart_IsolateDataPtr.asFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>();
+  late final _Dart_IsolateDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>>(
+          'Dart_IsolateData');
+  late final _Dart_IsolateData = _Dart_IsolateDataPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(Dart_Isolate)>();
 
   /// Returns the current isolate group. Will return NULL if there is no
   /// current isolate group.
@@ -3851,8 +4971,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_CurrentIsolateGroup();
   }
 
-  late final _Dart_CurrentIsolateGroupPtr = _lookup<ffi.NativeFunction<Dart_IsolateGroup Function()>>('Dart_CurrentIsolateGroup');
-  late final _Dart_CurrentIsolateGroup = _Dart_CurrentIsolateGroupPtr.asFunction<Dart_IsolateGroup Function()>();
+  late final _Dart_CurrentIsolateGroupPtr =
+      _lookup<ffi.NativeFunction<Dart_IsolateGroup Function()>>(
+          'Dart_CurrentIsolateGroup');
+  late final _Dart_CurrentIsolateGroup =
+      _Dart_CurrentIsolateGroupPtr.asFunction<Dart_IsolateGroup Function()>();
 
   /// Returns the callback data associated with the current isolate group. This
   /// data was passed to the isolate group when it was created.
@@ -3860,15 +4983,21 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_CurrentIsolateGroupData();
   }
 
-  late final _Dart_CurrentIsolateGroupDataPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function()>>('Dart_CurrentIsolateGroupData');
-  late final _Dart_CurrentIsolateGroupData = _Dart_CurrentIsolateGroupDataPtr.asFunction<ffi.Pointer<ffi.Void> Function()>();
+  late final _Dart_CurrentIsolateGroupDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function()>>(
+          'Dart_CurrentIsolateGroupData');
+  late final _Dart_CurrentIsolateGroupData = _Dart_CurrentIsolateGroupDataPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function()>();
 
   int Dart_CurrentIsolateGroupId() {
     return _Dart_CurrentIsolateGroupId();
   }
 
-  late final _Dart_CurrentIsolateGroupIdPtr = _lookup<ffi.NativeFunction<Dart_IsolateGroupId Function()>>('Dart_CurrentIsolateGroupId');
-  late final _Dart_CurrentIsolateGroupId = _Dart_CurrentIsolateGroupIdPtr.asFunction<int Function()>();
+  late final _Dart_CurrentIsolateGroupIdPtr =
+      _lookup<ffi.NativeFunction<Dart_IsolateGroupId Function()>>(
+          'Dart_CurrentIsolateGroupId');
+  late final _Dart_CurrentIsolateGroupId =
+      _Dart_CurrentIsolateGroupIdPtr.asFunction<int Function()>();
 
   /// Returns the callback data associated with the specified isolate group. This
   /// data was passed to the isolate when it was created.
@@ -3882,8 +5011,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsolateGroupDataPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>>('Dart_IsolateGroupData');
-  late final _Dart_IsolateGroupData = _Dart_IsolateGroupDataPtr.asFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>();
+  late final _Dart_IsolateGroupDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(Dart_Isolate)>>(
+          'Dart_IsolateGroupData');
+  late final _Dart_IsolateGroupData = _Dart_IsolateGroupDataPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(Dart_Isolate)>();
 
   /// Returns the debugging name for the current isolate.
   ///
@@ -3893,8 +5025,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_DebugName();
   }
 
-  late final _Dart_DebugNamePtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_DebugName');
-  late final _Dart_DebugName = _Dart_DebugNamePtr.asFunction<Object Function()>();
+  late final _Dart_DebugNamePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_DebugName');
+  late final _Dart_DebugName =
+      _Dart_DebugNamePtr.asFunction<Object Function()>();
 
   /// Returns the debugging name for the current isolate.
   ///
@@ -3907,8 +5041,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_DebugNameToCString();
   }
 
-  late final _Dart_DebugNameToCStringPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('Dart_DebugNameToCString');
-  late final _Dart_DebugNameToCString = _Dart_DebugNameToCStringPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _Dart_DebugNameToCStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'Dart_DebugNameToCString');
+  late final _Dart_DebugNameToCString = _Dart_DebugNameToCStringPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function()>();
 
   /// Returns the ID for an isolate which is used to query the service protocol.
   ///
@@ -3921,8 +5058,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsolateServiceIdPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>>('Dart_IsolateServiceId');
-  late final _Dart_IsolateServiceId = _Dart_IsolateServiceIdPtr.asFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>();
+  late final _Dart_IsolateServiceIdPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>>(
+          'Dart_IsolateServiceId');
+  late final _Dart_IsolateServiceId = _Dart_IsolateServiceIdPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(Dart_Isolate)>();
 
   /// Enters an isolate. After calling this function,
   /// the current isolate will be set to the provided isolate.
@@ -3937,8 +5077,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_EnterIsolatePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_Isolate)>>('Dart_EnterIsolate');
-  late final _Dart_EnterIsolate = _Dart_EnterIsolatePtr.asFunction<void Function(Dart_Isolate)>();
+  late final _Dart_EnterIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(Dart_Isolate)>>(
+          'Dart_EnterIsolate');
+  late final _Dart_EnterIsolate =
+      _Dart_EnterIsolatePtr.asFunction<void Function(Dart_Isolate)>();
 
   /// Kills the given isolate.
   ///
@@ -3958,8 +5101,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_KillIsolatePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_Isolate)>>('Dart_KillIsolate');
-  late final _Dart_KillIsolate = _Dart_KillIsolatePtr.asFunction<void Function(Dart_Isolate)>();
+  late final _Dart_KillIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(Dart_Isolate)>>(
+          'Dart_KillIsolate');
+  late final _Dart_KillIsolate =
+      _Dart_KillIsolatePtr.asFunction<void Function(Dart_Isolate)>();
 
   /// Notifies the VM that the embedder expects to be idle until |deadline|. The VM
   /// may use this time to perform garbage collection or other tasks to avoid
@@ -3977,24 +5123,33 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NotifyIdlePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('Dart_NotifyIdle');
-  late final _Dart_NotifyIdle = _Dart_NotifyIdlePtr.asFunction<void Function(int)>();
+  late final _Dart_NotifyIdlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'Dart_NotifyIdle');
+  late final _Dart_NotifyIdle =
+      _Dart_NotifyIdlePtr.asFunction<void Function(int)>();
 
   /// Starts the heap sampling profiler for each thread in the VM.
   void Dart_EnableHeapSampling() {
     return _Dart_EnableHeapSampling();
   }
 
-  late final _Dart_EnableHeapSamplingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_EnableHeapSampling');
-  late final _Dart_EnableHeapSampling = _Dart_EnableHeapSamplingPtr.asFunction<void Function()>();
+  late final _Dart_EnableHeapSamplingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+          'Dart_EnableHeapSampling');
+  late final _Dart_EnableHeapSampling =
+      _Dart_EnableHeapSamplingPtr.asFunction<void Function()>();
 
   /// Stops the heap sampling profiler for each thread in the VM.
   void Dart_DisableHeapSampling() {
     return _Dart_DisableHeapSampling();
   }
 
-  late final _Dart_DisableHeapSamplingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_DisableHeapSampling');
-  late final _Dart_DisableHeapSampling = _Dart_DisableHeapSamplingPtr.asFunction<void Function()>();
+  late final _Dart_DisableHeapSamplingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+          'Dart_DisableHeapSampling');
+  late final _Dart_DisableHeapSampling =
+      _Dart_DisableHeapSamplingPtr.asFunction<void Function()>();
 
   /// Registers callbacks are invoked once per sampled allocation upon object
   /// allocation and garbage collection.
@@ -4020,8 +5175,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_RegisterHeapSamplingCallbackPtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_HeapSamplingCreateCallback, Dart_HeapSamplingDeleteCallback)>>('Dart_RegisterHeapSamplingCallback');
-  late final _Dart_RegisterHeapSamplingCallback = _Dart_RegisterHeapSamplingCallbackPtr.asFunction<void Function(Dart_HeapSamplingCreateCallback, Dart_HeapSamplingDeleteCallback)>();
+  late final _Dart_RegisterHeapSamplingCallbackPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(Dart_HeapSamplingCreateCallback,
+                  Dart_HeapSamplingDeleteCallback)>>(
+      'Dart_RegisterHeapSamplingCallback');
+  late final _Dart_RegisterHeapSamplingCallback =
+      _Dart_RegisterHeapSamplingCallbackPtr.asFunction<
+          void Function(Dart_HeapSamplingCreateCallback,
+              Dart_HeapSamplingDeleteCallback)>();
 
   /// Reports the surviving allocation samples for all live isolate groups in the
   /// VM.
@@ -4053,8 +5215,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ReportSurvivingAllocationsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_HeapSamplingReportCallback, ffi.Pointer<ffi.Void>, ffi.Bool)>>('Dart_ReportSurvivingAllocations');
-  late final _Dart_ReportSurvivingAllocations = _Dart_ReportSurvivingAllocationsPtr.asFunction<void Function(Dart_HeapSamplingReportCallback, ffi.Pointer<ffi.Void>, bool)>();
+  late final _Dart_ReportSurvivingAllocationsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              Dart_HeapSamplingReportCallback,
+              ffi.Pointer<ffi.Void>,
+              ffi.Bool)>>('Dart_ReportSurvivingAllocations');
+  late final _Dart_ReportSurvivingAllocations =
+      _Dart_ReportSurvivingAllocationsPtr.asFunction<
+          void Function(
+              Dart_HeapSamplingReportCallback, ffi.Pointer<ffi.Void>, bool)>();
 
   /// Sets the average heap sampling rate based on a number of |bytes| for each
   /// thread.
@@ -4069,8 +5239,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetHeapSamplingPeriodPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.IntPtr)>>('Dart_SetHeapSamplingPeriod');
-  late final _Dart_SetHeapSamplingPeriod = _Dart_SetHeapSamplingPeriodPtr.asFunction<void Function(int)>();
+  late final _Dart_SetHeapSamplingPeriodPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.IntPtr)>>(
+          'Dart_SetHeapSamplingPeriod');
+  late final _Dart_SetHeapSamplingPeriod =
+      _Dart_SetHeapSamplingPeriodPtr.asFunction<void Function(int)>();
 
   /// Notifies the VM that the embedder expects the application's working set has
   /// recently shrunk significantly and is not expected to rise in the near future.
@@ -4081,8 +5254,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_NotifyDestroyed();
   }
 
-  late final _Dart_NotifyDestroyedPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_NotifyDestroyed');
-  late final _Dart_NotifyDestroyed = _Dart_NotifyDestroyedPtr.asFunction<void Function()>();
+  late final _Dart_NotifyDestroyedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_NotifyDestroyed');
+  late final _Dart_NotifyDestroyed =
+      _Dart_NotifyDestroyedPtr.asFunction<void Function()>();
 
   /// Notifies the VM that the system is running low on memory.
   ///
@@ -4091,8 +5266,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_NotifyLowMemory();
   }
 
-  late final _Dart_NotifyLowMemoryPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_NotifyLowMemory');
-  late final _Dart_NotifyLowMemory = _Dart_NotifyLowMemoryPtr.asFunction<void Function()>();
+  late final _Dart_NotifyLowMemoryPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_NotifyLowMemory');
+  late final _Dart_NotifyLowMemory =
+      _Dart_NotifyLowMemoryPtr.asFunction<void Function()>();
 
   /// Set the desired performance trade-off.
   ///
@@ -4107,16 +5284,21 @@ class FlutterOpenimSdkFfiBindings {
     ));
   }
 
-  late final _Dart_SetPerformanceModePtr = _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.UnsignedInt)>>('Dart_SetPerformanceMode');
-  late final _Dart_SetPerformanceMode = _Dart_SetPerformanceModePtr.asFunction<int Function(int)>();
+  late final _Dart_SetPerformanceModePtr =
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.UnsignedInt)>>(
+          'Dart_SetPerformanceMode');
+  late final _Dart_SetPerformanceMode =
+      _Dart_SetPerformanceModePtr.asFunction<int Function(int)>();
 
   /// Starts the CPU sampling profiler.
   void Dart_StartProfiling() {
     return _Dart_StartProfiling();
   }
 
-  late final _Dart_StartProfilingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_StartProfiling');
-  late final _Dart_StartProfiling = _Dart_StartProfilingPtr.asFunction<void Function()>();
+  late final _Dart_StartProfilingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_StartProfiling');
+  late final _Dart_StartProfiling =
+      _Dart_StartProfilingPtr.asFunction<void Function()>();
 
   /// Stops the CPU sampling profiler.
   ///
@@ -4127,8 +5309,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_StopProfiling();
   }
 
-  late final _Dart_StopProfilingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_StopProfiling');
-  late final _Dart_StopProfiling = _Dart_StopProfilingPtr.asFunction<void Function()>();
+  late final _Dart_StopProfilingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_StopProfiling');
+  late final _Dart_StopProfiling =
+      _Dart_StopProfilingPtr.asFunction<void Function()>();
 
   /// Notifies the VM that the current thread should not be profiled until a
   /// matching call to Dart_ThreadEnableProfiling is made.
@@ -4141,8 +5325,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ThreadDisableProfiling();
   }
 
-  late final _Dart_ThreadDisableProfilingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ThreadDisableProfiling');
-  late final _Dart_ThreadDisableProfiling = _Dart_ThreadDisableProfilingPtr.asFunction<void Function()>();
+  late final _Dart_ThreadDisableProfilingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+          'Dart_ThreadDisableProfiling');
+  late final _Dart_ThreadDisableProfiling =
+      _Dart_ThreadDisableProfilingPtr.asFunction<void Function()>();
 
   /// Notifies the VM that the current thread should be profiled.
   ///
@@ -4154,8 +5341,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ThreadEnableProfiling();
   }
 
-  late final _Dart_ThreadEnableProfilingPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ThreadEnableProfiling');
-  late final _Dart_ThreadEnableProfiling = _Dart_ThreadEnableProfilingPtr.asFunction<void Function()>();
+  late final _Dart_ThreadEnableProfilingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+          'Dart_ThreadEnableProfiling');
+  late final _Dart_ThreadEnableProfiling =
+      _Dart_ThreadEnableProfilingPtr.asFunction<void Function()>();
 
   /// Register symbol information for the Dart VM's profiler and crash dumps.
   ///
@@ -4173,8 +5363,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_AddSymbolsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>, ffi.IntPtr)>>('Dart_AddSymbols');
-  late final _Dart_AddSymbols = _Dart_AddSymbolsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>, int)>();
+  late final _Dart_AddSymbolsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>,
+              ffi.IntPtr)>>('Dart_AddSymbols');
+  late final _Dart_AddSymbols = _Dart_AddSymbolsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>, int)>();
 
   /// Exits an isolate. After this call, Dart_CurrentIsolate will
   /// return NULL.
@@ -4184,8 +5378,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ExitIsolate();
   }
 
-  late final _Dart_ExitIsolatePtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ExitIsolate');
-  late final _Dart_ExitIsolate = _Dart_ExitIsolatePtr.asFunction<void Function()>();
+  late final _Dart_ExitIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ExitIsolate');
+  late final _Dart_ExitIsolate =
+      _Dart_ExitIsolatePtr.asFunction<void Function()>();
 
   /// Creates a full snapshot of the current isolate heap.
   ///
@@ -4226,8 +5422,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateSnapshotPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Bool)>>('Dart_CreateSnapshot');
-  late final _Dart_CreateSnapshot = _Dart_CreateSnapshotPtr.asFunction<Object Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, bool)>();
+  late final _Dart_CreateSnapshotPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Bool)>>('Dart_CreateSnapshot');
+  late final _Dart_CreateSnapshot = _Dart_CreateSnapshotPtr.asFunction<
+      Object Function(
+          ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+          ffi.Pointer<ffi.IntPtr>,
+          ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+          ffi.Pointer<ffi.IntPtr>,
+          bool)>();
 
   /// Returns whether the buffer contains a kernel file.
   ///
@@ -4245,8 +5454,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsKernelPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_IsKernel');
-  late final _Dart_IsKernel = _Dart_IsKernelPtr.asFunction<bool Function(ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_IsKernelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_IsKernel');
+  late final _Dart_IsKernel = _Dart_IsKernelPtr.asFunction<
+      bool Function(ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Make isolate runnable.
   ///
@@ -4267,8 +5480,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsolateMakeRunnablePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>>('Dart_IsolateMakeRunnable');
-  late final _Dart_IsolateMakeRunnable = _Dart_IsolateMakeRunnablePtr.asFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>();
+  late final _Dart_IsolateMakeRunnablePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>>(
+          'Dart_IsolateMakeRunnable');
+  late final _Dart_IsolateMakeRunnable = _Dart_IsolateMakeRunnablePtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(Dart_Isolate)>();
 
   /// Allows embedders to provide a custom wakeup mechanism for the delivery of
   /// inter-isolate messages. This setting only applies to the current isolate.
@@ -4289,8 +5505,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetMessageNotifyCallbackPtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_MessageNotifyCallback)>>('Dart_SetMessageNotifyCallback');
-  late final _Dart_SetMessageNotifyCallback = _Dart_SetMessageNotifyCallbackPtr.asFunction<void Function(Dart_MessageNotifyCallback)>();
+  late final _Dart_SetMessageNotifyCallbackPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(Dart_MessageNotifyCallback)>>(
+      'Dart_SetMessageNotifyCallback');
+  late final _Dart_SetMessageNotifyCallback = _Dart_SetMessageNotifyCallbackPtr
+      .asFunction<void Function(Dart_MessageNotifyCallback)>();
 
   /// Query the current message notify callback for the isolate.
   ///
@@ -4299,8 +5518,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_GetMessageNotifyCallback();
   }
 
-  late final _Dart_GetMessageNotifyCallbackPtr = _lookup<ffi.NativeFunction<Dart_MessageNotifyCallback Function()>>('Dart_GetMessageNotifyCallback');
-  late final _Dart_GetMessageNotifyCallback = _Dart_GetMessageNotifyCallbackPtr.asFunction<Dart_MessageNotifyCallback Function()>();
+  late final _Dart_GetMessageNotifyCallbackPtr =
+      _lookup<ffi.NativeFunction<Dart_MessageNotifyCallback Function()>>(
+          'Dart_GetMessageNotifyCallback');
+  late final _Dart_GetMessageNotifyCallback = _Dart_GetMessageNotifyCallbackPtr
+      .asFunction<Dart_MessageNotifyCallback Function()>();
 
   /// If the VM flag `--pause-isolates-on-start` was passed this will be true.
   ///
@@ -4309,8 +5531,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ShouldPauseOnStart();
   }
 
-  late final _Dart_ShouldPauseOnStartPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_ShouldPauseOnStart');
-  late final _Dart_ShouldPauseOnStart = _Dart_ShouldPauseOnStartPtr.asFunction<bool Function()>();
+  late final _Dart_ShouldPauseOnStartPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_ShouldPauseOnStart');
+  late final _Dart_ShouldPauseOnStart =
+      _Dart_ShouldPauseOnStartPtr.asFunction<bool Function()>();
 
   /// Override the VM flag `--pause-isolates-on-start` for the current isolate.
   ///
@@ -4325,8 +5550,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetShouldPauseOnStartPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>('Dart_SetShouldPauseOnStart');
-  late final _Dart_SetShouldPauseOnStart = _Dart_SetShouldPauseOnStartPtr.asFunction<void Function(bool)>();
+  late final _Dart_SetShouldPauseOnStartPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>(
+          'Dart_SetShouldPauseOnStart');
+  late final _Dart_SetShouldPauseOnStart =
+      _Dart_SetShouldPauseOnStartPtr.asFunction<void Function(bool)>();
 
   /// Is the current isolate paused on start?
   ///
@@ -4335,8 +5563,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_IsPausedOnStart();
   }
 
-  late final _Dart_IsPausedOnStartPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_IsPausedOnStart');
-  late final _Dart_IsPausedOnStart = _Dart_IsPausedOnStartPtr.asFunction<bool Function()>();
+  late final _Dart_IsPausedOnStartPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_IsPausedOnStart');
+  late final _Dart_IsPausedOnStart =
+      _Dart_IsPausedOnStartPtr.asFunction<bool Function()>();
 
   /// Called when the embedder has paused the current isolate on start and when
   /// the embedder has resumed the isolate.
@@ -4350,8 +5580,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetPausedOnStartPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>('Dart_SetPausedOnStart');
-  late final _Dart_SetPausedOnStart = _Dart_SetPausedOnStartPtr.asFunction<void Function(bool)>();
+  late final _Dart_SetPausedOnStartPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>(
+          'Dart_SetPausedOnStart');
+  late final _Dart_SetPausedOnStart =
+      _Dart_SetPausedOnStartPtr.asFunction<void Function(bool)>();
 
   /// If the VM flag `--pause-isolates-on-exit` was passed this will be true.
   ///
@@ -4360,8 +5593,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ShouldPauseOnExit();
   }
 
-  late final _Dart_ShouldPauseOnExitPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_ShouldPauseOnExit');
-  late final _Dart_ShouldPauseOnExit = _Dart_ShouldPauseOnExitPtr.asFunction<bool Function()>();
+  late final _Dart_ShouldPauseOnExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_ShouldPauseOnExit');
+  late final _Dart_ShouldPauseOnExit =
+      _Dart_ShouldPauseOnExitPtr.asFunction<bool Function()>();
 
   /// Override the VM flag `--pause-isolates-on-exit` for the current isolate.
   ///
@@ -4374,8 +5610,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetShouldPauseOnExitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>('Dart_SetShouldPauseOnExit');
-  late final _Dart_SetShouldPauseOnExit = _Dart_SetShouldPauseOnExitPtr.asFunction<void Function(bool)>();
+  late final _Dart_SetShouldPauseOnExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>(
+          'Dart_SetShouldPauseOnExit');
+  late final _Dart_SetShouldPauseOnExit =
+      _Dart_SetShouldPauseOnExitPtr.asFunction<void Function(bool)>();
 
   /// Is the current isolate paused on exit?
   ///
@@ -4384,8 +5623,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_IsPausedOnExit();
   }
 
-  late final _Dart_IsPausedOnExitPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_IsPausedOnExit');
-  late final _Dart_IsPausedOnExit = _Dart_IsPausedOnExitPtr.asFunction<bool Function()>();
+  late final _Dart_IsPausedOnExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_IsPausedOnExit');
+  late final _Dart_IsPausedOnExit =
+      _Dart_IsPausedOnExitPtr.asFunction<bool Function()>();
 
   /// Called when the embedder has paused the current isolate on exit and when
   /// the embedder has resumed the isolate.
@@ -4399,8 +5640,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetPausedOnExitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>('Dart_SetPausedOnExit');
-  late final _Dart_SetPausedOnExit = _Dart_SetPausedOnExitPtr.asFunction<void Function(bool)>();
+  late final _Dart_SetPausedOnExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Bool)>>(
+          'Dart_SetPausedOnExit');
+  late final _Dart_SetPausedOnExit =
+      _Dart_SetPausedOnExitPtr.asFunction<void Function(bool)>();
 
   /// Called when the embedder has caught a top level unhandled exception error
   /// in the current isolate.
@@ -4417,16 +5661,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetStickyErrorPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>('Dart_SetStickyError');
-  late final _Dart_SetStickyError = _Dart_SetStickyErrorPtr.asFunction<void Function(Object)>();
+  late final _Dart_SetStickyErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Handle)>>(
+          'Dart_SetStickyError');
+  late final _Dart_SetStickyError =
+      _Dart_SetStickyErrorPtr.asFunction<void Function(Object)>();
 
   /// Does the current isolate have a sticky error?
   bool Dart_HasStickyError() {
     return _Dart_HasStickyError();
   }
 
-  late final _Dart_HasStickyErrorPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HasStickyError');
-  late final _Dart_HasStickyError = _Dart_HasStickyErrorPtr.asFunction<bool Function()>();
+  late final _Dart_HasStickyErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HasStickyError');
+  late final _Dart_HasStickyError =
+      _Dart_HasStickyErrorPtr.asFunction<bool Function()>();
 
   /// Gets the sticky error for the current isolate.
   ///
@@ -4435,8 +5684,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_GetStickyError();
   }
 
-  late final _Dart_GetStickyErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_GetStickyError');
-  late final _Dart_GetStickyError = _Dart_GetStickyErrorPtr.asFunction<Object Function()>();
+  late final _Dart_GetStickyErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_GetStickyError');
+  late final _Dart_GetStickyError =
+      _Dart_GetStickyErrorPtr.asFunction<Object Function()>();
 
   /// Handles the next pending message for the current isolate.
   ///
@@ -4447,8 +5698,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_HandleMessage();
   }
 
-  late final _Dart_HandleMessagePtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_HandleMessage');
-  late final _Dart_HandleMessage = _Dart_HandleMessagePtr.asFunction<Object Function()>();
+  late final _Dart_HandleMessagePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_HandleMessage');
+  late final _Dart_HandleMessage =
+      _Dart_HandleMessagePtr.asFunction<Object Function()>();
 
   /// Drains the microtask queue, then blocks the calling thread until the current
   /// isolate receives a message, then handles all messages.
@@ -4464,8 +5717,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_WaitForEventPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int64)>>('Dart_WaitForEvent');
-  late final _Dart_WaitForEvent = _Dart_WaitForEventPtr.asFunction<Object Function(int)>();
+  late final _Dart_WaitForEventPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int64)>>(
+          'Dart_WaitForEvent');
+  late final _Dart_WaitForEvent =
+      _Dart_WaitForEventPtr.asFunction<Object Function(int)>();
 
   /// Handles any pending messages for the vm service for the current
   /// isolate.
@@ -4482,8 +5738,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_HandleServiceMessages();
   }
 
-  late final _Dart_HandleServiceMessagesPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HandleServiceMessages');
-  late final _Dart_HandleServiceMessages = _Dart_HandleServiceMessagesPtr.asFunction<bool Function()>();
+  late final _Dart_HandleServiceMessagesPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_HandleServiceMessages');
+  late final _Dart_HandleServiceMessages =
+      _Dart_HandleServiceMessagesPtr.asFunction<bool Function()>();
 
   /// Does the current isolate have pending service messages?
   ///
@@ -4492,8 +5751,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_HasServiceMessages();
   }
 
-  late final _Dart_HasServiceMessagesPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HasServiceMessages');
-  late final _Dart_HasServiceMessages = _Dart_HasServiceMessagesPtr.asFunction<bool Function()>();
+  late final _Dart_HasServiceMessagesPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_HasServiceMessages');
+  late final _Dart_HasServiceMessages =
+      _Dart_HasServiceMessagesPtr.asFunction<bool Function()>();
 
   /// Processes any incoming messages for the current isolate.
   ///
@@ -4513,7 +5775,8 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_RunLoop();
   }
 
-  late final _Dart_RunLoopPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_RunLoop');
+  late final _Dart_RunLoopPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_RunLoop');
   late final _Dart_RunLoop = _Dart_RunLoopPtr.asFunction<Object Function()>();
 
   /// Lets the VM run message processing for the isolate.
@@ -4546,16 +5809,22 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_RunLoopAsyncPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Bool, Dart_Port, Dart_Port, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_RunLoopAsync');
-  late final _Dart_RunLoopAsync = _Dart_RunLoopAsyncPtr.asFunction<bool Function(bool, int, int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_RunLoopAsyncPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(ffi.Bool, Dart_Port, Dart_Port,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_RunLoopAsync');
+  late final _Dart_RunLoopAsync = _Dart_RunLoopAsyncPtr.asFunction<
+      bool Function(bool, int, int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Gets the main port id for the current isolate.
   int Dart_GetMainPortId() {
     return _Dart_GetMainPortId();
   }
 
-  late final _Dart_GetMainPortIdPtr = _lookup<ffi.NativeFunction<Dart_Port Function()>>('Dart_GetMainPortId');
-  late final _Dart_GetMainPortId = _Dart_GetMainPortIdPtr.asFunction<int Function()>();
+  late final _Dart_GetMainPortIdPtr =
+      _lookup<ffi.NativeFunction<Dart_Port Function()>>('Dart_GetMainPortId');
+  late final _Dart_GetMainPortId =
+      _Dart_GetMainPortIdPtr.asFunction<int Function()>();
 
   /// Does the current isolate have live ReceivePorts?
   ///
@@ -4564,8 +5833,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_HasLivePorts();
   }
 
-  late final _Dart_HasLivePortsPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HasLivePorts');
-  late final _Dart_HasLivePorts = _Dart_HasLivePortsPtr.asFunction<bool Function()>();
+  late final _Dart_HasLivePortsPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_HasLivePorts');
+  late final _Dart_HasLivePorts =
+      _Dart_HasLivePortsPtr.asFunction<bool Function()>();
 
   /// Posts a message for some isolate. The message is a serialized
   /// object.
@@ -4588,8 +5859,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_PostPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Handle)>>('Dart_Post');
-  late final _Dart_Post = _Dart_PostPtr.asFunction<bool Function(int, Object)>();
+  late final _Dart_PostPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Handle)>>(
+          'Dart_Post');
+  late final _Dart_Post =
+      _Dart_PostPtr.asFunction<bool Function(int, Object)>();
 
   /// Returns a new SendPort with the provided port id.
   ///
@@ -4605,8 +5879,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewSendPortPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_Port)>>('Dart_NewSendPort');
-  late final _Dart_NewSendPort = _Dart_NewSendPortPtr.asFunction<Object Function(int)>();
+  late final _Dart_NewSendPortPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_Port)>>(
+          'Dart_NewSendPort');
+  late final _Dart_NewSendPort =
+      _Dart_NewSendPortPtr.asFunction<Object Function(int)>();
 
   /// Gets the SendPort id for the provided SendPort.
   /// \param port A SendPort object whose id is desired.
@@ -4623,8 +5900,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SendPortGetIdPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<Dart_Port>)>>('Dart_SendPortGetId');
-  late final _Dart_SendPortGetId = _Dart_SendPortGetIdPtr.asFunction<Object Function(Object, ffi.Pointer<Dart_Port>)>();
+  late final _Dart_SendPortGetIdPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<Dart_Port>)>>('Dart_SendPortGetId');
+  late final _Dart_SendPortGetId = _Dart_SendPortGetIdPtr.asFunction<
+      Object Function(Object, ffi.Pointer<Dart_Port>)>();
 
   /// Enters a new scope.
   ///
@@ -4637,8 +5918,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_EnterScope();
   }
 
-  late final _Dart_EnterScopePtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_EnterScope');
-  late final _Dart_EnterScope = _Dart_EnterScopePtr.asFunction<void Function()>();
+  late final _Dart_EnterScopePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_EnterScope');
+  late final _Dart_EnterScope =
+      _Dart_EnterScopePtr.asFunction<void Function()>();
 
   /// Exits a scope.
   ///
@@ -4649,7 +5932,8 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_ExitScope();
   }
 
-  late final _Dart_ExitScopePtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ExitScope');
+  late final _Dart_ExitScopePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_ExitScope');
   late final _Dart_ExitScope = _Dart_ExitScopePtr.asFunction<void Function()>();
 
   /// The Dart VM uses "zone allocation" for temporary structures. Zones
@@ -4680,8 +5964,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ScopeAllocatePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Uint8> Function(ffi.IntPtr)>>('Dart_ScopeAllocate');
-  late final _Dart_ScopeAllocate = _Dart_ScopeAllocatePtr.asFunction<ffi.Pointer<ffi.Uint8> Function(int)>();
+  late final _Dart_ScopeAllocatePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Uint8> Function(ffi.IntPtr)>>(
+          'Dart_ScopeAllocate');
+  late final _Dart_ScopeAllocate =
+      _Dart_ScopeAllocatePtr.asFunction<ffi.Pointer<ffi.Uint8> Function(int)>();
 
   /// Returns the null object.
   ///
@@ -4690,7 +5977,8 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_Null();
   }
 
-  late final _Dart_NullPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_Null');
+  late final _Dart_NullPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_Null');
   late final _Dart_Null = _Dart_NullPtr.asFunction<Object Function()>();
 
   /// Is this object null?
@@ -4702,7 +5990,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsNullPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsNull');
+  late final _Dart_IsNullPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsNull');
   late final _Dart_IsNull = _Dart_IsNullPtr.asFunction<bool Function(Object)>();
 
   /// Returns the empty string object.
@@ -4712,8 +6001,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_EmptyString();
   }
 
-  late final _Dart_EmptyStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_EmptyString');
-  late final _Dart_EmptyString = _Dart_EmptyStringPtr.asFunction<Object Function()>();
+  late final _Dart_EmptyStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_EmptyString');
+  late final _Dart_EmptyString =
+      _Dart_EmptyStringPtr.asFunction<Object Function()>();
 
   /// Returns types that are not classes, and which therefore cannot be looked up
   /// as library members by Dart_GetType.
@@ -4723,22 +6014,27 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_TypeDynamic();
   }
 
-  late final _Dart_TypeDynamicPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeDynamic');
-  late final _Dart_TypeDynamic = _Dart_TypeDynamicPtr.asFunction<Object Function()>();
+  late final _Dart_TypeDynamicPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeDynamic');
+  late final _Dart_TypeDynamic =
+      _Dart_TypeDynamicPtr.asFunction<Object Function()>();
 
   Object Dart_TypeVoid() {
     return _Dart_TypeVoid();
   }
 
-  late final _Dart_TypeVoidPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeVoid');
+  late final _Dart_TypeVoidPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeVoid');
   late final _Dart_TypeVoid = _Dart_TypeVoidPtr.asFunction<Object Function()>();
 
   Object Dart_TypeNever() {
     return _Dart_TypeNever();
   }
 
-  late final _Dart_TypeNeverPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeNever');
-  late final _Dart_TypeNever = _Dart_TypeNeverPtr.asFunction<Object Function()>();
+  late final _Dart_TypeNeverPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_TypeNever');
+  late final _Dart_TypeNever =
+      _Dart_TypeNeverPtr.asFunction<Object Function()>();
 
   /// Checks if the two objects are equal.
   ///
@@ -4765,8 +6061,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ObjectEqualsPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_ObjectEquals');
-  late final _Dart_ObjectEquals = _Dart_ObjectEqualsPtr.asFunction<Object Function(Object, Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_ObjectEqualsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle,
+              ffi.Pointer<ffi.Bool>)>>('Dart_ObjectEquals');
+  late final _Dart_ObjectEquals = _Dart_ObjectEqualsPtr.asFunction<
+      Object Function(Object, Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Is this object an instance of some type?
   ///
@@ -4790,8 +6090,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ObjectIsTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_ObjectIsType');
-  late final _Dart_ObjectIsType = _Dart_ObjectIsTypePtr.asFunction<Object Function(Object, Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_ObjectIsTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle,
+              ffi.Pointer<ffi.Bool>)>>('Dart_ObjectIsType');
+  late final _Dart_ObjectIsType = _Dart_ObjectIsTypePtr.asFunction<
+      Object Function(Object, Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Query object type.
   ///
@@ -4806,8 +6110,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsInstancePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsInstance');
-  late final _Dart_IsInstance = _Dart_IsInstancePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsInstancePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsInstance');
+  late final _Dart_IsInstance =
+      _Dart_IsInstancePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsNumber(
     Object object,
@@ -4817,8 +6124,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsNumberPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsNumber');
-  late final _Dart_IsNumber = _Dart_IsNumberPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsNumberPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsNumber');
+  late final _Dart_IsNumber =
+      _Dart_IsNumberPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsInteger(
     Object object,
@@ -4828,8 +6138,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsIntegerPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsInteger');
-  late final _Dart_IsInteger = _Dart_IsIntegerPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsIntegerPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsInteger');
+  late final _Dart_IsInteger =
+      _Dart_IsIntegerPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsDouble(
     Object object,
@@ -4839,8 +6152,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsDoublePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsDouble');
-  late final _Dart_IsDouble = _Dart_IsDoublePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsDoublePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsDouble');
+  late final _Dart_IsDouble =
+      _Dart_IsDoublePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsBoolean(
     Object object,
@@ -4850,8 +6166,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsBooleanPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsBoolean');
-  late final _Dart_IsBoolean = _Dart_IsBooleanPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsBooleanPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsBoolean');
+  late final _Dart_IsBoolean =
+      _Dart_IsBooleanPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsString(
     Object object,
@@ -4861,8 +6180,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsStringPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsString');
-  late final _Dart_IsString = _Dart_IsStringPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsString');
+  late final _Dart_IsString =
+      _Dart_IsStringPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsStringLatin1(
     Object object,
@@ -4872,8 +6194,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsStringLatin1Ptr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsStringLatin1');
-  late final _Dart_IsStringLatin1 = _Dart_IsStringLatin1Ptr.asFunction<bool Function(Object)>();
+  late final _Dart_IsStringLatin1Ptr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsStringLatin1');
+  late final _Dart_IsStringLatin1 =
+      _Dart_IsStringLatin1Ptr.asFunction<bool Function(Object)>();
 
   bool Dart_IsExternalString(
     Object object,
@@ -4883,8 +6208,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsExternalStringPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsExternalString');
-  late final _Dart_IsExternalString = _Dart_IsExternalStringPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsExternalStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsExternalString');
+  late final _Dart_IsExternalString =
+      _Dart_IsExternalStringPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsList(
     Object object,
@@ -4894,7 +6222,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsListPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsList');
+  late final _Dart_IsListPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsList');
   late final _Dart_IsList = _Dart_IsListPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsMap(
@@ -4905,7 +6234,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsMapPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsMap');
+  late final _Dart_IsMapPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsMap');
   late final _Dart_IsMap = _Dart_IsMapPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsLibrary(
@@ -4916,8 +6246,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsLibraryPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsLibrary');
-  late final _Dart_IsLibrary = _Dart_IsLibraryPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsLibrary');
+  late final _Dart_IsLibrary =
+      _Dart_IsLibraryPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsType(
     Object handle,
@@ -4927,7 +6260,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsTypePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsType');
+  late final _Dart_IsTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsType');
   late final _Dart_IsType = _Dart_IsTypePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsFunction(
@@ -4938,8 +6272,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsFunctionPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsFunction');
-  late final _Dart_IsFunction = _Dart_IsFunctionPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsFunctionPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsFunction');
+  late final _Dart_IsFunction =
+      _Dart_IsFunctionPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsVariable(
     Object handle,
@@ -4949,8 +6286,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsVariablePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsVariable');
-  late final _Dart_IsVariable = _Dart_IsVariablePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsVariablePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsVariable');
+  late final _Dart_IsVariable =
+      _Dart_IsVariablePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsTypeVariable(
     Object handle,
@@ -4960,8 +6300,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsTypeVariablePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsTypeVariable');
-  late final _Dart_IsTypeVariable = _Dart_IsTypeVariablePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsTypeVariablePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsTypeVariable');
+  late final _Dart_IsTypeVariable =
+      _Dart_IsTypeVariablePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsClosure(
     Object object,
@@ -4971,8 +6314,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsClosurePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsClosure');
-  late final _Dart_IsClosure = _Dart_IsClosurePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsClosurePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsClosure');
+  late final _Dart_IsClosure =
+      _Dart_IsClosurePtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsTypedData(
     Object object,
@@ -4982,8 +6328,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsTypedDataPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsTypedData');
-  late final _Dart_IsTypedData = _Dart_IsTypedDataPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsTypedDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsTypedData');
+  late final _Dart_IsTypedData =
+      _Dart_IsTypedDataPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsByteBuffer(
     Object object,
@@ -4993,8 +6342,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsByteBufferPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsByteBuffer');
-  late final _Dart_IsByteBuffer = _Dart_IsByteBufferPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsByteBufferPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsByteBuffer');
+  late final _Dart_IsByteBuffer =
+      _Dart_IsByteBufferPtr.asFunction<bool Function(Object)>();
 
   bool Dart_IsFuture(
     Object object,
@@ -5004,8 +6356,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsFuturePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsFuture');
-  late final _Dart_IsFuture = _Dart_IsFuturePtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsFuturePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsFuture');
+  late final _Dart_IsFuture =
+      _Dart_IsFuturePtr.asFunction<bool Function(Object)>();
 
   /// Gets the type of a Dart language object.
   ///
@@ -5021,8 +6376,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InstanceGetTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_InstanceGetType');
-  late final _Dart_InstanceGetType = _Dart_InstanceGetTypePtr.asFunction<Object Function(Object)>();
+  late final _Dart_InstanceGetTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_InstanceGetType');
+  late final _Dart_InstanceGetType =
+      _Dart_InstanceGetTypePtr.asFunction<Object Function(Object)>();
 
   /// Returns the name for the provided class type.
   ///
@@ -5036,8 +6394,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ClassNamePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ClassName');
-  late final _Dart_ClassName = _Dart_ClassNamePtr.asFunction<Object Function(Object)>();
+  late final _Dart_ClassNamePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ClassName');
+  late final _Dart_ClassName =
+      _Dart_ClassNamePtr.asFunction<Object Function(Object)>();
 
   /// Returns the name for the provided function or method.
   ///
@@ -5051,8 +6412,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_FunctionNamePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_FunctionName');
-  late final _Dart_FunctionName = _Dart_FunctionNamePtr.asFunction<Object Function(Object)>();
+  late final _Dart_FunctionNamePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_FunctionName');
+  late final _Dart_FunctionName =
+      _Dart_FunctionNamePtr.asFunction<Object Function(Object)>();
 
   /// Returns a handle to the owner of a function.
   ///
@@ -5072,8 +6436,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_FunctionOwnerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_FunctionOwner');
-  late final _Dart_FunctionOwner = _Dart_FunctionOwnerPtr.asFunction<Object Function(Object)>();
+  late final _Dart_FunctionOwnerPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_FunctionOwner');
+  late final _Dart_FunctionOwner =
+      _Dart_FunctionOwnerPtr.asFunction<Object Function(Object)>();
 
   /// Determines whether a function handle refers to a static function
   /// of method.
@@ -5095,8 +6462,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_FunctionIsStaticPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_FunctionIsStatic');
-  late final _Dart_FunctionIsStatic = _Dart_FunctionIsStaticPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_FunctionIsStaticPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_FunctionIsStatic');
+  late final _Dart_FunctionIsStatic = _Dart_FunctionIsStaticPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Is this object a closure resulting from a tear-off (closurized method)?
   ///
@@ -5115,8 +6486,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsTearOffPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>('Dart_IsTearOff');
-  late final _Dart_IsTearOff = _Dart_IsTearOffPtr.asFunction<bool Function(Object)>();
+  late final _Dart_IsTearOffPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Handle)>>(
+          'Dart_IsTearOff');
+  late final _Dart_IsTearOff =
+      _Dart_IsTearOffPtr.asFunction<bool Function(Object)>();
 
   /// Retrieves the function of a closure.
   ///
@@ -5130,8 +6504,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ClosureFunctionPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ClosureFunction');
-  late final _Dart_ClosureFunction = _Dart_ClosureFunctionPtr.asFunction<Object Function(Object)>();
+  late final _Dart_ClosureFunctionPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ClosureFunction');
+  late final _Dart_ClosureFunction =
+      _Dart_ClosureFunctionPtr.asFunction<Object Function(Object)>();
 
   /// Returns a handle to the library which contains class.
   ///
@@ -5146,8 +6523,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ClassLibraryPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ClassLibrary');
-  late final _Dart_ClassLibrary = _Dart_ClassLibraryPtr.asFunction<Object Function(Object)>();
+  late final _Dart_ClassLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ClassLibrary');
+  late final _Dart_ClassLibrary =
+      _Dart_ClassLibraryPtr.asFunction<Object Function(Object)>();
 
   /// Does this Integer fit into a 64-bit signed integer?
   ///
@@ -5165,8 +6545,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IntegerFitsIntoInt64Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IntegerFitsIntoInt64');
-  late final _Dart_IntegerFitsIntoInt64 = _Dart_IntegerFitsIntoInt64Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_IntegerFitsIntoInt64Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IntegerFitsIntoInt64');
+  late final _Dart_IntegerFitsIntoInt64 = _Dart_IntegerFitsIntoInt64Ptr
+      .asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Does this Integer fit into a 64-bit unsigned integer?
   ///
@@ -5184,8 +6568,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IntegerFitsIntoUint64Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IntegerFitsIntoUint64');
-  late final _Dart_IntegerFitsIntoUint64 = _Dart_IntegerFitsIntoUint64Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_IntegerFitsIntoUint64Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              ffi.Pointer<ffi.Bool>)>>('Dart_IntegerFitsIntoUint64');
+  late final _Dart_IntegerFitsIntoUint64 = _Dart_IntegerFitsIntoUint64Ptr
+      .asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Returns an Integer with the provided value.
   ///
@@ -5201,8 +6589,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewIntegerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int64)>>('Dart_NewInteger');
-  late final _Dart_NewInteger = _Dart_NewIntegerPtr.asFunction<Object Function(int)>();
+  late final _Dart_NewIntegerPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Int64)>>(
+          'Dart_NewInteger');
+  late final _Dart_NewInteger =
+      _Dart_NewIntegerPtr.asFunction<Object Function(int)>();
 
   /// Returns an Integer with the provided value.
   ///
@@ -5218,8 +6609,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewIntegerFromUint64Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Uint64)>>('Dart_NewIntegerFromUint64');
-  late final _Dart_NewIntegerFromUint64 = _Dart_NewIntegerFromUint64Ptr.asFunction<Object Function(int)>();
+  late final _Dart_NewIntegerFromUint64Ptr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Uint64)>>(
+          'Dart_NewIntegerFromUint64');
+  late final _Dart_NewIntegerFromUint64 =
+      _Dart_NewIntegerFromUint64Ptr.asFunction<Object Function(int)>();
 
   /// Returns an Integer with the provided value.
   ///
@@ -5236,8 +6630,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewIntegerFromHexCStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>('Dart_NewIntegerFromHexCString');
-  late final _Dart_NewIntegerFromHexCString = _Dart_NewIntegerFromHexCStringPtr.asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
+  late final _Dart_NewIntegerFromHexCStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>(
+          'Dart_NewIntegerFromHexCString');
+  late final _Dart_NewIntegerFromHexCString = _Dart_NewIntegerFromHexCStringPtr
+      .asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
 
   /// Gets the value of an Integer.
   ///
@@ -5257,8 +6654,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IntegerToInt64Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Int64>)>>('Dart_IntegerToInt64');
-  late final _Dart_IntegerToInt64 = _Dart_IntegerToInt64Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Int64>)>();
+  late final _Dart_IntegerToInt64Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Int64>)>>('Dart_IntegerToInt64');
+  late final _Dart_IntegerToInt64 = _Dart_IntegerToInt64Ptr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Int64>)>();
 
   /// Gets the value of an Integer.
   ///
@@ -5279,8 +6680,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IntegerToUint64Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint64>)>>('Dart_IntegerToUint64');
-  late final _Dart_IntegerToUint64 = _Dart_IntegerToUint64Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Uint64>)>();
+  late final _Dart_IntegerToUint64Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Uint64>)>>('Dart_IntegerToUint64');
+  late final _Dart_IntegerToUint64 = _Dart_IntegerToUint64Ptr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Uint64>)>();
 
   /// Gets the value of an integer as a hexadecimal C string.
   ///
@@ -5300,8 +6705,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IntegerToHexCStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_IntegerToHexCString');
-  late final _Dart_IntegerToHexCString = _Dart_IntegerToHexCStringPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_IntegerToHexCStringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_IntegerToHexCString');
+  late final _Dart_IntegerToHexCString =
+      _Dart_IntegerToHexCStringPtr.asFunction<
+          Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Returns a Double with the provided value.
   ///
@@ -5317,8 +6727,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewDoublePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Double)>>('Dart_NewDouble');
-  late final _Dart_NewDouble = _Dart_NewDoublePtr.asFunction<Object Function(double)>();
+  late final _Dart_NewDoublePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Double)>>(
+          'Dart_NewDouble');
+  late final _Dart_NewDouble =
+      _Dart_NewDoublePtr.asFunction<Object Function(double)>();
 
   /// Gets the value of a Double
   ///
@@ -5336,8 +6749,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DoubleValuePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Double>)>>('Dart_DoubleValue');
-  late final _Dart_DoubleValue = _Dart_DoubleValuePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Double>)>();
+  late final _Dart_DoubleValuePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Double>)>>('Dart_DoubleValue');
+  late final _Dart_DoubleValue = _Dart_DoubleValuePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Double>)>();
 
   /// Returns a closure of static function 'function_name' in the class 'class_name'
   /// in the exported namespace of specified 'library'.
@@ -5348,19 +6765,23 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return A valid Dart instance if no error occurs during the operation.
   Object Dart_GetStaticMethodClosure(
-    Object library1,
+    Object library$,
     Object cls_type,
     Object function_name,
   ) {
     return _Dart_GetStaticMethodClosure(
-      library1,
+      library$,
       cls_type,
       function_name,
     );
   }
 
-  late final _Dart_GetStaticMethodClosurePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Handle)>>('Dart_GetStaticMethodClosure');
-  late final _Dart_GetStaticMethodClosure = _Dart_GetStaticMethodClosurePtr.asFunction<Object Function(Object, Object, Object)>();
+  late final _Dart_GetStaticMethodClosurePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle,
+              ffi.Handle)>>('Dart_GetStaticMethodClosure');
+  late final _Dart_GetStaticMethodClosure = _Dart_GetStaticMethodClosurePtr
+      .asFunction<Object Function(Object, Object, Object)>();
 
   /// Returns the True object.
   ///
@@ -5371,7 +6792,8 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_True();
   }
 
-  late final _Dart_TruePtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_True');
+  late final _Dart_TruePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_True');
   late final _Dart_True = _Dart_TruePtr.asFunction<Object Function()>();
 
   /// Returns the False object.
@@ -5383,7 +6805,8 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_False();
   }
 
-  late final _Dart_FalsePtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_False');
+  late final _Dart_FalsePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_False');
   late final _Dart_False = _Dart_FalsePtr.asFunction<Object Function()>();
 
   /// Returns a Boolean with the provided value.
@@ -5400,8 +6823,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewBooleanPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Bool)>>('Dart_NewBoolean');
-  late final _Dart_NewBoolean = _Dart_NewBooleanPtr.asFunction<Object Function(bool)>();
+  late final _Dart_NewBooleanPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Bool)>>(
+          'Dart_NewBoolean');
+  late final _Dart_NewBoolean =
+      _Dart_NewBooleanPtr.asFunction<Object Function(bool)>();
 
   /// Gets the value of a Boolean
   ///
@@ -5419,8 +6845,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_BooleanValuePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_BooleanValue');
-  late final _Dart_BooleanValue = _Dart_BooleanValuePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_BooleanValuePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_BooleanValue');
+  late final _Dart_BooleanValue = _Dart_BooleanValuePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Gets the length of a String.
   ///
@@ -5438,8 +6868,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringLengthPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringLength');
-  late final _Dart_StringLength = _Dart_StringLengthPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringLengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringLength');
+  late final _Dart_StringLength = _Dart_StringLengthPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets the length of UTF-8 encoded representation for a string.
   ///
@@ -5457,8 +6891,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringUTF8LengthPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringUTF8Length');
-  late final _Dart_StringUTF8Length = _Dart_StringUTF8LengthPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringUTF8LengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringUTF8Length');
+  late final _Dart_StringUTF8Length = _Dart_StringUTF8LengthPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Returns a String built from the provided C string
   /// (There is an implicit assumption that the C string passed in contains
@@ -5477,8 +6915,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewStringFromCStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>('Dart_NewStringFromCString');
-  late final _Dart_NewStringFromCString = _Dart_NewStringFromCStringPtr.asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
+  late final _Dart_NewStringFromCStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Char>)>>(
+          'Dart_NewStringFromCString');
+  late final _Dart_NewStringFromCString = _Dart_NewStringFromCStringPtr
+      .asFunction<Object Function(ffi.Pointer<ffi.Char>)>();
 
   /// Returns a String built from an array of UTF-8 encoded characters.
   ///
@@ -5497,8 +6938,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewStringFromUTF8Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_NewStringFromUTF8');
-  late final _Dart_NewStringFromUTF8 = _Dart_NewStringFromUTF8Ptr.asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_NewStringFromUTF8Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_NewStringFromUTF8');
+  late final _Dart_NewStringFromUTF8 = _Dart_NewStringFromUTF8Ptr.asFunction<
+      Object Function(ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Returns a String built from an array of UTF-16 encoded characters.
   ///
@@ -5517,8 +6962,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewStringFromUTF16Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint16>, ffi.IntPtr)>>('Dart_NewStringFromUTF16');
-  late final _Dart_NewStringFromUTF16 = _Dart_NewStringFromUTF16Ptr.asFunction<Object Function(ffi.Pointer<ffi.Uint16>, int)>();
+  late final _Dart_NewStringFromUTF16Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Uint16>, ffi.IntPtr)>>('Dart_NewStringFromUTF16');
+  late final _Dart_NewStringFromUTF16 = _Dart_NewStringFromUTF16Ptr.asFunction<
+      Object Function(ffi.Pointer<ffi.Uint16>, int)>();
 
   /// Returns a String built from an array of UTF-32 encoded characters.
   ///
@@ -5537,8 +6986,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewStringFromUTF32Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Int32>, ffi.IntPtr)>>('Dart_NewStringFromUTF32');
-  late final _Dart_NewStringFromUTF32 = _Dart_NewStringFromUTF32Ptr.asFunction<Object Function(ffi.Pointer<ffi.Int32>, int)>();
+  late final _Dart_NewStringFromUTF32Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Int32>, ffi.IntPtr)>>('Dart_NewStringFromUTF32');
+  late final _Dart_NewStringFromUTF32 = _Dart_NewStringFromUTF32Ptr.asFunction<
+      Object Function(ffi.Pointer<ffi.Int32>, int)>();
 
   /// Returns a String which references an external array of
   /// Latin-1 (ISO-8859-1) encoded characters.
@@ -5568,8 +7021,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewExternalLatin1StringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewExternalLatin1String');
-  late final _Dart_NewExternalLatin1String = _Dart_NewExternalLatin1StringPtr.asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewExternalLatin1StringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr,
+              ffi.Pointer<ffi.Void>,
+              ffi.IntPtr,
+              Dart_HandleFinalizer)>>('Dart_NewExternalLatin1String');
+  late final _Dart_NewExternalLatin1String =
+      _Dart_NewExternalLatin1StringPtr.asFunction<
+          Object Function(ffi.Pointer<ffi.Uint8>, int, ffi.Pointer<ffi.Void>,
+              int, Dart_HandleFinalizer)>();
 
   /// Returns a String which references an external array of UTF-16 encoded
   /// characters.
@@ -5599,8 +7062,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewExternalUTF16StringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint16>, ffi.IntPtr, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewExternalUTF16String');
-  late final _Dart_NewExternalUTF16String = _Dart_NewExternalUTF16StringPtr.asFunction<Object Function(ffi.Pointer<ffi.Uint16>, int, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewExternalUTF16StringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Uint16>,
+              ffi.IntPtr,
+              ffi.Pointer<ffi.Void>,
+              ffi.IntPtr,
+              Dart_HandleFinalizer)>>('Dart_NewExternalUTF16String');
+  late final _Dart_NewExternalUTF16String =
+      _Dart_NewExternalUTF16StringPtr.asFunction<
+          Object Function(ffi.Pointer<ffi.Uint16>, int, ffi.Pointer<ffi.Void>,
+              int, Dart_HandleFinalizer)>();
 
   /// Gets the C string representation of a String.
   /// (It is a sequence of UTF-8 encoded values with a '\0' termination.)
@@ -5621,8 +7094,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringToCStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_StringToCString');
-  late final _Dart_StringToCString = _Dart_StringToCStringPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_StringToCStringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_StringToCString');
+  late final _Dart_StringToCString = _Dart_StringToCStringPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Gets a UTF-8 encoded representation of a String.
   ///
@@ -5650,8 +7127,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringToUTF8Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToUTF8');
-  late final _Dart_StringToUTF8 = _Dart_StringToUTF8Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringToUTF8Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToUTF8');
+  late final _Dart_StringToUTF8 = _Dart_StringToUTF8Ptr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+          ffi.Pointer<ffi.IntPtr>)>();
 
   /// Copies the UTF-8 encoded representation of a String into specified buffer.
   ///
@@ -5677,8 +7159,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CopyUTF8EncodingOfStringPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_CopyUTF8EncodingOfString');
-  late final _Dart_CopyUTF8EncodingOfString = _Dart_CopyUTF8EncodingOfStringPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_CopyUTF8EncodingOfStringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_CopyUTF8EncodingOfString');
+  late final _Dart_CopyUTF8EncodingOfString = _Dart_CopyUTF8EncodingOfStringPtr
+      .asFunction<Object Function(Object, ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Gets the data corresponding to the string object. This function returns
   /// the data only for Latin-1 (ISO-8859-1) string objects. For all other
@@ -5703,8 +7189,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringToLatin1Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToLatin1');
-  late final _Dart_StringToLatin1 = _Dart_StringToLatin1Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringToLatin1Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToLatin1');
+  late final _Dart_StringToLatin1 = _Dart_StringToLatin1Ptr.asFunction<
+      Object Function(
+          Object, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets the UTF-16 encoded representation of a string.
   ///
@@ -5727,8 +7218,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringToUTF16Ptr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint16>, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToUTF16');
-  late final _Dart_StringToUTF16 = _Dart_StringToUTF16Ptr.asFunction<Object Function(Object, ffi.Pointer<ffi.Uint16>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringToUTF16Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Uint16>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_StringToUTF16');
+  late final _Dart_StringToUTF16 = _Dart_StringToUTF16Ptr.asFunction<
+      Object Function(
+          Object, ffi.Pointer<ffi.Uint16>, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets the storage size in bytes of a String.
   ///
@@ -5747,8 +7243,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringStorageSizePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringStorageSize');
-  late final _Dart_StringStorageSize = _Dart_StringStorageSizePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_StringStorageSizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_StringStorageSize');
+  late final _Dart_StringStorageSize = _Dart_StringStorageSizePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Retrieves some properties associated with a String.
   /// Properties retrieved are:
@@ -5776,8 +7276,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_StringGetPropertiesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('Dart_StringGetProperties');
-  late final _Dart_StringGetProperties = _Dart_StringGetPropertiesPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
+  late final _Dart_StringGetPropertiesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('Dart_StringGetProperties');
+  late final _Dart_StringGetProperties =
+      _Dart_StringGetPropertiesPtr.asFunction<
+          Object Function(Object, ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   /// Returns a List<dynamic> of the desired length.
   ///
@@ -5793,8 +7302,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewListPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr)>>('Dart_NewList');
-  late final _Dart_NewList = _Dart_NewListPtr.asFunction<Object Function(int)>();
+  late final _Dart_NewListPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr)>>(
+          'Dart_NewList');
+  late final _Dart_NewList =
+      _Dart_NewListPtr.asFunction<Object Function(int)>();
 
   /// TODO(bkonyi): convert this to use nullable types once NNBD is enabled.
   /// /**
@@ -5816,8 +7328,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewListOfPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>('Dart_NewListOf');
-  late final _Dart_NewListOf = _Dart_NewListOfPtr.asFunction<Object Function(int, int)>();
+  late final _Dart_NewListOfPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>(
+      'Dart_NewListOf');
+  late final _Dart_NewListOf =
+      _Dart_NewListOfPtr.asFunction<Object Function(int, int)>();
 
   /// Returns a List of the desired length with the desired element type.
   ///
@@ -5838,8 +7353,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewListOfTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr)>>('Dart_NewListOfType');
-  late final _Dart_NewListOfType = _Dart_NewListOfTypePtr.asFunction<Object Function(Object, int)>();
+  late final _Dart_NewListOfTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr)>>(
+          'Dart_NewListOfType');
+  late final _Dart_NewListOfType =
+      _Dart_NewListOfTypePtr.asFunction<Object Function(Object, int)>();
 
   /// Returns a List of the desired length with the desired element type, filled
   /// with the provided object.
@@ -5866,8 +7384,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewListOfTypeFilledPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr)>>('Dart_NewListOfTypeFilled');
-  late final _Dart_NewListOfTypeFilled = _Dart_NewListOfTypeFilledPtr.asFunction<Object Function(Object, Object, int)>();
+  late final _Dart_NewListOfTypeFilledPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Handle, ffi.IntPtr)>>('Dart_NewListOfTypeFilled');
+  late final _Dart_NewListOfTypeFilled = _Dart_NewListOfTypeFilledPtr
+      .asFunction<Object Function(Object, Object, int)>();
 
   /// Gets the length of a List.
   ///
@@ -5887,8 +7409,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListLengthPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_ListLength');
-  late final _Dart_ListLength = _Dart_ListLengthPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_ListLengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.IntPtr>)>>('Dart_ListLength');
+  late final _Dart_ListLength = _Dart_ListLengthPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets the Object at some index of a List.
   ///
@@ -5911,8 +7437,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListGetAtPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr)>>('Dart_ListGetAt');
-  late final _Dart_ListGetAt = _Dart_ListGetAtPtr.asFunction<Object Function(Object, int)>();
+  late final _Dart_ListGetAtPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr)>>(
+          'Dart_ListGetAt');
+  late final _Dart_ListGetAt =
+      _Dart_ListGetAtPtr.asFunction<Object Function(Object, int)>();
 
   /// Gets a range of Objects from a List.
   ///
@@ -5940,8 +7469,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListGetRangePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.IntPtr, ffi.Pointer<ffi.Handle>)>>('Dart_ListGetRange');
-  late final _Dart_ListGetRange = _Dart_ListGetRangePtr.asFunction<Object Function(Object, int, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_ListGetRangePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.IntPtr,
+              ffi.Pointer<ffi.Handle>)>>('Dart_ListGetRange');
+  late final _Dart_ListGetRange = _Dart_ListGetRangePtr.asFunction<
+      Object Function(Object, int, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Sets the Object at some index of a List.
   ///
@@ -5966,8 +7499,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListSetAtPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Handle)>>('Dart_ListSetAt');
-  late final _Dart_ListSetAt = _Dart_ListSetAtPtr.asFunction<Object Function(Object, int, Object)>();
+  late final _Dart_ListSetAtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.IntPtr, ffi.Handle)>>('Dart_ListSetAt');
+  late final _Dart_ListSetAt =
+      _Dart_ListSetAtPtr.asFunction<Object Function(Object, int, Object)>();
 
   /// May generate an unhandled exception error.
   Object Dart_ListGetAsBytes(
@@ -5984,8 +7521,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListGetAsBytesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_ListGetAsBytes');
-  late final _Dart_ListGetAsBytes = _Dart_ListGetAsBytesPtr.asFunction<Object Function(Object, int, ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_ListGetAsBytesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_ListGetAsBytes');
+  late final _Dart_ListGetAsBytes = _Dart_ListGetAsBytesPtr.asFunction<
+      Object Function(Object, int, ffi.Pointer<ffi.Uint8>, int)>();
 
   /// May generate an unhandled exception error.
   Object Dart_ListSetAsBytes(
@@ -6002,8 +7543,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ListSetAsBytesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_ListSetAsBytes');
-  late final _Dart_ListSetAsBytes = _Dart_ListSetAsBytesPtr.asFunction<Object Function(Object, int, ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_ListSetAsBytesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_ListSetAsBytes');
+  late final _Dart_ListSetAsBytes = _Dart_ListSetAsBytesPtr.asFunction<
+      Object Function(Object, int, ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Gets the Object at some key of a Map.
   ///
@@ -6024,8 +7569,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_MapGetAtPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_MapGetAt');
-  late final _Dart_MapGetAt = _Dart_MapGetAtPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_MapGetAtPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_MapGetAt');
+  late final _Dart_MapGetAt =
+      _Dart_MapGetAtPtr.asFunction<Object Function(Object, Object)>();
 
   /// Returns whether the Map contains a given key.
   ///
@@ -6045,8 +7593,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_MapContainsKeyPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_MapContainsKey');
-  late final _Dart_MapContainsKey = _Dart_MapContainsKeyPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_MapContainsKeyPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_MapContainsKey');
+  late final _Dart_MapContainsKey =
+      _Dart_MapContainsKeyPtr.asFunction<Object Function(Object, Object)>();
 
   /// Gets the list of keys of a Map.
   ///
@@ -6064,8 +7615,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_MapKeysPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_MapKeys');
-  late final _Dart_MapKeys = _Dart_MapKeysPtr.asFunction<Object Function(Object)>();
+  late final _Dart_MapKeysPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_MapKeys');
+  late final _Dart_MapKeys =
+      _Dart_MapKeysPtr.asFunction<Object Function(Object)>();
 
   /// Return type if this object is a TypedData object.
   ///
@@ -6079,8 +7633,11 @@ class FlutterOpenimSdkFfiBindings {
     ));
   }
 
-  late final _Dart_GetTypeOfTypedDataPtr = _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>('Dart_GetTypeOfTypedData');
-  late final _Dart_GetTypeOfTypedData = _Dart_GetTypeOfTypedDataPtr.asFunction<int Function(Object)>();
+  late final _Dart_GetTypeOfTypedDataPtr =
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>(
+          'Dart_GetTypeOfTypedData');
+  late final _Dart_GetTypeOfTypedData =
+      _Dart_GetTypeOfTypedDataPtr.asFunction<int Function(Object)>();
 
   /// Return type if this object is an external TypedData object.
   ///
@@ -6094,8 +7651,11 @@ class FlutterOpenimSdkFfiBindings {
     ));
   }
 
-  late final _Dart_GetTypeOfExternalTypedDataPtr = _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>('Dart_GetTypeOfExternalTypedData');
-  late final _Dart_GetTypeOfExternalTypedData = _Dart_GetTypeOfExternalTypedDataPtr.asFunction<int Function(Object)>();
+  late final _Dart_GetTypeOfExternalTypedDataPtr =
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Handle)>>(
+          'Dart_GetTypeOfExternalTypedData');
+  late final _Dart_GetTypeOfExternalTypedData =
+      _Dart_GetTypeOfExternalTypedDataPtr.asFunction<int Function(Object)>();
 
   /// Returns a TypedData object of the desired length and type.
   ///
@@ -6114,8 +7674,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewTypedDataPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>('Dart_NewTypedData');
-  late final _Dart_NewTypedData = _Dart_NewTypedDataPtr.asFunction<Object Function(int, int)>();
+  late final _Dart_NewTypedDataPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.IntPtr)>>(
+      'Dart_NewTypedData');
+  late final _Dart_NewTypedData =
+      _Dart_NewTypedDataPtr.asFunction<Object Function(int, int)>();
 
   /// Returns a TypedData object which references an external data array.
   ///
@@ -6137,8 +7700,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewExternalTypedDataPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.Pointer<ffi.Void>, ffi.IntPtr)>>('Dart_NewExternalTypedData');
-  late final _Dart_NewExternalTypedData = _Dart_NewExternalTypedDataPtr.asFunction<Object Function(int, ffi.Pointer<ffi.Void>, int)>();
+  late final _Dart_NewExternalTypedDataPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.UnsignedInt, ffi.Pointer<ffi.Void>,
+              ffi.IntPtr)>>('Dart_NewExternalTypedData');
+  late final _Dart_NewExternalTypedData = _Dart_NewExternalTypedDataPtr
+      .asFunction<Object Function(int, ffi.Pointer<ffi.Void>, int)>();
 
   /// Returns a TypedData object which references an external data array.
   ///
@@ -6173,8 +7740,19 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewExternalTypedDataWithFinalizerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.Pointer<ffi.Void>, ffi.IntPtr, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewExternalTypedDataWithFinalizer');
-  late final _Dart_NewExternalTypedDataWithFinalizer = _Dart_NewExternalTypedDataWithFinalizerPtr.asFunction<Object Function(int, ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewExternalTypedDataWithFinalizerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.UnsignedInt,
+              ffi.Pointer<ffi.Void>,
+              ffi.IntPtr,
+              ffi.Pointer<ffi.Void>,
+              ffi.IntPtr,
+              Dart_HandleFinalizer)>>('Dart_NewExternalTypedDataWithFinalizer');
+  late final _Dart_NewExternalTypedDataWithFinalizer =
+      _Dart_NewExternalTypedDataWithFinalizerPtr.asFunction<
+          Object Function(int, ffi.Pointer<ffi.Void>, int,
+              ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
 
   Object Dart_NewUnmodifiableExternalTypedDataWithFinalizer(
     Dart_TypedData_Type type,
@@ -6194,8 +7772,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.UnsignedInt, ffi.Pointer<ffi.Void>, ffi.IntPtr, ffi.Pointer<ffi.Void>, ffi.IntPtr, Dart_HandleFinalizer)>>('Dart_NewUnmodifiableExternalTypedDataWithFinalizer');
-  late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizer = _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr.asFunction<Object Function(int, ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
+  late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Handle Function(
+                  ffi.UnsignedInt,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.IntPtr,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.IntPtr,
+                  Dart_HandleFinalizer)>>(
+      'Dart_NewUnmodifiableExternalTypedDataWithFinalizer');
+  late final _Dart_NewUnmodifiableExternalTypedDataWithFinalizer =
+      _Dart_NewUnmodifiableExternalTypedDataWithFinalizerPtr.asFunction<
+          Object Function(int, ffi.Pointer<ffi.Void>, int,
+              ffi.Pointer<ffi.Void>, int, Dart_HandleFinalizer)>();
 
   /// Returns a ByteBuffer object for the typed data.
   ///
@@ -6211,8 +7801,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewByteBufferPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_NewByteBuffer');
-  late final _Dart_NewByteBuffer = _Dart_NewByteBufferPtr.asFunction<Object Function(Object)>();
+  late final _Dart_NewByteBufferPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_NewByteBuffer');
+  late final _Dart_NewByteBuffer =
+      _Dart_NewByteBufferPtr.asFunction<Object Function(Object)>();
 
   /// Acquires access to the internal data address of a TypedData object.
   ///
@@ -6248,8 +7841,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_TypedDataAcquireDataPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.UnsignedInt>, ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.IntPtr>)>>('Dart_TypedDataAcquireData');
-  late final _Dart_TypedDataAcquireData = _Dart_TypedDataAcquireDataPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.UnsignedInt>, ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_TypedDataAcquireDataPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle,
+              ffi.Pointer<ffi.UnsignedInt>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_TypedDataAcquireData');
+  late final _Dart_TypedDataAcquireData =
+      _Dart_TypedDataAcquireDataPtr.asFunction<
+          Object Function(Object, ffi.Pointer<ffi.UnsignedInt>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Releases access to the internal data address that was acquired earlier using
   /// Dart_TypedDataAcquireData.
@@ -6267,8 +7869,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_TypedDataReleaseDataPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_TypedDataReleaseData');
-  late final _Dart_TypedDataReleaseData = _Dart_TypedDataReleaseDataPtr.asFunction<Object Function(Object)>();
+  late final _Dart_TypedDataReleaseDataPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_TypedDataReleaseData');
+  late final _Dart_TypedDataReleaseData =
+      _Dart_TypedDataReleaseDataPtr.asFunction<Object Function(Object)>();
 
   /// Returns the TypedData object associated with the ByteBuffer object.
   ///
@@ -6284,8 +7889,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetDataFromByteBufferPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_GetDataFromByteBuffer');
-  late final _Dart_GetDataFromByteBuffer = _Dart_GetDataFromByteBufferPtr.asFunction<Object Function(Object)>();
+  late final _Dart_GetDataFromByteBufferPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_GetDataFromByteBuffer');
+  late final _Dart_GetDataFromByteBuffer =
+      _Dart_GetDataFromByteBufferPtr.asFunction<Object Function(Object)>();
 
   /// Invokes a constructor, creating a new object.
   ///
@@ -6316,8 +7924,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int, ffi.Pointer<ffi.Handle>)>>('Dart_New');
-  late final _Dart_New = _Dart_NewPtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_NewPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int,
+              ffi.Pointer<ffi.Handle>)>>('Dart_New');
+  late final _Dart_New = _Dart_NewPtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Allocate a new object without invoking a constructor.
   ///
@@ -6333,8 +7945,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_AllocatePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_Allocate');
-  late final _Dart_Allocate = _Dart_AllocatePtr.asFunction<Object Function(Object)>();
+  late final _Dart_AllocatePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_Allocate');
+  late final _Dart_Allocate =
+      _Dart_AllocatePtr.asFunction<Object Function(Object)>();
 
   /// Allocate a new object without invoking a constructor, and sets specified
   /// native fields.
@@ -6357,8 +7972,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_AllocateWithNativeFieldsPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.IntPtr>)>>('Dart_AllocateWithNativeFields');
-  late final _Dart_AllocateWithNativeFields = _Dart_AllocateWithNativeFieldsPtr.asFunction<Object Function(Object, int, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_AllocateWithNativeFieldsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.IntPtr,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_AllocateWithNativeFields');
+  late final _Dart_AllocateWithNativeFields = _Dart_AllocateWithNativeFieldsPtr
+      .asFunction<Object Function(Object, int, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Invokes a method or function.
   ///
@@ -6395,8 +8014,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InvokePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int, ffi.Pointer<ffi.Handle>)>>('Dart_Invoke');
-  late final _Dart_Invoke = _Dart_InvokePtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_InvokePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int,
+              ffi.Pointer<ffi.Handle>)>>('Dart_Invoke');
+  late final _Dart_Invoke = _Dart_InvokePtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Invokes a Closure with the given arguments.
   ///
@@ -6417,8 +8040,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InvokeClosurePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Int, ffi.Pointer<ffi.Handle>)>>('Dart_InvokeClosure');
-  late final _Dart_InvokeClosure = _Dart_InvokeClosurePtr.asFunction<Object Function(Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_InvokeClosurePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Int,
+              ffi.Pointer<ffi.Handle>)>>('Dart_InvokeClosure');
+  late final _Dart_InvokeClosure = _Dart_InvokeClosurePtr.asFunction<
+      Object Function(Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Invokes a Generative Constructor on an object that was previously
   /// allocated using Dart_Allocate/Dart_AllocateWithNativeFields.
@@ -6452,8 +8079,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InvokeConstructorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int, ffi.Pointer<ffi.Handle>)>>('Dart_InvokeConstructor');
-  late final _Dart_InvokeConstructor = _Dart_InvokeConstructorPtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_InvokeConstructorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Int,
+              ffi.Pointer<ffi.Handle>)>>('Dart_InvokeConstructor');
+  late final _Dart_InvokeConstructor = _Dart_InvokeConstructorPtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Gets the value of a field.
   ///
@@ -6483,8 +8114,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetFieldPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_GetField');
-  late final _Dart_GetField = _Dart_GetFieldPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_GetFieldPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_GetField');
+  late final _Dart_GetField =
+      _Dart_GetFieldPtr.asFunction<Object Function(Object, Object)>();
 
   /// Sets the value of a field.
   ///
@@ -6516,8 +8150,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetFieldPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.Handle)>>('Dart_SetField');
-  late final _Dart_SetField = _Dart_SetFieldPtr.asFunction<Object Function(Object, Object, Object)>();
+  late final _Dart_SetFieldPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Handle, ffi.Handle)>>('Dart_SetField');
+  late final _Dart_SetField =
+      _Dart_SetFieldPtr.asFunction<Object Function(Object, Object, Object)>();
 
   /// Throws an exception.
   ///
@@ -6544,8 +8182,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ThrowExceptionPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_ThrowException');
-  late final _Dart_ThrowException = _Dart_ThrowExceptionPtr.asFunction<Object Function(Object)>();
+  late final _Dart_ThrowExceptionPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_ThrowException');
+  late final _Dart_ThrowException =
+      _Dart_ThrowExceptionPtr.asFunction<Object Function(Object)>();
 
   /// Rethrows an exception.
   ///
@@ -6566,8 +8207,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ReThrowExceptionPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_ReThrowException');
-  late final _Dart_ReThrowException = _Dart_ReThrowExceptionPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_ReThrowExceptionPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_ReThrowException');
+  late final _Dart_ReThrowException =
+      _Dart_ReThrowExceptionPtr.asFunction<Object Function(Object, Object)>();
 
   /// Gets the number of native instance fields in an object.
   Object Dart_GetNativeInstanceFieldCount(
@@ -6580,8 +8224,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeInstanceFieldCountPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Int>)>>('Dart_GetNativeInstanceFieldCount');
-  late final _Dart_GetNativeInstanceFieldCount = _Dart_GetNativeInstanceFieldCountPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Int>)>();
+  late final _Dart_GetNativeInstanceFieldCountPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              ffi.Pointer<ffi.Int>)>>('Dart_GetNativeInstanceFieldCount');
+  late final _Dart_GetNativeInstanceFieldCount =
+      _Dart_GetNativeInstanceFieldCountPtr.asFunction<
+          Object Function(Object, ffi.Pointer<ffi.Int>)>();
 
   /// Gets the value of a native field.
   ///
@@ -6598,8 +8247,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeInstanceFieldPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Int, ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeInstanceField');
-  late final _Dart_GetNativeInstanceField = _Dart_GetNativeInstanceFieldPtr.asFunction<Object Function(Object, int, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_GetNativeInstanceFieldPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Int,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeInstanceField');
+  late final _Dart_GetNativeInstanceField = _Dart_GetNativeInstanceFieldPtr
+      .asFunction<Object Function(Object, int, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Sets the value of a native field.
   ///
@@ -6616,8 +8269,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetNativeInstanceFieldPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Int, ffi.IntPtr)>>('Dart_SetNativeInstanceField');
-  late final _Dart_SetNativeInstanceField = _Dart_SetNativeInstanceFieldPtr.asFunction<Object Function(Object, int, int)>();
+  late final _Dart_SetNativeInstanceFieldPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Int, ffi.IntPtr)>>('Dart_SetNativeInstanceField');
+  late final _Dart_SetNativeInstanceField = _Dart_SetNativeInstanceFieldPtr
+      .asFunction<Object Function(Object, int, int)>();
 
   /// Extracts current isolate group data from the native arguments structure.
   ffi.Pointer<ffi.Void> Dart_GetNativeIsolateGroupData(
@@ -6628,8 +8285,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeIsolateGroupDataPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(Dart_NativeArguments)>>('Dart_GetNativeIsolateGroupData');
-  late final _Dart_GetNativeIsolateGroupData = _Dart_GetNativeIsolateGroupDataPtr.asFunction<ffi.Pointer<ffi.Void> Function(Dart_NativeArguments)>();
+  late final _Dart_GetNativeIsolateGroupDataPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              Dart_NativeArguments)>>('Dart_GetNativeIsolateGroupData');
+  late final _Dart_GetNativeIsolateGroupData =
+      _Dart_GetNativeIsolateGroupDataPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(Dart_NativeArguments)>();
 
   /// Gets the native arguments based on the types passed in and populates
   /// the passed arguments buffer with appropriate native values.
@@ -6664,8 +8326,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeArgumentsPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Pointer<Dart_NativeArgument_Descriptor>, ffi.Pointer<Dart_NativeArgument_Value>)>>('Dart_GetNativeArguments');
-  late final _Dart_GetNativeArguments = _Dart_GetNativeArgumentsPtr.asFunction<Object Function(Dart_NativeArguments, int, ffi.Pointer<Dart_NativeArgument_Descriptor>, ffi.Pointer<Dart_NativeArgument_Value>)>();
+  late final _Dart_GetNativeArgumentsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Handle Function(
+                  Dart_NativeArguments,
+                  ffi.Int,
+                  ffi.Pointer<Dart_NativeArgument_Descriptor>,
+                  ffi.Pointer<Dart_NativeArgument_Value>)>>(
+      'Dart_GetNativeArguments');
+  late final _Dart_GetNativeArguments = _Dart_GetNativeArgumentsPtr.asFunction<
+      Object Function(
+          Dart_NativeArguments,
+          int,
+          ffi.Pointer<Dart_NativeArgument_Descriptor>,
+          ffi.Pointer<Dart_NativeArgument_Value>)>();
 
   /// Gets the native argument at some index.
   Object Dart_GetNativeArgument(
@@ -6678,8 +8352,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int)>>('Dart_GetNativeArgument');
-  late final _Dart_GetNativeArgument = _Dart_GetNativeArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int)>();
+  late final _Dart_GetNativeArgumentPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int)>>(
+      'Dart_GetNativeArgument');
+  late final _Dart_GetNativeArgument = _Dart_GetNativeArgumentPtr.asFunction<
+      Object Function(Dart_NativeArguments, int)>();
 
   /// Gets the number of native arguments.
   int Dart_GetNativeArgumentCount(
@@ -6690,8 +8368,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeArgumentCountPtr = _lookup<ffi.NativeFunction<ffi.Int Function(Dart_NativeArguments)>>('Dart_GetNativeArgumentCount');
-  late final _Dart_GetNativeArgumentCount = _Dart_GetNativeArgumentCountPtr.asFunction<int Function(Dart_NativeArguments)>();
+  late final _Dart_GetNativeArgumentCountPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(Dart_NativeArguments)>>(
+          'Dart_GetNativeArgumentCount');
+  late final _Dart_GetNativeArgumentCount = _Dart_GetNativeArgumentCountPtr
+      .asFunction<int Function(Dart_NativeArguments)>();
 
   /// Gets all the native fields of the native argument at some index.
   /// \param args Native arguments structure.
@@ -6717,8 +8398,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeFieldsOfArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Int, ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeFieldsOfArgument');
-  late final _Dart_GetNativeFieldsOfArgument = _Dart_GetNativeFieldsOfArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int, int, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_GetNativeFieldsOfArgumentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Int,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeFieldsOfArgument');
+  late final _Dart_GetNativeFieldsOfArgument =
+      _Dart_GetNativeFieldsOfArgumentPtr.asFunction<
+          Object Function(
+              Dart_NativeArguments, int, int, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets the native field of the receiver.
   Object Dart_GetNativeReceiver(
@@ -6731,8 +8418,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeReceiverPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeReceiver');
-  late final _Dart_GetNativeReceiver = _Dart_GetNativeReceiverPtr.asFunction<Object Function(Dart_NativeArguments, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_GetNativeReceiverPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_NativeArguments,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_GetNativeReceiver');
+  late final _Dart_GetNativeReceiver = _Dart_GetNativeReceiverPtr.asFunction<
+      Object Function(Dart_NativeArguments, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Gets a string native argument at some index.
   /// \param args Native arguments structure.
@@ -6753,8 +8444,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeStringArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('Dart_GetNativeStringArgument');
-  late final _Dart_GetNativeStringArgument = _Dart_GetNativeStringArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
+  late final _Dart_GetNativeStringArgumentPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Handle Function(Dart_NativeArguments, ffi.Int,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>)>>(
+      'Dart_GetNativeStringArgument');
+  late final _Dart_GetNativeStringArgument =
+      _Dart_GetNativeStringArgumentPtr.asFunction<
+          Object Function(
+              Dart_NativeArguments, int, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   /// Gets an integer native argument at some index.
   /// \param args Native arguments structure.
@@ -6773,8 +8471,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeIntegerArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Pointer<ffi.Int64>)>>('Dart_GetNativeIntegerArgument');
-  late final _Dart_GetNativeIntegerArgument = _Dart_GetNativeIntegerArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Int64>)>();
+  late final _Dart_GetNativeIntegerArgumentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_NativeArguments, ffi.Int,
+              ffi.Pointer<ffi.Int64>)>>('Dart_GetNativeIntegerArgument');
+  late final _Dart_GetNativeIntegerArgument =
+      _Dart_GetNativeIntegerArgumentPtr.asFunction<
+          Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Int64>)>();
 
   /// Gets a boolean native argument at some index.
   /// \param args Native arguments structure.
@@ -6793,8 +8496,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeBooleanArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Pointer<ffi.Bool>)>>('Dart_GetNativeBooleanArgument');
-  late final _Dart_GetNativeBooleanArgument = _Dart_GetNativeBooleanArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_GetNativeBooleanArgumentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_NativeArguments, ffi.Int,
+              ffi.Pointer<ffi.Bool>)>>('Dart_GetNativeBooleanArgument');
+  late final _Dart_GetNativeBooleanArgument =
+      _Dart_GetNativeBooleanArgumentPtr.asFunction<
+          Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Bool>)>();
 
   /// Gets a double native argument at some index.
   /// \param args Native arguments structure.
@@ -6813,8 +8521,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetNativeDoubleArgumentPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_NativeArguments, ffi.Int, ffi.Pointer<ffi.Double>)>>('Dart_GetNativeDoubleArgument');
-  late final _Dart_GetNativeDoubleArgument = _Dart_GetNativeDoubleArgumentPtr.asFunction<Object Function(Dart_NativeArguments, int, ffi.Pointer<ffi.Double>)>();
+  late final _Dart_GetNativeDoubleArgumentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_NativeArguments, ffi.Int,
+              ffi.Pointer<ffi.Double>)>>('Dart_GetNativeDoubleArgument');
+  late final _Dart_GetNativeDoubleArgument =
+      _Dart_GetNativeDoubleArgumentPtr.asFunction<
+          Object Function(
+              Dart_NativeArguments, int, ffi.Pointer<ffi.Double>)>();
 
   /// Sets the return value for a native function.
   ///
@@ -6831,8 +8545,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetReturnValuePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Handle)>>('Dart_SetReturnValue');
-  late final _Dart_SetReturnValue = _Dart_SetReturnValuePtr.asFunction<void Function(Dart_NativeArguments, Object)>();
+  late final _Dart_SetReturnValuePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Handle)>>(
+      'Dart_SetReturnValue');
+  late final _Dart_SetReturnValue = _Dart_SetReturnValuePtr.asFunction<
+      void Function(Dart_NativeArguments, Object)>();
 
   void Dart_SetWeakHandleReturnValue(
     Dart_NativeArguments args,
@@ -6844,8 +8562,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetWeakHandleReturnValuePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_NativeArguments, Dart_WeakPersistentHandle)>>('Dart_SetWeakHandleReturnValue');
-  late final _Dart_SetWeakHandleReturnValue = _Dart_SetWeakHandleReturnValuePtr.asFunction<void Function(Dart_NativeArguments, Dart_WeakPersistentHandle)>();
+  late final _Dart_SetWeakHandleReturnValuePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(Dart_NativeArguments,
+              Dart_WeakPersistentHandle)>>('Dart_SetWeakHandleReturnValue');
+  late final _Dart_SetWeakHandleReturnValue =
+      _Dart_SetWeakHandleReturnValuePtr.asFunction<
+          void Function(Dart_NativeArguments, Dart_WeakPersistentHandle)>();
 
   void Dart_SetBooleanReturnValue(
     Dart_NativeArguments args,
@@ -6857,8 +8580,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetBooleanReturnValuePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Bool)>>('Dart_SetBooleanReturnValue');
-  late final _Dart_SetBooleanReturnValue = _Dart_SetBooleanReturnValuePtr.asFunction<void Function(Dart_NativeArguments, bool)>();
+  late final _Dart_SetBooleanReturnValuePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Bool)>>(
+      'Dart_SetBooleanReturnValue');
+  late final _Dart_SetBooleanReturnValue = _Dart_SetBooleanReturnValuePtr
+      .asFunction<void Function(Dart_NativeArguments, bool)>();
 
   void Dart_SetIntegerReturnValue(
     Dart_NativeArguments args,
@@ -6870,8 +8597,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetIntegerReturnValuePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Int64)>>('Dart_SetIntegerReturnValue');
-  late final _Dart_SetIntegerReturnValue = _Dart_SetIntegerReturnValuePtr.asFunction<void Function(Dart_NativeArguments, int)>();
+  late final _Dart_SetIntegerReturnValuePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Int64)>>(
+      'Dart_SetIntegerReturnValue');
+  late final _Dart_SetIntegerReturnValue = _Dart_SetIntegerReturnValuePtr
+      .asFunction<void Function(Dart_NativeArguments, int)>();
 
   void Dart_SetDoubleReturnValue(
     Dart_NativeArguments args,
@@ -6883,8 +8614,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetDoubleReturnValuePtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Double)>>('Dart_SetDoubleReturnValue');
-  late final _Dart_SetDoubleReturnValue = _Dart_SetDoubleReturnValuePtr.asFunction<void Function(Dart_NativeArguments, double)>();
+  late final _Dart_SetDoubleReturnValuePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(Dart_NativeArguments, ffi.Double)>>(
+      'Dart_SetDoubleReturnValue');
+  late final _Dart_SetDoubleReturnValue = _Dart_SetDoubleReturnValuePtr
+      .asFunction<void Function(Dart_NativeArguments, double)>();
 
   /// Sets the environment callback for the current isolate. This
   /// callback is used to lookup environment values by name in the
@@ -6899,8 +8634,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetEnvironmentCallbackPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_EnvironmentCallback)>>('Dart_SetEnvironmentCallback');
-  late final _Dart_SetEnvironmentCallback = _Dart_SetEnvironmentCallbackPtr.asFunction<Object Function(Dart_EnvironmentCallback)>();
+  late final _Dart_SetEnvironmentCallbackPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(Dart_EnvironmentCallback)>>(
+      'Dart_SetEnvironmentCallback');
+  late final _Dart_SetEnvironmentCallback = _Dart_SetEnvironmentCallbackPtr
+      .asFunction<Object Function(Dart_EnvironmentCallback)>();
 
   /// Sets the callback used to resolve native functions for a library.
   ///
@@ -6909,19 +8647,24 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return A valid handle if the native resolver was set successfully.
   Object Dart_SetNativeResolver(
-    Object library1,
+    Object library$,
     Dart_NativeEntryResolver resolver,
     Dart_NativeEntrySymbol symbol,
   ) {
     return _Dart_SetNativeResolver(
-      library1,
+      library$,
       resolver,
       symbol,
     );
   }
 
-  late final _Dart_SetNativeResolverPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, Dart_NativeEntryResolver, Dart_NativeEntrySymbol)>>('Dart_SetNativeResolver');
-  late final _Dart_SetNativeResolver = _Dart_SetNativeResolverPtr.asFunction<Object Function(Object, Dart_NativeEntryResolver, Dart_NativeEntrySymbol)>();
+  late final _Dart_SetNativeResolverPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, Dart_NativeEntryResolver,
+              Dart_NativeEntrySymbol)>>('Dart_SetNativeResolver');
+  late final _Dart_SetNativeResolver = _Dart_SetNativeResolverPtr.asFunction<
+      Object Function(
+          Object, Dart_NativeEntryResolver, Dart_NativeEntrySymbol)>();
 
   /// Returns the callback used to resolve native functions for a library.
   ///
@@ -6930,17 +8673,22 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return A valid handle if the library was found.
   Object Dart_GetNativeResolver(
-    Object library1,
+    Object library$,
     ffi.Pointer<Dart_NativeEntryResolver> resolver,
   ) {
     return _Dart_GetNativeResolver(
-      library1,
+      library$,
       resolver,
     );
   }
 
-  late final _Dart_GetNativeResolverPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<Dart_NativeEntryResolver>)>>('Dart_GetNativeResolver');
-  late final _Dart_GetNativeResolver = _Dart_GetNativeResolverPtr.asFunction<Object Function(Object, ffi.Pointer<Dart_NativeEntryResolver>)>();
+  late final _Dart_GetNativeResolverPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Handle Function(
+                  ffi.Handle, ffi.Pointer<Dart_NativeEntryResolver>)>>(
+      'Dart_GetNativeResolver');
+  late final _Dart_GetNativeResolver = _Dart_GetNativeResolverPtr.asFunction<
+      Object Function(Object, ffi.Pointer<Dart_NativeEntryResolver>)>();
 
   /// Returns the callback used to resolve native function symbols for a library.
   ///
@@ -6949,17 +8697,21 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return A valid handle if the library was found.
   Object Dart_GetNativeSymbol(
-    Object library1,
+    Object library$,
     ffi.Pointer<Dart_NativeEntrySymbol> resolver,
   ) {
     return _Dart_GetNativeSymbol(
-      library1,
+      library$,
       resolver,
     );
   }
 
-  late final _Dart_GetNativeSymbolPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<Dart_NativeEntrySymbol>)>>('Dart_GetNativeSymbol');
-  late final _Dart_GetNativeSymbol = _Dart_GetNativeSymbolPtr.asFunction<Object Function(Object, ffi.Pointer<Dart_NativeEntrySymbol>)>();
+  late final _Dart_GetNativeSymbolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              ffi.Pointer<Dart_NativeEntrySymbol>)>>('Dart_GetNativeSymbol');
+  late final _Dart_GetNativeSymbol = _Dart_GetNativeSymbolPtr.asFunction<
+      Object Function(Object, ffi.Pointer<Dart_NativeEntrySymbol>)>();
 
   /// Sets the callback used to resolve FFI native functions for a library.
   /// The resolved functions are expected to be a C function pointer of the
@@ -6973,17 +8725,21 @@ class FlutterOpenimSdkFfiBindings {
   ///
   /// \return A valid handle if the native resolver was set successfully.
   Object Dart_SetFfiNativeResolver(
-    Object library1,
+    Object library$,
     Dart_FfiNativeResolver resolver,
   ) {
     return _Dart_SetFfiNativeResolver(
-      library1,
+      library$,
       resolver,
     );
   }
 
-  late final _Dart_SetFfiNativeResolverPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, Dart_FfiNativeResolver)>>('Dart_SetFfiNativeResolver');
-  late final _Dart_SetFfiNativeResolver = _Dart_SetFfiNativeResolverPtr.asFunction<Object Function(Object, Dart_FfiNativeResolver)>();
+  late final _Dart_SetFfiNativeResolverPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle,
+              Dart_FfiNativeResolver)>>('Dart_SetFfiNativeResolver');
+  late final _Dart_SetFfiNativeResolver = _Dart_SetFfiNativeResolverPtr
+      .asFunction<Object Function(Object, Dart_FfiNativeResolver)>();
 
   /// Sets library tag handler for the current isolate. This handler is
   /// used to handle the various tags encountered while loading libraries
@@ -7004,8 +8760,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetLibraryTagHandlerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_LibraryTagHandler)>>('Dart_SetLibraryTagHandler');
-  late final _Dart_SetLibraryTagHandler = _Dart_SetLibraryTagHandlerPtr.asFunction<Object Function(Dart_LibraryTagHandler)>();
+  late final _Dart_SetLibraryTagHandlerPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_LibraryTagHandler)>>(
+          'Dart_SetLibraryTagHandler');
+  late final _Dart_SetLibraryTagHandler = _Dart_SetLibraryTagHandlerPtr
+      .asFunction<Object Function(Dart_LibraryTagHandler)>();
 
   /// Sets the deferred load handler for the current isolate. This handler is
   /// used to handle loading deferred imports in an AppJIT or AppAOT program.
@@ -7017,8 +8776,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetDeferredLoadHandlerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_DeferredLoadHandler)>>('Dart_SetDeferredLoadHandler');
-  late final _Dart_SetDeferredLoadHandler = _Dart_SetDeferredLoadHandlerPtr.asFunction<Object Function(Dart_DeferredLoadHandler)>();
+  late final _Dart_SetDeferredLoadHandlerPtr = _lookup<
+          ffi.NativeFunction<ffi.Handle Function(Dart_DeferredLoadHandler)>>(
+      'Dart_SetDeferredLoadHandler');
+  late final _Dart_SetDeferredLoadHandler = _Dart_SetDeferredLoadHandlerPtr
+      .asFunction<Object Function(Dart_DeferredLoadHandler)>();
 
   /// Notifies the VM that a deferred load completed successfully. This function
   /// will eventually cause the corresponding `prefix.loadLibrary()` futures to
@@ -7038,8 +8800,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DeferredLoadCompletePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>)>>('Dart_DeferredLoadComplete');
-  late final _Dart_DeferredLoadComplete = _Dart_DeferredLoadCompletePtr.asFunction<Object Function(int, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>)>();
+  late final _Dart_DeferredLoadCompletePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.IntPtr, ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<ffi.Uint8>)>>('Dart_DeferredLoadComplete');
+  late final _Dart_DeferredLoadComplete =
+      _Dart_DeferredLoadCompletePtr.asFunction<
+          Object Function(
+              int, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>)>();
 
   /// Notifies the VM that a deferred load failed. This function
   /// will eventually cause the corresponding `prefix.loadLibrary()` futures to
@@ -7063,8 +8831,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DeferredLoadCompleteErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr, ffi.Pointer<ffi.Char>, ffi.Bool)>>('Dart_DeferredLoadCompleteError');
-  late final _Dart_DeferredLoadCompleteError = _Dart_DeferredLoadCompleteErrorPtr.asFunction<Object Function(int, ffi.Pointer<ffi.Char>, bool)>();
+  late final _Dart_DeferredLoadCompleteErrorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.IntPtr, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('Dart_DeferredLoadCompleteError');
+  late final _Dart_DeferredLoadCompleteError =
+      _Dart_DeferredLoadCompleteErrorPtr.asFunction<
+          Object Function(int, ffi.Pointer<ffi.Char>, bool)>();
 
   /// Canonicalizes a url with respect to some library.
   ///
@@ -7091,8 +8864,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DefaultCanonicalizeUrlPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_DefaultCanonicalizeUrl');
-  late final _Dart_DefaultCanonicalizeUrl = _Dart_DefaultCanonicalizeUrlPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_DefaultCanonicalizeUrlPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_DefaultCanonicalizeUrl');
+  late final _Dart_DefaultCanonicalizeUrl = _Dart_DefaultCanonicalizeUrlPtr
+      .asFunction<Object Function(Object, Object)>();
 
   /// Loads the root library for the current isolate.
   ///
@@ -7113,8 +8889,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_LoadScriptFromKernelPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_LoadScriptFromKernel');
-  late final _Dart_LoadScriptFromKernel = _Dart_LoadScriptFromKernelPtr.asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_LoadScriptFromKernelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_LoadScriptFromKernel');
+  late final _Dart_LoadScriptFromKernel = _Dart_LoadScriptFromKernelPtr
+      .asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Gets the library for the root script for the current isolate.
   ///
@@ -7127,22 +8907,27 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_RootLibrary();
   }
 
-  late final _Dart_RootLibraryPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_RootLibrary');
-  late final _Dart_RootLibrary = _Dart_RootLibraryPtr.asFunction<Object Function()>();
+  late final _Dart_RootLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_RootLibrary');
+  late final _Dart_RootLibrary =
+      _Dart_RootLibraryPtr.asFunction<Object Function()>();
 
   /// Sets the root library for the current isolate.
   ///
   /// \return Returns an error handle if `library` is not a library handle.
   Object Dart_SetRootLibrary(
-    Object library1,
+    Object library$,
   ) {
     return _Dart_SetRootLibrary(
-      library1,
+      library$,
     );
   }
 
-  late final _Dart_SetRootLibraryPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_SetRootLibrary');
-  late final _Dart_SetRootLibrary = _Dart_SetRootLibraryPtr.asFunction<Object Function(Object)>();
+  late final _Dart_SetRootLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_SetRootLibrary');
+  late final _Dart_SetRootLibrary =
+      _Dart_SetRootLibraryPtr.asFunction<Object Function(Object)>();
 
   /// Lookup or instantiate a legacy type by name and type arguments from a
   /// Library.
@@ -7157,21 +8942,25 @@ class FlutterOpenimSdkFfiBindings {
   /// \return If no error occurs, the type is returned.
   /// Otherwise an error handle is returned.
   Object Dart_GetType(
-    Object library1,
+    Object library$,
     Object class_name,
     int number_of_type_arguments,
     ffi.Pointer<ffi.Handle> type_arguments,
   ) {
     return _Dart_GetType(
-      library1,
+      library$,
       class_name,
       number_of_type_arguments,
       type_arguments,
     );
   }
 
-  late final _Dart_GetTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Handle>)>>('Dart_GetType');
-  late final _Dart_GetType = _Dart_GetTypePtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_GetTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr,
+              ffi.Pointer<ffi.Handle>)>>('Dart_GetType');
+  late final _Dart_GetType = _Dart_GetTypePtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Lookup or instantiate a nullable type by name and type arguments from
   /// Library.
@@ -7186,21 +8975,25 @@ class FlutterOpenimSdkFfiBindings {
   /// \return If no error occurs, the type is returned.
   /// Otherwise an error handle is returned.
   Object Dart_GetNullableType(
-    Object library1,
+    Object library$,
     Object class_name,
     int number_of_type_arguments,
     ffi.Pointer<ffi.Handle> type_arguments,
   ) {
     return _Dart_GetNullableType(
-      library1,
+      library$,
       class_name,
       number_of_type_arguments,
       type_arguments,
     );
   }
 
-  late final _Dart_GetNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Handle>)>>('Dart_GetNullableType');
-  late final _Dart_GetNullableType = _Dart_GetNullableTypePtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_GetNullableTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr,
+              ffi.Pointer<ffi.Handle>)>>('Dart_GetNullableType');
+  late final _Dart_GetNullableType = _Dart_GetNullableTypePtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Lookup or instantiate a non-nullable type by name and type arguments from
   /// Library.
@@ -7215,21 +9008,25 @@ class FlutterOpenimSdkFfiBindings {
   /// \return If no error occurs, the type is returned.
   /// Otherwise an error handle is returned.
   Object Dart_GetNonNullableType(
-    Object library1,
+    Object library$,
     Object class_name,
     int number_of_type_arguments,
     ffi.Pointer<ffi.Handle> type_arguments,
   ) {
     return _Dart_GetNonNullableType(
-      library1,
+      library$,
       class_name,
       number_of_type_arguments,
       type_arguments,
     );
   }
 
-  late final _Dart_GetNonNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr, ffi.Pointer<ffi.Handle>)>>('Dart_GetNonNullableType');
-  late final _Dart_GetNonNullableType = _Dart_GetNonNullableTypePtr.asFunction<Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
+  late final _Dart_GetNonNullableTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Handle, ffi.Handle, ffi.IntPtr,
+              ffi.Pointer<ffi.Handle>)>>('Dart_GetNonNullableType');
+  late final _Dart_GetNonNullableType = _Dart_GetNonNullableTypePtr.asFunction<
+      Object Function(Object, Object, int, ffi.Pointer<ffi.Handle>)>();
 
   /// Creates a nullable version of the provided type.
   ///
@@ -7245,8 +9042,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_TypeToNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_TypeToNullableType');
-  late final _Dart_TypeToNullableType = _Dart_TypeToNullableTypePtr.asFunction<Object Function(Object)>();
+  late final _Dart_TypeToNullableTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_TypeToNullableType');
+  late final _Dart_TypeToNullableType =
+      _Dart_TypeToNullableTypePtr.asFunction<Object Function(Object)>();
 
   /// Creates a non-nullable version of the provided type.
   ///
@@ -7262,8 +9062,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_TypeToNonNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_TypeToNonNullableType');
-  late final _Dart_TypeToNonNullableType = _Dart_TypeToNonNullableTypePtr.asFunction<Object Function(Object)>();
+  late final _Dart_TypeToNonNullableTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_TypeToNonNullableType');
+  late final _Dart_TypeToNonNullableType =
+      _Dart_TypeToNonNullableTypePtr.asFunction<Object Function(Object)>();
 
   /// A type's nullability.
   ///
@@ -7282,8 +9085,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsNullableType');
-  late final _Dart_IsNullableType = _Dart_IsNullableTypePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_IsNullableTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsNullableType');
+  late final _Dart_IsNullableType = _Dart_IsNullableTypePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   Object Dart_IsNonNullableType(
     Object type,
@@ -7295,8 +9102,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsNonNullableTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsNonNullableType');
-  late final _Dart_IsNonNullableType = _Dart_IsNonNullableTypePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_IsNonNullableTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsNonNullableType');
+  late final _Dart_IsNonNullableType = _Dart_IsNonNullableTypePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   Object Dart_IsLegacyType(
     Object type,
@@ -7308,8 +9119,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsLegacyTypePtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsLegacyType');
-  late final _Dart_IsLegacyType = _Dart_IsLegacyTypePtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Bool>)>();
+  late final _Dart_IsLegacyTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Bool>)>>('Dart_IsLegacyType');
+  late final _Dart_IsLegacyType = _Dart_IsLegacyTypePtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Bool>)>();
 
   /// Lookup a class or interface by name from a Library.
   ///
@@ -7319,50 +9134,62 @@ class FlutterOpenimSdkFfiBindings {
   /// \return If no error occurs, the class or interface is
   /// returned. Otherwise an error handle is returned.
   Object Dart_GetClass(
-    Object library1,
+    Object library$,
     Object class_name,
   ) {
     return _Dart_GetClass(
-      library1,
+      library$,
       class_name,
     );
   }
 
-  late final _Dart_GetClassPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_GetClass');
-  late final _Dart_GetClass = _Dart_GetClassPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_GetClassPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_GetClass');
+  late final _Dart_GetClass =
+      _Dart_GetClassPtr.asFunction<Object Function(Object, Object)>();
 
   /// Returns an import path to a Library, such as "file:///test.dart" or
   /// "dart:core".
   Object Dart_LibraryUrl(
-    Object library1,
+    Object library$,
   ) {
     return _Dart_LibraryUrl(
-      library1,
+      library$,
     );
   }
 
-  late final _Dart_LibraryUrlPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_LibraryUrl');
-  late final _Dart_LibraryUrl = _Dart_LibraryUrlPtr.asFunction<Object Function(Object)>();
+  late final _Dart_LibraryUrlPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_LibraryUrl');
+  late final _Dart_LibraryUrl =
+      _Dart_LibraryUrlPtr.asFunction<Object Function(Object)>();
 
   /// Returns a URL from which a Library was loaded.
   Object Dart_LibraryResolvedUrl(
-    Object library1,
+    Object library$,
   ) {
     return _Dart_LibraryResolvedUrl(
-      library1,
+      library$,
     );
   }
 
-  late final _Dart_LibraryResolvedUrlPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_LibraryResolvedUrl');
-  late final _Dart_LibraryResolvedUrl = _Dart_LibraryResolvedUrlPtr.asFunction<Object Function(Object)>();
+  late final _Dart_LibraryResolvedUrlPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_LibraryResolvedUrl');
+  late final _Dart_LibraryResolvedUrl =
+      _Dart_LibraryResolvedUrlPtr.asFunction<Object Function(Object)>();
 
   /// \return An array of libraries.
   Object Dart_GetLoadedLibraries() {
     return _Dart_GetLoadedLibraries();
   }
 
-  late final _Dart_GetLoadedLibrariesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_GetLoadedLibraries');
-  late final _Dart_GetLoadedLibraries = _Dart_GetLoadedLibrariesPtr.asFunction<Object Function()>();
+  late final _Dart_GetLoadedLibrariesPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>(
+          'Dart_GetLoadedLibraries');
+  late final _Dart_GetLoadedLibraries =
+      _Dart_GetLoadedLibrariesPtr.asFunction<Object Function()>();
 
   Object Dart_LookupLibrary(
     Object url,
@@ -7372,8 +9199,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_LookupLibraryPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_LookupLibrary');
-  late final _Dart_LookupLibrary = _Dart_LookupLibraryPtr.asFunction<Object Function(Object)>();
+  late final _Dart_LookupLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_LookupLibrary');
+  late final _Dart_LookupLibrary =
+      _Dart_LookupLibraryPtr.asFunction<Object Function(Object)>();
 
   /// Report an loading error for the library.
   ///
@@ -7384,17 +9214,20 @@ class FlutterOpenimSdkFfiBindings {
   /// a null handle. If it doesn't handle the error, the error
   /// object is returned.
   Object Dart_LibraryHandleError(
-    Object library1,
+    Object library$,
     Object error,
   ) {
     return _Dart_LibraryHandleError(
-      library1,
+      library$,
       error,
     );
   }
 
-  late final _Dart_LibraryHandleErrorPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>('Dart_LibraryHandleError');
-  late final _Dart_LibraryHandleError = _Dart_LibraryHandleErrorPtr.asFunction<Object Function(Object, Object)>();
+  late final _Dart_LibraryHandleErrorPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Handle)>>(
+          'Dart_LibraryHandleError');
+  late final _Dart_LibraryHandleError =
+      _Dart_LibraryHandleErrorPtr.asFunction<Object Function(Object, Object)>();
 
   /// Called by the embedder to load a partial program. Does not set the root
   /// library.
@@ -7414,8 +9247,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_LoadLibraryFromKernelPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_LoadLibraryFromKernel');
-  late final _Dart_LoadLibraryFromKernel = _Dart_LoadLibraryFromKernelPtr.asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_LoadLibraryFromKernelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_LoadLibraryFromKernel');
+  late final _Dart_LoadLibraryFromKernel = _Dart_LoadLibraryFromKernelPtr
+      .asFunction<Object Function(ffi.Pointer<ffi.Uint8>, int)>();
 
   Object Dart_LoadLibrary(
     Object kernel_buffer,
@@ -7425,8 +9262,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_LoadLibraryPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>('Dart_LoadLibrary');
-  late final _Dart_LoadLibrary = _Dart_LoadLibraryPtr.asFunction<Object Function(Object)>();
+  late final _Dart_LoadLibraryPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle)>>(
+          'Dart_LoadLibrary');
+  late final _Dart_LoadLibrary =
+      _Dart_LoadLibraryPtr.asFunction<Object Function(Object)>();
 
   /// Indicates that all outstanding load requests have been satisfied.
   /// This finalizes all the new classes loaded and optionally completes
@@ -7447,8 +9287,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_FinalizeLoadingPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Bool)>>('Dart_FinalizeLoading');
-  late final _Dart_FinalizeLoading = _Dart_FinalizeLoadingPtr.asFunction<Object Function(bool)>();
+  late final _Dart_FinalizeLoadingPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Bool)>>(
+          'Dart_FinalizeLoading');
+  late final _Dart_FinalizeLoading =
+      _Dart_FinalizeLoadingPtr.asFunction<Object Function(bool)>();
 
   /// Returns the value of peer field of 'object' in 'peer'.
   ///
@@ -7468,8 +9311,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetPeerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('Dart_GetPeer');
-  late final _Dart_GetPeer = _Dart_GetPeerPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
+  late final _Dart_GetPeerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('Dart_GetPeer');
+  late final _Dart_GetPeer = _Dart_GetPeerPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   /// Sets the value of the peer field of 'object' to the value of
   /// 'peer'.
@@ -7489,8 +9336,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetPeerPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Handle, ffi.Pointer<ffi.Void>)>>('Dart_SetPeer');
-  late final _Dart_SetPeer = _Dart_SetPeerPtr.asFunction<Object Function(Object, ffi.Pointer<ffi.Void>)>();
+  late final _Dart_SetPeerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Handle, ffi.Pointer<ffi.Void>)>>('Dart_SetPeer');
+  late final _Dart_SetPeer = _Dart_SetPeerPtr.asFunction<
+      Object Function(Object, ffi.Pointer<ffi.Void>)>();
 
   bool Dart_IsKernelIsolate(
     Dart_Isolate isolate,
@@ -7500,22 +9351,30 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsKernelIsolatePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Isolate)>>('Dart_IsKernelIsolate');
-  late final _Dart_IsKernelIsolate = _Dart_IsKernelIsolatePtr.asFunction<bool Function(Dart_Isolate)>();
+  late final _Dart_IsKernelIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Isolate)>>(
+          'Dart_IsKernelIsolate');
+  late final _Dart_IsKernelIsolate =
+      _Dart_IsKernelIsolatePtr.asFunction<bool Function(Dart_Isolate)>();
 
   bool Dart_KernelIsolateIsRunning() {
     return _Dart_KernelIsolateIsRunning();
   }
 
-  late final _Dart_KernelIsolateIsRunningPtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_KernelIsolateIsRunning');
-  late final _Dart_KernelIsolateIsRunning = _Dart_KernelIsolateIsRunningPtr.asFunction<bool Function()>();
+  late final _Dart_KernelIsolateIsRunningPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_KernelIsolateIsRunning');
+  late final _Dart_KernelIsolateIsRunning =
+      _Dart_KernelIsolateIsRunningPtr.asFunction<bool Function()>();
 
   int Dart_KernelPort() {
     return _Dart_KernelPort();
   }
 
-  late final _Dart_KernelPortPtr = _lookup<ffi.NativeFunction<Dart_Port Function()>>('Dart_KernelPort');
-  late final _Dart_KernelPort = _Dart_KernelPortPtr.asFunction<int Function()>();
+  late final _Dart_KernelPortPtr =
+      _lookup<ffi.NativeFunction<Dart_Port Function()>>('Dart_KernelPort');
+  late final _Dart_KernelPort =
+      _Dart_KernelPortPtr.asFunction<int Function()>();
 
   /// Compiles the given `script_uri` to a kernel file.
   ///
@@ -7567,15 +9426,37 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CompileToKernelPtr = _lookup<ffi.NativeFunction<Dart_KernelCompilationResult Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.IntPtr, ffi.Bool, ffi.Bool, ffi.Bool, ffi.Pointer<ffi.Char>, ffi.UnsignedInt)>>('Dart_CompileToKernel');
-  late final _Dart_CompileToKernel = _Dart_CompileToKernelPtr.asFunction<Dart_KernelCompilationResult Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, int, bool, bool, bool, ffi.Pointer<ffi.Char>, int)>();
+  late final _Dart_CompileToKernelPtr = _lookup<
+      ffi.NativeFunction<
+          Dart_KernelCompilationResult Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr,
+              ffi.Bool,
+              ffi.Bool,
+              ffi.Bool,
+              ffi.Pointer<ffi.Char>,
+              ffi.UnsignedInt)>>('Dart_CompileToKernel');
+  late final _Dart_CompileToKernel = _Dart_CompileToKernelPtr.asFunction<
+      Dart_KernelCompilationResult Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Uint8>,
+          int,
+          bool,
+          bool,
+          bool,
+          ffi.Pointer<ffi.Char>,
+          int)>();
 
   Dart_KernelCompilationResult Dart_KernelListDependencies() {
     return _Dart_KernelListDependencies();
   }
 
-  late final _Dart_KernelListDependenciesPtr = _lookup<ffi.NativeFunction<Dart_KernelCompilationResult Function()>>('Dart_KernelListDependencies');
-  late final _Dart_KernelListDependencies = _Dart_KernelListDependenciesPtr.asFunction<Dart_KernelCompilationResult Function()>();
+  late final _Dart_KernelListDependenciesPtr =
+      _lookup<ffi.NativeFunction<Dart_KernelCompilationResult Function()>>(
+          'Dart_KernelListDependencies');
+  late final _Dart_KernelListDependencies = _Dart_KernelListDependenciesPtr
+      .asFunction<Dart_KernelCompilationResult Function()>();
 
   /// Sets the kernel buffer which will be used to load Dart SDK sources
   /// dynamically at runtime.
@@ -7594,8 +9475,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetDartLibrarySourcesKernelPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_SetDartLibrarySourcesKernel');
-  late final _Dart_SetDartLibrarySourcesKernel = _Dart_SetDartLibrarySourcesKernelPtr.asFunction<void Function(ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_SetDartLibrarySourcesKernelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_SetDartLibrarySourcesKernel');
+  late final _Dart_SetDartLibrarySourcesKernel =
+      _Dart_SetDartLibrarySourcesKernelPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Uint8>, int)>();
 
   /// Detect the null safety opt-in status.
   ///
@@ -7651,8 +9537,25 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DetectNullSafetyPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, ffi.IntPtr)>>('Dart_DetectNullSafety');
-  late final _Dart_DetectNullSafety = _Dart_DetectNullSafetyPtr.asFunction<bool Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, ffi.Pointer<ffi.Uint8>, int)>();
+  late final _Dart_DetectNullSafetyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.IntPtr)>>('Dart_DetectNullSafety');
+  late final _Dart_DetectNullSafety = _Dart_DetectNullSafetyPtr.asFunction<
+      bool Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<ffi.Uint8>,
+          int)>();
 
   /// Returns true if isolate is the service isolate.
   ///
@@ -7667,8 +9570,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_IsServiceIsolatePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Isolate)>>('Dart_IsServiceIsolate');
-  late final _Dart_IsServiceIsolate = _Dart_IsServiceIsolatePtr.asFunction<bool Function(Dart_Isolate)>();
+  late final _Dart_IsServiceIsolatePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Isolate)>>(
+          'Dart_IsServiceIsolate');
+  late final _Dart_IsServiceIsolate =
+      _Dart_IsServiceIsolatePtr.asFunction<bool Function(Dart_Isolate)>();
 
   /// Writes the CPU profile to the timeline as a series of 'instant' events.
   ///
@@ -7689,8 +9595,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_WriteProfileToTimelinePtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('Dart_WriteProfileToTimeline');
-  late final _Dart_WriteProfileToTimeline = _Dart_WriteProfileToTimelinePtr.asFunction<bool Function(int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+  late final _Dart_WriteProfileToTimelinePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Bool Function(
+                  Dart_Port, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>(
+      'Dart_WriteProfileToTimeline');
+  late final _Dart_WriteProfileToTimeline = _Dart_WriteProfileToTimelinePtr
+      .asFunction<bool Function(int, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
   /// Compiles all functions reachable from entry points and marks
   /// the isolate to disallow future compilation.
@@ -7704,8 +9615,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_Precompile();
   }
 
-  late final _Dart_PrecompilePtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_Precompile');
-  late final _Dart_Precompile = _Dart_PrecompilePtr.asFunction<Object Function()>();
+  late final _Dart_PrecompilePtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_Precompile');
+  late final _Dart_Precompile =
+      _Dart_PrecompilePtr.asFunction<Object Function()>();
 
   Object Dart_LoadingUnitLibraryUris(
     int loading_unit_id,
@@ -7715,8 +9628,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_LoadingUnitLibraryUrisPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr)>>('Dart_LoadingUnitLibraryUris');
-  late final _Dart_LoadingUnitLibraryUris = _Dart_LoadingUnitLibraryUrisPtr.asFunction<Object Function(int)>();
+  late final _Dart_LoadingUnitLibraryUrisPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.IntPtr)>>(
+          'Dart_LoadingUnitLibraryUris');
+  late final _Dart_LoadingUnitLibraryUris =
+      _Dart_LoadingUnitLibraryUrisPtr.asFunction<Object Function(int)>();
 
   /// Creates a precompiled snapshot.
   /// - A root library must have been loaded.
@@ -7755,8 +9671,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateAppAOTSnapshotAsAssemblyPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>, ffi.Bool, ffi.Pointer<ffi.Void>)>>('Dart_CreateAppAOTSnapshotAsAssembly');
-  late final _Dart_CreateAppAOTSnapshotAsAssembly = _Dart_CreateAppAOTSnapshotAsAssemblyPtr.asFunction<Object Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>, bool, ffi.Pointer<ffi.Void>)>();
+  late final _Dart_CreateAppAOTSnapshotAsAssemblyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              Dart_StreamingWriteCallback,
+              ffi.Pointer<ffi.Void>,
+              ffi.Bool,
+              ffi.Pointer<ffi.Void>)>>('Dart_CreateAppAOTSnapshotAsAssembly');
+  late final _Dart_CreateAppAOTSnapshotAsAssembly =
+      _Dart_CreateAppAOTSnapshotAsAssemblyPtr.asFunction<
+          Object Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>,
+              bool, ffi.Pointer<ffi.Void>)>();
 
   Object Dart_CreateAppAOTSnapshotAsAssemblies(
     Dart_CreateLoadingUnitCallback next_callback,
@@ -7774,8 +9699,23 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateAppAOTSnapshotAsAssembliesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_CreateLoadingUnitCallback, ffi.Pointer<ffi.Void>, ffi.Bool, Dart_StreamingWriteCallback, Dart_StreamingCloseCallback)>>('Dart_CreateAppAOTSnapshotAsAssemblies');
-  late final _Dart_CreateAppAOTSnapshotAsAssemblies = _Dart_CreateAppAOTSnapshotAsAssembliesPtr.asFunction<Object Function(Dart_CreateLoadingUnitCallback, ffi.Pointer<ffi.Void>, bool, Dart_StreamingWriteCallback, Dart_StreamingCloseCallback)>();
+  late final _Dart_CreateAppAOTSnapshotAsAssembliesPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Handle Function(
+                  Dart_CreateLoadingUnitCallback,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Bool,
+                  Dart_StreamingWriteCallback,
+                  Dart_StreamingCloseCallback)>>(
+      'Dart_CreateAppAOTSnapshotAsAssemblies');
+  late final _Dart_CreateAppAOTSnapshotAsAssemblies =
+      _Dart_CreateAppAOTSnapshotAsAssembliesPtr.asFunction<
+          Object Function(
+              Dart_CreateLoadingUnitCallback,
+              ffi.Pointer<ffi.Void>,
+              bool,
+              Dart_StreamingWriteCallback,
+              Dart_StreamingCloseCallback)>();
 
   /// Creates a precompiled snapshot.
   /// - A root library must have been loaded.
@@ -7816,8 +9756,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateAppAOTSnapshotAsElfPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>, ffi.Bool, ffi.Pointer<ffi.Void>)>>('Dart_CreateAppAOTSnapshotAsElf');
-  late final _Dart_CreateAppAOTSnapshotAsElf = _Dart_CreateAppAOTSnapshotAsElfPtr.asFunction<Object Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>, bool, ffi.Pointer<ffi.Void>)>();
+  late final _Dart_CreateAppAOTSnapshotAsElfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              Dart_StreamingWriteCallback,
+              ffi.Pointer<ffi.Void>,
+              ffi.Bool,
+              ffi.Pointer<ffi.Void>)>>('Dart_CreateAppAOTSnapshotAsElf');
+  late final _Dart_CreateAppAOTSnapshotAsElf =
+      _Dart_CreateAppAOTSnapshotAsElfPtr.asFunction<
+          Object Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>,
+              bool, ffi.Pointer<ffi.Void>)>();
 
   Object Dart_CreateAppAOTSnapshotAsElfs(
     Dart_CreateLoadingUnitCallback next_callback,
@@ -7835,8 +9784,22 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateAppAOTSnapshotAsElfsPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_CreateLoadingUnitCallback, ffi.Pointer<ffi.Void>, ffi.Bool, Dart_StreamingWriteCallback, Dart_StreamingCloseCallback)>>('Dart_CreateAppAOTSnapshotAsElfs');
-  late final _Dart_CreateAppAOTSnapshotAsElfs = _Dart_CreateAppAOTSnapshotAsElfsPtr.asFunction<Object Function(Dart_CreateLoadingUnitCallback, ffi.Pointer<ffi.Void>, bool, Dart_StreamingWriteCallback, Dart_StreamingCloseCallback)>();
+  late final _Dart_CreateAppAOTSnapshotAsElfsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              Dart_CreateLoadingUnitCallback,
+              ffi.Pointer<ffi.Void>,
+              ffi.Bool,
+              Dart_StreamingWriteCallback,
+              Dart_StreamingCloseCallback)>>('Dart_CreateAppAOTSnapshotAsElfs');
+  late final _Dart_CreateAppAOTSnapshotAsElfs =
+      _Dart_CreateAppAOTSnapshotAsElfsPtr.asFunction<
+          Object Function(
+              Dart_CreateLoadingUnitCallback,
+              ffi.Pointer<ffi.Void>,
+              bool,
+              Dart_StreamingWriteCallback,
+              Dart_StreamingCloseCallback)>();
 
   /// Like Dart_CreateAppAOTSnapshotAsAssembly, but only includes
   /// kDartVmSnapshotData and kDartVmSnapshotInstructions. It also does
@@ -7852,8 +9815,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateVMAOTSnapshotAsAssemblyPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>)>>('Dart_CreateVMAOTSnapshotAsAssembly');
-  late final _Dart_CreateVMAOTSnapshotAsAssembly = _Dart_CreateVMAOTSnapshotAsAssemblyPtr.asFunction<Object Function(Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>)>();
+  late final _Dart_CreateVMAOTSnapshotAsAssemblyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(Dart_StreamingWriteCallback,
+              ffi.Pointer<ffi.Void>)>>('Dart_CreateVMAOTSnapshotAsAssembly');
+  late final _Dart_CreateVMAOTSnapshotAsAssembly =
+      _Dart_CreateVMAOTSnapshotAsAssemblyPtr.asFunction<
+          Object Function(
+              Dart_StreamingWriteCallback, ffi.Pointer<ffi.Void>)>();
 
   /// Sorts the class-ids in depth first traversal order of the inheritance
   /// tree. This is a costly operation, but it can make method dispatch
@@ -7864,8 +9833,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_SortClasses();
   }
 
-  late final _Dart_SortClassesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_SortClasses');
-  late final _Dart_SortClasses = _Dart_SortClassesPtr.asFunction<Object Function()>();
+  late final _Dart_SortClassesPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_SortClasses');
+  late final _Dart_SortClasses =
+      _Dart_SortClassesPtr.asFunction<Object Function()>();
 
   /// Creates a snapshot that caches compiled code and type feedback for faster
   /// startup and quicker warmup in a subsequent process.
@@ -7900,8 +9871,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CreateAppJITSnapshotAsBlobsPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>>('Dart_CreateAppJITSnapshotAsBlobs');
-  late final _Dart_CreateAppJITSnapshotAsBlobs = _Dart_CreateAppJITSnapshotAsBlobsPtr.asFunction<Object Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_CreateAppJITSnapshotAsBlobsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_CreateAppJITSnapshotAsBlobs');
+  late final _Dart_CreateAppJITSnapshotAsBlobs =
+      _Dart_CreateAppJITSnapshotAsBlobsPtr.asFunction<
+          Object Function(
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>();
 
   /// Like Dart_CreateAppJITSnapshotAsBlobs, but also creates a new VM snapshot.
   Object Dart_CreateCoreJITSnapshotAsBlobs(
@@ -7927,10 +9910,27 @@ class FlutterOpenimSdkFfiBindings {
   }
 
   late final _Dart_CreateCoreJITSnapshotAsBlobsPtr = _lookup<
-          ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>>(
-      'Dart_CreateCoreJITSnapshotAsBlobs');
-  late final _Dart_CreateCoreJITSnapshotAsBlobs = _Dart_CreateCoreJITSnapshotAsBlobsPtr.asFunction<
-      Object Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>, ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>();
+      ffi.NativeFunction<
+          ffi.Handle Function(
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_CreateCoreJITSnapshotAsBlobs');
+  late final _Dart_CreateCoreJITSnapshotAsBlobs =
+      _Dart_CreateCoreJITSnapshotAsBlobsPtr.asFunction<
+          Object Function(
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>,
+              ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>();
 
   /// Get obfuscation map for precompiled code.
   ///
@@ -7949,8 +9949,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_GetObfuscationMapPtr = _lookup<ffi.NativeFunction<ffi.Handle Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>>('Dart_GetObfuscationMap');
-  late final _Dart_GetObfuscationMap = _Dart_GetObfuscationMapPtr.asFunction<Object Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>();
+  late final _Dart_GetObfuscationMapPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Handle Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>>,
+              ffi.Pointer<ffi.IntPtr>)>>('Dart_GetObfuscationMap');
+  late final _Dart_GetObfuscationMap = _Dart_GetObfuscationMapPtr.asFunction<
+      Object Function(
+          ffi.Pointer<ffi.Pointer<ffi.Uint8>>, ffi.Pointer<ffi.IntPtr>)>();
 
   /// Returns whether the VM only supports running from precompiled snapshots and
   /// not from any other kind of snapshot or from source (that is, the VM was
@@ -7959,8 +9964,11 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_IsPrecompiledRuntime();
   }
 
-  late final _Dart_IsPrecompiledRuntimePtr = _lookup<ffi.NativeFunction<ffi.Bool Function()>>('Dart_IsPrecompiledRuntime');
-  late final _Dart_IsPrecompiledRuntime = _Dart_IsPrecompiledRuntimePtr.asFunction<bool Function()>();
+  late final _Dart_IsPrecompiledRuntimePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function()>>(
+          'Dart_IsPrecompiledRuntime');
+  late final _Dart_IsPrecompiledRuntime =
+      _Dart_IsPrecompiledRuntimePtr.asFunction<bool Function()>();
 
   /// Print a native stack trace. Used for crash handling.
   ///
@@ -7975,8 +9983,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_DumpNativeStackTracePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>('Dart_DumpNativeStackTrace');
-  late final _Dart_DumpNativeStackTrace = _Dart_DumpNativeStackTracePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _Dart_DumpNativeStackTracePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'Dart_DumpNativeStackTrace');
+  late final _Dart_DumpNativeStackTrace = _Dart_DumpNativeStackTracePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   /// Indicate that the process is about to abort, and the Dart VM should not
   /// attempt to cleanup resources.
@@ -7984,8 +9995,10 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_PrepareToAbort();
   }
 
-  late final _Dart_PrepareToAbortPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_PrepareToAbort');
-  late final _Dart_PrepareToAbort = _Dart_PrepareToAbortPtr.asFunction<void Function()>();
+  late final _Dart_PrepareToAbortPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('Dart_PrepareToAbort');
+  late final _Dart_PrepareToAbort =
+      _Dart_PrepareToAbortPtr.asFunction<void Function()>();
 
   /// Configure DWARF stack trace footnote callback.
   void Dart_SetDwarfStackTraceFootnoteCallback(
@@ -7996,8 +10009,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_SetDwarfStackTraceFootnoteCallbackPtr = _lookup<ffi.NativeFunction<ffi.Void Function(Dart_DwarfStackTraceFootnoteCallback)>>('Dart_SetDwarfStackTraceFootnoteCallback');
-  late final _Dart_SetDwarfStackTraceFootnoteCallback = _Dart_SetDwarfStackTraceFootnoteCallbackPtr.asFunction<void Function(Dart_DwarfStackTraceFootnoteCallback)>();
+  late final _Dart_SetDwarfStackTraceFootnoteCallbackPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(Dart_DwarfStackTraceFootnoteCallback)>>(
+      'Dart_SetDwarfStackTraceFootnoteCallback');
+  late final _Dart_SetDwarfStackTraceFootnoteCallback =
+      _Dart_SetDwarfStackTraceFootnoteCallbackPtr.asFunction<
+          void Function(Dart_DwarfStackTraceFootnoteCallback)>();
 
   /// Posts a message on some port. The message will contain the Dart_CObject
   /// object graph rooted in 'message'.
@@ -8030,8 +10048,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_PostCObjectPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Pointer<Dart_CObject>)>>('Dart_PostCObject');
-  late final _Dart_PostCObject = _Dart_PostCObjectPtr.asFunction<bool Function(int, ffi.Pointer<Dart_CObject>)>();
+  late final _Dart_PostCObjectPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              Dart_Port, ffi.Pointer<Dart_CObject>)>>('Dart_PostCObject');
+  late final _Dart_PostCObject = _Dart_PostCObjectPtr.asFunction<
+      bool Function(int, ffi.Pointer<Dart_CObject>)>();
 
   /// Posts a message on some port. The message will contain the integer 'message'.
   ///
@@ -8049,8 +10071,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_PostIntegerPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Int64)>>('Dart_PostInteger');
-  late final _Dart_PostInteger = _Dart_PostIntegerPtr.asFunction<bool Function(int, int)>();
+  late final _Dart_PostIntegerPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port, ffi.Int64)>>(
+          'Dart_PostInteger');
+  late final _Dart_PostInteger =
+      _Dart_PostIntegerPtr.asFunction<bool Function(int, int)>();
 
   /// Creates a new native port.  When messages are received on this
   /// native port, then they will be dispatched to the provided native
@@ -8075,8 +10100,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_NewNativePortPtr = _lookup<ffi.NativeFunction<Dart_Port Function(ffi.Pointer<ffi.Char>, Dart_NativeMessageHandler, ffi.Bool)>>('Dart_NewNativePort');
-  late final _Dart_NewNativePort = _Dart_NewNativePortPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, Dart_NativeMessageHandler, bool)>();
+  late final _Dart_NewNativePortPtr = _lookup<
+      ffi.NativeFunction<
+          Dart_Port Function(ffi.Pointer<ffi.Char>, Dart_NativeMessageHandler,
+              ffi.Bool)>>('Dart_NewNativePort');
+  late final _Dart_NewNativePort = _Dart_NewNativePortPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, Dart_NativeMessageHandler, bool)>();
 
   /// Closes the native port with the given id.
   ///
@@ -8093,8 +10122,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_CloseNativePortPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port)>>('Dart_CloseNativePort');
-  late final _Dart_CloseNativePort = _Dart_CloseNativePortPtr.asFunction<bool Function(int)>();
+  late final _Dart_CloseNativePortPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(Dart_Port)>>(
+          'Dart_CloseNativePort');
+  late final _Dart_CloseNativePort =
+      _Dart_CloseNativePortPtr.asFunction<bool Function(int)>();
 
   /// Forces all loaded classes and functions to be compiled eagerly in
   /// the current isolate..
@@ -8104,16 +10136,21 @@ class FlutterOpenimSdkFfiBindings {
     return _Dart_CompileAll();
   }
 
-  late final _Dart_CompileAllPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_CompileAll');
-  late final _Dart_CompileAll = _Dart_CompileAllPtr.asFunction<Object Function()>();
+  late final _Dart_CompileAllPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_CompileAll');
+  late final _Dart_CompileAll =
+      _Dart_CompileAllPtr.asFunction<Object Function()>();
 
   /// Finalizes all classes.
   Object Dart_FinalizeAllClasses() {
     return _Dart_FinalizeAllClasses();
   }
 
-  late final _Dart_FinalizeAllClassesPtr = _lookup<ffi.NativeFunction<ffi.Handle Function()>>('Dart_FinalizeAllClasses');
-  late final _Dart_FinalizeAllClasses = _Dart_FinalizeAllClassesPtr.asFunction<Object Function()>();
+  late final _Dart_FinalizeAllClassesPtr =
+      _lookup<ffi.NativeFunction<ffi.Handle Function()>>(
+          'Dart_FinalizeAllClasses');
+  late final _Dart_FinalizeAllClasses =
+      _Dart_FinalizeAllClassesPtr.asFunction<Object Function()>();
 
   /// This function is intentionally undocumented.
   ///
@@ -8128,8 +10165,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_ExecuteInternalCommandPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>>('Dart_ExecuteInternalCommand');
-  late final _Dart_ExecuteInternalCommand = _Dart_ExecuteInternalCommandPtr.asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>();
+  late final _Dart_ExecuteInternalCommandPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>)>>('Dart_ExecuteInternalCommand');
+  late final _Dart_ExecuteInternalCommand =
+      _Dart_ExecuteInternalCommandPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>();
 
   /// \mainpage Dynamically Linked Dart API
   ///
@@ -8151,236 +10194,371 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _Dart_InitializeApiDLPtr = _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.Pointer<ffi.Void>)>>('Dart_InitializeApiDL');
-  late final _Dart_InitializeApiDL = _Dart_InitializeApiDLPtr.asFunction<int Function(ffi.Pointer<ffi.Void>)>();
+  late final _Dart_InitializeApiDLPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.Pointer<ffi.Void>)>>(
+          'Dart_InitializeApiDL');
+  late final _Dart_InitializeApiDL = _Dart_InitializeApiDLPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Void>)>();
 
-  late final ffi.Pointer<Dart_PostCObject_Type> _Dart_PostCObject_DL = _lookup<Dart_PostCObject_Type>('Dart_PostCObject_DL');
+  late final ffi.Pointer<Dart_PostCObject_Type> _Dart_PostCObject_DL =
+      _lookup<Dart_PostCObject_Type>('Dart_PostCObject_DL');
 
   Dart_PostCObject_Type get Dart_PostCObject_DL => _Dart_PostCObject_DL.value;
 
-  set Dart_PostCObject_DL(Dart_PostCObject_Type value) => _Dart_PostCObject_DL.value = value;
+  set Dart_PostCObject_DL(Dart_PostCObject_Type value) =>
+      _Dart_PostCObject_DL.value = value;
 
-  late final ffi.Pointer<Dart_PostInteger_Type> _Dart_PostInteger_DL = _lookup<Dart_PostInteger_Type>('Dart_PostInteger_DL');
+  late final ffi.Pointer<Dart_PostInteger_Type> _Dart_PostInteger_DL =
+      _lookup<Dart_PostInteger_Type>('Dart_PostInteger_DL');
 
   Dart_PostInteger_Type get Dart_PostInteger_DL => _Dart_PostInteger_DL.value;
 
-  set Dart_PostInteger_DL(Dart_PostInteger_Type value) => _Dart_PostInteger_DL.value = value;
+  set Dart_PostInteger_DL(Dart_PostInteger_Type value) =>
+      _Dart_PostInteger_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewNativePort_Type> _Dart_NewNativePort_DL = _lookup<Dart_NewNativePort_Type>('Dart_NewNativePort_DL');
+  late final ffi.Pointer<Dart_NewNativePort_Type> _Dart_NewNativePort_DL =
+      _lookup<Dart_NewNativePort_Type>('Dart_NewNativePort_DL');
 
-  Dart_NewNativePort_Type get Dart_NewNativePort_DL => _Dart_NewNativePort_DL.value;
+  Dart_NewNativePort_Type get Dart_NewNativePort_DL =>
+      _Dart_NewNativePort_DL.value;
 
-  set Dart_NewNativePort_DL(Dart_NewNativePort_Type value) => _Dart_NewNativePort_DL.value = value;
+  set Dart_NewNativePort_DL(Dart_NewNativePort_Type value) =>
+      _Dart_NewNativePort_DL.value = value;
 
-  late final ffi.Pointer<Dart_CloseNativePort_Type> _Dart_CloseNativePort_DL = _lookup<Dart_CloseNativePort_Type>('Dart_CloseNativePort_DL');
+  late final ffi.Pointer<Dart_CloseNativePort_Type> _Dart_CloseNativePort_DL =
+      _lookup<Dart_CloseNativePort_Type>('Dart_CloseNativePort_DL');
 
-  Dart_CloseNativePort_Type get Dart_CloseNativePort_DL => _Dart_CloseNativePort_DL.value;
+  Dart_CloseNativePort_Type get Dart_CloseNativePort_DL =>
+      _Dart_CloseNativePort_DL.value;
 
-  set Dart_CloseNativePort_DL(Dart_CloseNativePort_Type value) => _Dart_CloseNativePort_DL.value = value;
+  set Dart_CloseNativePort_DL(Dart_CloseNativePort_Type value) =>
+      _Dart_CloseNativePort_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsError_Type> _Dart_IsError_DL = _lookup<Dart_IsError_Type>('Dart_IsError_DL');
+  late final ffi.Pointer<Dart_IsError_Type> _Dart_IsError_DL =
+      _lookup<Dart_IsError_Type>('Dart_IsError_DL');
 
   Dart_IsError_Type get Dart_IsError_DL => _Dart_IsError_DL.value;
 
-  set Dart_IsError_DL(Dart_IsError_Type value) => _Dart_IsError_DL.value = value;
+  set Dart_IsError_DL(Dart_IsError_Type value) =>
+      _Dart_IsError_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsApiError_Type> _Dart_IsApiError_DL = _lookup<Dart_IsApiError_Type>('Dart_IsApiError_DL');
+  late final ffi.Pointer<Dart_IsApiError_Type> _Dart_IsApiError_DL =
+      _lookup<Dart_IsApiError_Type>('Dart_IsApiError_DL');
 
   Dart_IsApiError_Type get Dart_IsApiError_DL => _Dart_IsApiError_DL.value;
 
-  set Dart_IsApiError_DL(Dart_IsApiError_Type value) => _Dart_IsApiError_DL.value = value;
+  set Dart_IsApiError_DL(Dart_IsApiError_Type value) =>
+      _Dart_IsApiError_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsUnhandledExceptionError_Type> _Dart_IsUnhandledExceptionError_DL = _lookup<Dart_IsUnhandledExceptionError_Type>('Dart_IsUnhandledExceptionError_DL');
+  late final ffi.Pointer<Dart_IsUnhandledExceptionError_Type>
+      _Dart_IsUnhandledExceptionError_DL =
+      _lookup<Dart_IsUnhandledExceptionError_Type>(
+          'Dart_IsUnhandledExceptionError_DL');
 
-  Dart_IsUnhandledExceptionError_Type get Dart_IsUnhandledExceptionError_DL => _Dart_IsUnhandledExceptionError_DL.value;
+  Dart_IsUnhandledExceptionError_Type get Dart_IsUnhandledExceptionError_DL =>
+      _Dart_IsUnhandledExceptionError_DL.value;
 
-  set Dart_IsUnhandledExceptionError_DL(Dart_IsUnhandledExceptionError_Type value) => _Dart_IsUnhandledExceptionError_DL.value = value;
+  set Dart_IsUnhandledExceptionError_DL(
+          Dart_IsUnhandledExceptionError_Type value) =>
+      _Dart_IsUnhandledExceptionError_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsCompilationError_Type> _Dart_IsCompilationError_DL = _lookup<Dart_IsCompilationError_Type>('Dart_IsCompilationError_DL');
+  late final ffi.Pointer<Dart_IsCompilationError_Type>
+      _Dart_IsCompilationError_DL =
+      _lookup<Dart_IsCompilationError_Type>('Dart_IsCompilationError_DL');
 
-  Dart_IsCompilationError_Type get Dart_IsCompilationError_DL => _Dart_IsCompilationError_DL.value;
+  Dart_IsCompilationError_Type get Dart_IsCompilationError_DL =>
+      _Dart_IsCompilationError_DL.value;
 
-  set Dart_IsCompilationError_DL(Dart_IsCompilationError_Type value) => _Dart_IsCompilationError_DL.value = value;
+  set Dart_IsCompilationError_DL(Dart_IsCompilationError_Type value) =>
+      _Dart_IsCompilationError_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsFatalError_Type> _Dart_IsFatalError_DL = _lookup<Dart_IsFatalError_Type>('Dart_IsFatalError_DL');
+  late final ffi.Pointer<Dart_IsFatalError_Type> _Dart_IsFatalError_DL =
+      _lookup<Dart_IsFatalError_Type>('Dart_IsFatalError_DL');
 
-  Dart_IsFatalError_Type get Dart_IsFatalError_DL => _Dart_IsFatalError_DL.value;
+  Dart_IsFatalError_Type get Dart_IsFatalError_DL =>
+      _Dart_IsFatalError_DL.value;
 
-  set Dart_IsFatalError_DL(Dart_IsFatalError_Type value) => _Dart_IsFatalError_DL.value = value;
+  set Dart_IsFatalError_DL(Dart_IsFatalError_Type value) =>
+      _Dart_IsFatalError_DL.value = value;
 
-  late final ffi.Pointer<Dart_GetError_Type> _Dart_GetError_DL = _lookup<Dart_GetError_Type>('Dart_GetError_DL');
+  late final ffi.Pointer<Dart_GetError_Type> _Dart_GetError_DL =
+      _lookup<Dart_GetError_Type>('Dart_GetError_DL');
 
   Dart_GetError_Type get Dart_GetError_DL => _Dart_GetError_DL.value;
 
-  set Dart_GetError_DL(Dart_GetError_Type value) => _Dart_GetError_DL.value = value;
+  set Dart_GetError_DL(Dart_GetError_Type value) =>
+      _Dart_GetError_DL.value = value;
 
-  late final ffi.Pointer<Dart_ErrorHasException_Type> _Dart_ErrorHasException_DL = _lookup<Dart_ErrorHasException_Type>('Dart_ErrorHasException_DL');
+  late final ffi.Pointer<Dart_ErrorHasException_Type>
+      _Dart_ErrorHasException_DL =
+      _lookup<Dart_ErrorHasException_Type>('Dart_ErrorHasException_DL');
 
-  Dart_ErrorHasException_Type get Dart_ErrorHasException_DL => _Dart_ErrorHasException_DL.value;
+  Dart_ErrorHasException_Type get Dart_ErrorHasException_DL =>
+      _Dart_ErrorHasException_DL.value;
 
-  set Dart_ErrorHasException_DL(Dart_ErrorHasException_Type value) => _Dart_ErrorHasException_DL.value = value;
+  set Dart_ErrorHasException_DL(Dart_ErrorHasException_Type value) =>
+      _Dart_ErrorHasException_DL.value = value;
 
-  late final ffi.Pointer<Dart_ErrorGetException_Type> _Dart_ErrorGetException_DL = _lookup<Dart_ErrorGetException_Type>('Dart_ErrorGetException_DL');
+  late final ffi.Pointer<Dart_ErrorGetException_Type>
+      _Dart_ErrorGetException_DL =
+      _lookup<Dart_ErrorGetException_Type>('Dart_ErrorGetException_DL');
 
-  Dart_ErrorGetException_Type get Dart_ErrorGetException_DL => _Dart_ErrorGetException_DL.value;
+  Dart_ErrorGetException_Type get Dart_ErrorGetException_DL =>
+      _Dart_ErrorGetException_DL.value;
 
-  set Dart_ErrorGetException_DL(Dart_ErrorGetException_Type value) => _Dart_ErrorGetException_DL.value = value;
+  set Dart_ErrorGetException_DL(Dart_ErrorGetException_Type value) =>
+      _Dart_ErrorGetException_DL.value = value;
 
-  late final ffi.Pointer<Dart_ErrorGetStackTrace_Type> _Dart_ErrorGetStackTrace_DL = _lookup<Dart_ErrorGetStackTrace_Type>('Dart_ErrorGetStackTrace_DL');
+  late final ffi.Pointer<Dart_ErrorGetStackTrace_Type>
+      _Dart_ErrorGetStackTrace_DL =
+      _lookup<Dart_ErrorGetStackTrace_Type>('Dart_ErrorGetStackTrace_DL');
 
-  Dart_ErrorGetStackTrace_Type get Dart_ErrorGetStackTrace_DL => _Dart_ErrorGetStackTrace_DL.value;
+  Dart_ErrorGetStackTrace_Type get Dart_ErrorGetStackTrace_DL =>
+      _Dart_ErrorGetStackTrace_DL.value;
 
-  set Dart_ErrorGetStackTrace_DL(Dart_ErrorGetStackTrace_Type value) => _Dart_ErrorGetStackTrace_DL.value = value;
+  set Dart_ErrorGetStackTrace_DL(Dart_ErrorGetStackTrace_Type value) =>
+      _Dart_ErrorGetStackTrace_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewApiError_Type> _Dart_NewApiError_DL = _lookup<Dart_NewApiError_Type>('Dart_NewApiError_DL');
+  late final ffi.Pointer<Dart_NewApiError_Type> _Dart_NewApiError_DL =
+      _lookup<Dart_NewApiError_Type>('Dart_NewApiError_DL');
 
   Dart_NewApiError_Type get Dart_NewApiError_DL => _Dart_NewApiError_DL.value;
 
-  set Dart_NewApiError_DL(Dart_NewApiError_Type value) => _Dart_NewApiError_DL.value = value;
+  set Dart_NewApiError_DL(Dart_NewApiError_Type value) =>
+      _Dart_NewApiError_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewCompilationError_Type> _Dart_NewCompilationError_DL = _lookup<Dart_NewCompilationError_Type>('Dart_NewCompilationError_DL');
+  late final ffi.Pointer<Dart_NewCompilationError_Type>
+      _Dart_NewCompilationError_DL =
+      _lookup<Dart_NewCompilationError_Type>('Dart_NewCompilationError_DL');
 
-  Dart_NewCompilationError_Type get Dart_NewCompilationError_DL => _Dart_NewCompilationError_DL.value;
+  Dart_NewCompilationError_Type get Dart_NewCompilationError_DL =>
+      _Dart_NewCompilationError_DL.value;
 
-  set Dart_NewCompilationError_DL(Dart_NewCompilationError_Type value) => _Dart_NewCompilationError_DL.value = value;
+  set Dart_NewCompilationError_DL(Dart_NewCompilationError_Type value) =>
+      _Dart_NewCompilationError_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewUnhandledExceptionError_Type> _Dart_NewUnhandledExceptionError_DL = _lookup<Dart_NewUnhandledExceptionError_Type>('Dart_NewUnhandledExceptionError_DL');
+  late final ffi.Pointer<Dart_NewUnhandledExceptionError_Type>
+      _Dart_NewUnhandledExceptionError_DL =
+      _lookup<Dart_NewUnhandledExceptionError_Type>(
+          'Dart_NewUnhandledExceptionError_DL');
 
-  Dart_NewUnhandledExceptionError_Type get Dart_NewUnhandledExceptionError_DL => _Dart_NewUnhandledExceptionError_DL.value;
+  Dart_NewUnhandledExceptionError_Type get Dart_NewUnhandledExceptionError_DL =>
+      _Dart_NewUnhandledExceptionError_DL.value;
 
-  set Dart_NewUnhandledExceptionError_DL(Dart_NewUnhandledExceptionError_Type value) => _Dart_NewUnhandledExceptionError_DL.value = value;
+  set Dart_NewUnhandledExceptionError_DL(
+          Dart_NewUnhandledExceptionError_Type value) =>
+      _Dart_NewUnhandledExceptionError_DL.value = value;
 
-  late final ffi.Pointer<Dart_PropagateError_Type> _Dart_PropagateError_DL = _lookup<Dart_PropagateError_Type>('Dart_PropagateError_DL');
+  late final ffi.Pointer<Dart_PropagateError_Type> _Dart_PropagateError_DL =
+      _lookup<Dart_PropagateError_Type>('Dart_PropagateError_DL');
 
-  Dart_PropagateError_Type get Dart_PropagateError_DL => _Dart_PropagateError_DL.value;
+  Dart_PropagateError_Type get Dart_PropagateError_DL =>
+      _Dart_PropagateError_DL.value;
 
-  set Dart_PropagateError_DL(Dart_PropagateError_Type value) => _Dart_PropagateError_DL.value = value;
+  set Dart_PropagateError_DL(Dart_PropagateError_Type value) =>
+      _Dart_PropagateError_DL.value = value;
 
-  late final ffi.Pointer<Dart_HandleFromPersistent_Type> _Dart_HandleFromPersistent_DL = _lookup<Dart_HandleFromPersistent_Type>('Dart_HandleFromPersistent_DL');
+  late final ffi.Pointer<Dart_HandleFromPersistent_Type>
+      _Dart_HandleFromPersistent_DL =
+      _lookup<Dart_HandleFromPersistent_Type>('Dart_HandleFromPersistent_DL');
 
-  Dart_HandleFromPersistent_Type get Dart_HandleFromPersistent_DL => _Dart_HandleFromPersistent_DL.value;
+  Dart_HandleFromPersistent_Type get Dart_HandleFromPersistent_DL =>
+      _Dart_HandleFromPersistent_DL.value;
 
-  set Dart_HandleFromPersistent_DL(Dart_HandleFromPersistent_Type value) => _Dart_HandleFromPersistent_DL.value = value;
+  set Dart_HandleFromPersistent_DL(Dart_HandleFromPersistent_Type value) =>
+      _Dart_HandleFromPersistent_DL.value = value;
 
-  late final ffi.Pointer<Dart_HandleFromWeakPersistent_Type> _Dart_HandleFromWeakPersistent_DL = _lookup<Dart_HandleFromWeakPersistent_Type>('Dart_HandleFromWeakPersistent_DL');
+  late final ffi.Pointer<Dart_HandleFromWeakPersistent_Type>
+      _Dart_HandleFromWeakPersistent_DL =
+      _lookup<Dart_HandleFromWeakPersistent_Type>(
+          'Dart_HandleFromWeakPersistent_DL');
 
-  Dart_HandleFromWeakPersistent_Type get Dart_HandleFromWeakPersistent_DL => _Dart_HandleFromWeakPersistent_DL.value;
+  Dart_HandleFromWeakPersistent_Type get Dart_HandleFromWeakPersistent_DL =>
+      _Dart_HandleFromWeakPersistent_DL.value;
 
-  set Dart_HandleFromWeakPersistent_DL(Dart_HandleFromWeakPersistent_Type value) => _Dart_HandleFromWeakPersistent_DL.value = value;
+  set Dart_HandleFromWeakPersistent_DL(
+          Dart_HandleFromWeakPersistent_Type value) =>
+      _Dart_HandleFromWeakPersistent_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewPersistentHandle_Type> _Dart_NewPersistentHandle_DL = _lookup<Dart_NewPersistentHandle_Type>('Dart_NewPersistentHandle_DL');
+  late final ffi.Pointer<Dart_NewPersistentHandle_Type>
+      _Dart_NewPersistentHandle_DL =
+      _lookup<Dart_NewPersistentHandle_Type>('Dart_NewPersistentHandle_DL');
 
-  Dart_NewPersistentHandle_Type get Dart_NewPersistentHandle_DL => _Dart_NewPersistentHandle_DL.value;
+  Dart_NewPersistentHandle_Type get Dart_NewPersistentHandle_DL =>
+      _Dart_NewPersistentHandle_DL.value;
 
-  set Dart_NewPersistentHandle_DL(Dart_NewPersistentHandle_Type value) => _Dart_NewPersistentHandle_DL.value = value;
+  set Dart_NewPersistentHandle_DL(Dart_NewPersistentHandle_Type value) =>
+      _Dart_NewPersistentHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_SetPersistentHandle_Type> _Dart_SetPersistentHandle_DL = _lookup<Dart_SetPersistentHandle_Type>('Dart_SetPersistentHandle_DL');
+  late final ffi.Pointer<Dart_SetPersistentHandle_Type>
+      _Dart_SetPersistentHandle_DL =
+      _lookup<Dart_SetPersistentHandle_Type>('Dart_SetPersistentHandle_DL');
 
-  Dart_SetPersistentHandle_Type get Dart_SetPersistentHandle_DL => _Dart_SetPersistentHandle_DL.value;
+  Dart_SetPersistentHandle_Type get Dart_SetPersistentHandle_DL =>
+      _Dart_SetPersistentHandle_DL.value;
 
-  set Dart_SetPersistentHandle_DL(Dart_SetPersistentHandle_Type value) => _Dart_SetPersistentHandle_DL.value = value;
+  set Dart_SetPersistentHandle_DL(Dart_SetPersistentHandle_Type value) =>
+      _Dart_SetPersistentHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_DeletePersistentHandle_Type> _Dart_DeletePersistentHandle_DL = _lookup<Dart_DeletePersistentHandle_Type>('Dart_DeletePersistentHandle_DL');
+  late final ffi.Pointer<Dart_DeletePersistentHandle_Type>
+      _Dart_DeletePersistentHandle_DL =
+      _lookup<Dart_DeletePersistentHandle_Type>(
+          'Dart_DeletePersistentHandle_DL');
 
-  Dart_DeletePersistentHandle_Type get Dart_DeletePersistentHandle_DL => _Dart_DeletePersistentHandle_DL.value;
+  Dart_DeletePersistentHandle_Type get Dart_DeletePersistentHandle_DL =>
+      _Dart_DeletePersistentHandle_DL.value;
 
-  set Dart_DeletePersistentHandle_DL(Dart_DeletePersistentHandle_Type value) => _Dart_DeletePersistentHandle_DL.value = value;
+  set Dart_DeletePersistentHandle_DL(Dart_DeletePersistentHandle_Type value) =>
+      _Dart_DeletePersistentHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewWeakPersistentHandle_Type> _Dart_NewWeakPersistentHandle_DL = _lookup<Dart_NewWeakPersistentHandle_Type>('Dart_NewWeakPersistentHandle_DL');
+  late final ffi.Pointer<Dart_NewWeakPersistentHandle_Type>
+      _Dart_NewWeakPersistentHandle_DL =
+      _lookup<Dart_NewWeakPersistentHandle_Type>(
+          'Dart_NewWeakPersistentHandle_DL');
 
-  Dart_NewWeakPersistentHandle_Type get Dart_NewWeakPersistentHandle_DL => _Dart_NewWeakPersistentHandle_DL.value;
+  Dart_NewWeakPersistentHandle_Type get Dart_NewWeakPersistentHandle_DL =>
+      _Dart_NewWeakPersistentHandle_DL.value;
 
-  set Dart_NewWeakPersistentHandle_DL(Dart_NewWeakPersistentHandle_Type value) => _Dart_NewWeakPersistentHandle_DL.value = value;
+  set Dart_NewWeakPersistentHandle_DL(
+          Dart_NewWeakPersistentHandle_Type value) =>
+      _Dart_NewWeakPersistentHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_DeleteWeakPersistentHandle_Type> _Dart_DeleteWeakPersistentHandle_DL = _lookup<Dart_DeleteWeakPersistentHandle_Type>('Dart_DeleteWeakPersistentHandle_DL');
+  late final ffi.Pointer<Dart_DeleteWeakPersistentHandle_Type>
+      _Dart_DeleteWeakPersistentHandle_DL =
+      _lookup<Dart_DeleteWeakPersistentHandle_Type>(
+          'Dart_DeleteWeakPersistentHandle_DL');
 
-  Dart_DeleteWeakPersistentHandle_Type get Dart_DeleteWeakPersistentHandle_DL => _Dart_DeleteWeakPersistentHandle_DL.value;
+  Dart_DeleteWeakPersistentHandle_Type get Dart_DeleteWeakPersistentHandle_DL =>
+      _Dart_DeleteWeakPersistentHandle_DL.value;
 
-  set Dart_DeleteWeakPersistentHandle_DL(Dart_DeleteWeakPersistentHandle_Type value) => _Dart_DeleteWeakPersistentHandle_DL.value = value;
+  set Dart_DeleteWeakPersistentHandle_DL(
+          Dart_DeleteWeakPersistentHandle_Type value) =>
+      _Dart_DeleteWeakPersistentHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewFinalizableHandle_Type> _Dart_NewFinalizableHandle_DL = _lookup<Dart_NewFinalizableHandle_Type>('Dart_NewFinalizableHandle_DL');
+  late final ffi.Pointer<Dart_NewFinalizableHandle_Type>
+      _Dart_NewFinalizableHandle_DL =
+      _lookup<Dart_NewFinalizableHandle_Type>('Dart_NewFinalizableHandle_DL');
 
-  Dart_NewFinalizableHandle_Type get Dart_NewFinalizableHandle_DL => _Dart_NewFinalizableHandle_DL.value;
+  Dart_NewFinalizableHandle_Type get Dart_NewFinalizableHandle_DL =>
+      _Dart_NewFinalizableHandle_DL.value;
 
-  set Dart_NewFinalizableHandle_DL(Dart_NewFinalizableHandle_Type value) => _Dart_NewFinalizableHandle_DL.value = value;
+  set Dart_NewFinalizableHandle_DL(Dart_NewFinalizableHandle_Type value) =>
+      _Dart_NewFinalizableHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_DeleteFinalizableHandle_Type> _Dart_DeleteFinalizableHandle_DL = _lookup<Dart_DeleteFinalizableHandle_Type>('Dart_DeleteFinalizableHandle_DL');
+  late final ffi.Pointer<Dart_DeleteFinalizableHandle_Type>
+      _Dart_DeleteFinalizableHandle_DL =
+      _lookup<Dart_DeleteFinalizableHandle_Type>(
+          'Dart_DeleteFinalizableHandle_DL');
 
-  Dart_DeleteFinalizableHandle_Type get Dart_DeleteFinalizableHandle_DL => _Dart_DeleteFinalizableHandle_DL.value;
+  Dart_DeleteFinalizableHandle_Type get Dart_DeleteFinalizableHandle_DL =>
+      _Dart_DeleteFinalizableHandle_DL.value;
 
-  set Dart_DeleteFinalizableHandle_DL(Dart_DeleteFinalizableHandle_Type value) => _Dart_DeleteFinalizableHandle_DL.value = value;
+  set Dart_DeleteFinalizableHandle_DL(
+          Dart_DeleteFinalizableHandle_Type value) =>
+      _Dart_DeleteFinalizableHandle_DL.value = value;
 
-  late final ffi.Pointer<Dart_CurrentIsolate_Type> _Dart_CurrentIsolate_DL = _lookup<Dart_CurrentIsolate_Type>('Dart_CurrentIsolate_DL');
+  late final ffi.Pointer<Dart_CurrentIsolate_Type> _Dart_CurrentIsolate_DL =
+      _lookup<Dart_CurrentIsolate_Type>('Dart_CurrentIsolate_DL');
 
-  Dart_CurrentIsolate_Type get Dart_CurrentIsolate_DL => _Dart_CurrentIsolate_DL.value;
+  Dart_CurrentIsolate_Type get Dart_CurrentIsolate_DL =>
+      _Dart_CurrentIsolate_DL.value;
 
-  set Dart_CurrentIsolate_DL(Dart_CurrentIsolate_Type value) => _Dart_CurrentIsolate_DL.value = value;
+  set Dart_CurrentIsolate_DL(Dart_CurrentIsolate_Type value) =>
+      _Dart_CurrentIsolate_DL.value = value;
 
-  late final ffi.Pointer<Dart_ExitIsolate_Type> _Dart_ExitIsolate_DL = _lookup<Dart_ExitIsolate_Type>('Dart_ExitIsolate_DL');
+  late final ffi.Pointer<Dart_ExitIsolate_Type> _Dart_ExitIsolate_DL =
+      _lookup<Dart_ExitIsolate_Type>('Dart_ExitIsolate_DL');
 
   Dart_ExitIsolate_Type get Dart_ExitIsolate_DL => _Dart_ExitIsolate_DL.value;
 
-  set Dart_ExitIsolate_DL(Dart_ExitIsolate_Type value) => _Dart_ExitIsolate_DL.value = value;
+  set Dart_ExitIsolate_DL(Dart_ExitIsolate_Type value) =>
+      _Dart_ExitIsolate_DL.value = value;
 
-  late final ffi.Pointer<Dart_EnterIsolate_Type> _Dart_EnterIsolate_DL = _lookup<Dart_EnterIsolate_Type>('Dart_EnterIsolate_DL');
+  late final ffi.Pointer<Dart_EnterIsolate_Type> _Dart_EnterIsolate_DL =
+      _lookup<Dart_EnterIsolate_Type>('Dart_EnterIsolate_DL');
 
-  Dart_EnterIsolate_Type get Dart_EnterIsolate_DL => _Dart_EnterIsolate_DL.value;
+  Dart_EnterIsolate_Type get Dart_EnterIsolate_DL =>
+      _Dart_EnterIsolate_DL.value;
 
-  set Dart_EnterIsolate_DL(Dart_EnterIsolate_Type value) => _Dart_EnterIsolate_DL.value = value;
+  set Dart_EnterIsolate_DL(Dart_EnterIsolate_Type value) =>
+      _Dart_EnterIsolate_DL.value = value;
 
-  late final ffi.Pointer<Dart_Post_Type> _Dart_Post_DL = _lookup<Dart_Post_Type>('Dart_Post_DL');
+  late final ffi.Pointer<Dart_Post_Type> _Dart_Post_DL =
+      _lookup<Dart_Post_Type>('Dart_Post_DL');
 
   Dart_Post_Type get Dart_Post_DL => _Dart_Post_DL.value;
 
   set Dart_Post_DL(Dart_Post_Type value) => _Dart_Post_DL.value = value;
 
-  late final ffi.Pointer<Dart_NewSendPort_Type> _Dart_NewSendPort_DL = _lookup<Dart_NewSendPort_Type>('Dart_NewSendPort_DL');
+  late final ffi.Pointer<Dart_NewSendPort_Type> _Dart_NewSendPort_DL =
+      _lookup<Dart_NewSendPort_Type>('Dart_NewSendPort_DL');
 
   Dart_NewSendPort_Type get Dart_NewSendPort_DL => _Dart_NewSendPort_DL.value;
 
-  set Dart_NewSendPort_DL(Dart_NewSendPort_Type value) => _Dart_NewSendPort_DL.value = value;
+  set Dart_NewSendPort_DL(Dart_NewSendPort_Type value) =>
+      _Dart_NewSendPort_DL.value = value;
 
-  late final ffi.Pointer<Dart_SendPortGetId_Type> _Dart_SendPortGetId_DL = _lookup<Dart_SendPortGetId_Type>('Dart_SendPortGetId_DL');
+  late final ffi.Pointer<Dart_SendPortGetId_Type> _Dart_SendPortGetId_DL =
+      _lookup<Dart_SendPortGetId_Type>('Dart_SendPortGetId_DL');
 
-  Dart_SendPortGetId_Type get Dart_SendPortGetId_DL => _Dart_SendPortGetId_DL.value;
+  Dart_SendPortGetId_Type get Dart_SendPortGetId_DL =>
+      _Dart_SendPortGetId_DL.value;
 
-  set Dart_SendPortGetId_DL(Dart_SendPortGetId_Type value) => _Dart_SendPortGetId_DL.value = value;
+  set Dart_SendPortGetId_DL(Dart_SendPortGetId_Type value) =>
+      _Dart_SendPortGetId_DL.value = value;
 
-  late final ffi.Pointer<Dart_EnterScope_Type> _Dart_EnterScope_DL = _lookup<Dart_EnterScope_Type>('Dart_EnterScope_DL');
+  late final ffi.Pointer<Dart_EnterScope_Type> _Dart_EnterScope_DL =
+      _lookup<Dart_EnterScope_Type>('Dart_EnterScope_DL');
 
   Dart_EnterScope_Type get Dart_EnterScope_DL => _Dart_EnterScope_DL.value;
 
-  set Dart_EnterScope_DL(Dart_EnterScope_Type value) => _Dart_EnterScope_DL.value = value;
+  set Dart_EnterScope_DL(Dart_EnterScope_Type value) =>
+      _Dart_EnterScope_DL.value = value;
 
-  late final ffi.Pointer<Dart_ExitScope_Type> _Dart_ExitScope_DL = _lookup<Dart_ExitScope_Type>('Dart_ExitScope_DL');
+  late final ffi.Pointer<Dart_ExitScope_Type> _Dart_ExitScope_DL =
+      _lookup<Dart_ExitScope_Type>('Dart_ExitScope_DL');
 
   Dart_ExitScope_Type get Dart_ExitScope_DL => _Dart_ExitScope_DL.value;
 
-  set Dart_ExitScope_DL(Dart_ExitScope_Type value) => _Dart_ExitScope_DL.value = value;
+  set Dart_ExitScope_DL(Dart_ExitScope_Type value) =>
+      _Dart_ExitScope_DL.value = value;
 
-  late final ffi.Pointer<Dart_IsNull_Type> _Dart_IsNull_DL = _lookup<Dart_IsNull_Type>('Dart_IsNull_DL');
+  late final ffi.Pointer<Dart_IsNull_Type> _Dart_IsNull_DL =
+      _lookup<Dart_IsNull_Type>('Dart_IsNull_DL');
 
   Dart_IsNull_Type get Dart_IsNull_DL => _Dart_IsNull_DL.value;
 
   set Dart_IsNull_DL(Dart_IsNull_Type value) => _Dart_IsNull_DL.value = value;
 
-  late final ffi.Pointer<Dart_Null_Type> _Dart_Null_DL = _lookup<Dart_Null_Type>('Dart_Null_DL');
+  late final ffi.Pointer<Dart_Null_Type> _Dart_Null_DL =
+      _lookup<Dart_Null_Type>('Dart_Null_DL');
 
   Dart_Null_Type get Dart_Null_DL => _Dart_Null_DL.value;
 
   set Dart_Null_DL(Dart_Null_Type value) => _Dart_Null_DL.value = value;
 
-  late final ffi.Pointer<Dart_UpdateExternalSize_Type> _Dart_UpdateExternalSize_DL = _lookup<Dart_UpdateExternalSize_Type>('Dart_UpdateExternalSize_DL');
+  late final ffi.Pointer<Dart_UpdateExternalSize_Type>
+      _Dart_UpdateExternalSize_DL =
+      _lookup<Dart_UpdateExternalSize_Type>('Dart_UpdateExternalSize_DL');
 
-  Dart_UpdateExternalSize_Type get Dart_UpdateExternalSize_DL => _Dart_UpdateExternalSize_DL.value;
+  Dart_UpdateExternalSize_Type get Dart_UpdateExternalSize_DL =>
+      _Dart_UpdateExternalSize_DL.value;
 
-  set Dart_UpdateExternalSize_DL(Dart_UpdateExternalSize_Type value) => _Dart_UpdateExternalSize_DL.value = value;
+  set Dart_UpdateExternalSize_DL(Dart_UpdateExternalSize_Type value) =>
+      _Dart_UpdateExternalSize_DL.value = value;
 
-  late final ffi.Pointer<Dart_UpdateFinalizableExternalSize_Type> _Dart_UpdateFinalizableExternalSize_DL = _lookup<Dart_UpdateFinalizableExternalSize_Type>('Dart_UpdateFinalizableExternalSize_DL');
+  late final ffi.Pointer<Dart_UpdateFinalizableExternalSize_Type>
+      _Dart_UpdateFinalizableExternalSize_DL =
+      _lookup<Dart_UpdateFinalizableExternalSize_Type>(
+          'Dart_UpdateFinalizableExternalSize_DL');
 
-  Dart_UpdateFinalizableExternalSize_Type get Dart_UpdateFinalizableExternalSize_DL => _Dart_UpdateFinalizableExternalSize_DL.value;
+  Dart_UpdateFinalizableExternalSize_Type
+      get Dart_UpdateFinalizableExternalSize_DL =>
+          _Dart_UpdateFinalizableExternalSize_DL.value;
 
-  set Dart_UpdateFinalizableExternalSize_DL(Dart_UpdateFinalizableExternalSize_Type value) => _Dart_UpdateFinalizableExternalSize_DL.value = value;
+  set Dart_UpdateFinalizableExternalSize_DL(
+          Dart_UpdateFinalizableExternalSize_Type value) =>
+      _Dart_UpdateFinalizableExternalSize_DL.value = value;
 
   void callOnMethodChannel(
     Openim_Listener listener,
@@ -8394,8 +10572,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _callOnMethodChannelPtr = _lookup<ffi.NativeFunction<ffi.Void Function(Openim_Listener, Dart_Port_DL, ffi.Pointer<ffi.Char>)>>('callOnMethodChannel');
-  late final _callOnMethodChannel = _callOnMethodChannelPtr.asFunction<void Function(Openim_Listener, int, ffi.Pointer<ffi.Char>)>();
+  late final _callOnMethodChannelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(Openim_Listener, Dart_Port_DL,
+              ffi.Pointer<ffi.Char>)>>('callOnMethodChannel');
+  late final _callOnMethodChannel = _callOnMethodChannelPtr
+      .asFunction<void Function(Openim_Listener, int, ffi.Pointer<ffi.Char>)>();
 
   void GetAllConversationList(
     ffi.Pointer<ffi.Char> operationID,
@@ -8405,8 +10587,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetAllConversationListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetAllConversationList');
-  late final _GetAllConversationList = _GetAllConversationListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetAllConversationListPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetAllConversationList');
+  late final _GetAllConversationList = _GetAllConversationListPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   void GetConversationListSplit(
     ffi.Pointer<ffi.Char> operationID,
@@ -8420,8 +10605,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetConversationListSplitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Int)>>('GetConversationListSplit');
-  late final _GetConversationListSplit = _GetConversationListSplitPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, int)>();
+  late final _GetConversationListSplitPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Int)>>('GetConversationListSplit');
+  late final _GetConversationListSplit = _GetConversationListSplitPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>, int, int)>();
 
   void GetOneConversation(
     ffi.Pointer<ffi.Char> operationID,
@@ -8435,8 +10624,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetOneConversationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Pointer<ffi.Char>)>>('GetOneConversation');
-  late final _GetOneConversation = _GetOneConversationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _GetOneConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32,
+              ffi.Pointer<ffi.Char>)>>('GetOneConversation');
+  late final _GetOneConversation = _GetOneConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   void GetMultipleConversation(
     ffi.Pointer<ffi.Char> operationID,
@@ -8448,8 +10641,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetMultipleConversationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetMultipleConversation');
-  late final _GetMultipleConversation = _GetMultipleConversationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetMultipleConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetMultipleConversation');
+  late final _GetMultipleConversation = _GetMultipleConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetConversationIDBySessionType(
     ffi.Pointer<ffi.Char> operationID,
@@ -8463,8 +10660,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetConversationIDBySessionTypePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int)>>('GetConversationIDBySessionType');
-  late final _GetConversationIDBySessionType = _GetConversationIDBySessionTypePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _GetConversationIDBySessionTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('GetConversationIDBySessionType');
+  late final _GetConversationIDBySessionType =
+      _GetConversationIDBySessionTypePtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   void GetTotalUnreadMsgCount(
     ffi.Pointer<ffi.Char> operationID,
@@ -8474,8 +10679,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetTotalUnreadMsgCountPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetTotalUnreadMsgCount');
-  late final _GetTotalUnreadMsgCount = _GetTotalUnreadMsgCountPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetTotalUnreadMsgCountPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetTotalUnreadMsgCount');
+  late final _GetTotalUnreadMsgCount = _GetTotalUnreadMsgCountPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   void MarkConversationMessageAsRead(
     ffi.Pointer<ffi.Char> operationID,
@@ -8487,8 +10695,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _MarkConversationMessageAsReadPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('MarkConversationMessageAsRead');
-  late final _MarkConversationMessageAsRead = _MarkConversationMessageAsReadPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _MarkConversationMessageAsReadPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('MarkConversationMessageAsRead');
+  late final _MarkConversationMessageAsRead =
+      _MarkConversationMessageAsReadPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void MarkAllConversationMessageAsRead(
     ffi.Pointer<ffi.Char> operationID,
@@ -8498,8 +10711,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _MarkAllConversationMessageAsReadPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('MarkAllConversationMessageAsRead');
-  late final _MarkAllConversationMessageAsRead = _MarkAllConversationMessageAsReadPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _MarkAllConversationMessageAsReadPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'MarkAllConversationMessageAsRead');
+  late final _MarkAllConversationMessageAsRead =
+      _MarkAllConversationMessageAsReadPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>)>();
 
   void SetConversation(
     ffi.Pointer<ffi.Char> operationID,
@@ -8513,8 +10730,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetConversationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetConversation');
-  late final _SetConversation = _SetConversationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetConversation');
+  late final _SetConversation = _SetConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void SetConversationDraft(
     ffi.Pointer<ffi.Char> operationID,
@@ -8528,8 +10750,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetConversationDraftPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetConversationDraft');
-  late final _SetConversationDraft = _SetConversationDraftPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetConversationDraftPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetConversationDraft');
+  late final _SetConversationDraft = _SetConversationDraftPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void HideConversation(
     ffi.Pointer<ffi.Char> operationID,
@@ -8541,8 +10768,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _HideConversationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('HideConversation');
-  late final _HideConversation = _HideConversationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _HideConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('HideConversation');
+  late final _HideConversation = _HideConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void ChangeInputStates(
     ffi.Pointer<ffi.Char> operationID,
@@ -8556,8 +10787,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ChangeInputStatesPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Bool)>>('ChangeInputStates');
-  late final _ChangeInputStates = _ChangeInputStatesPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+  late final _ChangeInputStatesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('ChangeInputStates');
+  late final _ChangeInputStates = _ChangeInputStatesPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
 
   void HideAllConversations(
     ffi.Pointer<ffi.Char> operationID,
@@ -8567,8 +10802,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _HideAllConversationsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('HideAllConversations');
-  late final _HideAllConversations = _HideAllConversationsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _HideAllConversationsPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'HideAllConversations');
+  late final _HideAllConversations = _HideAllConversationsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   void ClearConversationAndDeleteAllMsg(
     ffi.Pointer<ffi.Char> operationID,
@@ -8580,8 +10818,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ClearConversationAndDeleteAllMsgPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('ClearConversationAndDeleteAllMsg');
-  late final _ClearConversationAndDeleteAllMsg = _ClearConversationAndDeleteAllMsgPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _ClearConversationAndDeleteAllMsgPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('ClearConversationAndDeleteAllMsg');
+  late final _ClearConversationAndDeleteAllMsg =
+      _ClearConversationAndDeleteAllMsgPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetInputStates(
     ffi.Pointer<ffi.Char> operationID,
@@ -8595,8 +10838,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetInputStatesPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetInputStates');
-  late final _GetInputStates = _GetInputStatesPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetInputStatesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetInputStates');
+  late final _GetInputStates = _GetInputStatesPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void DeleteConversationAndDeleteAllMsg(
     ffi.Pointer<ffi.Char> operationID,
@@ -8608,8 +10856,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteConversationAndDeleteAllMsgPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteConversationAndDeleteAllMsg');
-  late final _DeleteConversationAndDeleteAllMsg = _DeleteConversationAndDeleteAllMsgPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _DeleteConversationAndDeleteAllMsgPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteConversationAndDeleteAllMsg');
+  late final _DeleteConversationAndDeleteAllMsg =
+      _DeleteConversationAndDeleteAllMsgPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateTextMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8621,8 +10874,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateTextMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateTextMessage');
-  late final _CreateTextMessage = _CreateTextMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateTextMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateTextMessage');
+  late final _CreateTextMessage = _CreateTextMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateTextAtMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8640,8 +10898,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateTextAtMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateTextAtMessage');
-  late final _CreateTextAtMessage = _CreateTextAtMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateTextAtMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateTextAtMessage');
+  late final _CreateTextAtMessage = _CreateTextAtMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateImageMessageFromFullPath(
     ffi.Pointer<ffi.Char> operationID,
@@ -8653,8 +10924,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateImageMessageFromFullPathPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateImageMessageFromFullPath');
-  late final _CreateImageMessageFromFullPath = _CreateImageMessageFromFullPathPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateImageMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessageFromFullPath');
+  late final _CreateImageMessageFromFullPath =
+      _CreateImageMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateImageMessageByURL(
     ffi.Pointer<ffi.Char> operationID,
@@ -8672,8 +10949,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateImageMessageByURLPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateImageMessageByURL');
-  late final _CreateImageMessageByURL = _CreateImageMessageByURLPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateImageMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessageByURL');
+  late final _CreateImageMessageByURL = _CreateImageMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateForwardMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8685,8 +10975,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateForwardMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateForwardMessage');
-  late final _CreateForwardMessage = _CreateForwardMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateForwardMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateForwardMessage');
+  late final _CreateForwardMessage = _CreateForwardMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateLocationMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8702,8 +10997,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateLocationMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Double, ffi.Double)>>('CreateLocationMessage');
-  late final _CreateLocationMessage = _CreateLocationMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, double, double)>();
+  late final _CreateLocationMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Double,
+              ffi.Double)>>('CreateLocationMessage');
+  late final _CreateLocationMessage = _CreateLocationMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, double, double)>();
 
   ffi.Pointer<ffi.Char> CreateQuoteMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8717,8 +11020,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateQuoteMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateQuoteMessage');
-  late final _CreateQuoteMessage = _CreateQuoteMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateQuoteMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateQuoteMessage');
+  late final _CreateQuoteMessage = _CreateQuoteMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateCardMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8730,25 +11040,41 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateCardMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateCardMessage');
-  late final _CreateCardMessage = _CreateCardMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateCardMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateCardMessage');
+  late final _CreateCardMessage = _CreateCardMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateCustomMessage(
     ffi.Pointer<ffi.Char> operationID,
     ffi.Pointer<ffi.Char> data,
-    ffi.Pointer<ffi.Char> extension1,
+    ffi.Pointer<ffi.Char> extension$,
     ffi.Pointer<ffi.Char> description,
   ) {
     return _CreateCustomMessage(
       operationID,
       data,
-      extension1,
+      extension$,
       description,
     );
   }
 
-  late final _CreateCustomMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateCustomMessage');
-  late final _CreateCustomMessage = _CreateCustomMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateCustomMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateCustomMessage');
+  late final _CreateCustomMessage = _CreateCustomMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void SendMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8766,8 +11092,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SendMessagePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SendMessage');
-  late final _SendMessage = _SendMessagePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SendMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SendMessage');
+  late final _SendMessage = _SendMessagePtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void SendMessageNotOss(
     ffi.Pointer<ffi.Char> operationID,
@@ -8785,8 +11124,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SendMessageNotOssPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SendMessageNotOss');
-  late final _SendMessageNotOss = _SendMessageNotOssPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SendMessageNotOssPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SendMessageNotOss');
+  late final _SendMessageNotOss = _SendMessageNotOssPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void TypingStatusUpdate(
     ffi.Pointer<ffi.Char> operationID,
@@ -8800,8 +11152,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _TypingStatusUpdatePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('TypingStatusUpdate');
-  late final _TypingStatusUpdate = _TypingStatusUpdatePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _TypingStatusUpdatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TypingStatusUpdate');
+  late final _TypingStatusUpdate = _TypingStatusUpdatePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void RevokeMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8815,8 +11172,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _RevokeMessagePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RevokeMessage');
-  late final _RevokeMessage = _RevokeMessagePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _RevokeMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('RevokeMessage');
+  late final _RevokeMessage = _RevokeMessagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void DeleteMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8830,8 +11192,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteMessagePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteMessage');
-  late final _DeleteMessage = _DeleteMessagePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _DeleteMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteMessage');
+  late final _DeleteMessage = _DeleteMessagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void DeleteMessageFromLocalStorage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8845,8 +11212,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteMessageFromLocalStoragePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteMessageFromLocalStorage');
-  late final _DeleteMessageFromLocalStorage = _DeleteMessageFromLocalStoragePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _DeleteMessageFromLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('DeleteMessageFromLocalStorage');
+  late final _DeleteMessageFromLocalStorage =
+      _DeleteMessageFromLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   void DeleteAllMsgFromLocal(
     ffi.Pointer<ffi.Char> operationID,
@@ -8856,8 +11229,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteAllMsgFromLocalPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('DeleteAllMsgFromLocal');
-  late final _DeleteAllMsgFromLocal = _DeleteAllMsgFromLocalPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _DeleteAllMsgFromLocalPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'DeleteAllMsgFromLocal');
+  late final _DeleteAllMsgFromLocal = _DeleteAllMsgFromLocalPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   void DeleteAllMsgFromLocalAndSvr(
     ffi.Pointer<ffi.Char> operationID,
@@ -8867,8 +11243,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteAllMsgFromLocalAndSvrPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('DeleteAllMsgFromLocalAndSvr');
-  late final _DeleteAllMsgFromLocalAndSvr = _DeleteAllMsgFromLocalAndSvrPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _DeleteAllMsgFromLocalAndSvrPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'DeleteAllMsgFromLocalAndSvr');
+  late final _DeleteAllMsgFromLocalAndSvr = _DeleteAllMsgFromLocalAndSvrPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   void SearchLocalMessages(
     ffi.Pointer<ffi.Char> operationID,
@@ -8880,8 +11259,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SearchLocalMessagesPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchLocalMessages');
-  late final _SearchLocalMessages = _SearchLocalMessagesPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SearchLocalMessagesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SearchLocalMessages');
+  late final _SearchLocalMessages = _SearchLocalMessagesPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetAdvancedHistoryMessageList(
     ffi.Pointer<ffi.Char> operationID,
@@ -8893,8 +11276,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetAdvancedHistoryMessageListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageList');
-  late final _GetAdvancedHistoryMessageList = _GetAdvancedHistoryMessageListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetAdvancedHistoryMessageListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageList');
+  late final _GetAdvancedHistoryMessageList =
+      _GetAdvancedHistoryMessageListPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetAdvancedHistoryMessageListReverse(
     ffi.Pointer<ffi.Char> operationID,
@@ -8906,8 +11294,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetAdvancedHistoryMessageListReversePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageListReverse');
-  late final _GetAdvancedHistoryMessageListReverse = _GetAdvancedHistoryMessageListReversePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetAdvancedHistoryMessageListReversePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetAdvancedHistoryMessageListReverse');
+  late final _GetAdvancedHistoryMessageListReverse =
+      _GetAdvancedHistoryMessageListReversePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void FindMessageList(
     ffi.Pointer<ffi.Char> operationID,
@@ -8919,8 +11312,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _FindMessageListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('FindMessageList');
-  late final _FindMessageList = _FindMessageListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _FindMessageListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('FindMessageList');
+  late final _FindMessageList = _FindMessageListPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void InsertGroupMessageToLocalStorage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8936,8 +11333,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _InsertGroupMessageToLocalStoragePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('InsertGroupMessageToLocalStorage');
-  late final _InsertGroupMessageToLocalStorage = _InsertGroupMessageToLocalStoragePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _InsertGroupMessageToLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('InsertGroupMessageToLocalStorage');
+  late final _InsertGroupMessageToLocalStorage =
+      _InsertGroupMessageToLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void InsertSingleMessageToLocalStorage(
     ffi.Pointer<ffi.Char> operationID,
@@ -8953,8 +11359,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _InsertSingleMessageToLocalStoragePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('InsertSingleMessageToLocalStorage');
-  late final _InsertSingleMessageToLocalStorage = _InsertSingleMessageToLocalStoragePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _InsertSingleMessageToLocalStoragePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('InsertSingleMessageToLocalStorage');
+  late final _InsertSingleMessageToLocalStorage =
+      _InsertSingleMessageToLocalStoragePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SearchConversation(
     ffi.Pointer<ffi.Char> operationID,
@@ -8966,8 +11381,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SearchConversationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchConversation');
-  late final _SearchConversation = _SearchConversationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SearchConversationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SearchConversation');
+  late final _SearchConversation = _SearchConversationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SetMessageLocalEx(
     ffi.Pointer<ffi.Char> operationID,
@@ -8983,8 +11402,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetMessageLocalExPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetMessageLocalEx');
-  late final _SetMessageLocalEx = _SetMessageLocalExPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetMessageLocalExPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetMessageLocalEx');
+  late final _SetMessageLocalEx = _SetMessageLocalExPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetAtAllTag(
     ffi.Pointer<ffi.Char> operationID,
@@ -8994,8 +11421,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetAtAllTagPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('GetAtAllTag');
-  late final _GetAtAllTag = _GetAtAllTagPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetAtAllTagPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>)>>('GetAtAllTag');
+  late final _GetAtAllTag = _GetAtAllTagPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateAdvancedTextMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9009,8 +11440,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateAdvancedTextMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateAdvancedTextMessage');
-  late final _CreateAdvancedTextMessage = _CreateAdvancedTextMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateAdvancedTextMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateAdvancedTextMessage');
+  late final _CreateAdvancedTextMessage =
+      _CreateAdvancedTextMessagePtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateAdvancedQuoteMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9026,8 +11465,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateAdvancedQuoteMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateAdvancedQuoteMessage');
-  late final _CreateAdvancedQuoteMessage = _CreateAdvancedQuoteMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateAdvancedQuoteMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateAdvancedQuoteMessage');
+  late final _CreateAdvancedQuoteMessage =
+      _CreateAdvancedQuoteMessagePtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateImageMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9039,8 +11490,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateImageMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateImageMessage');
-  late final _CreateImageMessage = _CreateImageMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateImageMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateImageMessage');
+  late final _CreateImageMessage = _CreateImageMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateSoundMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9054,8 +11510,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateSoundMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int64)>>('CreateSoundMessage');
-  late final _CreateSoundMessage = _CreateSoundMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _CreateSoundMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int64)>>('CreateSoundMessage');
+  late final _CreateSoundMessage = _CreateSoundMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> CreateSoundMessageByURL(
     ffi.Pointer<ffi.Char> operationID,
@@ -9067,8 +11528,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateSoundMessageByURLPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateSoundMessageByURL');
-  late final _CreateSoundMessageByURL = _CreateSoundMessageByURLPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateSoundMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateSoundMessageByURL');
+  late final _CreateSoundMessageByURL = _CreateSoundMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateVideoMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9086,8 +11552,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateVideoMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int64, ffi.Pointer<ffi.Char>)>>('CreateVideoMessage');
-  late final _CreateVideoMessage = _CreateVideoMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _CreateVideoMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('CreateVideoMessage');
+  late final _CreateVideoMessage = _CreateVideoMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          int,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateVideoMessageByURL(
     ffi.Pointer<ffi.Char> operationID,
@@ -9099,8 +11578,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateVideoMessageByURLPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateVideoMessageByURL');
-  late final _CreateVideoMessageByURL = _CreateVideoMessageByURLPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateVideoMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageByURL');
+  late final _CreateVideoMessageByURL = _CreateVideoMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFileMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9114,8 +11598,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateFileMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateFileMessage');
-  late final _CreateFileMessage = _CreateFileMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateFileMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateFileMessage');
+  late final _CreateFileMessage = _CreateFileMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateMergerMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9131,8 +11622,19 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateMergerMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateMergerMessage');
-  late final _CreateMergerMessage = _CreateMergerMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateMergerMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateMergerMessage');
+  late final _CreateMergerMessage = _CreateMergerMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFaceMessage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9146,8 +11648,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateFaceMessagePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>)>>('CreateFaceMessage');
-  late final _CreateFaceMessage = _CreateFaceMessagePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _CreateFaceMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Pointer<ffi.Char>)>>('CreateFaceMessage');
+  late final _CreateFaceMessage = _CreateFaceMessagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   void MarkMessagesAsReadByMsgID(
     ffi.Pointer<ffi.Char> operationID,
@@ -9161,8 +11668,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _MarkMessagesAsReadByMsgIDPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('MarkMessagesAsReadByMsgID');
-  late final _MarkMessagesAsReadByMsgID = _MarkMessagesAsReadByMsgIDPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _MarkMessagesAsReadByMsgIDPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('MarkMessagesAsReadByMsgID');
+  late final _MarkMessagesAsReadByMsgID =
+      _MarkMessagesAsReadByMsgIDPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFileMessageByURL(
     ffi.Pointer<ffi.Char> operationID,
@@ -9174,8 +11687,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateFileMessageByURLPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateFileMessageByURL');
-  late final _CreateFileMessageByURL = _CreateFileMessageByURLPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateFileMessageByURLPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateFileMessageByURL');
+  late final _CreateFileMessageByURL = _CreateFileMessageByURLPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateFileMessageFromFullPath(
     ffi.Pointer<ffi.Char> operationID,
@@ -9189,8 +11707,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateFileMessageFromFullPathPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateFileMessageFromFullPath');
-  late final _CreateFileMessageFromFullPath = _CreateFileMessageFromFullPathPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateFileMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('CreateFileMessageFromFullPath');
+  late final _CreateFileMessageFromFullPath =
+      _CreateFileMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> CreateSoundMessageFromFullPath(
     ffi.Pointer<ffi.Char> operationID,
@@ -9204,8 +11730,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateSoundMessageFromFullPathPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int64)>>('CreateSoundMessageFromFullPath');
-  late final _CreateSoundMessageFromFullPath = _CreateSoundMessageFromFullPathPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _CreateSoundMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64)>>('CreateSoundMessageFromFullPath');
+  late final _CreateSoundMessageFromFullPath =
+      _CreateSoundMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> CreateVideoMessageFromFullPath(
     ffi.Pointer<ffi.Char> operationID,
@@ -9223,8 +11757,22 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateVideoMessageFromFullPathPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int64, ffi.Pointer<ffi.Char>)>>('CreateVideoMessageFromFullPath');
-  late final _CreateVideoMessageFromFullPath = _CreateVideoMessageFromFullPathPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _CreateVideoMessageFromFullPathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('CreateVideoMessageFromFullPath');
+  late final _CreateVideoMessageFromFullPath =
+      _CreateVideoMessageFromFullPathPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              ffi.Pointer<ffi.Char>)>();
 
   void UploadFile(
     ffi.Pointer<ffi.Char> operationID,
@@ -9238,8 +11786,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _UploadFilePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UploadFile');
-  late final _UploadFile = _UploadFilePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _UploadFilePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('UploadFile');
+  late final _UploadFile = _UploadFilePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void AcceptFriendApplication(
     ffi.Pointer<ffi.Char> operationID,
@@ -9251,8 +11804,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _AcceptFriendApplicationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AcceptFriendApplication');
-  late final _AcceptFriendApplication = _AcceptFriendApplicationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _AcceptFriendApplicationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('AcceptFriendApplication');
+  late final _AcceptFriendApplication = _AcceptFriendApplicationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void AddBlack(
     ffi.Pointer<ffi.Char> operationID,
@@ -9266,8 +11823,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _AddBlackPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AddBlack');
-  late final _AddBlack = _AddBlackPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _AddBlackPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('AddBlack');
+  late final _AddBlack = _AddBlackPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void AddFriend(
     ffi.Pointer<ffi.Char> operationID,
@@ -9279,8 +11841,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _AddFriendPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AddFriend');
-  late final _AddFriend = _AddFriendPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _AddFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AddFriend');
+  late final _AddFriend = _AddFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void CheckFriend(
     ffi.Pointer<ffi.Char> operationID,
@@ -9292,8 +11858,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CheckFriendPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CheckFriend');
-  late final _CheckFriend = _CheckFriendPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CheckFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CheckFriend');
+  late final _CheckFriend = _CheckFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void DeleteFriend(
     ffi.Pointer<ffi.Char> operationID,
@@ -9305,8 +11875,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DeleteFriendPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteFriend');
-  late final _DeleteFriend = _DeleteFriendPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _DeleteFriendPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DeleteFriend');
+  late final _DeleteFriend = _DeleteFriendPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetBlackList(
     ffi.Pointer<ffi.Char> operationID,
@@ -9316,30 +11890,47 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetBlackListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetBlackList');
-  late final _GetBlackList = _GetBlackListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetBlackListPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetBlackList');
+  late final _GetBlackList =
+      _GetBlackListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   void GetFriendApplicationListAsApplicant(
     ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> req,
   ) {
     return _GetFriendApplicationListAsApplicant(
       operationID,
+      req,
     );
   }
 
-  late final _GetFriendApplicationListAsApplicantPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetFriendApplicationListAsApplicant');
-  late final _GetFriendApplicationListAsApplicant = _GetFriendApplicationListAsApplicantPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetFriendApplicationListAsApplicantPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetFriendApplicationListAsApplicant');
+  late final _GetFriendApplicationListAsApplicant =
+      _GetFriendApplicationListAsApplicantPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetFriendApplicationListAsRecipient(
     ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> req,
   ) {
     return _GetFriendApplicationListAsRecipient(
       operationID,
+      req,
     );
   }
 
-  late final _GetFriendApplicationListAsRecipientPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetFriendApplicationListAsRecipient');
-  late final _GetFriendApplicationListAsRecipient = _GetFriendApplicationListAsRecipientPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetFriendApplicationListAsRecipientPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetFriendApplicationListAsRecipient');
+  late final _GetFriendApplicationListAsRecipient =
+      _GetFriendApplicationListAsRecipientPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetFriendList(
     ffi.Pointer<ffi.Char> operationID,
@@ -9351,8 +11942,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetFriendListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Bool)>>('GetFriendList');
-  late final _GetFriendList = _GetFriendListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, bool)>();
+  late final _GetFriendListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Bool)>>('GetFriendList');
+  late final _GetFriendList = _GetFriendListPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, bool)>();
 
   void GetFriendListPage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9368,8 +11962,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetFriendListPagePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32, ffi.Bool)>>('GetFriendListPage');
-  late final _GetFriendListPage = _GetFriendListPagePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, int, bool)>();
+  late final _GetFriendListPagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32,
+              ffi.Bool)>>('GetFriendListPage');
+  late final _GetFriendListPage = _GetFriendListPagePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, int, int, bool)>();
 
   void GetSpecifiedFriendsInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9383,8 +11981,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetSpecifiedFriendsInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Bool)>>('GetSpecifiedFriendsInfo');
-  late final _GetSpecifiedFriendsInfo = _GetSpecifiedFriendsInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+  late final _GetSpecifiedFriendsInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('GetSpecifiedFriendsInfo');
+  late final _GetSpecifiedFriendsInfo = _GetSpecifiedFriendsInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
 
   void RefuseFriendApplication(
     ffi.Pointer<ffi.Char> operationID,
@@ -9396,8 +11998,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _RefuseFriendApplicationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RefuseFriendApplication');
-  late final _RefuseFriendApplication = _RefuseFriendApplicationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _RefuseFriendApplicationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('RefuseFriendApplication');
+  late final _RefuseFriendApplication = _RefuseFriendApplicationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void RemoveBlack(
     ffi.Pointer<ffi.Char> operationID,
@@ -9409,8 +12015,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _RemoveBlackPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RemoveBlack');
-  late final _RemoveBlack = _RemoveBlackPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _RemoveBlackPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RemoveBlack');
+  late final _RemoveBlack = _RemoveBlackPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SearchFriends(
     ffi.Pointer<ffi.Char> operationID,
@@ -9422,8 +12032,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SearchFriendsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchFriends');
-  late final _SearchFriends = _SearchFriendsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SearchFriendsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchFriends');
+  late final _SearchFriends = _SearchFriendsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void UpdateFriends(
     ffi.Pointer<ffi.Char> operationID,
@@ -9435,8 +12049,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _UpdateFriendsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UpdateFriends');
-  late final _UpdateFriends = _UpdateFriendsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _UpdateFriendsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UpdateFriends');
+  late final _UpdateFriends = _UpdateFriendsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void CreateGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9448,8 +12066,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _CreateGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateGroup');
-  late final _CreateGroup = _CreateGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _CreateGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('CreateGroup');
+  late final _CreateGroup = _CreateGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void JoinGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9467,8 +12089,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _JoinGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Pointer<ffi.Char>)>>('JoinGroup');
-  late final _JoinGroup = _JoinGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
+  late final _JoinGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int32,
+              ffi.Pointer<ffi.Char>)>>('JoinGroup');
+  late final _JoinGroup = _JoinGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
 
   void InviteUserToGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9484,8 +12115,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _InviteUserToGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('InviteUserToGroup');
-  late final _InviteUserToGroup = _InviteUserToGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _InviteUserToGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('InviteUserToGroup');
+  late final _InviteUserToGroup = _InviteUserToGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetJoinedGroupList(
     ffi.Pointer<ffi.Char> operationID,
@@ -9495,8 +12134,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetJoinedGroupListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetJoinedGroupList');
-  late final _GetJoinedGroupList = _GetJoinedGroupListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetJoinedGroupListPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetJoinedGroupList');
+  late final _GetJoinedGroupList =
+      _GetJoinedGroupListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   void getJoinedGroupListPage(
     ffi.Pointer<ffi.Char> operationID,
@@ -9510,8 +12152,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getJoinedGroupListPagePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32)>>('getJoinedGroupListPage');
-  late final _getJoinedGroupListPage = _getJoinedGroupListPagePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, int)>();
+  late final _getJoinedGroupListPagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32,
+              ffi.Int32)>>('getJoinedGroupListPage');
+  late final _getJoinedGroupListPage = _getJoinedGroupListPagePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>, int, int)>();
 
   void SearchGroups(
     ffi.Pointer<ffi.Char> operationID,
@@ -9523,8 +12169,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SearchGroupsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchGroups');
-  late final _SearchGroups = _SearchGroupsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SearchGroupsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchGroups');
+  late final _SearchGroups = _SearchGroupsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetSpecifiedGroupsInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9536,8 +12186,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetSpecifiedGroupsInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupsInfo');
-  late final _GetSpecifiedGroupsInfo = _GetSpecifiedGroupsInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetSpecifiedGroupsInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupsInfo');
+  late final _GetSpecifiedGroupsInfo = _GetSpecifiedGroupsInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SetGroupInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9549,30 +12203,48 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetGroupInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetGroupInfo');
-  late final _SetGroupInfo = _SetGroupInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetGroupInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetGroupInfo');
+  late final _SetGroupInfo = _SetGroupInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupApplicationListAsRecipient(
     ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> req,
   ) {
     return _GetGroupApplicationListAsRecipient(
       operationID,
+      req,
     );
   }
 
-  late final _GetGroupApplicationListAsRecipientPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetGroupApplicationListAsRecipient');
-  late final _GetGroupApplicationListAsRecipient = _GetGroupApplicationListAsRecipientPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetGroupApplicationListAsRecipientPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetGroupApplicationListAsRecipient');
+  late final _GetGroupApplicationListAsRecipient =
+      _GetGroupApplicationListAsRecipientPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupApplicationListAsApplicant(
     ffi.Pointer<ffi.Char> operationID,
+    ffi.Pointer<ffi.Char> req,
   ) {
     return _GetGroupApplicationListAsApplicant(
       operationID,
+      req,
     );
   }
 
-  late final _GetGroupApplicationListAsApplicantPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetGroupApplicationListAsApplicant');
-  late final _GetGroupApplicationListAsApplicant = _GetGroupApplicationListAsApplicantPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetGroupApplicationListAsApplicantPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetGroupApplicationListAsApplicant');
+  late final _GetGroupApplicationListAsApplicant =
+      _GetGroupApplicationListAsApplicantPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void AcceptGroupApplication(
     ffi.Pointer<ffi.Char> operationID,
@@ -9588,8 +12260,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _AcceptGroupApplicationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('AcceptGroupApplication');
-  late final _AcceptGroupApplication = _AcceptGroupApplicationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _AcceptGroupApplicationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('AcceptGroupApplication');
+  late final _AcceptGroupApplication = _AcceptGroupApplicationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void RefuseGroupApplication(
     ffi.Pointer<ffi.Char> operationID,
@@ -9605,8 +12285,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _RefuseGroupApplicationPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('RefuseGroupApplication');
-  late final _RefuseGroupApplication = _RefuseGroupApplicationPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _RefuseGroupApplicationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('RefuseGroupApplication');
+  late final _RefuseGroupApplication = _RefuseGroupApplicationPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupMemberList(
     ffi.Pointer<ffi.Char> operationID,
@@ -9624,8 +12312,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetGroupMemberListPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32, ffi.Int32)>>('GetGroupMemberList');
-  late final _GetGroupMemberList = _GetGroupMemberListPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int, int)>();
+  late final _GetGroupMemberListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int32, ffi.Int32, ffi.Int32)>>('GetGroupMemberList');
+  late final _GetGroupMemberList = _GetGroupMemberListPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int, int)>();
 
   void GetSpecifiedGroupMembersInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9639,8 +12332,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetSpecifiedGroupMembersInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupMembersInfo');
-  late final _GetSpecifiedGroupMembersInfo = _GetSpecifiedGroupMembersInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetSpecifiedGroupMembersInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetSpecifiedGroupMembersInfo');
+  late final _GetSpecifiedGroupMembersInfo =
+      _GetSpecifiedGroupMembersInfoPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   void SearchGroupMembers(
     ffi.Pointer<ffi.Char> operationID,
@@ -9652,8 +12351,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SearchGroupMembersPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SearchGroupMembers');
-  late final _SearchGroupMembers = _SearchGroupMembersPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SearchGroupMembersPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SearchGroupMembers');
+  late final _SearchGroupMembers = _SearchGroupMembersPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SetGroupMemberInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9665,8 +12368,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetGroupMemberInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetGroupMemberInfo');
-  late final _SetGroupMemberInfo = _SetGroupMemberInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetGroupMemberInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SetGroupMemberInfo');
+  late final _SetGroupMemberInfo = _SetGroupMemberInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupMemberOwnerAndAdmin(
     ffi.Pointer<ffi.Char> operationID,
@@ -9678,8 +12385,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetGroupMemberOwnerAndAdminPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetGroupMemberOwnerAndAdmin');
-  late final _GetGroupMemberOwnerAndAdmin = _GetGroupMemberOwnerAndAdminPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetGroupMemberOwnerAndAdminPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetGroupMemberOwnerAndAdmin');
+  late final _GetGroupMemberOwnerAndAdmin =
+      _GetGroupMemberOwnerAndAdminPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetGroupMemberListByJoinTimeFilter(
     ffi.Pointer<ffi.Char> operationID,
@@ -9701,8 +12413,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetGroupMemberListByJoinTimeFilterPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int32, ffi.Int32, ffi.Int64, ffi.Int64, ffi.Pointer<ffi.Char>)>>('GetGroupMemberListByJoinTimeFilter');
-  late final _GetGroupMemberListByJoinTimeFilter = _GetGroupMemberListByJoinTimeFilterPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int, int, int, ffi.Pointer<ffi.Char>)>();
+  late final _GetGroupMemberListByJoinTimeFilterPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int64,
+              ffi.Int64,
+              ffi.Pointer<ffi.Char>)>>('GetGroupMemberListByJoinTimeFilter');
+  late final _GetGroupMemberListByJoinTimeFilter =
+      _GetGroupMemberListByJoinTimeFilterPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int,
+              int, int, ffi.Pointer<ffi.Char>)>();
 
   void KickGroupMember(
     ffi.Pointer<ffi.Char> operationID,
@@ -9718,8 +12442,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _KickGroupMemberPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('KickGroupMember');
-  late final _KickGroupMember = _KickGroupMemberPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _KickGroupMemberPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('KickGroupMember');
+  late final _KickGroupMember = _KickGroupMemberPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void ChangeGroupMemberMute(
     ffi.Pointer<ffi.Char> operationID,
@@ -9735,8 +12467,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ChangeGroupMemberMutePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ChangeGroupMemberMute');
-  late final _ChangeGroupMemberMute = _ChangeGroupMemberMutePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _ChangeGroupMemberMutePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('ChangeGroupMemberMute');
+  late final _ChangeGroupMemberMute = _ChangeGroupMemberMutePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, int)>();
 
   void ChangeGroupMute(
     ffi.Pointer<ffi.Char> operationID,
@@ -9750,8 +12487,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ChangeGroupMutePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Bool)>>('ChangeGroupMute');
-  late final _ChangeGroupMute = _ChangeGroupMutePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+  late final _ChangeGroupMutePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('ChangeGroupMute');
+  late final _ChangeGroupMute = _ChangeGroupMutePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
 
   void TransferGroupOwner(
     ffi.Pointer<ffi.Char> operationID,
@@ -9765,8 +12506,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _TransferGroupOwnerPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('TransferGroupOwner');
-  late final _TransferGroupOwner = _TransferGroupOwnerPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _TransferGroupOwnerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TransferGroupOwner');
+  late final _TransferGroupOwner = _TransferGroupOwnerPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void DismissGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9778,8 +12524,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _DismissGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DismissGroup');
-  late final _DismissGroup = _DismissGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _DismissGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('DismissGroup');
+  late final _DismissGroup = _DismissGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetUsersInGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9793,8 +12543,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetUsersInGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetUsersInGroup');
-  late final _GetUsersInGroup = _GetUsersInGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetUsersInGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetUsersInGroup');
+  late final _GetUsersInGroup = _GetUsersInGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void IsJoinGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9806,8 +12561,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _IsJoinGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('IsJoinGroup');
-  late final _IsJoinGroup = _IsJoinGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _IsJoinGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('IsJoinGroup');
+  late final _IsJoinGroup = _IsJoinGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void QuitGroup(
     ffi.Pointer<ffi.Char> operationID,
@@ -9819,8 +12578,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _QuitGroupPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('QuitGroup');
-  late final _QuitGroup = _QuitGroupPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _QuitGroupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('QuitGroup');
+  late final _QuitGroup = _QuitGroupPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void UploadLogs(
     ffi.Pointer<ffi.Char> operationID,
@@ -9836,8 +12599,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _UploadLogsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UploadLogs');
-  late final _UploadLogs = _UploadLogsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _UploadLogsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UploadLogs');
+  late final _UploadLogs = _UploadLogsPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void Logs(
     ffi.Pointer<ffi.Char> operationID,
@@ -9859,15 +12627,35 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _LogsPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('Logs');
-  late final _Logs = _LogsPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _LogsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('Logs');
+  late final _Logs = _LogsPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Char>,
+          int,
+          ffi.Pointer<ffi.Char>,
+          int,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetSdkVersion() {
     return _GetSdkVersion();
   }
 
-  late final _GetSdkVersionPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('GetSdkVersion');
-  late final _GetSdkVersion = _GetSdkVersionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _GetSdkVersionPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'GetSdkVersion');
+  late final _GetSdkVersion =
+      _GetSdkVersionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   bool InitSDK(
     Openim_Listener imListener,
@@ -9883,8 +12671,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _InitSDKPtr = _lookup<ffi.NativeFunction<ffi.Bool Function(Openim_Listener, Dart_Port_DL, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('InitSDK');
-  late final _InitSDK = _InitSDKPtr.asFunction<bool Function(Openim_Listener, int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _InitSDKPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(Openim_Listener, Dart_Port_DL,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('InitSDK');
+  late final _InitSDK = _InitSDKPtr.asFunction<
+      bool Function(Openim_Listener, int, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void Login(
     ffi.Pointer<ffi.Char> operationID,
@@ -9898,8 +12691,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _LoginPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('Login');
-  late final _Login = _LoginPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _LoginPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('Login');
+  late final _Login = _LoginPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
 
   void Logout(
     ffi.Pointer<ffi.Char> operationID,
@@ -9909,8 +12707,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _LogoutPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('Logout');
-  late final _Logout = _LogoutPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _LogoutPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'Logout');
+  late final _Logout =
+      _LogoutPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   void SetAppBackgroundStatus(
     ffi.Pointer<ffi.Char> operationID,
@@ -9922,8 +12723,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetAppBackgroundStatusPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Bool)>>('SetAppBackgroundStatus');
-  late final _SetAppBackgroundStatus = _SetAppBackgroundStatusPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, bool)>();
+  late final _SetAppBackgroundStatusPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Bool)>>(
+      'SetAppBackgroundStatus');
+  late final _SetAppBackgroundStatus = _SetAppBackgroundStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, bool)>();
 
   void NetworkStatusChanged(
     ffi.Pointer<ffi.Char> operationID,
@@ -9933,8 +12738,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _NetworkStatusChangedPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('NetworkStatusChanged');
-  late final _NetworkStatusChanged = _NetworkStatusChangedPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _NetworkStatusChangedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'NetworkStatusChanged');
+  late final _NetworkStatusChanged = _NetworkStatusChangedPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   int GetLoginStatus(
     ffi.Pointer<ffi.Char> operationID,
@@ -9944,15 +12752,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetLoginStatusPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('GetLoginStatus');
-  late final _GetLoginStatus = _GetLoginStatusPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetLoginStatusPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'GetLoginStatus');
+  late final _GetLoginStatus =
+      _GetLoginStatusPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> GetLoginUserID() {
     return _GetLoginUserID();
   }
 
-  late final _GetLoginUserIDPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('GetLoginUserID');
-  late final _GetLoginUserID = _GetLoginUserIDPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+  late final _GetLoginUserIDPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'GetLoginUserID');
+  late final _GetLoginUserID =
+      _GetLoginUserIDPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   void UpdateFcmToken(
     ffi.Pointer<ffi.Char> operationID,
@@ -9966,8 +12780,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _UpdateFcmTokenPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Int64)>>('UpdateFcmToken');
-  late final _UpdateFcmToken = _UpdateFcmTokenPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _UpdateFcmTokenPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int64)>>('UpdateFcmToken');
+  late final _UpdateFcmToken = _UpdateFcmTokenPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   void SetAppBadge(
     ffi.Pointer<ffi.Char> operationID,
@@ -9979,8 +12797,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetAppBadgePtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32)>>('SetAppBadge');
-  late final _SetAppBadge = _SetAppBadgePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int)>();
+  late final _SetAppBadgePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Int32)>>('SetAppBadge');
+  late final _SetAppBadge =
+      _SetAppBadgePtr.asFunction<void Function(ffi.Pointer<ffi.Char>, int)>();
 
   void GetUsersInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -9992,8 +12813,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetUsersInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetUsersInfo');
-  late final _GetUsersInfo = _GetUsersInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetUsersInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetUsersInfo');
+  late final _GetUsersInfo = _GetUsersInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetUsersInfoFromSrv(
     ffi.Pointer<ffi.Char> operationID,
@@ -10005,8 +12830,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetUsersInfoFromSrvPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('GetUsersInfoFromSrv');
-  late final _GetUsersInfoFromSrv = _GetUsersInfoFromSrvPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _GetUsersInfoFromSrvPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('GetUsersInfoFromSrv');
+  late final _GetUsersInfoFromSrv = _GetUsersInfoFromSrvPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void SetSelfInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -10018,8 +12847,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SetSelfInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetSelfInfo');
-  late final _SetSelfInfo = _SetSelfInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SetSelfInfoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SetSelfInfo');
+  late final _SetSelfInfo = _SetSelfInfoPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetSelfUserInfo(
     ffi.Pointer<ffi.Char> operationID,
@@ -10029,8 +12862,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetSelfUserInfoPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetSelfUserInfo');
-  late final _GetSelfUserInfo = _GetSelfUserInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetSelfUserInfoPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetSelfUserInfo');
+  late final _GetSelfUserInfo =
+      _GetSelfUserInfoPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
 
   void SubscribeUsersStatus(
     ffi.Pointer<ffi.Char> operationID,
@@ -10042,8 +12878,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _SubscribeUsersStatusPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('SubscribeUsersStatus');
-  late final _SubscribeUsersStatus = _SubscribeUsersStatusPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _SubscribeUsersStatusPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('SubscribeUsersStatus');
+  late final _SubscribeUsersStatus = _SubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void UnsubscribeUsersStatus(
     ffi.Pointer<ffi.Char> operationID,
@@ -10055,8 +12895,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _UnsubscribeUsersStatusPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('UnsubscribeUsersStatus');
-  late final _UnsubscribeUsersStatus = _UnsubscribeUsersStatusPtr.asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _UnsubscribeUsersStatusPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('UnsubscribeUsersStatus');
+  late final _UnsubscribeUsersStatus = _UnsubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
   void GetSubscribeUsersStatus(
     ffi.Pointer<ffi.Char> operationID,
@@ -10066,14 +12910,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _GetSubscribeUsersStatusPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>('GetSubscribeUsersStatus');
-  late final _GetSubscribeUsersStatus = _GetSubscribeUsersStatusPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+  late final _GetSubscribeUsersStatusPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'GetSubscribeUsersStatus');
+  late final _GetSubscribeUsersStatus = _GetSubscribeUsersStatusPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
 
   int sched_yield() {
     return _sched_yield();
   }
 
-  late final _sched_yieldPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('sched_yield');
+  late final _sched_yieldPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('sched_yield');
   late final _sched_yield = _sched_yieldPtr.asFunction<int Function()>();
 
   int sched_get_priority_min(
@@ -10084,8 +12932,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _sched_get_priority_minPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('sched_get_priority_min');
-  late final _sched_get_priority_min = _sched_get_priority_minPtr.asFunction<int Function(int)>();
+  late final _sched_get_priority_minPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
+          'sched_get_priority_min');
+  late final _sched_get_priority_min =
+      _sched_get_priority_minPtr.asFunction<int Function(int)>();
 
   int sched_get_priority_max(
     int arg0,
@@ -10095,16 +12946,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _sched_get_priority_maxPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('sched_get_priority_max');
-  late final _sched_get_priority_max = _sched_get_priority_maxPtr.asFunction<int Function(int)>();
+  late final _sched_get_priority_maxPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
+          'sched_get_priority_max');
+  late final _sched_get_priority_max =
+      _sched_get_priority_maxPtr.asFunction<int Function(int)>();
 
-  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> _tzname = _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('tzname');
+  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> _tzname =
+      _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('tzname');
 
   ffi.Pointer<ffi.Pointer<ffi.Char>> get tzname => _tzname.value;
 
   set tzname(ffi.Pointer<ffi.Pointer<ffi.Char>> value) => _tzname.value = value;
 
-  late final ffi.Pointer<ffi.Int> _getdate_err = _lookup<ffi.Int>('getdate_err');
+  late final ffi.Pointer<ffi.Int> _getdate_err =
+      _lookup<ffi.Int>('getdate_err');
 
   int get getdate_err => _getdate_err.value;
 
@@ -10130,14 +12986,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _asctimePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>>('asctime');
-  late final _asctime = _asctimePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>();
+  late final _asctimePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>>(
+      'asctime');
+  late final _asctime =
+      _asctimePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>();
 
   int clock() {
     return _clock();
   }
 
-  late final _clockPtr = _lookup<ffi.NativeFunction<clock_t Function()>>('clock');
+  late final _clockPtr =
+      _lookup<ffi.NativeFunction<clock_t Function()>>('clock');
   late final _clock = _clockPtr.asFunction<int Function()>();
 
   ffi.Pointer<ffi.Char> ctime(
@@ -10148,8 +13008,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ctimePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>>('ctime');
-  late final _ctime = _ctimePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>();
+  late final _ctimePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>>('ctime');
+  late final _ctime = _ctimePtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>();
 
   double difftime(
     int arg0,
@@ -10161,7 +13024,9 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _difftimePtr = _lookup<ffi.NativeFunction<ffi.Double Function(time_t, time_t)>>('difftime');
+  late final _difftimePtr =
+      _lookup<ffi.NativeFunction<ffi.Double Function(time_t, time_t)>>(
+          'difftime');
   late final _difftime = _difftimePtr.asFunction<double Function(int, int)>();
 
   ffi.Pointer<tm> getdate(
@@ -10172,8 +13037,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _getdatePtr = _lookup<ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>>('getdate');
-  late final _getdate = _getdatePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>();
+  late final _getdatePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>>(
+      'getdate');
+  late final _getdate =
+      _getdatePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<tm> gmtime(
     ffi.Pointer<time_t> arg0,
@@ -10183,8 +13051,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _gmtimePtr = _lookup<ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>('gmtime');
-  late final _gmtime = _gmtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
+  late final _gmtimePtr = _lookup<
+      ffi
+      .NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>('gmtime');
+  late final _gmtime =
+      _gmtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
 
   ffi.Pointer<tm> localtime(
     ffi.Pointer<time_t> arg0,
@@ -10194,8 +13065,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _localtimePtr = _lookup<ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>('localtime');
-  late final _localtime = _localtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
+  late final _localtimePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>(
+      'localtime');
+  late final _localtime =
+      _localtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
 
   int mktime(
     ffi.Pointer<tm> arg0,
@@ -10205,7 +13079,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _mktimePtr = _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('mktime');
+  late final _mktimePtr =
+      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('mktime');
   late final _mktime = _mktimePtr.asFunction<int Function(ffi.Pointer<tm>)>();
 
   int strftime(
@@ -10222,8 +13097,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strftimePtr = _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Size, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strftime');
-  late final _strftime = _strftimePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>();
+  late final _strftimePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Size,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strftime');
+  late final _strftime = _strftimePtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<tm>)>();
 
   ffi.Pointer<ffi.Char> strptime(
     ffi.Pointer<ffi.Char> arg0,
@@ -10237,8 +13117,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _strptimePtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strptime');
-  late final _strptime = _strptimePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>();
+  late final _strptimePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strptime');
+  late final _strptime = _strptimePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>();
 
   int time(
     ffi.Pointer<time_t> arg0,
@@ -10248,14 +13133,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _timePtr = _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<time_t>)>>('time');
+  late final _timePtr =
+      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<time_t>)>>('time');
   late final _time = _timePtr.asFunction<int Function(ffi.Pointer<time_t>)>();
 
   void tzset() {
     return _tzset();
   }
 
-  late final _tzsetPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzset');
+  late final _tzsetPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzset');
   late final _tzset = _tzsetPtr.asFunction<void Function()>();
 
   /// [TSF] Thread safe functions
@@ -10269,8 +13156,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _asctime_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>>('asctime_r');
-  late final _asctime_r = _asctime_rPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>();
+  late final _asctime_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>>('asctime_r');
+  late final _asctime_r = _asctime_rPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> ctime_r(
     ffi.Pointer<time_t> arg0,
@@ -10282,8 +13173,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _ctime_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>>('ctime_r');
-  late final _ctime_r = _ctime_rPtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>();
+  late final _ctime_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>>('ctime_r');
+  late final _ctime_r = _ctime_rPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<tm> gmtime_r(
     ffi.Pointer<time_t> arg0,
@@ -10295,8 +13191,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _gmtime_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('gmtime_r');
-  late final _gmtime_r = _gmtime_rPtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
+  late final _gmtime_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<tm> Function(
+              ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('gmtime_r');
+  late final _gmtime_r = _gmtime_rPtr.asFunction<
+      ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
 
   ffi.Pointer<tm> localtime_r(
     ffi.Pointer<time_t> arg0,
@@ -10308,8 +13208,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _localtime_rPtr = _lookup<ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('localtime_r');
-  late final _localtime_r = _localtime_rPtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
+  late final _localtime_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<tm> Function(
+              ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('localtime_r');
+  late final _localtime_r = _localtime_rPtr.asFunction<
+      ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
 
   int posix2time(
     int arg0,
@@ -10319,14 +13223,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _posix2timePtr = _lookup<ffi.NativeFunction<time_t Function(time_t)>>('posix2time');
+  late final _posix2timePtr =
+      _lookup<ffi.NativeFunction<time_t Function(time_t)>>('posix2time');
   late final _posix2time = _posix2timePtr.asFunction<int Function(int)>();
 
   void tzsetwall() {
     return _tzsetwall();
   }
 
-  late final _tzsetwallPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzsetwall');
+  late final _tzsetwallPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzsetwall');
   late final _tzsetwall = _tzsetwallPtr.asFunction<void Function()>();
 
   int time2posix(
@@ -10337,7 +13243,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _time2posixPtr = _lookup<ffi.NativeFunction<time_t Function(time_t)>>('time2posix');
+  late final _time2posixPtr =
+      _lookup<ffi.NativeFunction<time_t Function(time_t)>>('time2posix');
   late final _time2posix = _time2posixPtr.asFunction<int Function(int)>();
 
   int timelocal(
@@ -10348,8 +13255,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _timelocalPtr = _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('timelocal');
-  late final _timelocal = _timelocalPtr.asFunction<int Function(ffi.Pointer<tm>)>();
+  late final _timelocalPtr =
+      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>(
+          'timelocal');
+  late final _timelocal =
+      _timelocalPtr.asFunction<int Function(ffi.Pointer<tm>)>();
 
   int timegm(
     ffi.Pointer<tm> arg0,
@@ -10359,7 +13269,8 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _timegmPtr = _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('timegm');
+  late final _timegmPtr =
+      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('timegm');
   late final _timegm = _timegmPtr.asFunction<int Function(ffi.Pointer<tm>)>();
 
   int nanosleep(
@@ -10372,8 +13283,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _nanosleepPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<timespec>, ffi.Pointer<timespec>)>>('nanosleep');
-  late final _nanosleep = _nanosleepPtr.asFunction<int Function(ffi.Pointer<timespec>, ffi.Pointer<timespec>)>();
+  late final _nanosleepPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<timespec>, ffi.Pointer<timespec>)>>('nanosleep');
+  late final _nanosleep = _nanosleepPtr
+      .asFunction<int Function(ffi.Pointer<timespec>, ffi.Pointer<timespec>)>();
 
   int clock_getres(
     clockid_t __clock_id,
@@ -10385,8 +13300,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _clock_getresPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_getres');
-  late final _clock_getres = _clock_getresPtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
+  late final _clock_getresPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_getres');
+  late final _clock_getres =
+      _clock_getresPtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
   int clock_gettime(
     clockid_t __clock_id,
@@ -10398,8 +13317,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _clock_gettimePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_gettime');
-  late final _clock_gettime = _clock_gettimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
+  late final _clock_gettimePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_gettime');
+  late final _clock_gettime =
+      _clock_gettimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
   Dart__uint64_t clock_gettime_nsec_np(
     clockid_t __clock_id,
@@ -10409,8 +13332,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _clock_gettime_nsec_npPtr = _lookup<ffi.NativeFunction<__uint64_t Function(ffi.UnsignedInt)>>('clock_gettime_nsec_np');
-  late final _clock_gettime_nsec_np = _clock_gettime_nsec_npPtr.asFunction<int Function(int)>();
+  late final _clock_gettime_nsec_npPtr =
+      _lookup<ffi.NativeFunction<__uint64_t Function(ffi.UnsignedInt)>>(
+          'clock_gettime_nsec_np');
+  late final _clock_gettime_nsec_np =
+      _clock_gettime_nsec_npPtr.asFunction<int Function(int)>();
 
   int clock_settime(
     clockid_t __clock_id,
@@ -10422,8 +13348,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _clock_settimePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_settime');
-  late final _clock_settime = _clock_settimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
+  late final _clock_settimePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.UnsignedInt, ffi.Pointer<timespec>)>>('clock_settime');
+  late final _clock_settime =
+      _clock_settimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
 
   int timespec_get(
     ffi.Pointer<timespec> ts,
@@ -10435,8 +13365,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _timespec_getPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<timespec>, ffi.Int)>>('timespec_get');
-  late final _timespec_get = _timespec_getPtr.asFunction<int Function(ffi.Pointer<timespec>, int)>();
+  late final _timespec_getPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<timespec>, ffi.Int)>>(
+      'timespec_get');
+  late final _timespec_get =
+      _timespec_getPtr.asFunction<int Function(ffi.Pointer<timespec>, int)>();
 
   /// !
   /// @function qos_class_self
@@ -10450,7 +13383,8 @@ class FlutterOpenimSdkFfiBindings {
     return _qos_class_self();
   }
 
-  late final _qos_class_selfPtr = _lookup<ffi.NativeFunction<qos_class_t Function()>>('qos_class_self');
+  late final _qos_class_selfPtr =
+      _lookup<ffi.NativeFunction<qos_class_t Function()>>('qos_class_self');
   late final _qos_class_self = _qos_class_selfPtr.asFunction<int Function()>();
 
   /// !
@@ -10474,7 +13408,8 @@ class FlutterOpenimSdkFfiBindings {
     return _qos_class_main();
   }
 
-  late final _qos_class_mainPtr = _lookup<ffi.NativeFunction<qos_class_t Function()>>('qos_class_main');
+  late final _qos_class_mainPtr =
+      _lookup<ffi.NativeFunction<qos_class_t Function()>>('qos_class_main');
   late final _qos_class_main = _qos_class_mainPtr.asFunction<int Function()>();
 
   /// !
@@ -10526,8 +13461,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_set_qos_class_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, qos_class_t, ffi.Int)>>('pthread_attr_set_qos_class_np');
-  late final _pthread_attr_set_qos_class_np = _pthread_attr_set_qos_class_npPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int, int)>();
+  late final _pthread_attr_set_qos_class_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>, qos_class_t,
+              ffi.Int)>>('pthread_attr_set_qos_class_np');
+  late final _pthread_attr_set_qos_class_np = _pthread_attr_set_qos_class_npPtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int, int)>();
 
   /// !
   /// @function pthread_attr_get_qos_class_np
@@ -10566,8 +13505,16 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_get_qos_class_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<qos_class_t>, ffi.Pointer<ffi.Int>)>>('pthread_attr_get_qos_class_np');
-  late final _pthread_attr_get_qos_class_np = _pthread_attr_get_qos_class_npPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<qos_class_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_attr_get_qos_class_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<qos_class_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_attr_get_qos_class_np');
+  late final _pthread_attr_get_qos_class_np =
+      _pthread_attr_get_qos_class_npPtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<qos_class_t>,
+              ffi.Pointer<ffi.Int>)>();
 
   /// !
   /// @function pthread_set_qos_class_self_np
@@ -10613,8 +13560,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_set_qos_class_self_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(qos_class_t, ffi.Int)>>('pthread_set_qos_class_self_np');
-  late final _pthread_set_qos_class_self_np = _pthread_set_qos_class_self_npPtr.asFunction<int Function(int, int)>();
+  late final _pthread_set_qos_class_self_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(qos_class_t, ffi.Int)>>(
+          'pthread_set_qos_class_self_np');
+  late final _pthread_set_qos_class_self_np =
+      _pthread_set_qos_class_self_npPtr.asFunction<int Function(int, int)>();
 
   /// !
   /// @function pthread_get_qos_class_np
@@ -10653,8 +13603,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_get_qos_class_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Pointer<qos_class_t>, ffi.Pointer<ffi.Int>)>>('pthread_get_qos_class_np');
-  late final _pthread_get_qos_class_np = _pthread_get_qos_class_npPtr.asFunction<int Function(pthread_t, ffi.Pointer<qos_class_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_get_qos_class_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(pthread_t, ffi.Pointer<qos_class_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_get_qos_class_np');
+  late final _pthread_get_qos_class_np =
+      _pthread_get_qos_class_npPtr.asFunction<
+          int Function(
+              pthread_t, ffi.Pointer<qos_class_t>, ffi.Pointer<ffi.Int>)>();
 
   /// !
   /// @function pthread_override_qos_class_start_np
@@ -10717,8 +13673,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_override_qos_class_start_npPtr = _lookup<ffi.NativeFunction<pthread_override_t Function(pthread_t, qos_class_t, ffi.Int)>>('pthread_override_qos_class_start_np');
-  late final _pthread_override_qos_class_start_np = _pthread_override_qos_class_start_npPtr.asFunction<pthread_override_t Function(pthread_t, int, int)>();
+  late final _pthread_override_qos_class_start_npPtr = _lookup<
+      ffi.NativeFunction<
+          pthread_override_t Function(pthread_t, qos_class_t,
+              ffi.Int)>>('pthread_override_qos_class_start_np');
+  late final _pthread_override_qos_class_start_np =
+      _pthread_override_qos_class_start_npPtr
+          .asFunction<pthread_override_t Function(pthread_t, int, int)>();
 
   /// !
   /// @function pthread_override_qos_class_end_np
@@ -10750,8 +13711,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_override_qos_class_end_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_override_t)>>('pthread_override_qos_class_end_np');
-  late final _pthread_override_qos_class_end_np = _pthread_override_qos_class_end_npPtr.asFunction<int Function(pthread_override_t)>();
+  late final _pthread_override_qos_class_end_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_override_t)>>(
+          'pthread_override_qos_class_end_np');
+  late final _pthread_override_qos_class_end_np =
+      _pthread_override_qos_class_end_npPtr
+          .asFunction<int Function(pthread_override_t)>();
 
   /// Prototypes for all PTHREAD interfaces
   int pthread_atfork(
@@ -10766,8 +13731,18 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_atforkPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('pthread_atfork');
-  late final _pthread_atfork = _pthread_atforkPtr.asFunction<int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+  late final _pthread_atforkPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>,
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>,
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
+      'pthread_atfork');
+  late final _pthread_atfork = _pthread_atforkPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>,
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>,
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
   int pthread_attr_destroy(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10777,8 +13752,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>)>>('pthread_attr_destroy');
-  late final _pthread_attr_destroy = _pthread_attr_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>)>();
+  late final _pthread_attr_destroyPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>)>>(
+      'pthread_attr_destroy');
+  late final _pthread_attr_destroy = _pthread_attr_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>)>();
 
   int pthread_attr_getdetachstate(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10790,8 +13768,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getdetachstatePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>>('pthread_attr_getdetachstate');
-  late final _pthread_attr_getdetachstate = _pthread_attr_getdetachstatePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_attr_getdetachstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_attr_getdetachstate');
+  late final _pthread_attr_getdetachstate =
+      _pthread_attr_getdetachstatePtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_attr_getguardsize(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10803,8 +13786,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getguardsizePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>>('pthread_attr_getguardsize');
-  late final _pthread_attr_getguardsize = _pthread_attr_getguardsizePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>();
+  late final _pthread_attr_getguardsizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Size>)>>('pthread_attr_getguardsize');
+  late final _pthread_attr_getguardsize =
+      _pthread_attr_getguardsizePtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>();
 
   int pthread_attr_getinheritsched(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10816,8 +13804,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getinheritschedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>>('pthread_attr_getinheritsched');
-  late final _pthread_attr_getinheritsched = _pthread_attr_getinheritschedPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_attr_getinheritschedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_attr_getinheritsched');
+  late final _pthread_attr_getinheritsched =
+      _pthread_attr_getinheritschedPtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_attr_getschedparam(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10829,8 +13822,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getschedparamPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>>('pthread_attr_getschedparam');
-  late final _pthread_attr_getschedparam = _pthread_attr_getschedparamPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>();
+  late final _pthread_attr_getschedparamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<sched_param>)>>('pthread_attr_getschedparam');
+  late final _pthread_attr_getschedparam =
+      _pthread_attr_getschedparamPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>();
 
   int pthread_attr_getschedpolicy(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10842,8 +13841,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getschedpolicyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>>('pthread_attr_getschedpolicy');
-  late final _pthread_attr_getschedpolicy = _pthread_attr_getschedpolicyPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_attr_getschedpolicyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_attr_getschedpolicy');
+  late final _pthread_attr_getschedpolicy =
+      _pthread_attr_getschedpolicyPtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_attr_getscope(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10855,8 +13859,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getscopePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>>('pthread_attr_getscope');
-  late final _pthread_attr_getscope = _pthread_attr_getscopePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_attr_getscopePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_attr_getscope');
+  late final _pthread_attr_getscope = _pthread_attr_getscopePtr.asFunction<
+      int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_attr_getstack(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10870,8 +13878,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getstackPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.Size>)>>('pthread_attr_getstack');
-  late final _pthread_attr_getstack = _pthread_attr_getstackPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.Size>)>();
+  late final _pthread_attr_getstackPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>)>>('pthread_attr_getstack');
+  late final _pthread_attr_getstack = _pthread_attr_getstackPtr.asFunction<
+      int Function(ffi.Pointer<pthread_attr_t>,
+          ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.Size>)>();
 
   int pthread_attr_getstackaddr(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10883,8 +13898,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getstackaddrPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('pthread_attr_getstackaddr');
-  late final _pthread_attr_getstackaddr = _pthread_attr_getstackaddrPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
+  late final _pthread_attr_getstackaddrPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>)>>(
+      'pthread_attr_getstackaddr');
+  late final _pthread_attr_getstackaddr =
+      _pthread_attr_getstackaddrPtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   int pthread_attr_getstacksize(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10896,8 +13918,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_getstacksizePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>>('pthread_attr_getstacksize');
-  late final _pthread_attr_getstacksize = _pthread_attr_getstacksizePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>();
+  late final _pthread_attr_getstacksizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Size>)>>('pthread_attr_getstacksize');
+  late final _pthread_attr_getstacksize =
+      _pthread_attr_getstacksizePtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Size>)>();
 
   int pthread_attr_init(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10907,8 +13934,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>)>>('pthread_attr_init');
-  late final _pthread_attr_init = _pthread_attr_initPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>)>();
+  late final _pthread_attr_initPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>)>>(
+      'pthread_attr_init');
+  late final _pthread_attr_init = _pthread_attr_initPtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>)>();
 
   int pthread_attr_setdetachstate(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10920,8 +13950,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setdetachstatePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Int)>>('pthread_attr_setdetachstate');
-  late final _pthread_attr_setdetachstate = _pthread_attr_setdetachstatePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setdetachstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Int)>>('pthread_attr_setdetachstate');
+  late final _pthread_attr_setdetachstate = _pthread_attr_setdetachstatePtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_attr_setguardsize(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10933,8 +13967,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setguardsizePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Size)>>('pthread_attr_setguardsize');
-  late final _pthread_attr_setguardsize = _pthread_attr_setguardsizePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setguardsizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Size)>>('pthread_attr_setguardsize');
+  late final _pthread_attr_setguardsize = _pthread_attr_setguardsizePtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_attr_setinheritsched(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10946,8 +13984,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setinheritschedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Int)>>('pthread_attr_setinheritsched');
-  late final _pthread_attr_setinheritsched = _pthread_attr_setinheritschedPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setinheritschedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Int)>>('pthread_attr_setinheritsched');
+  late final _pthread_attr_setinheritsched = _pthread_attr_setinheritschedPtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_attr_setschedparam(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10959,8 +14001,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setschedparamPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>>('pthread_attr_setschedparam');
-  late final _pthread_attr_setschedparam = _pthread_attr_setschedparamPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>();
+  late final _pthread_attr_setschedparamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<sched_param>)>>('pthread_attr_setschedparam');
+  late final _pthread_attr_setschedparam =
+      _pthread_attr_setschedparamPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_attr_t>, ffi.Pointer<sched_param>)>();
 
   int pthread_attr_setschedpolicy(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10972,8 +14020,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setschedpolicyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Int)>>('pthread_attr_setschedpolicy');
-  late final _pthread_attr_setschedpolicy = _pthread_attr_setschedpolicyPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setschedpolicyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Int)>>('pthread_attr_setschedpolicy');
+  late final _pthread_attr_setschedpolicy = _pthread_attr_setschedpolicyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_attr_setscope(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -10985,8 +14037,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setscopePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Int)>>('pthread_attr_setscope');
-  late final _pthread_attr_setscope = _pthread_attr_setscopePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setscopePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_attr_t>, ffi.Int)>>('pthread_attr_setscope');
+  late final _pthread_attr_setscope = _pthread_attr_setscopePtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_attr_setstack(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -11000,8 +14056,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setstackPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>, ffi.Size)>>('pthread_attr_setstack');
-  late final _pthread_attr_setstack = _pthread_attr_setstackPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>, int)>();
+  late final _pthread_attr_setstackPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>,
+              ffi.Size)>>('pthread_attr_setstack');
+  late final _pthread_attr_setstack = _pthread_attr_setstackPtr.asFunction<
+      int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>, int)>();
 
   int pthread_attr_setstackaddr(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -11013,8 +14073,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setstackaddrPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>)>>('pthread_attr_setstackaddr');
-  late final _pthread_attr_setstackaddr = _pthread_attr_setstackaddrPtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>)>();
+  late final _pthread_attr_setstackaddrPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<ffi.Void>)>>('pthread_attr_setstackaddr');
+  late final _pthread_attr_setstackaddr =
+      _pthread_attr_setstackaddrPtr.asFunction<
+          int Function(ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.Void>)>();
 
   int pthread_attr_setstacksize(
     ffi.Pointer<pthread_attr_t> arg0,
@@ -11026,8 +14091,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_attr_setstacksizePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_attr_t>, ffi.Size)>>('pthread_attr_setstacksize');
-  late final _pthread_attr_setstacksize = _pthread_attr_setstacksizePtr.asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
+  late final _pthread_attr_setstacksizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_attr_t>,
+              ffi.Size)>>('pthread_attr_setstacksize');
+  late final _pthread_attr_setstacksize = _pthread_attr_setstacksizePtr
+      .asFunction<int Function(ffi.Pointer<pthread_attr_t>, int)>();
 
   int pthread_cancel(
     pthread_t arg0,
@@ -11037,8 +14106,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cancelPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t)>>('pthread_cancel');
-  late final _pthread_cancel = _pthread_cancelPtr.asFunction<int Function(pthread_t)>();
+  late final _pthread_cancelPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t)>>(
+          'pthread_cancel');
+  late final _pthread_cancel =
+      _pthread_cancelPtr.asFunction<int Function(pthread_t)>();
 
   int pthread_cond_broadcast(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11048,8 +14120,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_broadcastPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>('pthread_cond_broadcast');
-  late final _pthread_cond_broadcast = _pthread_cond_broadcastPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
+  late final _pthread_cond_broadcastPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>(
+      'pthread_cond_broadcast');
+  late final _pthread_cond_broadcast = _pthread_cond_broadcastPtr
+      .asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
 
   int pthread_cond_destroy(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11059,8 +14134,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>('pthread_cond_destroy');
-  late final _pthread_cond_destroy = _pthread_cond_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
+  late final _pthread_cond_destroyPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>(
+      'pthread_cond_destroy');
+  late final _pthread_cond_destroy = _pthread_cond_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
 
   int pthread_cond_init(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11072,8 +14150,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_condattr_t>)>>('pthread_cond_init');
-  late final _pthread_cond_init = _pthread_cond_initPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_condattr_t>)>();
+  late final _pthread_cond_initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_cond_t>,
+              ffi.Pointer<pthread_condattr_t>)>>('pthread_cond_init');
+  late final _pthread_cond_init = _pthread_cond_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_condattr_t>)>();
 
   int pthread_cond_signal(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11083,8 +14166,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_signalPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>('pthread_cond_signal');
-  late final _pthread_cond_signal = _pthread_cond_signalPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
+  late final _pthread_cond_signalPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>)>>(
+      'pthread_cond_signal');
+  late final _pthread_cond_signal = _pthread_cond_signalPtr
+      .asFunction<int Function(ffi.Pointer<pthread_cond_t>)>();
 
   int pthread_cond_timedwait(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11098,8 +14184,15 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_timedwaitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>, ffi.Pointer<timespec>)>>('pthread_cond_timedwait');
-  late final _pthread_cond_timedwait = _pthread_cond_timedwaitPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>, ffi.Pointer<timespec>)>();
+  late final _pthread_cond_timedwaitPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_cond_t>,
+              ffi.Pointer<pthread_mutex_t>,
+              ffi.Pointer<timespec>)>>('pthread_cond_timedwait');
+  late final _pthread_cond_timedwait = _pthread_cond_timedwaitPtr.asFunction<
+      int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>,
+          ffi.Pointer<timespec>)>();
 
   int pthread_cond_wait(
     ffi.Pointer<pthread_cond_t> arg0,
@@ -11111,8 +14204,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_waitPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>)>>('pthread_cond_wait');
-  late final _pthread_cond_wait = _pthread_cond_waitPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>)>();
+  late final _pthread_cond_waitPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_cond_t>,
+              ffi.Pointer<pthread_mutex_t>)>>('pthread_cond_wait');
+  late final _pthread_cond_wait = _pthread_cond_waitPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>)>();
 
   int pthread_condattr_destroy(
     ffi.Pointer<pthread_condattr_t> arg0,
@@ -11122,8 +14220,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_condattr_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>)>>('pthread_condattr_destroy');
-  late final _pthread_condattr_destroy = _pthread_condattr_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_condattr_t>)>();
+  late final _pthread_condattr_destroyPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>)>>(
+      'pthread_condattr_destroy');
+  late final _pthread_condattr_destroy = _pthread_condattr_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_condattr_t>)>();
 
   int pthread_condattr_init(
     ffi.Pointer<pthread_condattr_t> arg0,
@@ -11133,8 +14235,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_condattr_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>)>>('pthread_condattr_init');
-  late final _pthread_condattr_init = _pthread_condattr_initPtr.asFunction<int Function(ffi.Pointer<pthread_condattr_t>)>();
+  late final _pthread_condattr_initPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>)>>(
+      'pthread_condattr_init');
+  late final _pthread_condattr_init = _pthread_condattr_initPtr
+      .asFunction<int Function(ffi.Pointer<pthread_condattr_t>)>();
 
   int pthread_condattr_getpshared(
     ffi.Pointer<pthread_condattr_t> arg0,
@@ -11146,8 +14252,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_condattr_getpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_condattr_getpshared');
-  late final _pthread_condattr_getpshared = _pthread_condattr_getpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_condattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_condattr_getpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_condattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_condattr_getpshared');
+  late final _pthread_condattr_getpshared =
+      _pthread_condattr_getpsharedPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_condattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_condattr_setpshared(
     ffi.Pointer<pthread_condattr_t> arg0,
@@ -11159,13 +14271,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_condattr_setpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_condattr_t>, ffi.Int)>>('pthread_condattr_setpshared');
-  late final _pthread_condattr_setpshared = _pthread_condattr_setpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_condattr_t>, int)>();
+  late final _pthread_condattr_setpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_condattr_t>,
+              ffi.Int)>>('pthread_condattr_setpshared');
+  late final _pthread_condattr_setpshared = _pthread_condattr_setpsharedPtr
+      .asFunction<int Function(ffi.Pointer<pthread_condattr_t>, int)>();
 
   int pthread_create(
     ffi.Pointer<pthread_t> arg0,
     ffi.Pointer<pthread_attr_t> arg1,
-    ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>> arg2,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>
+        arg2,
     ffi.Pointer<ffi.Void> arg3,
   ) {
     return _pthread_create(
@@ -11176,8 +14295,23 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_createPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_t>, ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>, ffi.Pointer<ffi.Void>)>>('pthread_create');
-  late final _pthread_create = _pthread_createPtr.asFunction<int Function(ffi.Pointer<pthread_t>, ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>, ffi.Pointer<ffi.Void>)>();
+  late final _pthread_createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_t>,
+              ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>,
+              ffi.Pointer<ffi.Void>)>>('pthread_create');
+  late final _pthread_create = _pthread_createPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_t>,
+          ffi.Pointer<pthread_attr_t>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>,
+          ffi.Pointer<ffi.Void>)>();
 
   int pthread_detach(
     pthread_t arg0,
@@ -11187,8 +14321,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_detachPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t)>>('pthread_detach');
-  late final _pthread_detach = _pthread_detachPtr.asFunction<int Function(pthread_t)>();
+  late final _pthread_detachPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t)>>(
+          'pthread_detach');
+  late final _pthread_detach =
+      _pthread_detachPtr.asFunction<int Function(pthread_t)>();
 
   int pthread_equal(
     pthread_t arg0,
@@ -11200,8 +14337,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_equalPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, pthread_t)>>('pthread_equal');
-  late final _pthread_equal = _pthread_equalPtr.asFunction<int Function(pthread_t, pthread_t)>();
+  late final _pthread_equalPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, pthread_t)>>(
+          'pthread_equal');
+  late final _pthread_equal =
+      _pthread_equalPtr.asFunction<int Function(pthread_t, pthread_t)>();
 
   void pthread_exit(
     ffi.Pointer<ffi.Void> arg0,
@@ -11211,15 +14351,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_exitPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>('pthread_exit');
-  late final _pthread_exit = _pthread_exitPtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _pthread_exitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'pthread_exit');
+  late final _pthread_exit =
+      _pthread_exitPtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   int pthread_getconcurrency() {
     return _pthread_getconcurrency();
   }
 
-  late final _pthread_getconcurrencyPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_getconcurrency');
-  late final _pthread_getconcurrency = _pthread_getconcurrencyPtr.asFunction<int Function()>();
+  late final _pthread_getconcurrencyPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_getconcurrency');
+  late final _pthread_getconcurrency =
+      _pthread_getconcurrencyPtr.asFunction<int Function()>();
 
   int pthread_getschedparam(
     pthread_t arg0,
@@ -11233,8 +14378,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_getschedparamPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Pointer<ffi.Int>, ffi.Pointer<sched_param>)>>('pthread_getschedparam');
-  late final _pthread_getschedparam = _pthread_getschedparamPtr.asFunction<int Function(pthread_t, ffi.Pointer<ffi.Int>, ffi.Pointer<sched_param>)>();
+  late final _pthread_getschedparamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(pthread_t, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<sched_param>)>>('pthread_getschedparam');
+  late final _pthread_getschedparam = _pthread_getschedparamPtr.asFunction<
+      int Function(
+          pthread_t, ffi.Pointer<ffi.Int>, ffi.Pointer<sched_param>)>();
 
   ffi.Pointer<ffi.Void> pthread_getspecific(
     int arg0,
@@ -11244,8 +14394,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_getspecificPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(pthread_key_t)>>('pthread_getspecific');
-  late final _pthread_getspecific = _pthread_getspecificPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+  late final _pthread_getspecificPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(pthread_key_t)>>(
+      'pthread_getspecific');
+  late final _pthread_getspecific =
+      _pthread_getspecificPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
   int pthread_join(
     pthread_t arg0,
@@ -11257,12 +14410,17 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_joinPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('pthread_join');
-  late final _pthread_join = _pthread_joinPtr.asFunction<int Function(pthread_t, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
+  late final _pthread_joinPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              pthread_t, ffi.Pointer<ffi.Pointer<ffi.Void>>)>>('pthread_join');
+  late final _pthread_join = _pthread_joinPtr.asFunction<
+      int Function(pthread_t, ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   int pthread_key_create(
     ffi.Pointer<pthread_key_t> arg0,
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>> arg1,
+    ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>
+        arg1,
   ) {
     return _pthread_key_create(
       arg0,
@@ -11270,8 +14428,19 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_key_createPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_key_t>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>)>>('pthread_key_create');
-  late final _pthread_key_create = _pthread_key_createPtr.asFunction<int Function(ffi.Pointer<pthread_key_t>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>)>();
+  late final _pthread_key_createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_key_t>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(
+                          ffi.Pointer<ffi.Void>)>>)>>('pthread_key_create');
+  late final _pthread_key_create = _pthread_key_createPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_key_t>,
+          ffi.Pointer<
+              ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>)>();
 
   int pthread_key_delete(
     int arg0,
@@ -11281,8 +14450,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_key_deletePtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_key_t)>>('pthread_key_delete');
-  late final _pthread_key_delete = _pthread_key_deletePtr.asFunction<int Function(int)>();
+  late final _pthread_key_deletePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_key_t)>>(
+          'pthread_key_delete');
+  late final _pthread_key_delete =
+      _pthread_key_deletePtr.asFunction<int Function(int)>();
 
   int pthread_mutex_destroy(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11292,8 +14464,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>('pthread_mutex_destroy');
-  late final _pthread_mutex_destroy = _pthread_mutex_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
+  late final _pthread_mutex_destroyPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>(
+      'pthread_mutex_destroy');
+  late final _pthread_mutex_destroy = _pthread_mutex_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
 
   int pthread_mutex_getprioceiling(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11305,8 +14480,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_getprioceilingPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutex_getprioceiling');
-  late final _pthread_mutex_getprioceiling = _pthread_mutex_getprioceilingPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutex_getprioceilingPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutex_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutex_getprioceiling');
+  late final _pthread_mutex_getprioceiling =
+      _pthread_mutex_getprioceilingPtr.asFunction<
+          int Function(ffi.Pointer<pthread_mutex_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutex_init(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11318,8 +14498,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>, ffi.Pointer<pthread_mutexattr_t>)>>('pthread_mutex_init');
-  late final _pthread_mutex_init = _pthread_mutex_initPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>, ffi.Pointer<pthread_mutexattr_t>)>();
+  late final _pthread_mutex_initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutex_t>,
+              ffi.Pointer<pthread_mutexattr_t>)>>('pthread_mutex_init');
+  late final _pthread_mutex_init = _pthread_mutex_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_mutex_t>, ffi.Pointer<pthread_mutexattr_t>)>();
 
   int pthread_mutex_lock(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11329,8 +14514,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_lockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>('pthread_mutex_lock');
-  late final _pthread_mutex_lock = _pthread_mutex_lockPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
+  late final _pthread_mutex_lockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>(
+      'pthread_mutex_lock');
+  late final _pthread_mutex_lock = _pthread_mutex_lockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
 
   int pthread_mutex_setprioceiling(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11344,8 +14532,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_setprioceilingPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>, ffi.Int, ffi.Pointer<ffi.Int>)>>('pthread_mutex_setprioceiling');
-  late final _pthread_mutex_setprioceiling = _pthread_mutex_setprioceilingPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>, int, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutex_setprioceilingPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutex_t>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutex_setprioceiling');
+  late final _pthread_mutex_setprioceiling =
+      _pthread_mutex_setprioceilingPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutex_t>, int, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutex_trylock(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11355,8 +14549,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_trylockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>('pthread_mutex_trylock');
-  late final _pthread_mutex_trylock = _pthread_mutex_trylockPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
+  late final _pthread_mutex_trylockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>(
+      'pthread_mutex_trylock');
+  late final _pthread_mutex_trylock = _pthread_mutex_trylockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
 
   int pthread_mutex_unlock(
     ffi.Pointer<pthread_mutex_t> arg0,
@@ -11366,8 +14563,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutex_unlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>('pthread_mutex_unlock');
-  late final _pthread_mutex_unlock = _pthread_mutex_unlockPtr.asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
+  late final _pthread_mutex_unlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutex_t>)>>(
+      'pthread_mutex_unlock');
+  late final _pthread_mutex_unlock = _pthread_mutex_unlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutex_t>)>();
 
   int pthread_mutexattr_destroy(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11377,8 +14577,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>)>>('pthread_mutexattr_destroy');
-  late final _pthread_mutexattr_destroy = _pthread_mutexattr_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>)>();
+  late final _pthread_mutexattr_destroyPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>)>>(
+      'pthread_mutexattr_destroy');
+  late final _pthread_mutexattr_destroy = _pthread_mutexattr_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>)>();
 
   int pthread_mutexattr_getprioceiling(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11390,8 +14594,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_getprioceilingPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getprioceiling');
-  late final _pthread_mutexattr_getprioceiling = _pthread_mutexattr_getprioceilingPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutexattr_getprioceilingPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getprioceiling');
+  late final _pthread_mutexattr_getprioceiling =
+      _pthread_mutexattr_getprioceilingPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutexattr_getprotocol(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11403,8 +14613,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_getprotocolPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getprotocol');
-  late final _pthread_mutexattr_getprotocol = _pthread_mutexattr_getprotocolPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutexattr_getprotocolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getprotocol');
+  late final _pthread_mutexattr_getprotocol =
+      _pthread_mutexattr_getprotocolPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutexattr_getpshared(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11416,8 +14632,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_getpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getpshared');
-  late final _pthread_mutexattr_getpshared = _pthread_mutexattr_getpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutexattr_getpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getpshared');
+  late final _pthread_mutexattr_getpshared =
+      _pthread_mutexattr_getpsharedPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutexattr_gettype(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11429,8 +14651,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_gettypePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_gettype');
-  late final _pthread_mutexattr_gettype = _pthread_mutexattr_gettypePtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutexattr_gettypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_gettype');
+  late final _pthread_mutexattr_gettype =
+      _pthread_mutexattr_gettypePtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutexattr_getpolicy_np(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11442,8 +14670,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_getpolicy_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getpolicy_np');
-  late final _pthread_mutexattr_getpolicy_np = _pthread_mutexattr_getpolicy_npPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_mutexattr_getpolicy_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_mutexattr_getpolicy_np');
+  late final _pthread_mutexattr_getpolicy_np =
+      _pthread_mutexattr_getpolicy_npPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_mutexattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_mutexattr_init(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11453,8 +14687,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>)>>('pthread_mutexattr_init');
-  late final _pthread_mutexattr_init = _pthread_mutexattr_initPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>)>();
+  late final _pthread_mutexattr_initPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>)>>(
+      'pthread_mutexattr_init');
+  late final _pthread_mutexattr_init = _pthread_mutexattr_initPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>)>();
 
   int pthread_mutexattr_setprioceiling(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11466,8 +14704,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_setprioceilingPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Int)>>('pthread_mutexattr_setprioceiling');
-  late final _pthread_mutexattr_setprioceiling = _pthread_mutexattr_setprioceilingPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
+  late final _pthread_mutexattr_setprioceilingPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Int)>>('pthread_mutexattr_setprioceiling');
+  late final _pthread_mutexattr_setprioceiling =
+      _pthread_mutexattr_setprioceilingPtr
+          .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
 
   int pthread_mutexattr_setprotocol(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11479,8 +14722,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_setprotocolPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Int)>>('pthread_mutexattr_setprotocol');
-  late final _pthread_mutexattr_setprotocol = _pthread_mutexattr_setprotocolPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
+  late final _pthread_mutexattr_setprotocolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Int)>>('pthread_mutexattr_setprotocol');
+  late final _pthread_mutexattr_setprotocol = _pthread_mutexattr_setprotocolPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
 
   int pthread_mutexattr_setpshared(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11492,8 +14739,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_setpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Int)>>('pthread_mutexattr_setpshared');
-  late final _pthread_mutexattr_setpshared = _pthread_mutexattr_setpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
+  late final _pthread_mutexattr_setpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Int)>>('pthread_mutexattr_setpshared');
+  late final _pthread_mutexattr_setpshared = _pthread_mutexattr_setpsharedPtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
 
   int pthread_mutexattr_settype(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11505,8 +14756,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_settypePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Int)>>('pthread_mutexattr_settype');
-  late final _pthread_mutexattr_settype = _pthread_mutexattr_settypePtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
+  late final _pthread_mutexattr_settypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Int)>>('pthread_mutexattr_settype');
+  late final _pthread_mutexattr_settype = _pthread_mutexattr_settypePtr
+      .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
 
   int pthread_mutexattr_setpolicy_np(
     ffi.Pointer<pthread_mutexattr_t> arg0,
@@ -11518,8 +14773,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mutexattr_setpolicy_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>, ffi.Int)>>('pthread_mutexattr_setpolicy_np');
-  late final _pthread_mutexattr_setpolicy_np = _pthread_mutexattr_setpolicy_npPtr.asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
+  late final _pthread_mutexattr_setpolicy_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_mutexattr_t>,
+              ffi.Int)>>('pthread_mutexattr_setpolicy_np');
+  late final _pthread_mutexattr_setpolicy_np =
+      _pthread_mutexattr_setpolicy_npPtr
+          .asFunction<int Function(ffi.Pointer<pthread_mutexattr_t>, int)>();
 
   int pthread_once(
     ffi.Pointer<pthread_once_t> arg0,
@@ -11531,8 +14791,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_oncePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_once_t>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('pthread_once');
-  late final _pthread_once = _pthread_oncePtr.asFunction<int Function(ffi.Pointer<pthread_once_t>, ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+  late final _pthread_oncePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(ffi.Pointer<pthread_once_t>,
+                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
+      'pthread_once');
+  late final _pthread_once = _pthread_oncePtr.asFunction<
+      int Function(ffi.Pointer<pthread_once_t>,
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
   int pthread_rwlock_destroy(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11542,8 +14808,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_destroy');
-  late final _pthread_rwlock_destroy = _pthread_rwlock_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_destroyPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_destroy');
+  late final _pthread_rwlock_destroy = _pthread_rwlock_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlock_init(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11555,8 +14824,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>, ffi.Pointer<pthread_rwlockattr_t>)>>('pthread_rwlock_init');
-  late final _pthread_rwlock_init = _pthread_rwlock_initPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>, ffi.Pointer<pthread_rwlockattr_t>)>();
+  late final _pthread_rwlock_initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_rwlock_t>,
+              ffi.Pointer<pthread_rwlockattr_t>)>>('pthread_rwlock_init');
+  late final _pthread_rwlock_init = _pthread_rwlock_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<pthread_rwlock_t>, ffi.Pointer<pthread_rwlockattr_t>)>();
 
   int pthread_rwlock_rdlock(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11566,8 +14840,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_rdlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_rdlock');
-  late final _pthread_rwlock_rdlock = _pthread_rwlock_rdlockPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_rdlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_rdlock');
+  late final _pthread_rwlock_rdlock = _pthread_rwlock_rdlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlock_tryrdlock(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11577,8 +14854,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_tryrdlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_tryrdlock');
-  late final _pthread_rwlock_tryrdlock = _pthread_rwlock_tryrdlockPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_tryrdlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_tryrdlock');
+  late final _pthread_rwlock_tryrdlock = _pthread_rwlock_tryrdlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlock_trywrlock(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11588,8 +14868,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_trywrlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_trywrlock');
-  late final _pthread_rwlock_trywrlock = _pthread_rwlock_trywrlockPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_trywrlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_trywrlock');
+  late final _pthread_rwlock_trywrlock = _pthread_rwlock_trywrlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlock_wrlock(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11599,8 +14882,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_wrlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_wrlock');
-  late final _pthread_rwlock_wrlock = _pthread_rwlock_wrlockPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_wrlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_wrlock');
+  late final _pthread_rwlock_wrlock = _pthread_rwlock_wrlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlock_unlock(
     ffi.Pointer<pthread_rwlock_t> arg0,
@@ -11610,8 +14896,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlock_unlockPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>('pthread_rwlock_unlock');
-  late final _pthread_rwlock_unlock = _pthread_rwlock_unlockPtr.asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
+  late final _pthread_rwlock_unlockPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlock_t>)>>(
+      'pthread_rwlock_unlock');
+  late final _pthread_rwlock_unlock = _pthread_rwlock_unlockPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlock_t>)>();
 
   int pthread_rwlockattr_destroy(
     ffi.Pointer<pthread_rwlockattr_t> arg0,
@@ -11621,8 +14910,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlockattr_destroyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>)>>('pthread_rwlockattr_destroy');
-  late final _pthread_rwlockattr_destroy = _pthread_rwlockattr_destroyPtr.asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>)>();
+  late final _pthread_rwlockattr_destroyPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>)>>(
+      'pthread_rwlockattr_destroy');
+  late final _pthread_rwlockattr_destroy = _pthread_rwlockattr_destroyPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>)>();
 
   int pthread_rwlockattr_getpshared(
     ffi.Pointer<pthread_rwlockattr_t> arg0,
@@ -11634,8 +14927,14 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlockattr_getpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>, ffi.Pointer<ffi.Int>)>>('pthread_rwlockattr_getpshared');
-  late final _pthread_rwlockattr_getpshared = _pthread_rwlockattr_getpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_rwlockattr_getpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>,
+              ffi.Pointer<ffi.Int>)>>('pthread_rwlockattr_getpshared');
+  late final _pthread_rwlockattr_getpshared =
+      _pthread_rwlockattr_getpsharedPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_rwlockattr_t>, ffi.Pointer<ffi.Int>)>();
 
   int pthread_rwlockattr_init(
     ffi.Pointer<pthread_rwlockattr_t> arg0,
@@ -11645,8 +14944,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlockattr_initPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>)>>('pthread_rwlockattr_init');
-  late final _pthread_rwlockattr_init = _pthread_rwlockattr_initPtr.asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>)>();
+  late final _pthread_rwlockattr_initPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>)>>(
+      'pthread_rwlockattr_init');
+  late final _pthread_rwlockattr_init = _pthread_rwlockattr_initPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>)>();
 
   int pthread_rwlockattr_setpshared(
     ffi.Pointer<pthread_rwlockattr_t> arg0,
@@ -11658,15 +14961,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_rwlockattr_setpsharedPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>, ffi.Int)>>('pthread_rwlockattr_setpshared');
-  late final _pthread_rwlockattr_setpshared = _pthread_rwlockattr_setpsharedPtr.asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>, int)>();
+  late final _pthread_rwlockattr_setpsharedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_rwlockattr_t>,
+              ffi.Int)>>('pthread_rwlockattr_setpshared');
+  late final _pthread_rwlockattr_setpshared = _pthread_rwlockattr_setpsharedPtr
+      .asFunction<int Function(ffi.Pointer<pthread_rwlockattr_t>, int)>();
 
   pthread_t pthread_self() {
     return _pthread_self();
   }
 
-  late final _pthread_selfPtr = _lookup<ffi.NativeFunction<pthread_t Function()>>('pthread_self');
-  late final _pthread_self = _pthread_selfPtr.asFunction<pthread_t Function()>();
+  late final _pthread_selfPtr =
+      _lookup<ffi.NativeFunction<pthread_t Function()>>('pthread_self');
+  late final _pthread_self =
+      _pthread_selfPtr.asFunction<pthread_t Function()>();
 
   int pthread_setcancelstate(
     int arg0,
@@ -11678,8 +14987,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setcancelstatePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Int>)>>('pthread_setcancelstate');
-  late final _pthread_setcancelstate = _pthread_setcancelstatePtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_setcancelstatePtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Int>)>>(
+      'pthread_setcancelstate');
+  late final _pthread_setcancelstate = _pthread_setcancelstatePtr
+      .asFunction<int Function(int, ffi.Pointer<ffi.Int>)>();
 
   int pthread_setcanceltype(
     int arg0,
@@ -11691,8 +15003,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setcanceltypePtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Int>)>>('pthread_setcanceltype');
-  late final _pthread_setcanceltype = _pthread_setcanceltypePtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>)>();
+  late final _pthread_setcanceltypePtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Int>)>>(
+      'pthread_setcanceltype');
+  late final _pthread_setcanceltype = _pthread_setcanceltypePtr
+      .asFunction<int Function(int, ffi.Pointer<ffi.Int>)>();
 
   int pthread_setconcurrency(
     int arg0,
@@ -11702,8 +15017,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setconcurrencyPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('pthread_setconcurrency');
-  late final _pthread_setconcurrency = _pthread_setconcurrencyPtr.asFunction<int Function(int)>();
+  late final _pthread_setconcurrencyPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
+          'pthread_setconcurrency');
+  late final _pthread_setconcurrency =
+      _pthread_setconcurrencyPtr.asFunction<int Function(int)>();
 
   int pthread_setschedparam(
     pthread_t arg0,
@@ -11717,8 +15035,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setschedparamPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Int, ffi.Pointer<sched_param>)>>('pthread_setschedparam');
-  late final _pthread_setschedparam = _pthread_setschedparamPtr.asFunction<int Function(pthread_t, int, ffi.Pointer<sched_param>)>();
+  late final _pthread_setschedparamPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(pthread_t, ffi.Int,
+              ffi.Pointer<sched_param>)>>('pthread_setschedparam');
+  late final _pthread_setschedparam = _pthread_setschedparamPtr
+      .asFunction<int Function(pthread_t, int, ffi.Pointer<sched_param>)>();
 
   int pthread_setspecific(
     int arg0,
@@ -11730,23 +15052,31 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setspecificPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_key_t, ffi.Pointer<ffi.Void>)>>('pthread_setspecific');
-  late final _pthread_setspecific = _pthread_setspecificPtr.asFunction<int Function(int, ffi.Pointer<ffi.Void>)>();
+  late final _pthread_setspecificPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              pthread_key_t, ffi.Pointer<ffi.Void>)>>('pthread_setspecific');
+  late final _pthread_setspecific = _pthread_setspecificPtr
+      .asFunction<int Function(int, ffi.Pointer<ffi.Void>)>();
 
   void pthread_testcancel() {
     return _pthread_testcancel();
   }
 
-  late final _pthread_testcancelPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('pthread_testcancel');
-  late final _pthread_testcancel = _pthread_testcancelPtr.asFunction<void Function()>();
+  late final _pthread_testcancelPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('pthread_testcancel');
+  late final _pthread_testcancel =
+      _pthread_testcancelPtr.asFunction<void Function()>();
 
   /// returns non-zero if pthread_create or cthread_fork have been called
   int pthread_is_threaded_np() {
     return _pthread_is_threaded_np();
   }
 
-  late final _pthread_is_threaded_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_is_threaded_np');
-  late final _pthread_is_threaded_np = _pthread_is_threaded_npPtr.asFunction<int Function()>();
+  late final _pthread_is_threaded_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_is_threaded_np');
+  late final _pthread_is_threaded_np =
+      _pthread_is_threaded_npPtr.asFunction<int Function()>();
 
   int pthread_threadid_np(
     pthread_t arg0,
@@ -11758,8 +15088,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_threadid_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Pointer<__uint64_t>)>>('pthread_threadid_np');
-  late final _pthread_threadid_np = _pthread_threadid_npPtr.asFunction<int Function(pthread_t, ffi.Pointer<__uint64_t>)>();
+  late final _pthread_threadid_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              pthread_t, ffi.Pointer<__uint64_t>)>>('pthread_threadid_np');
+  late final _pthread_threadid_np = _pthread_threadid_npPtr
+      .asFunction<int Function(pthread_t, ffi.Pointer<__uint64_t>)>();
 
   /// SPI to set and get pthread name
   int pthread_getname_np(
@@ -11774,8 +15108,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_getname_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Pointer<ffi.Char>, ffi.Size)>>('pthread_getname_np');
-  late final _pthread_getname_np = _pthread_getname_npPtr.asFunction<int Function(pthread_t, ffi.Pointer<ffi.Char>, int)>();
+  late final _pthread_getname_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(pthread_t, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('pthread_getname_np');
+  late final _pthread_getname_np = _pthread_getname_npPtr
+      .asFunction<int Function(pthread_t, ffi.Pointer<ffi.Char>, int)>();
 
   int pthread_setname_np(
     ffi.Pointer<ffi.Char> arg0,
@@ -11785,16 +15123,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_setname_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>('pthread_setname_np');
-  late final _pthread_setname_np = _pthread_setname_npPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _pthread_setname_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'pthread_setname_np');
+  late final _pthread_setname_np =
+      _pthread_setname_npPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   /// returns non-zero if the current thread is the main thread
   int pthread_main_np() {
     return _pthread_main_np();
   }
 
-  late final _pthread_main_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_main_np');
-  late final _pthread_main_np = _pthread_main_npPtr.asFunction<int Function()>();
+  late final _pthread_main_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_main_np');
+  late final _pthread_main_np =
+      _pthread_main_npPtr.asFunction<int Function()>();
 
   /// return the mach thread bound to the pthread
   int pthread_mach_thread_np(
@@ -11805,8 +15148,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_mach_thread_npPtr = _lookup<ffi.NativeFunction<mach_port_t Function(pthread_t)>>('pthread_mach_thread_np');
-  late final _pthread_mach_thread_np = _pthread_mach_thread_npPtr.asFunction<int Function(pthread_t)>();
+  late final _pthread_mach_thread_npPtr =
+      _lookup<ffi.NativeFunction<mach_port_t Function(pthread_t)>>(
+          'pthread_mach_thread_np');
+  late final _pthread_mach_thread_np =
+      _pthread_mach_thread_npPtr.asFunction<int Function(pthread_t)>();
 
   int pthread_get_stacksize_np(
     pthread_t arg0,
@@ -11816,8 +15162,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_get_stacksize_npPtr = _lookup<ffi.NativeFunction<ffi.Size Function(pthread_t)>>('pthread_get_stacksize_np');
-  late final _pthread_get_stacksize_np = _pthread_get_stacksize_npPtr.asFunction<int Function(pthread_t)>();
+  late final _pthread_get_stacksize_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Size Function(pthread_t)>>(
+          'pthread_get_stacksize_np');
+  late final _pthread_get_stacksize_np =
+      _pthread_get_stacksize_npPtr.asFunction<int Function(pthread_t)>();
 
   ffi.Pointer<ffi.Void> pthread_get_stackaddr_np(
     pthread_t arg0,
@@ -11827,8 +15176,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_get_stackaddr_npPtr = _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(pthread_t)>>('pthread_get_stackaddr_np');
-  late final _pthread_get_stackaddr_np = _pthread_get_stackaddr_npPtr.asFunction<ffi.Pointer<ffi.Void> Function(pthread_t)>();
+  late final _pthread_get_stackaddr_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(pthread_t)>>(
+          'pthread_get_stackaddr_np');
+  late final _pthread_get_stackaddr_np = _pthread_get_stackaddr_npPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(pthread_t)>();
 
   /// Like pthread_cond_signal(), but only wake up the specified pthread
   int pthread_cond_signal_thread_np(
@@ -11841,8 +15193,12 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_signal_thread_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>, pthread_t)>>('pthread_cond_signal_thread_np');
-  late final _pthread_cond_signal_thread_np = _pthread_cond_signal_thread_npPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>, pthread_t)>();
+  late final _pthread_cond_signal_thread_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<pthread_cond_t>,
+              pthread_t)>>('pthread_cond_signal_thread_np');
+  late final _pthread_cond_signal_thread_np = _pthread_cond_signal_thread_npPtr
+      .asFunction<int Function(ffi.Pointer<pthread_cond_t>, pthread_t)>();
 
   /// Like pthread_cond_timedwait, but use a relative timeout
   int pthread_cond_timedwait_relative_np(
@@ -11857,13 +15213,24 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cond_timedwait_relative_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>, ffi.Pointer<timespec>)>>('pthread_cond_timedwait_relative_np');
-  late final _pthread_cond_timedwait_relative_np = _pthread_cond_timedwait_relative_npPtr.asFunction<int Function(ffi.Pointer<pthread_cond_t>, ffi.Pointer<pthread_mutex_t>, ffi.Pointer<timespec>)>();
+  late final _pthread_cond_timedwait_relative_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_cond_t>,
+              ffi.Pointer<pthread_mutex_t>,
+              ffi.Pointer<timespec>)>>('pthread_cond_timedwait_relative_np');
+  late final _pthread_cond_timedwait_relative_np =
+      _pthread_cond_timedwait_relative_npPtr.asFunction<
+          int Function(ffi.Pointer<pthread_cond_t>,
+              ffi.Pointer<pthread_mutex_t>, ffi.Pointer<timespec>)>();
 
   int pthread_create_suspended_np(
     ffi.Pointer<pthread_t> arg0,
     ffi.Pointer<pthread_attr_t> arg1,
-    ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>> arg2,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>
+        arg2,
     ffi.Pointer<ffi.Void> arg3,
   ) {
     return _pthread_create_suspended_np(
@@ -11874,8 +15241,24 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_create_suspended_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<pthread_t>, ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>, ffi.Pointer<ffi.Void>)>>('pthread_create_suspended_np');
-  late final _pthread_create_suspended_np = _pthread_create_suspended_npPtr.asFunction<int Function(ffi.Pointer<pthread_t>, ffi.Pointer<pthread_attr_t>, ffi.Pointer<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>, ffi.Pointer<ffi.Void>)>();
+  late final _pthread_create_suspended_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<pthread_t>,
+              ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>,
+              ffi.Pointer<ffi.Void>)>>('pthread_create_suspended_np');
+  late final _pthread_create_suspended_np =
+      _pthread_create_suspended_npPtr.asFunction<
+          int Function(
+              ffi.Pointer<pthread_t>,
+              ffi.Pointer<pthread_attr_t>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>>,
+              ffi.Pointer<ffi.Void>)>();
 
   int pthread_kill(
     pthread_t arg0,
@@ -11887,8 +15270,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_killPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Int)>>('pthread_kill');
-  late final _pthread_kill = _pthread_killPtr.asFunction<int Function(pthread_t, int)>();
+  late final _pthread_killPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(pthread_t, ffi.Int)>>(
+          'pthread_kill');
+  late final _pthread_kill =
+      _pthread_killPtr.asFunction<int Function(pthread_t, int)>();
 
   pthread_t pthread_from_mach_thread_np(
     int arg0,
@@ -11898,8 +15284,11 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_from_mach_thread_npPtr = _lookup<ffi.NativeFunction<pthread_t Function(mach_port_t)>>('pthread_from_mach_thread_np');
-  late final _pthread_from_mach_thread_np = _pthread_from_mach_thread_npPtr.asFunction<pthread_t Function(int)>();
+  late final _pthread_from_mach_thread_npPtr =
+      _lookup<ffi.NativeFunction<pthread_t Function(mach_port_t)>>(
+          'pthread_from_mach_thread_np');
+  late final _pthread_from_mach_thread_np =
+      _pthread_from_mach_thread_npPtr.asFunction<pthread_t Function(int)>();
 
   int pthread_sigmask(
     int arg0,
@@ -11913,15 +15302,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_sigmaskPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<sigset_t>, ffi.Pointer<sigset_t>)>>('pthread_sigmask');
-  late final _pthread_sigmask = _pthread_sigmaskPtr.asFunction<int Function(int, ffi.Pointer<sigset_t>, ffi.Pointer<sigset_t>)>();
+  late final _pthread_sigmaskPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Int, ffi.Pointer<sigset_t>,
+              ffi.Pointer<sigset_t>)>>('pthread_sigmask');
+  late final _pthread_sigmask = _pthread_sigmaskPtr.asFunction<
+      int Function(int, ffi.Pointer<sigset_t>, ffi.Pointer<sigset_t>)>();
 
   void pthread_yield_np() {
     return _pthread_yield_np();
   }
 
-  late final _pthread_yield_npPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('pthread_yield_np');
-  late final _pthread_yield_np = _pthread_yield_npPtr.asFunction<void Function()>();
+  late final _pthread_yield_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('pthread_yield_np');
+  late final _pthread_yield_np =
+      _pthread_yield_npPtr.asFunction<void Function()>();
 
   void pthread_jit_write_protect_np(
     int enabled,
@@ -11931,15 +15326,21 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_jit_write_protect_npPtr = _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('pthread_jit_write_protect_np');
-  late final _pthread_jit_write_protect_np = _pthread_jit_write_protect_npPtr.asFunction<void Function(int)>();
+  late final _pthread_jit_write_protect_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>(
+          'pthread_jit_write_protect_np');
+  late final _pthread_jit_write_protect_np =
+      _pthread_jit_write_protect_npPtr.asFunction<void Function(int)>();
 
   int pthread_jit_write_protect_supported_np() {
     return _pthread_jit_write_protect_supported_np();
   }
 
-  late final _pthread_jit_write_protect_supported_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('pthread_jit_write_protect_supported_np');
-  late final _pthread_jit_write_protect_supported_np = _pthread_jit_write_protect_supported_npPtr.asFunction<int Function()>();
+  late final _pthread_jit_write_protect_supported_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>(
+          'pthread_jit_write_protect_supported_np');
+  late final _pthread_jit_write_protect_supported_np =
+      _pthread_jit_write_protect_supported_npPtr.asFunction<int Function()>();
 
   /// !
   /// @function pthread_jit_write_with_callback_np
@@ -12016,8 +15417,13 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_jit_write_with_callback_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(pthread_jit_write_callback_t, ffi.Pointer<ffi.Void>)>>('pthread_jit_write_with_callback_np');
-  late final _pthread_jit_write_with_callback_np = _pthread_jit_write_with_callback_npPtr.asFunction<int Function(pthread_jit_write_callback_t, ffi.Pointer<ffi.Void>)>();
+  late final _pthread_jit_write_with_callback_npPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(pthread_jit_write_callback_t,
+              ffi.Pointer<ffi.Void>)>>('pthread_jit_write_with_callback_np');
+  late final _pthread_jit_write_with_callback_np =
+      _pthread_jit_write_with_callback_npPtr.asFunction<
+          int Function(pthread_jit_write_callback_t, ffi.Pointer<ffi.Void>)>();
 
   /// !
   /// @function pthread_jit_write_freeze_callbacks_np
@@ -12047,8 +15453,11 @@ class FlutterOpenimSdkFfiBindings {
     return _pthread_jit_write_freeze_callbacks_np();
   }
 
-  late final _pthread_jit_write_freeze_callbacks_npPtr = _lookup<ffi.NativeFunction<ffi.Void Function()>>('pthread_jit_write_freeze_callbacks_np');
-  late final _pthread_jit_write_freeze_callbacks_np = _pthread_jit_write_freeze_callbacks_npPtr.asFunction<void Function()>();
+  late final _pthread_jit_write_freeze_callbacks_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>(
+          'pthread_jit_write_freeze_callbacks_np');
+  late final _pthread_jit_write_freeze_callbacks_np =
+      _pthread_jit_write_freeze_callbacks_npPtr.asFunction<void Function()>();
 
   /// !
   /// @function pthread_cpu_number_np
@@ -12072,15 +15481,20 @@ class FlutterOpenimSdkFfiBindings {
     );
   }
 
-  late final _pthread_cpu_number_npPtr = _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Size>)>>('pthread_cpu_number_np');
-  late final _pthread_cpu_number_np = _pthread_cpu_number_npPtr.asFunction<int Function(ffi.Pointer<ffi.Size>)>();
+  late final _pthread_cpu_number_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Size>)>>(
+          'pthread_cpu_number_np');
+  late final _pthread_cpu_number_np = _pthread_cpu_number_npPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Size>)>();
 
   Openim_Listener getIMListener() {
     return _getIMListener();
   }
 
-  late final _getIMListenerPtr = _lookup<ffi.NativeFunction<Openim_Listener Function()>>('getIMListener');
-  late final _getIMListener = _getIMListenerPtr.asFunction<Openim_Listener Function()>();
+  late final _getIMListenerPtr =
+      _lookup<ffi.NativeFunction<Openim_Listener Function()>>('getIMListener');
+  late final _getIMListener =
+      _getIMListenerPtr.asFunction<Openim_Listener Function()>();
 }
 
 typedef __int8_t = ffi.SignedChar;
@@ -12175,7 +15589,9 @@ typedef __darwin_useconds_t = __uint32_t;
 
 final class __darwin_pthread_handler_rec extends ffi.Struct {
   /// Routine to call
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>> __routine;
+  external ffi
+      .Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>
+      __routine;
 
   /// Argument to pass
   external ffi.Pointer<ffi.Void> __arg;
@@ -12374,13 +15790,23 @@ final class __sFILE extends ffi.Struct {
   /// cookie passed to io functions
   external ffi.Pointer<ffi.Void> _cookie;
 
-  external ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>> _close;
+  external ffi
+      .Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>
+      _close;
 
-  external ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> _read;
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> _read;
 
-  external ffi.Pointer<ffi.NativeFunction<fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>> _seek;
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          fpos_t Function(ffi.Pointer<ffi.Void>, fpos_t, ffi.Int)>> _seek;
 
-  external ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> _write;
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, ffi.Int)>> _write;
 
   /// ungetc buffer
   external __sbuf _ub;
@@ -12494,7 +15920,7 @@ enum idtype_t {
         0 => P_ALL,
         1 => P_PID,
         2 => P_PGID,
-        _ => throw ArgumentError("Unknown value for idtype_t: $value"),
+        _ => throw ArgumentError('Unknown value for idtype_t: $value'),
       };
 }
 
@@ -12741,7 +16167,8 @@ final class sigevent extends ffi.Struct {
   external sigval sigev_value;
 
   /// Notification function
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(sigval)>> sigev_notify_function;
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(sigval)>>
+      sigev_notify_function;
 
   /// Notification attributes
   external ffi.Pointer<pthread_attr_t> sigev_notify_attributes;
@@ -12791,17 +16218,25 @@ typedef siginfo_t = __siginfo;
 
 /// union for signal handlers
 final class __sigaction_u extends ffi.Union {
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> __sa_handler;
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
+      __sa_handler;
 
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int, ffi.Pointer<__siginfo>, ffi.Pointer<ffi.Void>)>> __sa_sigaction;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Int, ffi.Pointer<__siginfo>, ffi.Pointer<ffi.Void>)>>
+      __sa_sigaction;
 }
 
 /// Signal vector template for Kernel user boundary
 final class __sigaction extends ffi.Struct {
   /// signal handler
-  external __sigaction_u __sigaction_u1;
+  external __sigaction_u __sigaction_u$1;
 
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int, ffi.Pointer<siginfo_t>, ffi.Pointer<ffi.Void>)>> sa_tramp;
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+              ffi.Pointer<siginfo_t>, ffi.Pointer<ffi.Void>)>> sa_tramp;
 
   /// signal mask to apply
   @sigset_t()
@@ -12815,7 +16250,7 @@ final class __sigaction extends ffi.Struct {
 /// Signal vector "template" used in sigaction call.
 final class sigaction extends ffi.Struct {
   /// signal handler
-  external __sigaction_u __sigaction_u1;
+  external __sigaction_u __sigaction_u$1;
 
   /// signal mask to apply
   @sigset_t()
@@ -12834,7 +16269,8 @@ typedef sig_t = ffi.Pointer<ffi.NativeFunction<sig_tFunction>>;
 /// Signal vector "template" used in sigvec call.
 final class sigvec extends ffi.Struct {
   /// signal handler
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> sv_handler;
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
+      sv_handler;
 
   /// signal mask to apply
   @ffi.Int()
@@ -13651,12 +17087,15 @@ typedef Dart_WeakPersistentHandle = ffi.Pointer<_Dart_WeakPersistentHandle>;
 final class _Dart_FinalizableHandle extends ffi.Opaque {}
 
 typedef Dart_FinalizableHandle = ffi.Pointer<_Dart_FinalizableHandle>;
-typedef Dart_HandleFinalizerFunction = ffi.Void Function(ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
-typedef DartDart_HandleFinalizerFunction = void Function(ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
+typedef Dart_HandleFinalizerFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
+typedef DartDart_HandleFinalizerFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_callback_data, ffi.Pointer<ffi.Void> peer);
 
 /// These structs are versioned by DART_API_DL_MAJOR_VERSION, bump the
 /// version when changing this struct.
-typedef Dart_HandleFinalizer = ffi.Pointer<ffi.NativeFunction<Dart_HandleFinalizerFunction>>;
+typedef Dart_HandleFinalizer
+    = ffi.Pointer<ffi.NativeFunction<Dart_HandleFinalizerFunction>>;
 
 final class Dart_IsolateFlags extends ffi.Struct {
   @ffi.Int32()
@@ -13694,7 +17133,13 @@ final class Dart_IsolateFlags extends ffi.Struct {
 }
 
 typedef Dart_IsolateGroupCreateCallbackFunction = Dart_Isolate Function(
-    ffi.Pointer<ffi.Char> script_uri, ffi.Pointer<ffi.Char> main, ffi.Pointer<ffi.Char> package_root, ffi.Pointer<ffi.Char> package_config, ffi.Pointer<Dart_IsolateFlags> flags, ffi.Pointer<ffi.Void> isolate_data, ffi.Pointer<ffi.Pointer<ffi.Char>> error);
+    ffi.Pointer<ffi.Char> script_uri,
+    ffi.Pointer<ffi.Char> main,
+    ffi.Pointer<ffi.Char> package_root,
+    ffi.Pointer<ffi.Char> package_config,
+    ffi.Pointer<Dart_IsolateFlags> flags,
+    ffi.Pointer<ffi.Void> isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
 
 /// An isolate creation and initialization callback function.
 ///
@@ -13743,9 +17188,14 @@ typedef Dart_IsolateGroupCreateCallbackFunction = Dart_Isolate Function(
 ///
 /// \return The embedder returns NULL if the creation and
 /// initialization was not successful and the isolate if successful.
-typedef Dart_IsolateGroupCreateCallback = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCreateCallbackFunction>>;
-typedef Dart_InitializeIsolateCallbackFunction = ffi.Bool Function(ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data, ffi.Pointer<ffi.Pointer<ffi.Char>> error);
-typedef DartDart_InitializeIsolateCallbackFunction = bool Function(ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data, ffi.Pointer<ffi.Pointer<ffi.Char>> error);
+typedef Dart_IsolateGroupCreateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCreateCallbackFunction>>;
+typedef Dart_InitializeIsolateCallbackFunction = ffi.Bool Function(
+    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
+typedef DartDart_InitializeIsolateCallbackFunction = bool Function(
+    ffi.Pointer<ffi.Pointer<ffi.Void>> child_isolate_data,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> error);
 
 /// An isolate initialization callback function.
 ///
@@ -13775,9 +17225,14 @@ typedef DartDart_InitializeIsolateCallbackFunction = bool Function(ffi.Pointer<f
 ///
 /// \return The embedder returns true if the initialization was successful and
 /// false otherwise (in which case the VM will terminate the isolate).
-typedef Dart_InitializeIsolateCallback = ffi.Pointer<ffi.NativeFunction<Dart_InitializeIsolateCallbackFunction>>;
-typedef Dart_IsolateShutdownCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> isolate_group_data, ffi.Pointer<ffi.Void> isolate_data);
-typedef DartDart_IsolateShutdownCallbackFunction = void Function(ffi.Pointer<ffi.Void> isolate_group_data, ffi.Pointer<ffi.Void> isolate_data);
+typedef Dart_InitializeIsolateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_InitializeIsolateCallbackFunction>>;
+typedef Dart_IsolateShutdownCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+typedef DartDart_IsolateShutdownCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
 
 /// An isolate shutdown callback function.
 ///
@@ -13792,9 +17247,14 @@ typedef DartDart_IsolateShutdownCallbackFunction = void Function(ffi.Pointer<ffi
 /// isolate group when it was created.
 /// \param isolate_data The same callback data which was passed to the isolate
 /// when it was created.
-typedef Dart_IsolateShutdownCallback = ffi.Pointer<ffi.NativeFunction<Dart_IsolateShutdownCallbackFunction>>;
-typedef Dart_IsolateCleanupCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> isolate_group_data, ffi.Pointer<ffi.Void> isolate_data);
-typedef DartDart_IsolateCleanupCallbackFunction = void Function(ffi.Pointer<ffi.Void> isolate_group_data, ffi.Pointer<ffi.Void> isolate_data);
+typedef Dart_IsolateShutdownCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateShutdownCallbackFunction>>;
+typedef Dart_IsolateCleanupCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
+typedef DartDart_IsolateCleanupCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data,
+    ffi.Pointer<ffi.Void> isolate_data);
 
 /// An isolate cleanup callback function.
 ///
@@ -13809,9 +17269,12 @@ typedef DartDart_IsolateCleanupCallbackFunction = void Function(ffi.Pointer<ffi.
 /// isolate group when it was created.
 /// \param isolate_data The same callback data which was passed to the isolate
 /// when it was created.
-typedef Dart_IsolateCleanupCallback = ffi.Pointer<ffi.NativeFunction<Dart_IsolateCleanupCallbackFunction>>;
-typedef Dart_IsolateGroupCleanupCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> isolate_group_data);
-typedef DartDart_IsolateGroupCleanupCallbackFunction = void Function(ffi.Pointer<ffi.Void> isolate_group_data);
+typedef Dart_IsolateCleanupCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateCleanupCallbackFunction>>;
+typedef Dart_IsolateGroupCleanupCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data);
+typedef DartDart_IsolateGroupCleanupCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> isolate_group_data);
 
 /// An isolate group cleanup callback function.
 ///
@@ -13823,7 +17286,8 @@ typedef DartDart_IsolateGroupCleanupCallbackFunction = void Function(ffi.Pointer
 ///
 /// \param isolate_group_data The same callback data which was passed to the
 /// isolate group when it was created.
-typedef Dart_IsolateGroupCleanupCallback = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCleanupCallbackFunction>>;
+typedef Dart_IsolateGroupCleanupCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsolateGroupCleanupCallbackFunction>>;
 typedef Dart_ThreadStartCallbackFunction = ffi.Void Function();
 typedef DartDart_ThreadStartCallbackFunction = void Function();
 
@@ -13832,7 +17296,8 @@ typedef DartDart_ThreadStartCallbackFunction = void Function();
 /// vm thread pool starts.
 /// This function could be used to adjust thread priority or attach native
 /// resources to the thread.
-typedef Dart_ThreadStartCallback = ffi.Pointer<ffi.NativeFunction<Dart_ThreadStartCallbackFunction>>;
+typedef Dart_ThreadStartCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadStartCallbackFunction>>;
 typedef Dart_ThreadExitCallbackFunction = ffi.Void Function();
 typedef DartDart_ThreadExitCallbackFunction = void Function();
 
@@ -13841,9 +17306,12 @@ typedef DartDart_ThreadExitCallbackFunction = void Function();
 /// vm thread pool exits.
 /// This function could be used to dispose of native resources that
 /// are associated and attached to the thread, in order to avoid leaks.
-typedef Dart_ThreadExitCallback = ffi.Pointer<ffi.NativeFunction<Dart_ThreadExitCallbackFunction>>;
-typedef Dart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char> name, ffi.Bool write);
-typedef DartDart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char> name, bool write);
+typedef Dart_ThreadExitCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_ThreadExitCallbackFunction>>;
+typedef Dart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, ffi.Bool write);
+typedef DartDart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, bool write);
 
 /// Opens a file for reading or writing.
 ///
@@ -13854,9 +17322,16 @@ typedef DartDart_FileOpenCallbackFunction = ffi.Pointer<ffi.Void> Function(ffi.P
 /// \param name The name of the file to open.
 /// \param write A boolean variable which indicates if the file is to
 /// opened for writing. If there is an existing file it needs to truncated.
-typedef Dart_FileOpenCallback = ffi.Pointer<ffi.NativeFunction<Dart_FileOpenCallbackFunction>>;
-typedef Dart_FileReadCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>> data, ffi.Pointer<ffi.IntPtr> file_length, ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileReadCallbackFunction = void Function(ffi.Pointer<ffi.Pointer<ffi.Uint8>> data, ffi.Pointer<ffi.IntPtr> file_length, ffi.Pointer<ffi.Void> stream);
+typedef Dart_FileOpenCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileOpenCallbackFunction>>;
+typedef Dart_FileReadCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
+    ffi.Pointer<ffi.IntPtr> file_length,
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileReadCallbackFunction = void Function(
+    ffi.Pointer<ffi.Pointer<ffi.Uint8>> data,
+    ffi.Pointer<ffi.IntPtr> file_length,
+    ffi.Pointer<ffi.Void> stream);
 
 /// Read contents of file.
 ///
@@ -13870,9 +17345,14 @@ typedef DartDart_FileReadCallbackFunction = void Function(ffi.Pointer<ffi.Pointe
 /// \param file_length A variable into which the length of the file is returned.
 /// In the case of an error this value would be -1.
 /// \param stream Handle to the opened file.
-typedef Dart_FileReadCallback = ffi.Pointer<ffi.NativeFunction<Dart_FileReadCallbackFunction>>;
-typedef Dart_FileWriteCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> data, ffi.IntPtr length, ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileWriteCallbackFunction = void Function(ffi.Pointer<ffi.Void> data, int length, ffi.Pointer<ffi.Void> stream);
+typedef Dart_FileReadCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileReadCallbackFunction>>;
+typedef Dart_FileWriteCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> data,
+    ffi.IntPtr length,
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileWriteCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> data, int length, ffi.Pointer<ffi.Void> stream);
 
 /// Write data into file.
 ///
@@ -13883,9 +17363,12 @@ typedef DartDart_FileWriteCallbackFunction = void Function(ffi.Pointer<ffi.Void>
 /// \param data Buffer which needs to be written into the file.
 /// \param length Length of the buffer.
 /// \param stream Handle to the opened file.
-typedef Dart_FileWriteCallback = ffi.Pointer<ffi.NativeFunction<Dart_FileWriteCallbackFunction>>;
-typedef Dart_FileCloseCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> stream);
-typedef DartDart_FileCloseCallbackFunction = void Function(ffi.Pointer<ffi.Void> stream);
+typedef Dart_FileWriteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileWriteCallbackFunction>>;
+typedef Dart_FileCloseCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> stream);
+typedef DartDart_FileCloseCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> stream);
 
 /// Closes the opened file.
 ///
@@ -13894,10 +17377,14 @@ typedef DartDart_FileCloseCallbackFunction = void Function(ffi.Pointer<ffi.Void>
 /// NULL.
 ///
 /// \param stream Handle to the opened file.
-typedef Dart_FileCloseCallback = ffi.Pointer<ffi.NativeFunction<Dart_FileCloseCallbackFunction>>;
-typedef Dart_EntropySourceFunction = ffi.Bool Function(ffi.Pointer<ffi.Uint8> buffer, ffi.IntPtr length);
-typedef DartDart_EntropySourceFunction = bool Function(ffi.Pointer<ffi.Uint8> buffer, int length);
-typedef Dart_EntropySource = ffi.Pointer<ffi.NativeFunction<Dart_EntropySourceFunction>>;
+typedef Dart_FileCloseCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_FileCloseCallbackFunction>>;
+typedef Dart_EntropySourceFunction = ffi.Bool Function(
+    ffi.Pointer<ffi.Uint8> buffer, ffi.IntPtr length);
+typedef DartDart_EntropySourceFunction = bool Function(
+    ffi.Pointer<ffi.Uint8> buffer, int length);
+typedef Dart_EntropySource
+    = ffi.Pointer<ffi.NativeFunction<Dart_EntropySourceFunction>>;
 typedef Dart_GetVMServiceAssetsArchiveFunction = ffi.Handle Function();
 typedef DartDart_GetVMServiceAssetsArchiveFunction = Object Function();
 
@@ -13909,9 +17396,18 @@ typedef DartDart_GetVMServiceAssetsArchiveFunction = Object Function();
 ///
 /// \return The embedder must return a handle to a Uint8List containing an
 /// uncompressed tar archive or null.
-typedef Dart_GetVMServiceAssetsArchive = ffi.Pointer<ffi.NativeFunction<Dart_GetVMServiceAssetsArchiveFunction>>;
-typedef Dart_OnNewCodeCallbackFunction = ffi.Void Function(ffi.Pointer<Dart_CodeObserver> observer, ffi.Pointer<ffi.Char> name, ffi.UintPtr base, ffi.UintPtr size);
-typedef DartDart_OnNewCodeCallbackFunction = void Function(ffi.Pointer<Dart_CodeObserver> observer, ffi.Pointer<ffi.Char> name, int base, int size);
+typedef Dart_GetVMServiceAssetsArchive
+    = ffi.Pointer<ffi.NativeFunction<Dart_GetVMServiceAssetsArchiveFunction>>;
+typedef Dart_OnNewCodeCallbackFunction = ffi.Void Function(
+    ffi.Pointer<Dart_CodeObserver> observer,
+    ffi.Pointer<ffi.Char> name,
+    ffi.UintPtr base,
+    ffi.UintPtr size);
+typedef DartDart_OnNewCodeCallbackFunction = void Function(
+    ffi.Pointer<Dart_CodeObserver> observer,
+    ffi.Pointer<ffi.Char> name,
+    int base,
+    int size);
 
 /// Callback provided by the embedder that is used by the VM to notify on code
 /// object creation, *before* it is invoked the first time.
@@ -13921,7 +17417,8 @@ typedef DartDart_OnNewCodeCallbackFunction = void Function(ffi.Pointer<Dart_Code
 /// lifecycle of a process. Clients of this function should record timestamps for
 /// these compilation events and when collecting PCs to disambiguate reused
 /// address ranges.
-typedef Dart_OnNewCodeCallback = ffi.Pointer<ffi.NativeFunction<Dart_OnNewCodeCallbackFunction>>;
+typedef Dart_OnNewCodeCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_OnNewCodeCallbackFunction>>;
 
 /// Forward declaration
 final class Dart_CodeObserver extends ffi.Struct {
@@ -13930,8 +17427,11 @@ final class Dart_CodeObserver extends ffi.Struct {
   external Dart_OnNewCodeCallback on_new_code;
 }
 
-typedef Dart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Uint8> kernel_buffer, ffi.IntPtr kernel_buffer_size);
-typedef DartDart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Uint8> kernel_buffer, int kernel_buffer_size);
+typedef Dart_RegisterKernelBlobCallbackFunction
+    = ffi.Pointer<ffi.Char> Function(
+        ffi.Pointer<ffi.Uint8> kernel_buffer, ffi.IntPtr kernel_buffer_size);
+typedef DartDart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Uint8> kernel_buffer, int kernel_buffer_size);
 
 /// Optional callback provided by the embedder that is used by the VM to
 /// implement registration of kernel blobs for the subsequent Isolate.spawnUri
@@ -13947,9 +17447,12 @@ typedef DartDart_RegisterKernelBlobCallbackFunction = ffi.Pointer<ffi.Char> Func
 /// to spawn a new isolate. This C String should be scope allocated
 /// or owned by the embedder.
 /// Returns NULL if embedder runs out of memory.
-typedef Dart_RegisterKernelBlobCallback = ffi.Pointer<ffi.NativeFunction<Dart_RegisterKernelBlobCallbackFunction>>;
-typedef Dart_UnregisterKernelBlobCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Char> kernel_blob_uri);
-typedef DartDart_UnregisterKernelBlobCallbackFunction = void Function(ffi.Pointer<ffi.Char> kernel_blob_uri);
+typedef Dart_RegisterKernelBlobCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_RegisterKernelBlobCallbackFunction>>;
+typedef Dart_UnregisterKernelBlobCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Char> kernel_blob_uri);
+typedef DartDart_UnregisterKernelBlobCallbackFunction = void Function(
+    ffi.Pointer<ffi.Char> kernel_blob_uri);
 
 /// Optional callback provided by the embedder that is used by the VM to
 /// unregister kernel blobs.
@@ -13957,7 +17460,8 @@ typedef DartDart_UnregisterKernelBlobCallbackFunction = void Function(ffi.Pointe
 /// an error.
 ///
 /// \param kernel_blob_uri URI of the kernel blob to unregister.
-typedef Dart_UnregisterKernelBlobCallback = ffi.Pointer<ffi.NativeFunction<Dart_UnregisterKernelBlobCallbackFunction>>;
+typedef Dart_UnregisterKernelBlobCallback = ffi
+    .Pointer<ffi.NativeFunction<Dart_UnregisterKernelBlobCallbackFunction>>;
 
 /// Describes how to initialize the VM. Used with Dart_Initialize.
 final class Dart_InitializeParams extends ffi.Struct {
@@ -14035,15 +17539,32 @@ final class Dart_InitializeParams extends ffi.Struct {
 /// It is the responsibility of the caller to free the returned ID.
 typedef Dart_IsolateGroupId = ffi.Int64;
 typedef DartDart_IsolateGroupId = int;
-typedef Dart_HeapSamplingReportCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
-typedef DartDart_HeapSamplingReportCallbackFunction = void Function(ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
-typedef Dart_HeapSamplingReportCallback = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingReportCallbackFunction>>;
-typedef Dart_HeapSamplingCreateCallbackFunction = ffi.Pointer<ffi.Void> Function(Dart_Isolate isolate, Dart_IsolateGroup isolate_group, ffi.Pointer<ffi.Char> cls_name, ffi.IntPtr allocation_size);
-typedef DartDart_HeapSamplingCreateCallbackFunction = ffi.Pointer<ffi.Void> Function(Dart_Isolate isolate, Dart_IsolateGroup isolate_group, ffi.Pointer<ffi.Char> cls_name, int allocation_size);
-typedef Dart_HeapSamplingCreateCallback = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingCreateCallbackFunction>>;
-typedef Dart_HeapSamplingDeleteCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> data);
-typedef DartDart_HeapSamplingDeleteCallbackFunction = void Function(ffi.Pointer<ffi.Void> data);
-typedef Dart_HeapSamplingDeleteCallback = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingDeleteCallbackFunction>>;
+typedef Dart_HeapSamplingReportCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
+typedef DartDart_HeapSamplingReportCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> context, ffi.Pointer<ffi.Void> data);
+typedef Dart_HeapSamplingReportCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingReportCallbackFunction>>;
+typedef Dart_HeapSamplingCreateCallbackFunction
+    = ffi.Pointer<ffi.Void> Function(
+        Dart_Isolate isolate,
+        Dart_IsolateGroup isolate_group,
+        ffi.Pointer<ffi.Char> cls_name,
+        ffi.IntPtr allocation_size);
+typedef DartDart_HeapSamplingCreateCallbackFunction
+    = ffi.Pointer<ffi.Void> Function(
+        Dart_Isolate isolate,
+        Dart_IsolateGroup isolate_group,
+        ffi.Pointer<ffi.Char> cls_name,
+        int allocation_size);
+typedef Dart_HeapSamplingCreateCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingCreateCallbackFunction>>;
+typedef Dart_HeapSamplingDeleteCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> data);
+typedef DartDart_HeapSamplingDeleteCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> data);
+typedef Dart_HeapSamplingDeleteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_HeapSamplingDeleteCallbackFunction>>;
 
 enum Dart_PerformanceMode {
   /// Balanced
@@ -14071,15 +17592,18 @@ enum Dart_PerformanceMode {
         1 => Dart_PerformanceMode_Latency,
         2 => Dart_PerformanceMode_Throughput,
         3 => Dart_PerformanceMode_Memory,
-        _ => throw ArgumentError("Unknown value for Dart_PerformanceMode: $value"),
+        _ =>
+          throw ArgumentError('Unknown value for Dart_PerformanceMode: $value'),
       };
 }
 
 /// A port is used to send or receive inter-isolate messages
 typedef Dart_Port = ffi.Int64;
 typedef DartDart_Port = int;
-typedef Dart_MessageNotifyCallbackFunction = ffi.Void Function(Dart_Isolate destination_isolate);
-typedef DartDart_MessageNotifyCallbackFunction = void Function(Dart_Isolate destination_isolate);
+typedef Dart_MessageNotifyCallbackFunction = ffi.Void Function(
+    Dart_Isolate destination_isolate);
+typedef DartDart_MessageNotifyCallbackFunction = void Function(
+    Dart_Isolate destination_isolate);
 
 /// A message notification callback.
 ///
@@ -14088,7 +17612,8 @@ typedef DartDart_MessageNotifyCallbackFunction = void Function(Dart_Isolate dest
 /// message on an arbitrary thread. It is the responsibility of the embedder to
 /// eventually call Dart_HandleMessage once per callback received with the
 /// destination isolate set as the current isolate to process the message.
-typedef Dart_MessageNotifyCallback = ffi.Pointer<ffi.NativeFunction<Dart_MessageNotifyCallbackFunction>>;
+typedef Dart_MessageNotifyCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_MessageNotifyCallbackFunction>>;
 
 enum Dart_CoreType_Id {
   Dart_CoreType_Dynamic(0),
@@ -14102,7 +17627,7 @@ enum Dart_CoreType_Id {
         0 => Dart_CoreType_Dynamic,
         1 => Dart_CoreType_Int,
         2 => Dart_CoreType_String,
-        _ => throw ArgumentError("Unknown value for Dart_CoreType_Id: $value"),
+        _ => throw ArgumentError('Unknown value for Dart_CoreType_Id: $value'),
       };
 }
 
@@ -14147,7 +17672,8 @@ enum Dart_TypedData_Type {
         13 => Dart_TypedData_kFloat32x4,
         14 => Dart_TypedData_kFloat64x2,
         15 => Dart_TypedData_kInvalid,
-        _ => throw ArgumentError("Unknown value for Dart_TypedData_Type: $value"),
+        _ =>
+          throw ArgumentError('Unknown value for Dart_TypedData_Type: $value'),
       };
 }
 
@@ -14185,7 +17711,8 @@ enum Dart_NativeArgument_Type {
         6 => Dart_NativeArgument_kString,
         7 => Dart_NativeArgument_kInstance,
         8 => Dart_NativeArgument_kNativeFields,
-        _ => throw ArgumentError("Unknown value for Dart_NativeArgument_Type: $value"),
+        _ => throw ArgumentError(
+            'Unknown value for Dart_NativeArgument_Type: $value'),
       };
 }
 
@@ -14202,13 +17729,20 @@ typedef Dart_NativeArgument_Descriptor = _Dart_NativeArgument_Descriptor;
 final class _Dart_NativeArgument_Value extends ffi.Opaque {}
 
 typedef Dart_NativeArgument_Value = _Dart_NativeArgument_Value;
-typedef Dart_NativeFunctionFunction = ffi.Void Function(Dart_NativeArguments arguments);
-typedef DartDart_NativeFunctionFunction = void Function(Dart_NativeArguments arguments);
+typedef Dart_NativeFunctionFunction = ffi.Void Function(
+    Dart_NativeArguments arguments);
+typedef DartDart_NativeFunctionFunction = void Function(
+    Dart_NativeArguments arguments);
 
 /// A native function.
-typedef Dart_NativeFunction = ffi.Pointer<ffi.NativeFunction<Dart_NativeFunctionFunction>>;
-typedef Dart_NativeEntryResolverFunction = Dart_NativeFunction Function(ffi.Handle name, ffi.Int num_of_arguments, ffi.Pointer<ffi.Bool> auto_setup_scope);
-typedef DartDart_NativeEntryResolverFunction = Dart_NativeFunction Function(Object name, int num_of_arguments, ffi.Pointer<ffi.Bool> auto_setup_scope);
+typedef Dart_NativeFunction
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeFunctionFunction>>;
+typedef Dart_NativeEntryResolverFunction = Dart_NativeFunction Function(
+    ffi.Handle name,
+    ffi.Int num_of_arguments,
+    ffi.Pointer<ffi.Bool> auto_setup_scope);
+typedef DartDart_NativeEntryResolverFunction = Dart_NativeFunction Function(
+    Object name, int num_of_arguments, ffi.Pointer<ffi.Bool> auto_setup_scope);
 
 /// Native entry resolution callback.
 ///
@@ -14233,8 +17767,10 @@ typedef DartDart_NativeEntryResolverFunction = Dart_NativeFunction Function(Obje
 /// for the native function.
 ///
 /// See Dart_SetNativeResolver.
-typedef Dart_NativeEntryResolver = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntryResolverFunction>>;
-typedef Dart_NativeEntrySymbolFunction = ffi.Pointer<ffi.Uint8> Function(Dart_NativeFunction nf);
+typedef Dart_NativeEntryResolver
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntryResolverFunction>>;
+typedef Dart_NativeEntrySymbolFunction = ffi.Pointer<ffi.Uint8> Function(
+    Dart_NativeFunction nf);
 
 /// Native entry symbol lookup callback.
 ///
@@ -14249,14 +17785,18 @@ typedef Dart_NativeEntrySymbolFunction = ffi.Pointer<ffi.Uint8> Function(Dart_Na
 /// \return A const UTF-8 string containing the symbol name or NULL.
 ///
 /// See Dart_SetNativeResolver.
-typedef Dart_NativeEntrySymbol = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntrySymbolFunction>>;
-typedef Dart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char> name, ffi.UintPtr args_n);
-typedef DartDart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char> name, int args_n);
+typedef Dart_NativeEntrySymbol
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeEntrySymbolFunction>>;
+typedef Dart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, ffi.UintPtr args_n);
+typedef DartDart_FfiNativeResolverFunction = ffi.Pointer<ffi.Void> Function(
+    ffi.Pointer<ffi.Char> name, int args_n);
 
 /// FFI Native C function pointer resolver callback.
 ///
 /// See Dart_SetFfiNativeResolver.
-typedef Dart_FfiNativeResolver = ffi.Pointer<ffi.NativeFunction<Dart_FfiNativeResolverFunction>>;
+typedef Dart_FfiNativeResolver
+    = ffi.Pointer<ffi.NativeFunction<Dart_FfiNativeResolverFunction>>;
 typedef Dart_EnvironmentCallbackFunction = ffi.Handle Function(ffi.Handle name);
 typedef DartDart_EnvironmentCallbackFunction = Object Function(Object name);
 
@@ -14266,7 +17806,8 @@ typedef DartDart_EnvironmentCallbackFunction = Object Function(Object name);
 ///
 /// \return A valid handle to a string if the name exists in the
 /// current environment or Dart_Null() if not.
-typedef Dart_EnvironmentCallback = ffi.Pointer<ffi.NativeFunction<Dart_EnvironmentCallbackFunction>>;
+typedef Dart_EnvironmentCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnvironmentCallbackFunction>>;
 
 /// =====================
 /// Scripts and Libraries
@@ -14283,12 +17824,14 @@ enum Dart_LibraryTag {
         0 => Dart_kCanonicalizeUrl,
         1 => Dart_kImportTag,
         2 => Dart_kKernelTag,
-        _ => throw ArgumentError("Unknown value for Dart_LibraryTag: $value"),
+        _ => throw ArgumentError('Unknown value for Dart_LibraryTag: $value'),
       };
 }
 
-typedef Dart_LibraryTagHandlerFunction = ffi.Handle Function(ffi.UnsignedInt tag, ffi.Handle library_or_package_map_url, ffi.Handle url);
-typedef DartDart_LibraryTagHandlerFunction = Object Function(Dart_LibraryTag tag, Object library_or_package_map_url, Object url);
+typedef Dart_LibraryTagHandlerFunction = ffi.Handle Function(
+    ffi.UnsignedInt tag, ffi.Handle library_or_package_map_url, ffi.Handle url);
+typedef DartDart_LibraryTagHandlerFunction = Object Function(
+    Dart_LibraryTag tag, Object library_or_package_map_url, Object url);
 
 /// The library tag handler is a multi-purpose callback provided by the
 /// embedder to the Dart VM. The embedder implements the tag handler to
@@ -14320,9 +17863,12 @@ typedef DartDart_LibraryTagHandlerFunction = Object Function(Dart_LibraryTag tag
 /// files into one intermediate file hence we don't use the source/import or
 /// script tags. The return value should be an error or a TypedData containing
 /// the kernel bytes.
-typedef Dart_LibraryTagHandler = ffi.Pointer<ffi.NativeFunction<Dart_LibraryTagHandlerFunction>>;
-typedef Dart_DeferredLoadHandlerFunction = ffi.Handle Function(ffi.IntPtr loading_unit_id);
-typedef DartDart_DeferredLoadHandlerFunction = Object Function(int loading_unit_id);
+typedef Dart_LibraryTagHandler
+    = ffi.Pointer<ffi.NativeFunction<Dart_LibraryTagHandlerFunction>>;
+typedef Dart_DeferredLoadHandlerFunction = ffi.Handle Function(
+    ffi.IntPtr loading_unit_id);
+typedef DartDart_DeferredLoadHandlerFunction = Object Function(
+    int loading_unit_id);
 
 /// Handles deferred loading requests. When this handler is invoked, it should
 /// eventually load the deferred loading unit with the given id and call
@@ -14336,7 +17882,8 @@ typedef DartDart_DeferredLoadHandlerFunction = Object Function(int loading_unit_
 /// implementations, which must propagate any unwind errors from
 /// Dart_DeferredLoadComplete or Dart_DeferredLoadComplete. Otherwise the handler
 /// should return a non-error such as `Dart_Null()`.
-typedef Dart_DeferredLoadHandler = ffi.Pointer<ffi.NativeFunction<Dart_DeferredLoadHandlerFunction>>;
+typedef Dart_DeferredLoadHandler
+    = ffi.Pointer<ffi.NativeFunction<Dart_DeferredLoadHandlerFunction>>;
 
 /// TODO(33433): Remove kernel service from the embedding API.
 enum Dart_KernelCompilationStatus {
@@ -14355,7 +17902,8 @@ enum Dart_KernelCompilationStatus {
         1 => Dart_KernelCompilationStatus_Error,
         2 => Dart_KernelCompilationStatus_Crash,
         3 => Dart_KernelCompilationStatus_MsgFailed,
-        _ => throw ArgumentError("Unknown value for Dart_KernelCompilationStatus: $value"),
+        _ => throw ArgumentError(
+            'Unknown value for Dart_KernelCompilationStatus: $value'),
       };
 }
 
@@ -14363,7 +17911,8 @@ final class Dart_KernelCompilationResult extends ffi.Struct {
   @ffi.Int()
   external int statusAsInt;
 
-  Dart_KernelCompilationStatus get status => Dart_KernelCompilationStatus.fromValue(statusAsInt);
+  Dart_KernelCompilationStatus get status =>
+      Dart_KernelCompilationStatus.fromValue(statusAsInt);
 
   external ffi.Pointer<ffi.Char> error;
 
@@ -14382,12 +17931,14 @@ enum Dart_KernelCompilationVerbosityLevel {
   final int value;
   const Dart_KernelCompilationVerbosityLevel(this.value);
 
-  static Dart_KernelCompilationVerbosityLevel fromValue(int value) => switch (value) {
+  static Dart_KernelCompilationVerbosityLevel fromValue(int value) =>
+      switch (value) {
         0 => Dart_KernelCompilationVerbosityLevel_Error,
         1 => Dart_KernelCompilationVerbosityLevel_Warning,
         2 => Dart_KernelCompilationVerbosityLevel_Info,
         3 => Dart_KernelCompilationVerbosityLevel_All,
-        _ => throw ArgumentError("Unknown value for Dart_KernelCompilationVerbosityLevel: $value"),
+        _ => throw ArgumentError(
+            'Unknown value for Dart_KernelCompilationVerbosityLevel: $value'),
       };
 }
 
@@ -14397,17 +17948,38 @@ final class Dart_SourceFile extends ffi.Struct {
   external ffi.Pointer<ffi.Char> source;
 }
 
-typedef Dart_CreateLoadingUnitCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> callback_data, ffi.IntPtr loading_unit_id, ffi.Pointer<ffi.Pointer<ffi.Void>> write_callback_data, ffi.Pointer<ffi.Pointer<ffi.Void>> write_debug_callback_data);
-typedef DartDart_CreateLoadingUnitCallbackFunction = void Function(ffi.Pointer<ffi.Void> callback_data, int loading_unit_id, ffi.Pointer<ffi.Pointer<ffi.Void>> write_callback_data, ffi.Pointer<ffi.Pointer<ffi.Void>> write_debug_callback_data);
-typedef Dart_CreateLoadingUnitCallback = ffi.Pointer<ffi.NativeFunction<Dart_CreateLoadingUnitCallbackFunction>>;
-typedef Dart_StreamingWriteCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> callback_data, ffi.Pointer<ffi.Uint8> buffer, ffi.IntPtr size);
-typedef DartDart_StreamingWriteCallbackFunction = void Function(ffi.Pointer<ffi.Void> callback_data, ffi.Pointer<ffi.Uint8> buffer, int size);
-typedef Dart_StreamingWriteCallback = ffi.Pointer<ffi.NativeFunction<Dart_StreamingWriteCallbackFunction>>;
-typedef Dart_StreamingCloseCallbackFunction = ffi.Void Function(ffi.Pointer<ffi.Void> callback_data);
-typedef DartDart_StreamingCloseCallbackFunction = void Function(ffi.Pointer<ffi.Void> callback_data);
-typedef Dart_StreamingCloseCallback = ffi.Pointer<ffi.NativeFunction<Dart_StreamingCloseCallbackFunction>>;
-typedef Dart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, ffi.IntPtr count);
-typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, int count);
+typedef Dart_CreateLoadingUnitCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    ffi.IntPtr loading_unit_id,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> write_callback_data,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> write_debug_callback_data);
+typedef DartDart_CreateLoadingUnitCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    int loading_unit_id,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> write_callback_data,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> write_debug_callback_data);
+typedef Dart_CreateLoadingUnitCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_CreateLoadingUnitCallbackFunction>>;
+typedef Dart_StreamingWriteCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    ffi.Pointer<ffi.Uint8> buffer,
+    ffi.IntPtr size);
+typedef DartDart_StreamingWriteCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> callback_data,
+    ffi.Pointer<ffi.Uint8> buffer,
+    int size);
+typedef Dart_StreamingWriteCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingWriteCallbackFunction>>;
+typedef Dart_StreamingCloseCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Void> callback_data);
+typedef DartDart_StreamingCloseCallbackFunction = void Function(
+    ffi.Pointer<ffi.Void> callback_data);
+typedef Dart_StreamingCloseCallback
+    = ffi.Pointer<ffi.NativeFunction<Dart_StreamingCloseCallbackFunction>>;
+typedef Dart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, ffi.IntPtr count);
+typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
+    Function(ffi.Pointer<ffi.Pointer<ffi.Void>> addresses, int count);
 
 /// Callback provided by the embedder that is used by the VM to
 /// produce footnotes appended to DWARF stack traces.
@@ -14423,7 +17995,8 @@ typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
 ///
 /// \param addresses raw program counter addresses for each frame
 /// \param count number of elements in the addresses array
-typedef Dart_DwarfStackTraceFootnoteCallback = ffi.Pointer<ffi.NativeFunction<Dart_DwarfStackTraceFootnoteCallbackFunction>>;
+typedef Dart_DwarfStackTraceFootnoteCallback = ffi
+    .Pointer<ffi.NativeFunction<Dart_DwarfStackTraceFootnoteCallbackFunction>>;
 
 /// A Dart_CObject is used for representing Dart objects as native C
 /// data outside the Dart heap. These objects are totally detached from
@@ -14484,7 +18057,7 @@ enum Dart_CObject_Type {
         12 => Dart_CObject_kUnsupported,
         13 => Dart_CObject_kUnmodifiableExternalTypedData,
         14 => Dart_CObject_kNumberOfTypes,
-        _ => throw ArgumentError("Unknown value for Dart_CObject_Type: $value"),
+        _ => throw ArgumentError('Unknown value for Dart_CObject_Type: $value'),
       };
 }
 
@@ -14590,8 +18163,10 @@ final class _Dart_CObject extends ffi.Struct {
 /// This enum is versioned by DART_API_DL_MAJOR_VERSION, only add at the end
 /// and bump the DART_API_DL_MINOR_VERSION.
 typedef Dart_CObject = _Dart_CObject;
-typedef Dart_NativeMessageHandlerFunction = ffi.Void Function(Dart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_NativeMessageHandlerFunction = void Function(DartDart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef Dart_NativeMessageHandlerFunction = ffi.Void Function(
+    Dart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_NativeMessageHandlerFunction = void Function(
+    DartDart_Port dest_port_id, ffi.Pointer<Dart_CObject> message);
 
 /// A native message handler.
 ///
@@ -14602,7 +18177,8 @@ typedef DartDart_NativeMessageHandlerFunction = void Function(DartDart_Port dest
 /// lifetime of the message data is controlled by the caller. All the
 /// data references from the message are allocated by the caller and
 /// will be reclaimed when returning to it.
-typedef Dart_NativeMessageHandler = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandlerFunction>>;
+typedef Dart_NativeMessageHandler
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandlerFunction>>;
 
 /// ============================================================================
 /// IMPORTANT! Never update these signatures without properly updating
@@ -14617,125 +18193,242 @@ typedef Dart_NativeMessageHandler = ffi.Pointer<ffi.NativeFunction<Dart_NativeMe
 /// comment is added to their definition.
 typedef Dart_Port_DL = ffi.Int64;
 typedef DartDart_Port_DL = int;
-typedef Dart_NativeMessageHandler_DLFunction = ffi.Void Function(Dart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_NativeMessageHandler_DLFunction = void Function(DartDart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
-typedef Dart_NativeMessageHandler_DL = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandler_DLFunction>>;
-typedef Dart_PostCObject_TypeFunction = ffi.Bool Function(Dart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
-typedef DartDart_PostCObject_TypeFunction = bool Function(DartDart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
-typedef Dart_PostCObject_Type = ffi.Pointer<ffi.NativeFunction<Dart_PostCObject_TypeFunction>>;
-typedef Dart_PostInteger_TypeFunction = ffi.Bool Function(Dart_Port_DL port_id, ffi.Int64 message);
-typedef DartDart_PostInteger_TypeFunction = bool Function(DartDart_Port_DL port_id, int message);
-typedef Dart_PostInteger_Type = ffi.Pointer<ffi.NativeFunction<Dart_PostInteger_TypeFunction>>;
-typedef Dart_NewNativePort_TypeFunction = Dart_Port_DL Function(ffi.Pointer<ffi.Char> name, Dart_NativeMessageHandler_DL handler, ffi.Bool handle_concurrently);
-typedef DartDart_NewNativePort_TypeFunction = DartDart_Port_DL Function(ffi.Pointer<ffi.Char> name, Dart_NativeMessageHandler_DL handler, bool handle_concurrently);
-typedef Dart_NewNativePort_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewNativePort_TypeFunction>>;
-typedef Dart_CloseNativePort_TypeFunction = ffi.Bool Function(Dart_Port_DL native_port_id);
-typedef DartDart_CloseNativePort_TypeFunction = bool Function(DartDart_Port_DL native_port_id);
-typedef Dart_CloseNativePort_Type = ffi.Pointer<ffi.NativeFunction<Dart_CloseNativePort_TypeFunction>>;
+typedef Dart_NativeMessageHandler_DLFunction = ffi.Void Function(
+    Dart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_NativeMessageHandler_DLFunction = void Function(
+    DartDart_Port_DL dest_port_id, ffi.Pointer<Dart_CObject> message);
+typedef Dart_NativeMessageHandler_DL
+    = ffi.Pointer<ffi.NativeFunction<Dart_NativeMessageHandler_DLFunction>>;
+typedef Dart_PostCObject_TypeFunction = ffi.Bool Function(
+    Dart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
+typedef DartDart_PostCObject_TypeFunction = bool Function(
+    DartDart_Port_DL port_id, ffi.Pointer<Dart_CObject> message);
+typedef Dart_PostCObject_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PostCObject_TypeFunction>>;
+typedef Dart_PostInteger_TypeFunction = ffi.Bool Function(
+    Dart_Port_DL port_id, ffi.Int64 message);
+typedef DartDart_PostInteger_TypeFunction = bool Function(
+    DartDart_Port_DL port_id, int message);
+typedef Dart_PostInteger_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PostInteger_TypeFunction>>;
+typedef Dart_NewNativePort_TypeFunction = Dart_Port_DL Function(
+    ffi.Pointer<ffi.Char> name,
+    Dart_NativeMessageHandler_DL handler,
+    ffi.Bool handle_concurrently);
+typedef DartDart_NewNativePort_TypeFunction = DartDart_Port_DL Function(
+    ffi.Pointer<ffi.Char> name,
+    Dart_NativeMessageHandler_DL handler,
+    bool handle_concurrently);
+typedef Dart_NewNativePort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewNativePort_TypeFunction>>;
+typedef Dart_CloseNativePort_TypeFunction = ffi.Bool Function(
+    Dart_Port_DL native_port_id);
+typedef DartDart_CloseNativePort_TypeFunction = bool Function(
+    DartDart_Port_DL native_port_id);
+typedef Dart_CloseNativePort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_CloseNativePort_TypeFunction>>;
 typedef Dart_IsError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsError_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsError_TypeFunction>>;
+typedef Dart_IsError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsError_TypeFunction>>;
 typedef Dart_IsApiError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsApiError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsApiError_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsApiError_TypeFunction>>;
-typedef Dart_IsUnhandledExceptionError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
-typedef DartDart_IsUnhandledExceptionError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsUnhandledExceptionError_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsUnhandledExceptionError_TypeFunction>>;
-typedef Dart_IsCompilationError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
+typedef Dart_IsApiError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsApiError_TypeFunction>>;
+typedef Dart_IsUnhandledExceptionError_TypeFunction = ffi.Bool Function(
+    ffi.Handle handle);
+typedef DartDart_IsUnhandledExceptionError_TypeFunction = bool Function(
+    Object handle);
+typedef Dart_IsUnhandledExceptionError_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_IsUnhandledExceptionError_TypeFunction>>;
+typedef Dart_IsCompilationError_TypeFunction = ffi.Bool Function(
+    ffi.Handle handle);
 typedef DartDart_IsCompilationError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsCompilationError_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsCompilationError_TypeFunction>>;
+typedef Dart_IsCompilationError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsCompilationError_TypeFunction>>;
 typedef Dart_IsFatalError_TypeFunction = ffi.Bool Function(ffi.Handle handle);
 typedef DartDart_IsFatalError_TypeFunction = bool Function(Object handle);
-typedef Dart_IsFatalError_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsFatalError_TypeFunction>>;
-typedef Dart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(ffi.Handle handle);
-typedef DartDart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(Object handle);
-typedef Dart_GetError_Type = ffi.Pointer<ffi.NativeFunction<Dart_GetError_TypeFunction>>;
-typedef Dart_ErrorHasException_TypeFunction = ffi.Bool Function(ffi.Handle handle);
+typedef Dart_IsFatalError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsFatalError_TypeFunction>>;
+typedef Dart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(
+    ffi.Handle handle);
+typedef DartDart_GetError_TypeFunction = ffi.Pointer<ffi.Char> Function(
+    Object handle);
+typedef Dart_GetError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_GetError_TypeFunction>>;
+typedef Dart_ErrorHasException_TypeFunction = ffi.Bool Function(
+    ffi.Handle handle);
 typedef DartDart_ErrorHasException_TypeFunction = bool Function(Object handle);
-typedef Dart_ErrorHasException_Type = ffi.Pointer<ffi.NativeFunction<Dart_ErrorHasException_TypeFunction>>;
-typedef Dart_ErrorGetException_TypeFunction = ffi.Handle Function(ffi.Handle handle);
-typedef DartDart_ErrorGetException_TypeFunction = Object Function(Object handle);
-typedef Dart_ErrorGetException_Type = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetException_TypeFunction>>;
-typedef Dart_ErrorGetStackTrace_TypeFunction = ffi.Handle Function(ffi.Handle handle);
-typedef DartDart_ErrorGetStackTrace_TypeFunction = Object Function(Object handle);
-typedef Dart_ErrorGetStackTrace_Type = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetStackTrace_TypeFunction>>;
-typedef Dart_NewApiError_TypeFunction = ffi.Handle Function(ffi.Pointer<ffi.Char> error);
-typedef DartDart_NewApiError_TypeFunction = Object Function(ffi.Pointer<ffi.Char> error);
-typedef Dart_NewApiError_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewApiError_TypeFunction>>;
-typedef Dart_NewCompilationError_TypeFunction = ffi.Handle Function(ffi.Pointer<ffi.Char> error);
-typedef DartDart_NewCompilationError_TypeFunction = Object Function(ffi.Pointer<ffi.Char> error);
-typedef Dart_NewCompilationError_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewCompilationError_TypeFunction>>;
-typedef Dart_NewUnhandledExceptionError_TypeFunction = ffi.Handle Function(ffi.Handle exception);
-typedef DartDart_NewUnhandledExceptionError_TypeFunction = Object Function(Object exception);
-typedef Dart_NewUnhandledExceptionError_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewUnhandledExceptionError_TypeFunction>>;
+typedef Dart_ErrorHasException_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorHasException_TypeFunction>>;
+typedef Dart_ErrorGetException_TypeFunction = ffi.Handle Function(
+    ffi.Handle handle);
+typedef DartDart_ErrorGetException_TypeFunction = Object Function(
+    Object handle);
+typedef Dart_ErrorGetException_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetException_TypeFunction>>;
+typedef Dart_ErrorGetStackTrace_TypeFunction = ffi.Handle Function(
+    ffi.Handle handle);
+typedef DartDart_ErrorGetStackTrace_TypeFunction = Object Function(
+    Object handle);
+typedef Dart_ErrorGetStackTrace_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ErrorGetStackTrace_TypeFunction>>;
+typedef Dart_NewApiError_TypeFunction = ffi.Handle Function(
+    ffi.Pointer<ffi.Char> error);
+typedef DartDart_NewApiError_TypeFunction = Object Function(
+    ffi.Pointer<ffi.Char> error);
+typedef Dart_NewApiError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewApiError_TypeFunction>>;
+typedef Dart_NewCompilationError_TypeFunction = ffi.Handle Function(
+    ffi.Pointer<ffi.Char> error);
+typedef DartDart_NewCompilationError_TypeFunction = Object Function(
+    ffi.Pointer<ffi.Char> error);
+typedef Dart_NewCompilationError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewCompilationError_TypeFunction>>;
+typedef Dart_NewUnhandledExceptionError_TypeFunction = ffi.Handle Function(
+    ffi.Handle exception);
+typedef DartDart_NewUnhandledExceptionError_TypeFunction = Object Function(
+    Object exception);
+typedef Dart_NewUnhandledExceptionError_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_NewUnhandledExceptionError_TypeFunction>>;
 typedef Dart_PropagateError_TypeFunction = ffi.Void Function(ffi.Handle handle);
 typedef DartDart_PropagateError_TypeFunction = void Function(Object handle);
-typedef Dart_PropagateError_Type = ffi.Pointer<ffi.NativeFunction<Dart_PropagateError_TypeFunction>>;
-typedef Dart_HandleFromPersistent_TypeFunction = ffi.Handle Function(ffi.Handle object);
-typedef DartDart_HandleFromPersistent_TypeFunction = Object Function(Object object);
-typedef Dart_HandleFromPersistent_Type = ffi.Pointer<ffi.NativeFunction<Dart_HandleFromPersistent_TypeFunction>>;
-typedef Dart_HandleFromWeakPersistent_TypeFunction = ffi.Handle Function(Dart_WeakPersistentHandle object);
-typedef DartDart_HandleFromWeakPersistent_TypeFunction = Object Function(Dart_WeakPersistentHandle object);
-typedef Dart_HandleFromWeakPersistent_Type = ffi.Pointer<ffi.NativeFunction<Dart_HandleFromWeakPersistent_TypeFunction>>;
-typedef Dart_NewPersistentHandle_TypeFunction = ffi.Handle Function(ffi.Handle object);
-typedef DartDart_NewPersistentHandle_TypeFunction = Object Function(Object object);
-typedef Dart_NewPersistentHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewPersistentHandle_TypeFunction>>;
-typedef Dart_SetPersistentHandle_TypeFunction = ffi.Void Function(ffi.Handle obj1, ffi.Handle obj2);
-typedef DartDart_SetPersistentHandle_TypeFunction = void Function(Object obj1, Object obj2);
-typedef Dart_SetPersistentHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_SetPersistentHandle_TypeFunction>>;
-typedef Dart_DeletePersistentHandle_TypeFunction = ffi.Void Function(ffi.Handle object);
-typedef DartDart_DeletePersistentHandle_TypeFunction = void Function(Object object);
-typedef Dart_DeletePersistentHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_DeletePersistentHandle_TypeFunction>>;
-typedef Dart_NewWeakPersistentHandle_TypeFunction = Dart_WeakPersistentHandle Function(ffi.Handle object, ffi.Pointer<ffi.Void> peer, ffi.IntPtr external_allocation_size, Dart_HandleFinalizer callback);
-typedef DartDart_NewWeakPersistentHandle_TypeFunction = Dart_WeakPersistentHandle Function(Object object, ffi.Pointer<ffi.Void> peer, int external_allocation_size, Dart_HandleFinalizer callback);
-typedef Dart_NewWeakPersistentHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewWeakPersistentHandle_TypeFunction>>;
-typedef Dart_DeleteWeakPersistentHandle_TypeFunction = ffi.Void Function(Dart_WeakPersistentHandle object);
-typedef DartDart_DeleteWeakPersistentHandle_TypeFunction = void Function(Dart_WeakPersistentHandle object);
-typedef Dart_DeleteWeakPersistentHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_DeleteWeakPersistentHandle_TypeFunction>>;
-typedef Dart_NewFinalizableHandle_TypeFunction = Dart_FinalizableHandle Function(ffi.Handle object, ffi.Pointer<ffi.Void> peer, ffi.IntPtr external_allocation_size, Dart_HandleFinalizer callback);
-typedef DartDart_NewFinalizableHandle_TypeFunction = Dart_FinalizableHandle Function(Object object, ffi.Pointer<ffi.Void> peer, int external_allocation_size, Dart_HandleFinalizer callback);
-typedef Dart_NewFinalizableHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewFinalizableHandle_TypeFunction>>;
-typedef Dart_DeleteFinalizableHandle_TypeFunction = ffi.Void Function(Dart_FinalizableHandle object, ffi.Handle strong_ref_to_object);
-typedef DartDart_DeleteFinalizableHandle_TypeFunction = void Function(Dart_FinalizableHandle object, Object strong_ref_to_object);
-typedef Dart_DeleteFinalizableHandle_Type = ffi.Pointer<ffi.NativeFunction<Dart_DeleteFinalizableHandle_TypeFunction>>;
+typedef Dart_PropagateError_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_PropagateError_TypeFunction>>;
+typedef Dart_HandleFromPersistent_TypeFunction = ffi.Handle Function(
+    ffi.Handle object);
+typedef DartDart_HandleFromPersistent_TypeFunction = Object Function(
+    Object object);
+typedef Dart_HandleFromPersistent_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_HandleFromPersistent_TypeFunction>>;
+typedef Dart_HandleFromWeakPersistent_TypeFunction = ffi.Handle Function(
+    Dart_WeakPersistentHandle object);
+typedef DartDart_HandleFromWeakPersistent_TypeFunction = Object Function(
+    Dart_WeakPersistentHandle object);
+typedef Dart_HandleFromWeakPersistent_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_HandleFromWeakPersistent_TypeFunction>>;
+typedef Dart_NewPersistentHandle_TypeFunction = ffi.Handle Function(
+    ffi.Handle object);
+typedef DartDart_NewPersistentHandle_TypeFunction = Object Function(
+    Object object);
+typedef Dart_NewPersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewPersistentHandle_TypeFunction>>;
+typedef Dart_SetPersistentHandle_TypeFunction = ffi.Void Function(
+    ffi.Handle obj1, ffi.Handle obj2);
+typedef DartDart_SetPersistentHandle_TypeFunction = void Function(
+    Object obj1, Object obj2);
+typedef Dart_SetPersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_SetPersistentHandle_TypeFunction>>;
+typedef Dart_DeletePersistentHandle_TypeFunction = ffi.Void Function(
+    ffi.Handle object);
+typedef DartDart_DeletePersistentHandle_TypeFunction = void Function(
+    Object object);
+typedef Dart_DeletePersistentHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_DeletePersistentHandle_TypeFunction>>;
+typedef Dart_NewWeakPersistentHandle_TypeFunction
+    = Dart_WeakPersistentHandle Function(
+        ffi.Handle object,
+        ffi.Pointer<ffi.Void> peer,
+        ffi.IntPtr external_allocation_size,
+        Dart_HandleFinalizer callback);
+typedef DartDart_NewWeakPersistentHandle_TypeFunction
+    = Dart_WeakPersistentHandle Function(
+        Object object,
+        ffi.Pointer<ffi.Void> peer,
+        int external_allocation_size,
+        Dart_HandleFinalizer callback);
+typedef Dart_NewWeakPersistentHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_NewWeakPersistentHandle_TypeFunction>>;
+typedef Dart_DeleteWeakPersistentHandle_TypeFunction = ffi.Void Function(
+    Dart_WeakPersistentHandle object);
+typedef DartDart_DeleteWeakPersistentHandle_TypeFunction = void Function(
+    Dart_WeakPersistentHandle object);
+typedef Dart_DeleteWeakPersistentHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_DeleteWeakPersistentHandle_TypeFunction>>;
+typedef Dart_NewFinalizableHandle_TypeFunction
+    = Dart_FinalizableHandle Function(
+        ffi.Handle object,
+        ffi.Pointer<ffi.Void> peer,
+        ffi.IntPtr external_allocation_size,
+        Dart_HandleFinalizer callback);
+typedef DartDart_NewFinalizableHandle_TypeFunction
+    = Dart_FinalizableHandle Function(Object object, ffi.Pointer<ffi.Void> peer,
+        int external_allocation_size, Dart_HandleFinalizer callback);
+typedef Dart_NewFinalizableHandle_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewFinalizableHandle_TypeFunction>>;
+typedef Dart_DeleteFinalizableHandle_TypeFunction = ffi.Void Function(
+    Dart_FinalizableHandle object, ffi.Handle strong_ref_to_object);
+typedef DartDart_DeleteFinalizableHandle_TypeFunction = void Function(
+    Dart_FinalizableHandle object, Object strong_ref_to_object);
+typedef Dart_DeleteFinalizableHandle_Type = ffi
+    .Pointer<ffi.NativeFunction<Dart_DeleteFinalizableHandle_TypeFunction>>;
 typedef Dart_CurrentIsolate_TypeFunction = Dart_Isolate Function();
-typedef Dart_CurrentIsolate_Type = ffi.Pointer<ffi.NativeFunction<Dart_CurrentIsolate_TypeFunction>>;
+typedef Dart_CurrentIsolate_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_CurrentIsolate_TypeFunction>>;
 typedef Dart_ExitIsolate_TypeFunction = ffi.Void Function();
 typedef DartDart_ExitIsolate_TypeFunction = void Function();
-typedef Dart_ExitIsolate_Type = ffi.Pointer<ffi.NativeFunction<Dart_ExitIsolate_TypeFunction>>;
+typedef Dart_ExitIsolate_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ExitIsolate_TypeFunction>>;
 typedef Dart_EnterIsolate_TypeFunction = ffi.Void Function(Dart_Isolate);
 typedef DartDart_EnterIsolate_TypeFunction = void Function(Dart_Isolate);
-typedef Dart_EnterIsolate_Type = ffi.Pointer<ffi.NativeFunction<Dart_EnterIsolate_TypeFunction>>;
-typedef Dart_Post_TypeFunction = ffi.Bool Function(Dart_Port_DL port_id, ffi.Handle object);
-typedef DartDart_Post_TypeFunction = bool Function(DartDart_Port_DL port_id, Object object);
-typedef Dart_Post_Type = ffi.Pointer<ffi.NativeFunction<Dart_Post_TypeFunction>>;
-typedef Dart_NewSendPort_TypeFunction = ffi.Handle Function(Dart_Port_DL port_id);
-typedef DartDart_NewSendPort_TypeFunction = Object Function(DartDart_Port_DL port_id);
-typedef Dart_NewSendPort_Type = ffi.Pointer<ffi.NativeFunction<Dart_NewSendPort_TypeFunction>>;
-typedef Dart_SendPortGetId_TypeFunction = ffi.Handle Function(ffi.Handle port, ffi.Pointer<Dart_Port_DL> port_id);
-typedef DartDart_SendPortGetId_TypeFunction = Object Function(Object port, ffi.Pointer<Dart_Port_DL> port_id);
-typedef Dart_SendPortGetId_Type = ffi.Pointer<ffi.NativeFunction<Dart_SendPortGetId_TypeFunction>>;
+typedef Dart_EnterIsolate_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnterIsolate_TypeFunction>>;
+typedef Dart_Post_TypeFunction = ffi.Bool Function(
+    Dart_Port_DL port_id, ffi.Handle object);
+typedef DartDart_Post_TypeFunction = bool Function(
+    DartDart_Port_DL port_id, Object object);
+typedef Dart_Post_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_Post_TypeFunction>>;
+typedef Dart_NewSendPort_TypeFunction = ffi.Handle Function(
+    Dart_Port_DL port_id);
+typedef DartDart_NewSendPort_TypeFunction = Object Function(
+    DartDart_Port_DL port_id);
+typedef Dart_NewSendPort_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_NewSendPort_TypeFunction>>;
+typedef Dart_SendPortGetId_TypeFunction = ffi.Handle Function(
+    ffi.Handle port, ffi.Pointer<Dart_Port_DL> port_id);
+typedef DartDart_SendPortGetId_TypeFunction = Object Function(
+    Object port, ffi.Pointer<Dart_Port_DL> port_id);
+typedef Dart_SendPortGetId_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_SendPortGetId_TypeFunction>>;
 typedef Dart_EnterScope_TypeFunction = ffi.Void Function();
 typedef DartDart_EnterScope_TypeFunction = void Function();
-typedef Dart_EnterScope_Type = ffi.Pointer<ffi.NativeFunction<Dart_EnterScope_TypeFunction>>;
+typedef Dart_EnterScope_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_EnterScope_TypeFunction>>;
 typedef Dart_ExitScope_TypeFunction = ffi.Void Function();
 typedef DartDart_ExitScope_TypeFunction = void Function();
-typedef Dart_ExitScope_Type = ffi.Pointer<ffi.NativeFunction<Dart_ExitScope_TypeFunction>>;
+typedef Dart_ExitScope_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_ExitScope_TypeFunction>>;
 typedef Dart_IsNull_TypeFunction = ffi.Bool Function(ffi.Handle);
 typedef DartDart_IsNull_TypeFunction = bool Function(Object);
-typedef Dart_IsNull_Type = ffi.Pointer<ffi.NativeFunction<Dart_IsNull_TypeFunction>>;
+typedef Dart_IsNull_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_IsNull_TypeFunction>>;
 typedef Dart_Null_TypeFunction = ffi.Handle Function();
 typedef DartDart_Null_TypeFunction = Object Function();
-typedef Dart_Null_Type = ffi.Pointer<ffi.NativeFunction<Dart_Null_TypeFunction>>;
-typedef Dart_UpdateExternalSize_TypeFunction = ffi.Void Function(Dart_WeakPersistentHandle object, ffi.IntPtr external_allocation_size);
-typedef DartDart_UpdateExternalSize_TypeFunction = void Function(Dart_WeakPersistentHandle object, int external_allocation_size);
-typedef Dart_UpdateExternalSize_Type = ffi.Pointer<ffi.NativeFunction<Dart_UpdateExternalSize_TypeFunction>>;
-typedef Dart_UpdateFinalizableExternalSize_TypeFunction = ffi.Void Function(Dart_FinalizableHandle object, ffi.Handle strong_ref_to_object, ffi.IntPtr external_allocation_size);
-typedef DartDart_UpdateFinalizableExternalSize_TypeFunction = void Function(Dart_FinalizableHandle object, Object strong_ref_to_object, int external_allocation_size);
-typedef Dart_UpdateFinalizableExternalSize_Type = ffi.Pointer<ffi.NativeFunction<Dart_UpdateFinalizableExternalSize_TypeFunction>>;
+typedef Dart_Null_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_Null_TypeFunction>>;
+typedef Dart_UpdateExternalSize_TypeFunction = ffi.Void Function(
+    Dart_WeakPersistentHandle object, ffi.IntPtr external_allocation_size);
+typedef DartDart_UpdateExternalSize_TypeFunction = void Function(
+    Dart_WeakPersistentHandle object, int external_allocation_size);
+typedef Dart_UpdateExternalSize_Type
+    = ffi.Pointer<ffi.NativeFunction<Dart_UpdateExternalSize_TypeFunction>>;
+typedef Dart_UpdateFinalizableExternalSize_TypeFunction = ffi.Void Function(
+    Dart_FinalizableHandle object,
+    ffi.Handle strong_ref_to_object,
+    ffi.IntPtr external_allocation_size);
+typedef DartDart_UpdateFinalizableExternalSize_TypeFunction = void Function(
+    Dart_FinalizableHandle object,
+    Object strong_ref_to_object,
+    int external_allocation_size);
+typedef Dart_UpdateFinalizableExternalSize_Type = ffi.Pointer<
+    ffi.NativeFunction<Dart_UpdateFinalizableExternalSize_TypeFunction>>;
 
 final class Openim_Listener extends ffi.Struct {
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(Dart_Port_DL, ffi.Pointer<ffi.Char>)>> onMethodChannel;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(Dart_Port_DL, ffi.Pointer<ffi.Char>)>>
+      onMethodChannel;
 }
 
 typedef GoInt8 = ffi.SignedChar;
@@ -14868,7 +18561,7 @@ enum clockid_t {
         9 => _CLOCK_UPTIME_RAW_APPROX,
         12 => _CLOCK_PROCESS_CPUTIME_ID,
         16 => _CLOCK_THREAD_CPUTIME_ID,
-        _ => throw ArgumentError("Unknown value for clockid_t: $value"),
+        _ => throw ArgumentError('Unknown value for clockid_t: $value'),
       };
 }
 
@@ -14907,8 +18600,10 @@ final class pthread_override_s extends ffi.Opaque {}
 /// and pthread_get_qos_class_np() interfaces.
 typedef pthread_override_t = ffi.Pointer<pthread_override_s>;
 typedef mach_port_t = __darwin_mach_port_t;
-typedef pthread_jit_write_callback_tFunction = ffi.Int Function(ffi.Pointer<ffi.Void> ctx);
-typedef Dartpthread_jit_write_callback_tFunction = int Function(ffi.Pointer<ffi.Void> ctx);
+typedef pthread_jit_write_callback_tFunction = ffi.Int Function(
+    ffi.Pointer<ffi.Void> ctx);
+typedef Dartpthread_jit_write_callback_tFunction = int Function(
+    ffi.Pointer<ffi.Void> ctx);
 
 /// !
 /// @typedef pthread_jit_write_callback_t
@@ -14923,7 +18618,8 @@ typedef Dartpthread_jit_write_callback_tFunction = int Function(ffi.Pointer<ffi.
 /// A result code to be returned to the caller of @{link
 /// pthread_jit_write_with_callback_np}.  The system does not interpret/act on
 /// the value of this result.
-typedef pthread_jit_write_callback_t = ffi.Pointer<ffi.NativeFunction<pthread_jit_write_callback_tFunction>>;
+typedef pthread_jit_write_callback_t
+    = ffi.Pointer<ffi.NativeFunction<pthread_jit_write_callback_tFunction>>;
 
 final class ThreadArgs extends ffi.Struct {
   @Dart_Port_DL()
@@ -15952,9 +19648,9 @@ const int SIG_ATOMIC_MAX = 2147483647;
 
 const int __bool_true_false_are_defined = 1;
 
-const int true1 = 1;
+const int true$ = 1;
 
-const int false1 = 0;
+const int false$ = 0;
 
 const int __DARWIN_NSIG = 32;
 
@@ -16732,7 +20428,8 @@ const String kVmSnapshotBssCSymbol = 'kDartVmSnapshotBss';
 
 const String kIsolateSnapshotDataCSymbol = 'kDartIsolateSnapshotData';
 
-const String kIsolateSnapshotInstructionsCSymbol = 'kDartIsolateSnapshotInstructions';
+const String kIsolateSnapshotInstructionsCSymbol =
+    'kDartIsolateSnapshotInstructions';
 
 const String kIsolateSnapshotBssCSymbol = 'kDartIsolateSnapshotBss';
 
@@ -16746,7 +20443,8 @@ const String kVmSnapshotBssAsmSymbol = '_kDartVmSnapshotBss';
 
 const String kIsolateSnapshotDataAsmSymbol = '_kDartIsolateSnapshotData';
 
-const String kIsolateSnapshotInstructionsAsmSymbol = '_kDartIsolateSnapshotInstructions';
+const String kIsolateSnapshotInstructionsAsmSymbol =
+    '_kDartIsolateSnapshotInstructions';
 
 const String kIsolateSnapshotBssAsmSymbol = '_kDartIsolateSnapshotBss';
 

@@ -226,14 +226,18 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getGroupApplicationListAsRecipient:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetGroupApplicationListAsRecipient(operationID);
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetGroupApplicationListAsRecipient(operationID, req);
       calloc.free(operationID);
+      calloc.free(req);
       break;
     case _PortMethod.getGroupApplicationListAsApplicant:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetGroupApplicationListAsApplicant(operationID);
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetGroupApplicationListAsApplicant(operationID, req);
       calloc.free(operationID);
+      calloc.free(req);
       break;
 
     case _PortMethod.insertGroupMessageToLocalStorage:
@@ -668,14 +672,18 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
     case _PortMethod.getFriendApplicationListAsApplicant:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetFriendApplicationListAsApplicant(operationID);
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetFriendApplicationListAsApplicant(operationID, req);
       calloc.free(operationID);
+      calloc.free(req);
       break;
     case _PortMethod.getFriendApplicationListAsRecipient:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
-      bindings.GetFriendApplicationListAsRecipient(operationID);
+      final req = jsonEncode(msg.data['req']).toNativeUtf8().cast<ffi.Char>();
+      bindings.GetFriendApplicationListAsRecipient(operationID, req);
       calloc.free(operationID);
+      calloc.free(req);
       break;
     case _PortMethod.getFriendList:
       OpenIMManager._sendPortMap[msg.data['operationID']] = msg.sendPort!;
