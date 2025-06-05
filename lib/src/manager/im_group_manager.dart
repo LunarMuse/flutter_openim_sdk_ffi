@@ -308,14 +308,14 @@ class GroupManager {
   /// 作为群主或者管理员，收到的群成员入群申请
   Future<List<GroupApplicationInfo>> getGroupApplicationListAsRecipient({
     String? operationID,
-    required GetGroupApplicationListAsApplicantReq req,
+    GetGroupApplicationListAsApplicantReq? req,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getGroupApplicationListAsRecipient,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'req': req.toJson(),
+        'req': (req ?? GetGroupApplicationListAsApplicantReq(groupIDs: [], handleResults: [], offset: 0, count: 100)).toJson(),
       },
       sendPort: receivePort.sendPort,
     ));
@@ -327,14 +327,14 @@ class GroupManager {
   /// 获取自己发出的入群申请记录
   Future<List<GroupApplicationInfo>> getGroupApplicationListAsApplicant({
     String? operationID,
-    required GetGroupApplicationListAsApplicantReq req,
+    GetGroupApplicationListAsApplicantReq? req,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getGroupApplicationListAsApplicant,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'req': req.toJson(),
+        'req': (req ?? GetGroupApplicationListAsApplicantReq(groupIDs: [], handleResults: [], offset: 0, count: 100)).toJson(),
       },
       sendPort: receivePort.sendPort,
     ));

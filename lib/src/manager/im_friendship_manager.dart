@@ -32,14 +32,14 @@ class FriendshipManager {
   /// 获取本人作为被添加者，收到的好友申请
   Future<List<FriendApplicationInfo>> getFriendApplicationListAsRecipient({
     String? operationID,
-    required GetFriendApplicationListAsRecipientReq req,
+    GetFriendApplicationListAsRecipientReq? req,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getFriendApplicationListAsRecipient,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'req': req.toJson(),
+        'req': (req ?? GetFriendApplicationListAsRecipientReq(handleResults: [], offset: 0, count: 100)).toJson(),
       },
       sendPort: receivePort.sendPort,
     ));
@@ -52,14 +52,14 @@ class FriendshipManager {
   /// 获取本人作为添加者，主动发起的好友申请
   Future<List<FriendApplicationInfo>> getFriendApplicationListAsApplicant({
     String? operationID,
-    required GetFriendApplicationListAsApplicantReq req,
+    GetFriendApplicationListAsApplicantReq? req,
   }) async {
     ReceivePort receivePort = ReceivePort();
     OpenIMManager._sendPort.send(_PortModel(
       method: _PortMethod.getFriendApplicationListAsApplicant,
       data: {
         'operationID': IMUtils.checkOperationID(operationID),
-        'req': req.toJson(),
+        'req': (req ?? GetFriendApplicationListAsApplicantReq(count: 100, offset: 0)).toJson(),
       },
       sendPort: receivePort.sendPort,
     ));
