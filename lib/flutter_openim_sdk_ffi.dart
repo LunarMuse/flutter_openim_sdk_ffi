@@ -40,6 +40,7 @@ part 'src/manager/im_group_manager.dart';
 part 'src/manager/im_manager.dart';
 part 'src/manager/im_message_manager.dart';
 part 'src/manager/im_user_manager.dart';
+part 'src/models/applicant_req.dart';
 
 /// models
 part 'src/models/conversation_info.dart';

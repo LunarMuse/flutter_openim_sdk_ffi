@@ -199,8 +199,8 @@ extern __declspec(dllexport) void AddFriend(char* operationID, char* userIDReqMs
 extern __declspec(dllexport) void CheckFriend(char* operationID, char* userIDList);
 extern __declspec(dllexport) void DeleteFriend(char* operationID, char* friendUserID);
 extern __declspec(dllexport) void GetBlackList(char* operationID);
-extern __declspec(dllexport) void GetFriendApplicationListAsApplicant(char* operationID);
-extern __declspec(dllexport) void GetFriendApplicationListAsRecipient(char* operationID);
+extern __declspec(dllexport) void GetFriendApplicationListAsApplicant(char* operationID, char* req);
+extern __declspec(dllexport) void GetFriendApplicationListAsRecipient(char* operationID, char* req);
 extern __declspec(dllexport) void GetFriendList(char* operationID, _Bool filterBlack);
 extern __declspec(dllexport) void GetFriendListPage(char* operationID, int32_t offset, int32_t count, _Bool filterBlack);
 extern __declspec(dllexport) void GetSpecifiedFriendsInfo(char* operationID, char* userIDList, _Bool filterBlack);
@@ -216,8 +216,8 @@ extern __declspec(dllexport) void getJoinedGroupListPage(char* operationID, int3
 extern __declspec(dllexport) void SearchGroups(char* operationID, char* searchParam);
 extern __declspec(dllexport) void GetSpecifiedGroupsInfo(char* operationID, char* groupIDList);
 extern __declspec(dllexport) void SetGroupInfo(char* operationID, char* groupInfo);
-extern __declspec(dllexport) void GetGroupApplicationListAsRecipient(char* operationID);
-extern __declspec(dllexport) void GetGroupApplicationListAsApplicant(char* operationID);
+extern __declspec(dllexport) void GetGroupApplicationListAsRecipient(char* operationID, char* req);
+extern __declspec(dllexport) void GetGroupApplicationListAsApplicant(char* operationID, char* req);
 extern __declspec(dllexport) void AcceptGroupApplication(char* operationID, char* groupID, char* fromUserID, char* handleMsg);
 extern __declspec(dllexport) void RefuseGroupApplication(char* operationID, char* groupID, char* fromUserID, char* handleMsg);
 extern __declspec(dllexport) void GetGroupMemberList(char* operationID, char* groupID, int32_t filter, int32_t offset, int32_t count);

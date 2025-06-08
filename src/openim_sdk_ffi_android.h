@@ -206,8 +206,8 @@ extern "C"
   extern void CheckFriend(char *operationID, char *userIDList);
   extern void DeleteFriend(char *operationID, char *friendUserID);
   extern void GetBlackList(char *operationID);
-  extern void GetFriendApplicationListAsApplicant(char *operationID);
-  extern void GetFriendApplicationListAsRecipient(char *operationID);
+  extern void GetFriendApplicationListAsApplicant(char *operationID, char *req);
+  extern void GetFriendApplicationListAsRecipient(char *operationID, char *req);
   extern void GetFriendList(char *operationID, _Bool filterBlack);
   extern void GetFriendListPage(char *operationID, int32_t offset, int32_t count, _Bool filterBlack);
   extern void GetSpecifiedFriendsInfo(char *operationID, char *userIDList, _Bool filterBlack);
@@ -223,8 +223,8 @@ extern "C"
   extern void SearchGroups(char *operationID, char *searchParam);
   extern void GetSpecifiedGroupsInfo(char *operationID, char *groupIDList);
   extern void SetGroupInfo(char *operationID, char *groupInfo);
-  extern void GetGroupApplicationListAsRecipient(char *operationID);
-  extern void GetGroupApplicationListAsApplicant(char *operationID);
+  extern void GetGroupApplicationListAsRecipient(char *operationID, char *req);
+  extern void GetGroupApplicationListAsApplicant(char *operationID, char *req);
   extern void AcceptGroupApplication(char *operationID, char *groupID, char *fromUserID, char *handleMsg);
   extern void RefuseGroupApplication(char *operationID, char *groupID, char *fromUserID, char *handleMsg);
   extern void GetGroupMemberList(char *operationID, char *groupID, int32_t filter, int32_t offset, int32_t count);
