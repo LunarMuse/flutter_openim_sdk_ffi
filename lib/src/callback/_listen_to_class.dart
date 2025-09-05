@@ -50,6 +50,7 @@ void _listenToClass(_PortModel data, _IsolateTaskData<_InitSdkParams?> task) {
     case ListenerType.onFriendDeleted:
     case ListenerType.onFriendInfoChanged:
       data.data = IMUtils.toObj(data.data, (map) => FriendInfo.fromJson(map));
+      task.sendPort.send(data);
       break;
     case ListenerType.onFriendApplicationAccepted:
     case ListenerType.onFriendApplicationAdded:
