@@ -282,19 +282,18 @@ void _method(_PortModel msg, FlutterOpenimSdkFfiBindings bindings) {
       break;
 
     case _PortMethod.createTextAtMessage:
-      Map<String, dynamic>? quoteMessage = msg.data['quoteMessage'];
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();
       final text = (msg.data['text'] as String).toNativeUtf8().cast<ffi.Char>();
       final atUserIDList = jsonEncode(msg.data['atUserIDList']).toNativeUtf8().cast<ffi.Char>();
       final atUserInfoList = jsonEncode(msg.data['atUserInfoList']).toNativeUtf8().cast<ffi.Char>();
-      final message = (quoteMessage == null ? '' : jsonEncode(msg.data['message'])).toNativeUtf8().cast<ffi.Char>();
-      final newMsg = bindings.CreateTextAtMessage(operationID, text, atUserIDList, atUserInfoList, message);
+      final quoteMessage = (msg.data['quoteMessage'] == null ? '' : jsonEncode(msg.data['quoteMessage'])).toNativeUtf8().cast<ffi.Char>();
+      final newMsg = bindings.CreateTextAtMessage(operationID, text, atUserIDList, atUserInfoList, quoteMessage);
       msg.sendPort?.send(_PortResult(data: IMUtils.toObj(newMsg.cast<Utf8>().toDartString(), (v) => Message.fromJson(v))));
       calloc.free(operationID);
       calloc.free(text);
       calloc.free(atUserIDList);
       calloc.free(atUserInfoList);
-      calloc.free(message);
+      calloc.free(quoteMessage);
       break;
     case _PortMethod.createImageMessage:
       final operationID = (msg.data['operationID'] as String).toNativeUtf8().cast<ffi.Char>();

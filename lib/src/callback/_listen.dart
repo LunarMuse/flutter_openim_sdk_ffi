@@ -44,6 +44,7 @@ void _listen(_PortModel channel) {
     /// SendMsgCallBackListener
     case ListenerType.onProgress:
       OpenIMManager._onEvent((listener) => listener.onProgress(channel.data ?? '', channel.errCode ?? 0));
+      break;
 
     case ListenerType.onNewConversation:
       OpenIMManager._onEvent((listener) => listener.onNewConversation(channel.data));
